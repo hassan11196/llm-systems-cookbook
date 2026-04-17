@@ -8,18 +8,41 @@ parts:
   - caption: Foundations
     chapters:
       - file: notebooks/07_gpu/01_gpu_architecture_tour
+      - file: notebooks/07_gpu/03_triton_tiled_matmul
+      - file: notebooks/07_gpu/04_triton_flashattention
       - file: notebooks/05_serving/01_roofline_analysis
 
-  - caption: Core LLM mechanics
+  - caption: Inference engines
     chapters:
       - file: notebooks/01_inference/01_autoregressive_decoding_kv_cache
-      - file: notebooks/06_eval/01_perplexity_from_scratch
-      - file: notebooks/03_training/01_mixed_precision_accum_checkpointing
+      - file: notebooks/01_inference/03_pagedattention_block_allocator
+      - file: notebooks/01_inference/05_flashattention2_triton
 
-  - caption: Applications
+  - caption: Serving
+    chapters:
+      - file: notebooks/05_serving/02_kv_cache_variants_mha_gqa_mla
+      - file: notebooks/05_serving/05_gptq_awq_weight_quant
+
+  - caption: Training
+    chapters:
+      - file: notebooks/03_training/01_mixed_precision_accum_checkpointing
+      - file: notebooks/03_training/02_ddp_vs_fsdp2
+
+  - caption: Retrieval and agents
     chapters:
       - file: notebooks/02_rag/01_chunking_strategies
       - file: notebooks/04_agents/01_react_from_scratch
+
+  - caption: Evaluation
+    chapters:
+      - file: notebooks/06_eval/01_perplexity_from_scratch
+      - file: notebooks/06_eval/02_mmlu_harness_calibration
+      - file: notebooks/06_eval/03_humaneval_unbiased_pass_k
+      - file: notebooks/06_eval/04_llm_as_judge_bias
+      - file: notebooks/06_eval/05_arena_elo_bradley_terry
+      - file: notebooks/06_eval/06_long_context_niah_ruler
+      - file: notebooks/06_eval/07_contamination_detection
+      - file: notebooks/06_eval/08_lm_eval_inspect_ai
 
   - caption: Reference
     chapters:
