@@ -1,18 +1,44 @@
 # llm-infra-lab
 
-A collection of Jupyter notebooks covering modern LLM systems engineering:
-inference engines, serving, scaling, training, retrieval, agents, evaluation,
-and GPU programming. Each notebook reimplements a core technique from scratch,
-compares it against a production tool, and self-scores via numerical checks.
+**Hands-on notebooks that teach modern LLM systems engineering — inference,
+RAG, training, agents, serving, evaluation, and GPU programming — from first
+principles.** Every notebook explains the idea, builds it in code, and scores
+itself with numerical checks.
 
-The full 61-notebook specification lives in
-[`CURRICULUM_SPEC.md`](CURRICULUM_SPEC.md). This repository builds that
-curriculum incrementally — see the **Status** section below for what is
-currently available.
+Written for a CS undergrad who wants to go from "I know what softmax is" to
+"I can reason about LLM serving economics." No prior deep-learning experience
+assumed.
+
+---
+
+## ▶️ Run it in Colab — one click, no install
+
+Click any badge to open that notebook in a free Colab session. CPU-only
+notebooks run without switching runtime; GPU ones auto-select a free T4.
+
+| | Notebook | Topic | Runtime | Hardware |
+|---|---|---|---|---|
+| [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hassan11196/llm-infra-lab/blob/main/notebooks/07_gpu/01_gpu_architecture_tour.ipynb) | **Start here →** GPU architecture tour | bandwidth vs compute, roofline | 10 min | T4 or CPU |
+| [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hassan11196/llm-infra-lab/blob/main/notebooks/06_eval/01_perplexity_from_scratch.ipynb) | Perplexity from scratch | bits-per-char, sliding window | 1 min | CPU |
+| [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hassan11196/llm-infra-lab/blob/main/notebooks/05_serving/01_roofline_analysis.ipynb) | Roofline for LLM serving | prefill vs decode intensity | 30 s | CPU |
+| [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hassan11196/llm-infra-lab/blob/main/notebooks/01_inference/01_autoregressive_decoding_kv_cache.ipynb) | KV cache = memoised Fibonacci | autoregressive decoding | 20 min | T4 |
+| [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hassan11196/llm-infra-lab/blob/main/notebooks/03_training/01_mixed_precision_accum_checkpointing.ipynb) | Mixed precision + checkpointing | bf16, grad accum, memory tricks | 10 min | T4 or CPU |
+| [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hassan11196/llm-infra-lab/blob/main/notebooks/02_rag/01_chunking_strategies.ipynb) | Chunking for retrieval | embeddings as soft hashing | 3 min | CPU |
+| [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hassan11196/llm-infra-lab/blob/main/notebooks/04_agents/01_react_from_scratch.ipynb) | ReAct = three-line REPL | parser, tools, agent loop | 30 s | CPU |
+
+> **Suggested order:** GPU arch → Roofline → KV cache → Perplexity → the rest
+> in any order. The first three share the same mental model (bandwidth vs
+> compute); the rest apply it to specific problems.
+
+---
 
 ## Tracks
 
-| Track | Notebooks | Focus |
+Each of the seven tracks below has one hello-world notebook ready today
+(above). The full spec in [`CURRICULUM_SPEC.md`](CURRICULUM_SPEC.md) covers
+**61 notebooks total**; the remaining 54 are authored in follow-up work.
+
+| Track | # | Focus |
 |---|---|---|
 | 01 inference | 10 | KV cache, PagedAttention, FlashAttention, continuous batching, speculative decoding, disaggregated serving |
 | 02 rag       |  9 | Chunking, dense/sparse/hybrid retrieval, ColBERT, reranking, HyDE, RAPTOR, GraphRAG |
@@ -22,75 +48,52 @@ currently available.
 | 06 eval      |  8 | Perplexity, MMLU, HumanEval, LLM-as-judge, Arena, NIAH/RULER, contamination |
 | 07 gpu       |  8 | GPU arch, Triton, FlashAttention, fused kernels, torch.compile, Nsight, JAX sharding |
 
-## Install
+## How each notebook is structured
 
-Pick the tracks you need. Optional dependency groups are defined so that
-version-incompatible stacks (e.g., `transformers==4.46` for RAG vs. later
-releases for training) can coexist via separate virtualenvs.
+Every notebook follows the same shape so you always know where you are:
 
-    pip install -e ".[inference,serving,gpu]"
+1. **One-paragraph motivation** — the problem in plain English.
+2. **CS analogy / intuition** — the "aha" hook (KV cache ≈ memoised
+   Fibonacci, embedding ≈ soft hash, agent ≈ REPL).
+3. **First-principles warm-up** — tiny code that proves the limit cases
+   by hand before touching any library.
+4. **Real implementation** — the actual technique, narrated cell by cell.
+5. **Self-scoring cell** — deterministic numeric checks that pass or fail,
+   written to `scores/{track}_{NN}_{slug}.json`.
+6. **Exercises + further reading** — what to try next and which papers
+   to read.
 
-Or everything at once (may require a recent CUDA toolkit for `vllm` and
-`bitsandbytes`):
+---
 
-    pip install -e ".[inference,rag,training,agents,serving,eval,gpu,jax,dev]"
+## Install locally (optional)
 
-For CPU-only exploration (RAG, eval, agents, scoring harness):
+You only need this if you want to run outside Colab. Pick the tracks you
+care about — the optional-dependency groups let incompatible pins coexist
+in separate virtualenvs:
 
-    pip install -e ".[rag,eval,agents,dev]"
+```bash
+pip install -e ".[inference,serving,gpu]"        # inference + serving + GPU kernels
+pip install -e ".[rag,eval,agents,dev]"          # CPU-only path
+pip install -e ".[inference,rag,training,agents,serving,eval,gpu,jax,dev]"  # everything
+```
 
-## Run
+Then:
 
-    make install-dev       # harness + linting only
-    make warm-cache        # pre-pull HuggingFace models used in notebooks
-    jupyter lab notebooks/
-
-Each notebook ends with a scoring cell that writes
-`scores/{track}_{NN}_{slug}.json`. Aggregate with:
-
-    python -m scoring.run_all
+```bash
+make install-dev           # harness + linting
+make warm-cache            # pre-pull HuggingFace models (optional)
+jupyter lab notebooks/
+python -m scoring.run_all  # aggregate all scores/*.json into a markdown table
+```
 
 ## Hardware
 
-Most notebooks run on a free Colab T4. Exceptions are declared in each
-notebook's header cell:
+Most notebooks run on a free Colab T4. Three exceptions are declared in
+their own notebook headers:
 
 - `01_inference/05_flashattention2_triton.ipynb` — Ampere or newer
 - `07_gpu/04_triton_flashattention.ipynb` — Ampere or newer
 - `07_gpu/07_nsight_profiling.ipynb` — local GPU or Colab Pro
-
-## Open in Colab
-
-Every notebook has an "Open in Colab" link so you can run it end-to-end on
-a free T4 without installing anything locally. Click the badge next to the
-notebook below.
-
-The Colab URL template is:
-
-```
-https://colab.research.google.com/github/hassan11196/llm-infra-lab/blob/main/<path-to-notebook>
-```
-
-Replace `main` with another branch name if you want to try a work-in-progress
-revision. The first cell of every notebook auto-discovers the repo root and
-adds `scoring/` and `src/` to `sys.path`, so Colab execution works without a
-`pip install` of the package.
-
-## Status
-
-Phase 1 (scaffolding) and Phase 2 (one hello-world notebook per track) have
-landed. Remaining notebooks are being authored in follow-on sessions in the
-order declared by `CURRICULUM_SPEC.md`.
-
-| Track | Hello-world notebook | Open in Colab |
-|---|---|---|
-| 01 inference | `01_autoregressive_decoding_kv_cache.ipynb` | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hassan11196/llm-infra-lab/blob/main/notebooks/01_inference/01_autoregressive_decoding_kv_cache.ipynb) |
-| 02 rag       | `01_chunking_strategies.ipynb` | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hassan11196/llm-infra-lab/blob/main/notebooks/02_rag/01_chunking_strategies.ipynb) |
-| 03 training  | `01_mixed_precision_accum_checkpointing.ipynb` | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hassan11196/llm-infra-lab/blob/main/notebooks/03_training/01_mixed_precision_accum_checkpointing.ipynb) |
-| 04 agents    | `01_react_from_scratch.ipynb` | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hassan11196/llm-infra-lab/blob/main/notebooks/04_agents/01_react_from_scratch.ipynb) |
-| 05 serving   | `01_roofline_analysis.ipynb` | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hassan11196/llm-infra-lab/blob/main/notebooks/05_serving/01_roofline_analysis.ipynb) |
-| 06 eval      | `01_perplexity_from_scratch.ipynb` | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hassan11196/llm-infra-lab/blob/main/notebooks/06_eval/01_perplexity_from_scratch.ipynb) |
-| 07 gpu       | `01_gpu_architecture_tour.ipynb` | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hassan11196/llm-infra-lab/blob/main/notebooks/07_gpu/01_gpu_architecture_tour.ipynb) |
 
 ## Layout
 
@@ -99,7 +102,7 @@ llm-infra-lab/
 ├── CURRICULUM_SPEC.md         # per-notebook specification
 ├── src/llm_infra_lab/         # shared helpers (hardware_check, set_seed, ModelSpec registry)
 ├── scoring/                   # Scorer harness + aggregator + unit tests
-├── notebooks/                 # per-track directories
+├── notebooks/                 # per-track directories, one hello-world each
 ├── scripts/                   # fetch_data.py, warm_cache.py
 └── .github/workflows/         # CI (lint + CPU-safe notebook execution)
 ```
