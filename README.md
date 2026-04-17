@@ -59,21 +59,38 @@ notebook's header cell:
 - `07_gpu/04_triton_flashattention.ipynb` — Ampere or newer
 - `07_gpu/07_nsight_profiling.ipynb` — local GPU or Colab Pro
 
+## Open in Colab
+
+Every notebook has an "Open in Colab" link so you can run it end-to-end on
+a free T4 without installing anything locally. Click the badge next to the
+notebook below.
+
+The Colab URL template is:
+
+```
+https://colab.research.google.com/github/hassan11196/llm-infra-lab/blob/main/<path-to-notebook>
+```
+
+Replace `main` with another branch name if you want to try a work-in-progress
+revision. The first cell of every notebook auto-discovers the repo root and
+adds `scoring/` and `src/` to `sys.path`, so Colab execution works without a
+`pip install` of the package.
+
 ## Status
 
-This session delivers Phase 1 (scaffolding) and Phase 2 (one hello-world
-notebook per track). Remaining notebooks are authored in follow-on sessions
-in the order declared by `CURRICULUM_SPEC.md`.
+Phase 1 (scaffolding) and Phase 2 (one hello-world notebook per track) have
+landed. Remaining notebooks are being authored in follow-on sessions in the
+order declared by `CURRICULUM_SPEC.md`.
 
-| Track | Hello-world notebook |
-|---|---|
-| 01 inference | `01_autoregressive_decoding_kv_cache.ipynb` |
-| 02 rag       | `01_chunking_strategies.ipynb` |
-| 03 training  | `01_mixed_precision_accum_checkpointing.ipynb` |
-| 04 agents    | `01_react_from_scratch.ipynb` |
-| 05 serving   | `01_roofline_analysis.ipynb` |
-| 06 eval      | `01_perplexity_from_scratch.ipynb` |
-| 07 gpu       | `01_gpu_architecture_tour.ipynb` |
+| Track | Hello-world notebook | Open in Colab |
+|---|---|---|
+| 01 inference | `01_autoregressive_decoding_kv_cache.ipynb` | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hassan11196/llm-infra-lab/blob/main/notebooks/01_inference/01_autoregressive_decoding_kv_cache.ipynb) |
+| 02 rag       | `01_chunking_strategies.ipynb` | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hassan11196/llm-infra-lab/blob/main/notebooks/02_rag/01_chunking_strategies.ipynb) |
+| 03 training  | `01_mixed_precision_accum_checkpointing.ipynb` | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hassan11196/llm-infra-lab/blob/main/notebooks/03_training/01_mixed_precision_accum_checkpointing.ipynb) |
+| 04 agents    | `01_react_from_scratch.ipynb` | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hassan11196/llm-infra-lab/blob/main/notebooks/04_agents/01_react_from_scratch.ipynb) |
+| 05 serving   | `01_roofline_analysis.ipynb` | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hassan11196/llm-infra-lab/blob/main/notebooks/05_serving/01_roofline_analysis.ipynb) |
+| 06 eval      | `01_perplexity_from_scratch.ipynb` | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hassan11196/llm-infra-lab/blob/main/notebooks/06_eval/01_perplexity_from_scratch.ipynb) |
+| 07 gpu       | `01_gpu_architecture_tour.ipynb` | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hassan11196/llm-infra-lab/blob/main/notebooks/07_gpu/01_gpu_architecture_tour.ipynb) |
 
 ## Layout
 
