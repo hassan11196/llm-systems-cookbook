@@ -33,9 +33,20 @@ parts:
       - file: notebooks/03_training/01_mixed_precision_accum_checkpointing
       - file: notebooks/03_training/02_ddp_vs_fsdp2
 
-  - caption: Retrieval and agents
+  - caption: Retrieval-augmented generation
     chapters:
       - file: notebooks/02_rag/01_chunking_strategies
+      - file: notebooks/02_rag/02_faiss_dense_retrieval
+      - file: notebooks/02_rag/03_bm25_splade_rrf_hybrid
+      - file: notebooks/02_rag/04_colbertv2_late_interaction
+      - file: notebooks/02_rag/05_two_stage_reranking
+      - file: notebooks/02_rag/06_hyde_query_rewriting
+      - file: notebooks/02_rag/07_raptor_hierarchical
+      - file: notebooks/02_rag/08_graphrag_leiden
+      - file: notebooks/02_rag/09_ragas_evaluation
+
+  - caption: Agents
+    chapters:
       - file: notebooks/04_agents/01_react_from_scratch
 
   - caption: Evaluation
