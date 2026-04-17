@@ -1,4 +1,5 @@
-.PHONY: install install-dev test lint format clean score warm-cache nbclear nb-execute
+.PHONY: install install-dev test lint format clean score warm-cache nbclear nb-execute \
+        book book-clean book-serve
 
 PYTHON ?= python
 
@@ -38,7 +39,17 @@ nb-execute:
 score:
 	$(PYTHON) -m scoring.run_all
 
+book:
+	jupyter-book build .
+
+book-clean:
+	rm -rf _build/
+
+book-serve: book
+	@echo "Open file://$$(pwd)/_build/html/index.html in your browser."
+	$(PYTHON) -m http.server --directory _build/html 8765
+
 clean:
-	rm -rf .pytest_cache .ruff_cache
+	rm -rf .pytest_cache .ruff_cache _build/
 	find . -type d -name __pycache__ -exec rm -rf {} +
 	rm -rf scores/ data/ .cache/

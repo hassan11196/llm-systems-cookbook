@@ -43,6 +43,9 @@ data/
 figures/
 *.log
 
+# Jupyter Book build output
+_build/
+
 # OS
 .DS_Store
 Thumbs.db

@@ -1,0 +1,26 @@
+# Table of contents for llm-infra-lab.
+# See https://jupyterbook.org/en/stable/structure/toc.html
+
+format: jb-book
+root: intro
+
+parts:
+  - caption: Foundations
+    chapters:
+      - file: notebooks/07_gpu/01_gpu_architecture_tour
+      - file: notebooks/05_serving/01_roofline_analysis
+
+  - caption: Core LLM mechanics
+    chapters:
+      - file: notebooks/01_inference/01_autoregressive_decoding_kv_cache
+      - file: notebooks/06_eval/01_perplexity_from_scratch
+      - file: notebooks/03_training/01_mixed_precision_accum_checkpointing
+
+  - caption: Applications
+    chapters:
+      - file: notebooks/02_rag/01_chunking_strategies
+      - file: notebooks/04_agents/01_react_from_scratch
+
+  - caption: Reference
+    chapters:
+      - file: CURRICULUM_SPEC
