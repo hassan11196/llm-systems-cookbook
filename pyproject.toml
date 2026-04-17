@@ -70,6 +70,12 @@ eval = [
 ]
 gpu = ["triton==3.2.*"]
 jax = ["jax==0.5.*", "jaxlib"]
+book = [
+  "jupyter-book==1.0.*",
+  "sphinx-book-theme>=1.1",
+  "myst-nb>=1.1",
+  "linkify-it-py",
+]
 dev = ["ruff>=0.6", "pre-commit", "nbformat", "nbclient", "nbstripout"]
 
 [project.urls]

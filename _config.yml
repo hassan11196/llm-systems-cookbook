@@ -1,0 +1,59 @@
+# Jupyter Book configuration for llm-infra-lab.
+# Build locally with: ``make book``; browse at ``_build/html/index.html``.
+# Full reference: https://jupyterbook.org/en/stable/customize/config.html
+
+title: llm-infra-lab
+author: Muhammad Hassan Ahmed
+copyright: "2026"
+logo: ""
+
+# Only build files listed in _toc.yml. Keeps the build fast and predictable.
+only_build_toc_files: true
+
+# We commit notebooks without outputs and let Colab / the reader run them.
+# Re-executing in CI would require the full dependency matrix (torch, HF, etc.)
+# and burn minutes on every push.
+execute:
+  execute_notebooks: "off"
+
+# Markdown extensions the curriculum uses: $...$ math, ```{note}``` admonitions,
+# task lists, and definition lists.
+parse:
+  myst_enable_extensions:
+    - amsmath
+    - colon_fence
+    - deflist
+    - dollarmath
+    - linkify
+    - tasklist
+
+repository:
+  url: https://github.com/hassan11196/llm-infra-lab
+  branch: main
+  path_to_book: ""
+
+html:
+  favicon: ""
+  home_page_in_navbar: true
+  use_repository_button: true
+  use_issues_button: true
+  use_edit_page_button: false
+  extra_footer: |
+    <p>Source: <a href="https://github.com/hassan11196/llm-infra-lab">hassan11196/llm-infra-lab</a>.</p>
+
+# Every notebook gets an "Open in Colab" launch button in the page header,
+# in addition to the one we render inside the notebook itself.
+launch_buttons:
+  notebook_interface: jupyterlab
+  colab_url: https://colab.research.google.com
+  thebe: false
+
+# Global Sphinx knobs: enable section numbering across the book and a light
+# theme tweak for code blocks.
+sphinx:
+  config:
+    html_show_copyright: false
+    html_last_updated_fmt: "%Y-%m-%d"
+    nb_mime_priority_overrides:
+      - ["html", "text/html", 10]
+      - ["html", "application/javascript", 20]

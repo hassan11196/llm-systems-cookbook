@@ -1,0 +1,58 @@
+name: book
+
+# Build the Jupyter Book on every push to main, and publish the rendered
+# HTML to GitHub Pages. Pull-request pushes run the build (to catch
+# breakage early) but do not publish.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# Single concurrent deploy: if a new push arrives while a build is in
+# flight, cancel the old one.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install Jupyter Book
+        run: |
+          pip install --upgrade pip
+          pip install "jupyter-book==1.0.*" "sphinx-book-theme>=1.1" \
+                      "myst-nb>=1.1" "linkify-it-py"
+
+      - name: Build the book
+        run: jupyter-book build .
+
+      - name: Upload rendered HTML as an artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _build/html
+
+  deploy:
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
