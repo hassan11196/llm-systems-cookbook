@@ -8,8 +8,13 @@ parts:
   - caption: Foundations
     chapters:
       - file: notebooks/07_gpu/01_gpu_architecture_tour
+      - file: notebooks/07_gpu/02_triton_101_softmax
       - file: notebooks/07_gpu/03_triton_tiled_matmul
       - file: notebooks/07_gpu/04_triton_flashattention
+      - file: notebooks/07_gpu/05_fused_rope_rmsnorm
+      - file: notebooks/07_gpu/06_torch_compile_deep_dive
+      - file: notebooks/07_gpu/07_nsight_profiling
+      - file: notebooks/07_gpu/08_jax_sharding_pipeline
       - file: notebooks/05_serving/01_roofline_analysis
 
   - caption: Inference engines
