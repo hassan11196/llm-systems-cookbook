@@ -1,0 +1,23 @@
+# Fallback flat requirements list. Prefer `pip install -e ".[<extras>]"` for
+# per-track installs since package versions across tracks can conflict (e.g.,
+# transformers 4.46 pinned for RAG vs. training groups).
+
+# Core
+torch==2.6.*
+numpy>=1.26
+transformers==4.46.3
+tokenizers>=0.20
+accelerate>=0.34
+datasets>=2.20
+jupyter>=1.0
+nbformat>=5.10
+nbclient>=0.10
+matplotlib>=3.8
+pandas>=2.2
+tqdm
+pytest>=8.0
+
+# Dev
+ruff>=0.6
+pre-commit
+nbstripout

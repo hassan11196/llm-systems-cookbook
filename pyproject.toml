@@ -1,0 +1,98 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "llm-infra-lab"
+version = "0.1.0"
+description = "Hands-on notebooks for modern LLM systems engineering"
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+license = { text = "MIT" }
+authors = [{ name = "llm-infra-lab contributors" }]
+keywords = ["llm", "inference", "serving", "rag", "agents", "training", "gpu", "triton"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+]
+dependencies = [
+  "torch==2.6.*",
+  "numpy>=1.26",
+  "transformers==4.46.3",
+  "tokenizers>=0.20",
+  "accelerate>=0.34",
+  "datasets>=2.20",
+  "jupyter>=1.0",
+  "nbformat>=5.10",
+  "nbclient>=0.10",
+  "matplotlib>=3.8",
+  "pandas>=2.2",
+  "tqdm",
+  "pytest>=8.0",
+]
+
+[project.optional-dependencies]
+inference = ["vllm==0.19.*", "triton==3.2.*"]
+rag = [
+  "sentence-transformers==5.4.1",
+  "faiss-cpu==1.13.2",
+  "rank-bm25",
+  "chromadb",
+  "pylate==1.1.7",
+]
+training = [
+  "peft==0.13.*",
+  "trl==0.24.*",
+  "bitsandbytes==0.44.*",
+  "deepspeed",
+]
+agents = [
+  "langgraph==1.1.*",
+  "dspy-ai==3.0.*",
+  "mcp==1.2.*",
+  "autogen-agentchat==0.4.*",
+  "crewai==0.80.*",
+  "outlines",
+  "pydantic>=2.0",
+]
+serving = ["llmcompressor==0.10.*", "gptqmodel", "autoawq"]
+# RAGAS is deliberately pinned to the 0.2.x API. RAGAS 0.4.x broke the metric
+# interface used by notebooks/02_rag/09 and requires a separate metric refactor
+# that is out of scope for this curriculum as authored.
+eval = [
+  "lm-eval==0.4.11",
+  "inspect-ai==0.3.199",
+  "lighteval==0.11.0",
+  "ragas==0.2.14",
+]
+gpu = ["triton==3.2.*"]
+jax = ["jax==0.5.*", "jaxlib"]
+dev = ["ruff>=0.6", "pre-commit", "nbformat", "nbclient", "nbstripout"]
+
+[project.urls]
+Repository = "https://github.com/hassan11196/llm-infra-lab"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = ["notebooks/**/*.ipynb"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+"scoring/test_harness.py" = ["B011"]
+
+[tool.pytest.ini_options]
+testpaths = ["scoring"]
+addopts = "-ra --strict-markers"
