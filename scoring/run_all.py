@@ -65,9 +65,14 @@ def main() -> int:
         lines.append("| Notebook | Passed | Total | Skipped | Score | Elapsed (s) |")
         lines.append("|---|---:|---:|---:|---:|---:|")
         for data in sorted(by_track[track_key], key=lambda d: d["notebook_id"]):
-            passed, total, skipped = data["passed"], data["total"], data.get("skipped", 0)
-            score = data.get("score", 0.0)
-            elapsed = data.get("elapsed_s", 0.0)
+            # Coerce defensively: some notebooks produce numpy ints that the
+            # Scorer serialises via ``default=str``, leaving "passed" / "total"
+            # as strings in the JSON file.
+            passed = int(data["passed"])
+            total = int(data["total"])
+            skipped = int(data.get("skipped", 0))
+            score = float(data.get("score", 0.0))
+            elapsed = float(data.get("elapsed_s", 0.0))
             total_passed += passed
             total_total += total
             total_skipped += skipped
