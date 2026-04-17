@@ -48,6 +48,12 @@ parts:
   - caption: Agents
     chapters:
       - file: notebooks/04_agents/01_react_from_scratch
+      - file: notebooks/04_agents/02_structured_outputs_three_ways
+      - file: notebooks/04_agents/03_langgraph_state_machines
+      - file: notebooks/04_agents/04_dspy_3_miprov2
+      - file: notebooks/04_agents/05_mcp_server_client
+      - file: notebooks/04_agents/06_autogen_0_4_vs_crewai
+      - file: notebooks/04_agents/07_agent_evaluation_suite
 
   - caption: Evaluation
     chapters:
