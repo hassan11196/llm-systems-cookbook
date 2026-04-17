@@ -1,0 +1,72 @@
+name: ci
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install ruff
+        run: pip install ruff==0.8.4
+      - name: Ruff check
+        run: ruff check src/ scoring/ scripts/
+      - name: Ruff format check
+        run: ruff format --check src/ scoring/ scripts/
+
+  harness-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install minimal deps
+        run: pip install pytest
+      - name: Run harness unit tests
+        run: pytest scoring/test_harness.py -v
+
+  cpu-notebooks:
+    runs-on: ubuntu-latest
+    needs: [lint, harness-tests]
+    if: github.event_name == 'push'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install CPU-only stacks
+        run: |
+          pip install --upgrade pip
+          pip install -e ".[dev]"
+          pip install torch==2.6.* --index-url https://download.pytorch.org/whl/cpu
+          pip install "sentence-transformers==5.4.1" "faiss-cpu==1.13.2" "rank-bm25"
+      - name: Execute CPU-safe hello-world notebooks
+        run: |
+          set -e
+          for nb in \
+            notebooks/02_rag/01_chunking_strategies.ipynb \
+            notebooks/05_serving/01_roofline_analysis.ipynb \
+            notebooks/04_agents/01_react_from_scratch.ipynb; do
+            echo "::group::Executing $nb"
+            jupyter nbconvert --to notebook --execute "$nb" \
+              --output "$(basename "$nb" .ipynb).executed.ipynb" \
+              --output-dir /tmp
+            echo "::endgroup::"
+          done
+      - name: Upload scoring artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: scores
+          path: scores/
+          if-no-files-found: warn
