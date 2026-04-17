@@ -138,13 +138,15 @@ class Scorer:
     def summary(self) -> dict[str, Any]:
         scored = [r for r in self.results if not r.skipped]
         total = len(scored)
-        passed = sum(r.passed for r in scored)
+        # Coerce to native int so ``sum`` of numpy bools doesn't produce
+        # numpy scalars that json.dumps then stringifies via default=str.
+        passed = int(sum(1 for r in scored if r.passed))
         out = {
             "notebook_id": self.notebook_id,
             "passed": passed,
             "total": total,
             "skipped": sum(1 for r in self.results if r.skipped),
-            "score": passed / total if total else 0.0,
+            "score": float(passed / total) if total else 0.0,
             "elapsed_s": time.time() - self._start,
             "results": [asdict(r) for r in self.results],
         }
