@@ -1,0 +1,29 @@
+name: scoring
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  aggregate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Download CI scores artifact
+        uses: dawidd6/action-download-artifact@v6
+        continue-on-error: true
+        with:
+          workflow: ci.yml
+          name: scores
+          path: scores
+      - name: Aggregate scores
+        run: |
+          if [ -d scores ] && [ -n "$(ls -A scores 2>/dev/null)" ]; then
+            python -m scoring.run_all >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "No scoring artifacts available yet." >> "$GITHUB_STEP_SUMMARY"
+          fi
