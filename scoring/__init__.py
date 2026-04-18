@@ -1,4 +1,4 @@
-"""Scoring harness for llm-infra-lab notebooks."""
+"""Scoring harness for llm-systems-cookbook notebooks."""
 
 from __future__ import annotations
 

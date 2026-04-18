@@ -1,4 +1,4 @@
-# llm-systems-cookbook
+# LLM Systems Cookbook
 
 [![Book](https://img.shields.io/badge/Read-The%20Book-2ea44f?style=for-the-badge)](https://hassan11196.github.io/llm-systems-cookbook/)
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hassan11196/llm-systems-cookbook/blob/main/intro.md)
@@ -77,7 +77,7 @@ llm-systems-cookbook/
 │   ├── 01_inference/index.md
 │   ├── 02_rag/index.md
 │   ├── …
-├── src/llm_infra_lab/            # shared helpers (hardware_check, seed, etc.)
+├── src/llm_systems_cookbook/     # shared helpers (hardware_check, seed, etc.)
 ├── scoring/                      # Scorer harness + aggregator + unit tests
 ├── scripts/                      # fetch_data.py, warm_cache.py
 └── .github/workflows/            # CI (lint + CPU-safe notebook execution + Pages deploy)

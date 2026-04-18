@@ -1,7 +1,7 @@
-# llm-systems-cookbook
+# LLM Systems Cookbook
 
 ```{image} https://img.shields.io/badge/book-llm--systems--cookbook-2ea44f?style=for-the-badge
-:alt: llm-systems-cookbook
+:alt: LLM Systems Cookbook
 ```
 
 **A hands-on curriculum for modern LLM systems engineering.** 56 Jupyter

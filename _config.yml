@@ -1,4 +1,4 @@
-# Jupyter Book configuration for the llm-systems-cookbook.
+# Jupyter Book configuration for the LLM Systems Cookbook.
 # Build locally with: ``make book``; browse at ``_build/html/index.html``.
 # Full reference: https://jupyterbook.org/en/stable/customize/config.html
 
@@ -64,7 +64,7 @@ sphinx:
       use_download_button: true
       use_fullscreen_button: true
       logo:
-        text: "llm-systems-cookbook"
+        text: "LLM Systems Cookbook"
     nb_mime_priority_overrides:
       - ["html", "text/html", 10]
       - ["html", "application/javascript", 20]

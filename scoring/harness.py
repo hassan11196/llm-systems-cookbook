@@ -1,4 +1,4 @@
-"""Scoring harness for llm-infra-lab notebooks.
+"""Scoring harness for llm-systems-cookbook notebooks.
 
 Every notebook instantiates a :class:`Scorer` in its second cell and calls
 ``s.check(...)`` / ``s.assert_close(...)`` / ``s.benchmark(...)`` to record

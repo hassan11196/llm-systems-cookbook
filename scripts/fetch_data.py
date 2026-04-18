@@ -30,8 +30,8 @@ def main() -> int:
     args = parser.parse_args()
 
     try:
-        from llm_infra_lab._utils import download_wikitext2
-        from llm_infra_lab.datasets import load_beir_scifact_dev, load_squad_mini
+        from llm_systems_cookbook._utils import download_wikitext2
+        from llm_systems_cookbook.datasets import load_beir_scifact_dev, load_squad_mini
     except ImportError as e:
         print(f"Install the package first: pip install -e . ({e})", file=sys.stderr)
         return 1

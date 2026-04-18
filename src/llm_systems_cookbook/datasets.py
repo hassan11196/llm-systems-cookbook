@@ -12,7 +12,7 @@ import random
 from pathlib import Path
 from typing import Any
 
-from llm_infra_lab._utils import data_dir
+from llm_systems_cookbook._utils import data_dir
 
 
 def _cache_file(name: str) -> Path:

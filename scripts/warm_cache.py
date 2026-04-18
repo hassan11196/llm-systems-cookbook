@@ -23,7 +23,7 @@ def main() -> int:
     try:
         from transformers import AutoConfig, AutoModelForCausalLM, AutoTokenizer
 
-        from llm_infra_lab.models import REGISTRY
+        from llm_systems_cookbook.models import REGISTRY
     except ImportError as e:
         print(f"Install the package first: pip install -e . ({e})", file=sys.stderr)
         return 1
