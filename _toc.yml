@@ -97,4 +97,5 @@ parts:
 
   - caption: Reference
     chapters:
+      - file: open_source_llms
       - file: CURRICULUM_SPEC
