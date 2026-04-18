@@ -3,14 +3,14 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "llm-infra-lab"
+name = "llm-systems-cookbook"
 version = "0.1.0"
-description = "Hands-on notebooks for modern LLM systems engineering"
+description = "A hands-on cookbook for modern LLM systems engineering"
 readme = "README.md"
 requires-python = ">=3.11,<3.13"
 license = { text = "MIT" }
-authors = [{ name = "llm-infra-lab contributors" }]
-keywords = ["llm", "inference", "serving", "rag", "agents", "training", "gpu", "triton"]
+authors = [{ name = "Muhammad Hassan Ahmed" }]
+keywords = ["llm", "cookbook", "inference", "serving", "rag", "agents", "training", "gpu", "triton"]
 classifiers = [
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3.11",
@@ -79,7 +79,9 @@ book = [
 dev = ["ruff>=0.6", "pre-commit", "nbformat", "nbclient", "nbstripout"]
 
 [project.urls]
-Repository = "https://github.com/hassan11196/llm-infra-lab"
+Repository = "https://github.com/hassan11196/llm-systems-cookbook"
+Documentation = "https://hassan11196.github.io/llm-systems-cookbook/"
+Issues = "https://github.com/hassan11196/llm-systems-cookbook/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]
