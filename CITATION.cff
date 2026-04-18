@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this cookbook in teaching or research, please cite it using the metadata below."
+title: "The LLM Systems Cookbook"
+abstract: >-
+  A hands-on curriculum for modern LLM systems engineering. 61 Jupyter notebooks covering
+  inference, retrieval-augmented generation, training, agents, serving, evaluation, and GPU
+  programming, each reimplementing a core technique from first principles, comparing against
+  a production tool, and self-scoring with numerical checks.
+type: software
+authors:
+  - family-names: Ahmed
+    given-names: Muhammad Hassan
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+    affiliation: Independent
+repository-code: "https://github.com/hassan11196/llm-systems-cookbook"
+url: "https://github.com/hassan11196/llm-systems-cookbook"
+license: MIT
+version: "0.1.0"
+date-released: "2026-04-18"
+keywords:
+  - large-language-models
+  - systems
+  - inference
+  - retrieval-augmented-generation
+  - gpu
+  - training
+  - jupyter-book
+  - cookbook

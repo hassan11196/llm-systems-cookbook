@@ -1,8 +1,8 @@
-# Jupyter Book configuration for llm-infra-lab.
+# Jupyter Book configuration for the llm-systems-cookbook.
 # Build locally with: ``make book``; browse at ``_build/html/index.html``.
 # Full reference: https://jupyterbook.org/en/stable/customize/config.html
 
-title: llm-infra-lab
+title: The LLM Systems Cookbook
 author: Muhammad Hassan Ahmed
 copyright: "2026"
 logo: ""
@@ -11,13 +11,10 @@ logo: ""
 only_build_toc_files: true
 
 # We commit notebooks without outputs and let Colab / the reader run them.
-# Re-executing in CI would require the full dependency matrix (torch, HF, etc.)
-# and burn minutes on every push.
 execute:
   execute_notebooks: "off"
 
-# Markdown extensions the curriculum uses: $...$ math, ```{note}``` admonitions,
-# task lists, and definition lists.
+# MyST extensions used across the book.
 parse:
   myst_enable_extensions:
     - amsmath
@@ -25,10 +22,13 @@ parse:
     - deflist
     - dollarmath
     - linkify
+    - substitution
     - tasklist
+  myst_substitutions:
+    repo_url: "https://github.com/hassan11196/llm-systems-cookbook"
 
 repository:
-  url: https://github.com/hassan11196/llm-infra-lab
+  url: https://github.com/hassan11196/llm-systems-cookbook
   branch: main
   path_to_book: ""
 
@@ -39,21 +39,34 @@ html:
   use_issues_button: true
   use_edit_page_button: false
   extra_footer: |
-    <p>Source: <a href="https://github.com/hassan11196/llm-infra-lab">hassan11196/llm-infra-lab</a>.</p>
+    <p>Licensed under MIT.
+    Source and issues at
+    <a href="https://github.com/hassan11196/llm-systems-cookbook">
+    hassan11196/llm-systems-cookbook</a>.</p>
 
-# Every notebook gets an "Open in Colab" launch button in the page header,
-# in addition to the one we render inside the notebook itself.
+# Every chapter gets a rocket-ship launch menu: Colab for free T4
+# execution and Binder for self-hosted reproducibility.
 launch_buttons:
   notebook_interface: jupyterlab
   colab_url: https://colab.research.google.com
+  binderhub_url: https://mybinder.org
   thebe: false
 
-# Global Sphinx knobs: enable section numbering across the book and a light
-# theme tweak for code blocks.
 sphinx:
   config:
     html_show_copyright: false
     html_last_updated_fmt: "%Y-%m-%d"
+    html_theme_options:
+      # Make the navigation sidebar wider so Part captions don't wrap.
+      show_navbar_depth: 2
+      show_toc_level: 2
+      path_to_docs: ""
+      use_download_button: true
+      use_fullscreen_button: true
+      logo:
+        text: "llm-systems-cookbook"
     nb_mime_priority_overrides:
       - ["html", "text/html", 10]
       - ["html", "application/javascript", 20]
+  extra_extensions:
+    - sphinx_design

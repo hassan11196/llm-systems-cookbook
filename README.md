@@ -1,137 +1,106 @@
-# llm-infra-lab
+# llm-systems-cookbook
 
-A collection of Jupyter notebooks covering modern LLM systems engineering:
-inference engines, serving, scaling, training, retrieval, agents, evaluation,
-and GPU programming. Each notebook reimplements a core technique from scratch,
-compares it against a production tool, and self-scores via numerical checks.
+[![Book](https://img.shields.io/badge/Read-The%20Book-2ea44f?style=for-the-badge)](https://hassan11196.github.io/llm-systems-cookbook/)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hassan11196/llm-systems-cookbook/blob/main/intro.md)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-The full 61-notebook specification lives in
-[`CURRICULUM_SPEC.md`](CURRICULUM_SPEC.md). This repository builds that
-curriculum incrementally — see the **Status** section below for what is
-currently available.
+**A hands-on curriculum for modern LLM systems engineering.** 61 Jupyter
+notebooks covering inference, retrieval, training, agents, serving,
+evaluation, and GPU programming. Each notebook reimplements a core
+technique from first principles, compares against a production tool,
+and self-scores with numerical checks.
 
-## Tracks
+Target audience: a computer-science undergrad who wants to go from
+"I know what softmax is" to "I can reason about LLM serving
+economics." No prior deep-learning background assumed.
 
-| Track | Notebooks | Focus |
+## ▶️ Run in Colab — no install
+
+Every notebook has an Open-in-Colab badge at the top. Landing page:
+
+👉 **[hassan11196.github.io/llm-systems-cookbook](https://hassan11196.github.io/llm-systems-cookbook/)**
+
+Start with [`07_gpu/01_gpu_architecture_tour`](notebooks/07_gpu/01_gpu_architecture_tour.ipynb)
+if you're new to GPU programming; otherwise jump to the track you
+want from the book's landing page.
+
+## The seven parts
+
+| Part | Chapters | Theme |
 |---|---|---|
-| 01 inference | 10 | KV cache, PagedAttention, FlashAttention, continuous batching, speculative decoding, disaggregated serving |
-| 02 rag       |  9 | Chunking, dense/sparse/hybrid retrieval, ColBERT, reranking, HyDE, RAPTOR, GraphRAG |
-| 03 training  |  8 | Mixed precision, FSDP2, tensor/pipeline parallel, LoRA, QLoRA, DPO, GRPO |
-| 04 agents    |  7 | ReAct, structured outputs, LangGraph, DSPy, MCP, multi-agent, τ-bench/SWE-bench |
-| 05 serving   | 11 | Roofline, KV variants, compression, quantization, MoE, disaggregation, SLO/autoscaling |
-| 06 eval      |  8 | Perplexity, MMLU, HumanEval, LLM-as-judge, Arena, NIAH/RULER, contamination |
-| 07 gpu       |  8 | GPU arch, Triton, FlashAttention, fused kernels, torch.compile, Nsight, JAX sharding |
+| **I · Foundations** | [9](notebooks/07_gpu/index.md) | GPU architecture, Triton, roofline |
+| **II · Inference engines** | [10](notebooks/01_inference/index.md) | KV cache, PagedAttention, speculative, SARATHI |
+| **III · Serving & scaling** | [11](notebooks/05_serving/index.md) | KV variants/compression, quantisation, MoE, DistServe |
+| **IV · Training** | [2 of 8](notebooks/03_training/index.md) | Mixed precision, FSDP2; more landing soon |
+| **V · Retrieval-augmented generation** | [9](notebooks/02_rag/index.md) | Chunking, indices, hybrid, RAPTOR, GraphRAG, RAGAS |
+| **VI · Agent frameworks** | [7](notebooks/04_agents/index.md) | ReAct, structured outputs, LangGraph, DSPy, MCP |
+| **VII · Evaluation** | [8](notebooks/06_eval/index.md) | Perplexity, MMLU, HumanEval, Arena, NIAH, contamination |
 
-## Install
+Full 61-notebook spec: [`CURRICULUM_SPEC.md`](CURRICULUM_SPEC.md).
 
-Pick the tracks you need. Optional dependency groups are defined so that
-version-incompatible stacks (e.g., `transformers==4.46` for RAG vs. later
-releases for training) can coexist via separate virtualenvs.
+## Run it locally
 
-    pip install -e ".[inference,serving,gpu]"
+```bash
+# Book build (jupyter-book + sphinx-book-theme + myst-nb)
+pip install -e ".[book,dev]"
+make book          # builds into _build/html/
+open _build/html/index.html
 
-Or everything at once (may require a recent CUDA toolkit for `vllm` and
-`bitsandbytes`):
-
-    pip install -e ".[inference,rag,training,agents,serving,eval,gpu,jax,dev]"
-
-For CPU-only exploration (RAG, eval, agents, scoring harness):
-
-    pip install -e ".[rag,eval,agents,dev]"
-
-## Run
-
-    make install-dev       # harness + linting only
-    make warm-cache        # pre-pull HuggingFace models used in notebooks
-    jupyter lab notebooks/
-
-Each notebook ends with a scoring cell that writes
-`scores/{track}_{NN}_{slug}.json`. Aggregate with:
-
-    python -m scoring.run_all
+# Or run notebooks directly (pick only the tracks you need)
+pip install -e ".[inference,serving,gpu]"     # GPU-bound parts
+pip install -e ".[rag,eval,agents,dev]"       # fully CPU-safe
+jupyter lab notebooks/
+python -m scoring.run_all                      # aggregate scores/*.json
+```
 
 ## Hardware
 
-Most notebooks run on a free Colab T4. Exceptions are declared in each
-notebook's header cell:
+Most notebooks run on a free Colab T4. Three require more:
 
-- `01_inference/05_flashattention2_triton.ipynb` — Ampere or newer
-- `07_gpu/04_triton_flashattention.ipynb` — Ampere or newer
+- `01_inference/05_flashattention2_triton.ipynb` — Ampere+ GPU
+- `07_gpu/04_triton_flashattention.ipynb` — Ampere+ GPU
 - `07_gpu/07_nsight_profiling.ipynb` — local GPU or Colab Pro
 
-## Open in Colab
-
-Every notebook has an "Open in Colab" link so you can run it end-to-end on
-a free T4 without installing anything locally. Click the badge next to the
-notebook below.
-
-The Colab URL template is:
-
-```
-https://colab.research.google.com/github/hassan11196/llm-infra-lab/blob/main/<path-to-notebook>
-```
-
-Replace `main` with another branch name if you want to try a work-in-progress
-revision. The first cell of every notebook auto-discovers the repo root and
-adds `scoring/` and `src/` to `sys.path`, so Colab execution works without a
-`pip install` of the package.
-
-## Status
-
-Six of seven tracks fully authored; the last one lands with this PR.
-
-| Track | Done | Notebooks in the book |
-|---|---:|---|
-| 01 inference | 10 / 10 | ✅ |
-| 02 rag       | 9 / 9   | ✅ |
-| 03 training  | 2 / 8   | six more remain |
-| 04 agents    | 7 / 7   | ✅ |
-| 05 serving   | 11 / 11 | ✅ (this PR) |
-| 06 eval      | 8 / 8   | ✅ |
-| 07 gpu       | 8 / 8   | ✅ |
-
-Every completed notebook has an **Open in Colab** badge at the top
-of its first markdown cell and appears in the published Jupyter
-Book at the TOC entry for its track.
-
-Jump into any track by name:
-
-- [Foundations](notebooks/07_gpu/) — GPU architecture, Triton 101,
-  tiled matmul, FlashAttention-2, fused RoPE + RMSNorm, torch.compile,
-  Nsight profiling, JAX sharding, roofline analysis.
-- [Inference engines](notebooks/01_inference/) — autoregressive
-  decoding, attention roofline, PagedAttention, continuous batching,
-  FA2-in-layer, radix prefix cache, speculative decoding, tree
-  speculation, SARATHI chunked prefill, disaggregated serving.
-- [Serving and scaling](notebooks/05_serving/) — KV variants and
-  compression, KIVI, GPTQ/AWQ, SmoothQuant / FP8 / NF4,
-  QuaRot/SpinQuant, batching strategies, MoE, DistServe,
-  observability + autoscaler.
-- [Retrieval-augmented generation](notebooks/02_rag/) — chunking,
-  FAISS, BM25/SPLADE/RRF, ColBERTv2, reranking, HyDE, RAPTOR,
-  GraphRAG, RAGAS.
-- [Agent frameworks](notebooks/04_agents/) — ReAct, structured
-  outputs, state machines, DSPy/MIPROv2, MCP, AutoGen vs CrewAI,
-  evaluation suite.
-- [Evaluation](notebooks/06_eval/) — perplexity, MMLU, HumanEval,
-  judge bias, Arena Elo, NIAH/RULER, contamination, lm-eval vs
-  Inspect AI.
-- [Training](notebooks/03_training/) — mixed precision and
-  checkpointing, DDP vs FSDP2 (six more notebooks authored in a
-  future PR).
+Each chapter declares its requirements in its header cell.
 
 ## Layout
 
 ```
-llm-infra-lab/
-├── CURRICULUM_SPEC.md         # per-notebook specification
-├── src/llm_infra_lab/         # shared helpers (hardware_check, set_seed, ModelSpec registry)
-├── scoring/                   # Scorer harness + aggregator + unit tests
-├── notebooks/                 # per-track directories
-├── scripts/                   # fetch_data.py, warm_cache.py
-└── .github/workflows/         # CI (lint + CPU-safe notebook execution)
+llm-systems-cookbook/
+├── intro.md                      # book landing page
+├── _toc.yml                      # seven-part table of contents
+├── _config.yml                   # Jupyter Book config (launch buttons, theme)
+├── environment.yml               # Binder / conda-forge reproducible env
+├── CITATION.cff                  # academic citation metadata
+├── CURRICULUM_SPEC.md            # per-chapter specification
+├── notebooks/                    # the 61 chapters, grouped by track
+│   ├── 01_inference/index.md
+│   ├── 02_rag/index.md
+│   ├── …
+├── src/llm_infra_lab/            # shared helpers (hardware_check, seed, etc.)
+├── scoring/                      # Scorer harness + aggregator + unit tests
+├── scripts/                      # fetch_data.py, warm_cache.py
+└── .github/workflows/            # CI (lint + CPU-safe notebook execution + Pages deploy)
 ```
+
+## Citation
+
+```bibtex
+@misc{llm_systems_cookbook,
+  author  = {Ahmed, Muhammad Hassan},
+  title   = {The LLM Systems Cookbook},
+  year    = {2026},
+  url     = {https://github.com/hassan11196/llm-systems-cookbook},
+}
+```
+
+## Acknowledgements
+
+Format and structure inspired by
+[Project Pythia cookbooks](https://projectpythia.org/),
+[EECS 245 notes](https://notes.eecs245.org/), and
+[IRSA tutorials](https://caltech-ipac.github.io/irsa-tutorials/).
 
 ## License
 
-MIT
+MIT.
