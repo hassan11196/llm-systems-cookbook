@@ -78,19 +78,47 @@ adds `scoring/` and `src/` to `sys.path`, so Colab execution works without a
 
 ## Status
 
-Phase 1 (scaffolding) and Phase 2 (one hello-world notebook per track) have
-landed. Remaining notebooks are being authored in follow-on sessions in the
-order declared by `CURRICULUM_SPEC.md`.
+Six of seven tracks fully authored; the last one lands with this PR.
 
-| Track | Hello-world notebook | Open in Colab |
-|---|---|---|
-| 01 inference | `01_autoregressive_decoding_kv_cache.ipynb` | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hassan11196/llm-infra-lab/blob/main/notebooks/01_inference/01_autoregressive_decoding_kv_cache.ipynb) |
-| 02 rag       | `01_chunking_strategies.ipynb` | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hassan11196/llm-infra-lab/blob/main/notebooks/02_rag/01_chunking_strategies.ipynb) |
-| 03 training  | `01_mixed_precision_accum_checkpointing.ipynb` | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hassan11196/llm-infra-lab/blob/main/notebooks/03_training/01_mixed_precision_accum_checkpointing.ipynb) |
-| 04 agents    | `01_react_from_scratch.ipynb` | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hassan11196/llm-infra-lab/blob/main/notebooks/04_agents/01_react_from_scratch.ipynb) |
-| 05 serving   | `01_roofline_analysis.ipynb` | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hassan11196/llm-infra-lab/blob/main/notebooks/05_serving/01_roofline_analysis.ipynb) |
-| 06 eval      | `01_perplexity_from_scratch.ipynb` | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hassan11196/llm-infra-lab/blob/main/notebooks/06_eval/01_perplexity_from_scratch.ipynb) |
-| 07 gpu       | `01_gpu_architecture_tour.ipynb` | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hassan11196/llm-infra-lab/blob/main/notebooks/07_gpu/01_gpu_architecture_tour.ipynb) |
+| Track | Done | Notebooks in the book |
+|---|---:|---|
+| 01 inference | 10 / 10 | ✅ |
+| 02 rag       | 9 / 9   | ✅ |
+| 03 training  | 2 / 8   | six more remain |
+| 04 agents    | 7 / 7   | ✅ |
+| 05 serving   | 11 / 11 | ✅ (this PR) |
+| 06 eval      | 8 / 8   | ✅ |
+| 07 gpu       | 8 / 8   | ✅ |
+
+Every completed notebook has an **Open in Colab** badge at the top
+of its first markdown cell and appears in the published Jupyter
+Book at the TOC entry for its track.
+
+Jump into any track by name:
+
+- [Foundations](notebooks/07_gpu/) — GPU architecture, Triton 101,
+  tiled matmul, FlashAttention-2, fused RoPE + RMSNorm, torch.compile,
+  Nsight profiling, JAX sharding, roofline analysis.
+- [Inference engines](notebooks/01_inference/) — autoregressive
+  decoding, attention roofline, PagedAttention, continuous batching,
+  FA2-in-layer, radix prefix cache, speculative decoding, tree
+  speculation, SARATHI chunked prefill, disaggregated serving.
+- [Serving and scaling](notebooks/05_serving/) — KV variants and
+  compression, KIVI, GPTQ/AWQ, SmoothQuant / FP8 / NF4,
+  QuaRot/SpinQuant, batching strategies, MoE, DistServe,
+  observability + autoscaler.
+- [Retrieval-augmented generation](notebooks/02_rag/) — chunking,
+  FAISS, BM25/SPLADE/RRF, ColBERTv2, reranking, HyDE, RAPTOR,
+  GraphRAG, RAGAS.
+- [Agent frameworks](notebooks/04_agents/) — ReAct, structured
+  outputs, state machines, DSPy/MIPROv2, MCP, AutoGen vs CrewAI,
+  evaluation suite.
+- [Evaluation](notebooks/06_eval/) — perplexity, MMLU, HumanEval,
+  judge bias, Arena Elo, NIAH/RULER, contamination, lm-eval vs
+  Inspect AI.
+- [Training](notebooks/03_training/) — mixed precision and
+  checkpointing, DDP vs FSDP2 (six more notebooks authored in a
+  future PR).
 
 ## Layout
 
