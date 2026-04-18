@@ -30,10 +30,18 @@ parts:
       - file: notebooks/01_inference/09_sarathi_chunked_prefill
       - file: notebooks/01_inference/10_disaggregated_prefill_decode
 
-  - caption: Serving
+  - caption: Serving and scaling
     chapters:
       - file: notebooks/05_serving/02_kv_cache_variants_mha_gqa_mla
+      - file: notebooks/05_serving/03_kv_compression_streamingllm_h2o_snapkv
+      - file: notebooks/05_serving/04_2bit_kv_quantization_kivi
       - file: notebooks/05_serving/05_gptq_awq_weight_quant
+      - file: notebooks/05_serving/06_smoothquant_fp8_nf4
+      - file: notebooks/05_serving/07_quarot_spinquant_rotations
+      - file: notebooks/05_serving/08_batching_strategies
+      - file: notebooks/05_serving/09_moe_expert_parallelism
+      - file: notebooks/05_serving/10_disaggregated_serving_distserve
+      - file: notebooks/05_serving/11_serving_observability_slo_autoscaler
 
   - caption: Training
     chapters:
