@@ -1,0 +1,24 @@
+# Conda environment for Binder / local reproducible runs.
+# Mirrors the ``dev`` and CPU-friendly extras from pyproject.toml so the
+# notebooks that run on a free Binder runtime work out of the box.
+name: llm-systems-cookbook
+
+channels:
+  - conda-forge
+
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - numpy>=1.26
+      - matplotlib>=3.8
+      - pandas>=2.2
+      - pytest>=8.0
+      - jupyter>=1.0
+      - nbformat>=5.10
+      - nbclient>=0.10
+      - pydantic>=2.0
+      - networkx>=3.0
+      - torch==2.6.*
+      - jax>=0.5
+      - jaxlib
