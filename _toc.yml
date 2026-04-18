@@ -20,8 +20,15 @@ parts:
   - caption: Inference engines
     chapters:
       - file: notebooks/01_inference/01_autoregressive_decoding_kv_cache
+      - file: notebooks/01_inference/02_attention_roofline
       - file: notebooks/01_inference/03_pagedattention_block_allocator
+      - file: notebooks/01_inference/04_continuous_batching_orca
       - file: notebooks/01_inference/05_flashattention2_triton
+      - file: notebooks/01_inference/06_radix_prefix_cache
+      - file: notebooks/01_inference/07_speculative_decoding
+      - file: notebooks/01_inference/08_medusa_eagle_tree_speculation
+      - file: notebooks/01_inference/09_sarathi_chunked_prefill
+      - file: notebooks/01_inference/10_disaggregated_prefill_decode
 
   - caption: Serving
     chapters:
