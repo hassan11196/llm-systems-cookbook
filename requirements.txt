@@ -5,7 +5,7 @@
 # Core
 torch==2.6.*
 numpy>=1.26
-transformers==4.46.3
+transformers==5.0.0rc3
 tokenizers>=0.20
 accelerate>=0.34
 datasets>=2.20
