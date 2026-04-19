@@ -97,4 +97,5 @@ parts:
 
   - caption: Reference
     chapters:
+      - file: glossary
       - file: CURRICULUM_SPEC
