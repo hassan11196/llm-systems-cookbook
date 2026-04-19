@@ -1,7 +1,7 @@
 # Glossary
 
 A reference for the cross-cutting terms that show up in more than one
-chapter. Entries are deliberately short — enough to orient you, not a
+chapter. Entries are deliberately short - enough to orient you, not a
 substitute for reading the chapter that introduces the concept. Each
 term includes a pointer to the notebook where it first appears.
 
@@ -13,7 +13,7 @@ clicking a linked term (e.g. **{term}`prefill`**) jumps here.
 ```{glossary}
 HBM
   High Bandwidth Memory. The DRAM stack on a GPU. Modern chips reach
-  1–3 TB/s of HBM bandwidth, which is one or two orders of magnitude
+  1-3 TB/s of HBM bandwidth, which is one or two orders of magnitude
   faster than CPU DRAM but still the bottleneck for LLM decode. First
   introduced in {doc}`notebooks/07_gpu/01_gpu_architecture_tour`.
 
@@ -65,7 +65,7 @@ ridge intensity
 
 roofline
   A log-log plot with arithmetic intensity on the x-axis and throughput
-  on the y-axis. The "roof" is `min(bw × AI, peak_compute)` — the
+  on the y-axis. The "roof" is `min(bw × AI, peak_compute)` - the
   achievable ceiling for any kernel on a given chip. Introduced in
   Williams, Waterman & Patterson (2009).
 
@@ -86,10 +86,10 @@ TFLOPs
 
 TTFT
   Time To First Token. The latency from request arrival to the first
-  generated token — dominated by prefill.
+  generated token - dominated by prefill.
 
 TPOT
-  Time Per Output Token. The steady-state decode latency — dominated
+  Time Per Output Token. The steady-state decode latency - dominated
   by weight reads from HBM.
 
 SLO
@@ -103,12 +103,12 @@ SLO
 prefill
   The parallel forward pass over the entire input prompt. Computes
   hidden states and fills the KV cache for every prompt token. High
-  arithmetic intensity — compute-bound. Introduced in
+  arithmetic intensity - compute-bound. Introduced in
   {doc}`notebooks/01_inference/01_autoregressive_decoding_kv_cache`.
 
 decode
   The autoregressive loop that emits output tokens one at a time,
-  reading the cached KV of prior tokens. Low arithmetic intensity —
+  reading the cached KV of prior tokens. Low arithmetic intensity -
   memory-bound. Introduced in
   {doc}`notebooks/01_inference/01_autoregressive_decoding_kv_cache`.
 
@@ -145,7 +145,7 @@ disaggregated prefill/decode
 speculative decoding
   Propose `k` draft tokens with a small cheap model, then verify them
   in one pass with the target model. Rejected tokens are redrafted.
-  When accept rate is high, net speedup is 2–3×.
+  When accept rate is high, net speedup is 2-3×.
 
 draft model
   The small model used to propose tokens in speculative decoding.
@@ -170,7 +170,7 @@ MHA
 GQA
   Grouped-Query Attention. Several query heads share one K/V head.
   Used by Llama-2-70B and most modern open models to shrink KV cache
-  ~4–8×. Covered in
+  ~4-8×. Covered in
   {doc}`notebooks/05_serving/02_kv_cache_variants_mha_gqa_mla`.
 
 MLA
@@ -203,7 +203,7 @@ FP32
 
 FP16
   IEEE half precision. 2 bytes. Fast on tensor cores but narrow
-  dynamic range — used with loss scaling.
+  dynamic range - used with loss scaling.
 
 BF16
   BFloat16. Same 8-bit exponent as FP32, 7-bit mantissa. Wider range
@@ -224,7 +224,7 @@ NF4
 
 GPTQ
   Post-Training Quantization via approximate second-order
-  information. Reduces weights to 3–4 bits with small accuracy loss.
+  information. Reduces weights to 3-4 bits with small accuracy loss.
   Covered in {doc}`notebooks/05_serving/05_gptq_awq_weight_quant`.
 
 AWQ
@@ -307,7 +307,7 @@ activation checkpointing
 LoRA
   Low-Rank Adaptation. Freeze the base model; learn rank-r update
   matrices `B·A` added to selected linears. Reduces trainable params
-  100–1000×.
+  100-1000×.
 
 QLoRA
   LoRA on top of a 4-bit-quantized base model. Enables fine-tuning
