@@ -103,14 +103,16 @@ SLO
 prefill
   The parallel forward pass over the entire input prompt. Computes
   hidden states and fills the KV cache for every prompt token. High
-  arithmetic intensity - compute-bound. Introduced in
-  {doc}`notebooks/01_inference/01_autoregressive_decoding_kv_cache`.
+  arithmetic intensity - compute-bound. First introduced in
+  {doc}`notebooks/07_gpu/01_gpu_architecture_tour`; covered in depth
+  in {doc}`notebooks/01_inference/01_autoregressive_decoding_kv_cache`.
 
 decode
   The autoregressive loop that emits output tokens one at a time,
   reading the cached KV of prior tokens. Low arithmetic intensity -
-  memory-bound. Introduced in
-  {doc}`notebooks/01_inference/01_autoregressive_decoding_kv_cache`.
+  memory-bound. First introduced in
+  {doc}`notebooks/07_gpu/01_gpu_architecture_tour`; covered in depth
+  in {doc}`notebooks/01_inference/01_autoregressive_decoding_kv_cache`.
 
 autoregressive
   A generative model that conditions each new token on all previous
@@ -211,7 +213,8 @@ BF16
 
 FP8
   8-bit float (E4M3 or E5M2 encoding). Half the bandwidth of FP16.
-  Supported by Hopper tensor cores. Covered in
+  Supported on Ada Lovelace (cc 8.9; RTX 4090, L4, L40) and Hopper
+  (cc 9.0; H100) tensor cores. Covered in
   {doc}`notebooks/05_serving/06_smoothquant_fp8_nf4`.
 
 INT8 / INT4

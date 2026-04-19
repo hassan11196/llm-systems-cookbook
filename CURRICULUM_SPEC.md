@@ -1,5 +1,11 @@
 # A 61-notebook curriculum for LLM systems engineering
 
+> **v0.1 status:** this spec describes the full 61-notebook design. The
+> repository currently ships **55 of 61**; the six gaps are all in the
+> training track (notebooks `03_training/03..08`: tensor parallel,
+> pipeline parallel, LoRA, QLoRA, DPO, GRPO), planned for v0.2. Every
+> other track is complete.
+
 This report delivers **61 fully-specified Jupyter notebooks** organized across seven engineering areas of modern LLM systems: inference engines, retrieval-augmented generation, training and fine-tuning, agent frameworks, serving and scaling, evaluation, and GPU programming. Every notebook includes exact 2026 package pins, a demo model drawn from a Colab-T4-compatible shortlist (SmolLM2-135M/360M, Qwen2.5-0.5B, Llama-3.2-1B, Phi-3.5-mini), a 12-20 cell outline with fully type-hinted function signatures, 4-6 numerical scoring checks with concrete thresholds (e.g., "Triton matmul ≥ 70% cuBLAS TFLOPs at 4096² FP16"), expected runtime outputs, and 2-3 stretch goals. The design is lab-style throughout - **no interview framing** - and every notebook instantiates a common `Scorer` that emits `scores/NN.json` for CI aggregation. Difficulty progresses within each track from single-GPU toy kernels to multi-process disaggregated serving; shared utilities (`_utils.py`, `scoring/harness.py`) keep the surface area small. The specs below are written so an implementer can produce each notebook directly without re-researching APIs.
 
 ## Curriculum architecture and shared scaffolding
