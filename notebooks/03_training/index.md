@@ -21,7 +21,9 @@ Prerequisites: Part I (roofline) and Part II (KV cache).
    both converge to identical loss.
 
 ```{note}
-Six more chapters (tensor parallel, pipeline parallel, LoRA, QLoRA,
-DPO, GRPO) land in a follow-up PR. This index page will grow as
-they arrive.
+v0.1 of this book ships 2 of the 8 planned training-track notebooks.
+The remaining six (tensor parallel, pipeline parallel, LoRA, QLoRA,
+DPO, GRPO) are fully specified in
+[`CURRICULUM_SPEC.md`](../../CURRICULUM_SPEC.md) and scheduled for
+v0.2. This index will grow as each lands.
 ```

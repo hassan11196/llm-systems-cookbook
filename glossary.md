@@ -35,9 +35,12 @@ warp
   {doc}`notebooks/07_gpu/01_gpu_architecture_tour`.
 
 tensor core
-  A specialized matrix-multiply unit on modern NVIDIA GPUs (Volta and
-  later). Delivers most of the advertised FP16/BF16/FP8 TFLOPs;
-  non-tensor-core FP32 is far slower. First introduced in
+  A specialized matrix-multiply unit on modern NVIDIA GPUs. Supported
+  precisions expand per generation: Volta (cc 7.0) added FP16; Turing
+  (cc 7.5) added INT8/INT4; Ampere (cc 8.0) added BF16 and TF32; Ada
+  Lovelace (cc 8.9) and Hopper (cc 9.0) added FP8. Delivers most of
+  the advertised tensor-core TFLOPs; non-tensor-core FP32 is far
+  slower. First introduced in
   {doc}`notebooks/07_gpu/01_gpu_architecture_tour`.
 
 compute capability
@@ -244,10 +247,18 @@ QuaRot / SpinQuant
   {doc}`notebooks/05_serving/07_quarot_spinquant_rotations`.
 
 KV quantization
-  Storing K and V in 2-, 4-, or 8-bit formats to shrink the KV cache.
-  KIVI (2-bit), SnapKV, H2O. Covered in
-  {doc}`notebooks/05_serving/03_kv_compression_streamingllm_h2o_snapkv`
-  and {doc}`notebooks/05_serving/04_2bit_kv_quantization_kivi`.
+  Storing K and V in fewer bits per value (2, 4, or 8) to shrink the
+  KV cache. Representative method: KIVI (asymmetric per-channel K,
+  per-token V at 2 bits). Covered in
+  {doc}`notebooks/05_serving/04_2bit_kv_quantization_kivi`.
+
+KV eviction
+  Shrinking the KV cache by *dropping* tokens rather than
+  re-encoding them. StreamingLLM keeps attention sinks + a recent
+  window; H2O keeps "heavy hitter" tokens by historical attention
+  mass; SnapKV uses an observation window to score prompt tokens.
+  Covered in
+  {doc}`notebooks/05_serving/03_kv_compression_streamingllm_h2o_snapkv`.
 ```
 
 ## Batching, parallelism, serving

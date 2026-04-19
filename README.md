@@ -31,7 +31,7 @@ want from the book's landing page.
 | **I · Foundations** | [9](notebooks/07_gpu/index.md) | GPU architecture, Triton, roofline |
 | **II · Inference engines** | [10](notebooks/01_inference/index.md) | KV cache, PagedAttention, speculative, SARATHI |
 | **III · Serving & scaling** | [10](notebooks/05_serving/index.md) | KV variants/compression, quantisation, MoE, DistServe |
-| **IV · Training** | [2 of 8](notebooks/03_training/index.md) | Mixed precision, FSDP2; more landing soon |
+| **IV · Training** | [2 of 8](notebooks/03_training/index.md) | Mixed precision, FSDP2; rest specified, scheduled for v0.2 |
 | **V · Retrieval-augmented generation** | [9](notebooks/02_rag/index.md) | Chunking, indices, hybrid, RAPTOR, GraphRAG, RAGAS |
 | **VI · Agent frameworks** | [7](notebooks/04_agents/index.md) | ReAct, structured outputs, LangGraph, DSPy, MCP |
 | **VII · Evaluation** | [8](notebooks/06_eval/index.md) | Perplexity, MMLU, HumanEval, Arena, NIAH, contamination |
@@ -62,6 +62,15 @@ Most notebooks run on a free Colab T4. Three require more:
 - `07_gpu/07_nsight_profiling.ipynb` - local GPU or Colab Pro
 
 Each chapter declares its requirements in its header cell.
+
+## Gated models
+
+A few notebooks (training track, some inference notebooks) download
+`meta-llama/Llama-3.2-1B[-Instruct]` from HuggingFace. That repo is
+**gated** - you must accept Meta's Llama community license on the
+model page and then authenticate once with `huggingface-cli login`
+(or set `HF_TOKEN`) before the notebook will run. Notebooks that
+only use open models (SmolLM2, Qwen2.5, Phi-3.5) need no token.
 
 ## Layout
 

@@ -34,7 +34,12 @@ def main() -> int:
             AutoTokenizer.from_pretrained(spec.hf_id)
             AutoConfig.from_pretrained(spec.hf_id)
             if args.weights:
-                AutoModelForCausalLM.from_pretrained(spec.hf_id, torch_dtype="auto")
+                # transformers 4.46 renamed torch_dtype -> dtype; keep
+                # a fallback so older pinned versions still work.
+                try:
+                    AutoModelForCausalLM.from_pretrained(spec.hf_id, dtype="auto")
+                except TypeError:
+                    AutoModelForCausalLM.from_pretrained(spec.hf_id, torch_dtype="auto")
         except Exception as e:  # noqa: BLE001 - best-effort prefetch
             print(f"  WARN: {type(e).__name__}: {e}")
 
