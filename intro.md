@@ -6,7 +6,7 @@
 
 **A hands-on curriculum for modern LLM systems engineering.** 56 Jupyter
 notebooks that teach inference, RAG, training, agents, serving,
-evaluation, and GPU programming — each by reimplementing the core
+evaluation, and GPU programming - each by reimplementing the core
 technique from first principles, comparing it to a production tool, and
 self-scoring the result with numerical checks.
 
@@ -18,7 +18,7 @@ with no prior deep-learning background assumed.
 :class: tip
 
 1. Click the **rocket 🚀 button** at the top-right of any chapter and
-   choose *Colab* to run it end-to-end on a free T4 — no install.
+   choose *Colab* to run it end-to-end on a free T4 - no install.
 2. Start with the **Foundations** part if you're new to GPU
    programming; otherwise jump directly into the track that interests
    you.
@@ -35,7 +35,7 @@ with no prior deep-learning background assumed.
 :gutter: 3
 :class-container: full-width
 
-```{grid-item-card} 🏗️ Foundations
+:::{grid-item-card} 🏗️ Foundations
 :link: notebooks/07_gpu/index
 :link-type: doc
 
@@ -44,9 +44,9 @@ FlashAttention-2, fused RoPE + RMSNorm, torch.compile, Nsight
 profiling, JAX sharding.
 
 *9 chapters · mostly GPU, two CPU-friendly*
-```
+:::
 
-```{grid-item-card} ⚡ Inference engines
+:::{grid-item-card} ⚡ Inference engines
 :link: notebooks/01_inference/index
 :link-type: doc
 
@@ -55,9 +55,9 @@ FA2-in-layer, radix prefix cache, speculative + tree decoding,
 SARATHI chunked prefill, disaggregated serving.
 
 *10 chapters · one Ampere-only*
-```
+:::
 
-```{grid-item-card} 📈 Serving and scaling
+:::{grid-item-card} 📈 Serving and scaling
 :link: notebooks/05_serving/index
 :link-type: doc
 
@@ -66,9 +66,9 @@ KIVI, GPTQ/AWQ, SmoothQuant/FP8/NF4, QuaRot/SpinQuant, batching,
 MoE, DistServe, observability + autoscaler.
 
 *11 chapters · CPU-safe*
-```
+:::
 
-```{grid-item-card} 🔍 Retrieval-augmented generation
+:::{grid-item-card} 🔍 Retrieval-augmented generation
 :link: notebooks/02_rag/index
 :link-type: doc
 
@@ -77,9 +77,9 @@ late interaction, two-stage reranking, HyDE, RAPTOR, GraphRAG,
 RAGAS.
 
 *9 chapters · CPU-safe*
-```
+:::
 
-```{grid-item-card} 🤖 Agent frameworks
+:::{grid-item-card} 🤖 Agent frameworks
 :link: notebooks/04_agents/index
 :link-type: doc
 
@@ -88,9 +88,9 @@ DSPy/MIPROv2, MCP server+client, AutoGen vs CrewAI,
 τ-bench/SWE-bench evaluation.
 
 *7 chapters · CPU-safe*
-```
+:::
 
-```{grid-item-card} 🎯 Evaluation
+:::{grid-item-card} 🎯 Evaluation
 :link: notebooks/06_eval/index
 :link-type: doc
 
@@ -99,20 +99,20 @@ Arena Elo + Bradley-Terry, NIAH/RULER, contamination detection,
 lm-eval vs Inspect AI.
 
 *8 chapters · CPU-safe*
-```
+:::
 
-```{grid-item-card} 🔧 Training and fine-tuning
+:::{grid-item-card} 🔧 Training and fine-tuning
 :link: notebooks/03_training/index
 :link-type: doc
 
 Mixed precision + gradient accumulation + checkpointing,
 DDP vs FSDP2 (+ tensor parallel, pipeline parallel, LoRA, QLoRA,
-DPO, GRPO — landing soon).
+DPO, GRPO - landing soon).
 
 *2 of 8 chapters today · rest land in the next PR*
-```
+:::
 
-```{grid-item-card} 📚 Reference
+:::{grid-item-card} 📚 Reference
 :link: CURRICULUM_SPEC
 :link-type: doc
 
@@ -120,6 +120,7 @@ The full 61-notebook specification with per-chapter scoring
 thresholds, paper citations, and prerequisite DAG.
 
 *If a chapter and the spec disagree, the chapter is authoritative.*
+:::
 ```
 
 ## Prerequisites

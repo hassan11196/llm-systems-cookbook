@@ -14,7 +14,7 @@ Target audience: a computer-science undergrad who wants to go from
 "I know what softmax is" to "I can reason about LLM serving
 economics." No prior deep-learning background assumed.
 
-## ▶️ Run in Colab — no install
+## ▶️ Run in Colab - no install
 
 Every notebook has an Open-in-Colab badge at the top. Landing page:
 
@@ -57,9 +57,9 @@ python -m scoring.run_all                      # aggregate scores/*.json
 
 Most notebooks run on a free Colab T4. Three require more:
 
-- `01_inference/05_flashattention2_triton.ipynb` — Ampere+ GPU
-- `07_gpu/04_triton_flashattention.ipynb` — Ampere+ GPU
-- `07_gpu/07_nsight_profiling.ipynb` — local GPU or Colab Pro
+- `01_inference/05_flashattention2_triton.ipynb` - Ampere+ GPU
+- `07_gpu/04_triton_flashattention.ipynb` - Ampere+ GPU
+- `07_gpu/07_nsight_profiling.ipynb` - local GPU or Colab Pro
 
 Each chapter declares its requirements in its header cell.
 
