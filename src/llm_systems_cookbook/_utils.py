@@ -15,6 +15,15 @@ from collections.abc import Iterator
 from pathlib import Path
 from typing import Any
 
+# When a notebook is executed headlessly (e.g. `jupyter nbconvert --execute`
+# under CI, Sphinx/MyST-NB, or a display-less Binder runner) matplotlib
+# falls back to the default interactive backend and its figure window
+# blocks forever. Force the Agg backend whenever there's no DISPLAY so
+# `plt.show()` becomes a no-op in batch contexts while staying inline
+# when a GUI is available. Safe to set before matplotlib is imported.
+if os.environ.get("DISPLAY", "") == "" and "MPLBACKEND" not in os.environ:
+    os.environ["MPLBACKEND"] = "Agg"
+
 
 def set_seed(seed: int = 0) -> None:
     """Seed Python, NumPy, and Torch RNGs deterministically.
@@ -171,5 +180,8 @@ def download_wikitext2(split: str = "test") -> Path:
     out_path = data_dir() / f"wikitext-2-raw-v1-{split}.txt"
     if not out_path.exists():
         text = "\n".join(row["text"] for row in ds if row["text"].strip())
-        out_path.write_text(text)
+        # Pin encoding: wikitext contains non-ASCII (em-dashes, accents,
+        # math symbols) and Windows defaults to cp1252 which would mangle
+        # those on write-back-then-read roundtrips.
+        out_path.write_text(text, encoding="utf-8")
     return out_path

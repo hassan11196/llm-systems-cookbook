@@ -4,7 +4,7 @@
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hassan11196/llm-systems-cookbook/blob/main/intro.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**A hands-on curriculum for modern LLM systems engineering.** 61 Jupyter
+**A hands-on curriculum for modern LLM systems engineering.** 55 Jupyter
 notebooks covering inference, retrieval, training, agents, serving,
 evaluation, and GPU programming. Each notebook reimplements a core
 technique from first principles, compares against a production tool,
@@ -30,13 +30,13 @@ want from the book's landing page.
 |---|---|---|
 | **I · Foundations** | [9](notebooks/07_gpu/index.md) | GPU architecture, Triton, roofline |
 | **II · Inference engines** | [10](notebooks/01_inference/index.md) | KV cache, PagedAttention, speculative, SARATHI |
-| **III · Serving & scaling** | [11](notebooks/05_serving/index.md) | KV variants/compression, quantisation, MoE, DistServe |
-| **IV · Training** | [2 of 8](notebooks/03_training/index.md) | Mixed precision, FSDP2; more landing soon |
+| **III · Serving & scaling** | [10](notebooks/05_serving/index.md) | KV variants/compression, quantisation, MoE, DistServe |
+| **IV · Training** | [2 of 8](notebooks/03_training/index.md) | Mixed precision, FSDP2; rest specified, scheduled for v0.2 |
 | **V · Retrieval-augmented generation** | [9](notebooks/02_rag/index.md) | Chunking, indices, hybrid, RAPTOR, GraphRAG, RAGAS |
 | **VI · Agent frameworks** | [7](notebooks/04_agents/index.md) | ReAct, structured outputs, LangGraph, DSPy, MCP |
 | **VII · Evaluation** | [8](notebooks/06_eval/index.md) | Perplexity, MMLU, HumanEval, Arena, NIAH, contamination |
 
-Full 61-notebook spec: [`CURRICULUM_SPEC.md`](CURRICULUM_SPEC.md).
+Full 61-notebook spec: [`CURRICULUM_SPEC.md`](CURRICULUM_SPEC.md). v0.1 ships 55 of the 61 (the remaining 6 are the training-track notebooks 03-08).
 
 ## Run it locally
 
@@ -63,6 +63,15 @@ Most notebooks run on a free Colab T4. Three require more:
 
 Each chapter declares its requirements in its header cell.
 
+## Gated models
+
+A few notebooks (training track, some inference notebooks) download
+`meta-llama/Llama-3.2-1B[-Instruct]` from HuggingFace. That repo is
+**gated** - you must accept Meta's Llama community license on the
+model page and then authenticate once with `huggingface-cli login`
+(or set `HF_TOKEN`) before the notebook will run. Notebooks that
+only use open models (SmolLM2, Qwen2.5, Phi-3.5) need no token.
+
 ## Layout
 
 ```
@@ -73,7 +82,7 @@ llm-systems-cookbook/
 ├── environment.yml               # Binder / conda-forge reproducible env
 ├── CITATION.cff                  # academic citation metadata
 ├── CURRICULUM_SPEC.md            # per-chapter specification
-├── notebooks/                    # the 61 chapters, grouped by track
+├── notebooks/                    # the 55 chapters, grouped by track
 │   ├── 01_inference/index.md
 │   ├── 02_rag/index.md
 │   ├── …

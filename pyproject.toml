@@ -30,6 +30,11 @@ dependencies = [
   "nbclient>=0.10",
   "matplotlib>=3.8",
   "pandas>=2.2",
+  # Small runtime deps that show up in more than one track before the
+  # corresponding extra is installed (networkx: 02_rag/08 GraphRAG;
+  # pydantic: 04_agents/02 structured outputs).
+  "networkx>=3.2",
+  "pydantic>=2.0",
   "tqdm",
   "pytest>=8.0",
 ]

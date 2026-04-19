@@ -19,9 +19,9 @@ HBM
 
 SM
   Streaming Multiprocessor. An NVIDIA GPU is a grid of SMs (40 on T4,
-  132 on H100). Each SM runs many warps concurrently and has its own
-  L1 cache and shared memory. First introduced in
-  {doc}`notebooks/07_gpu/01_gpu_architecture_tour`.
+  108 on A100, 132 on H100 SXM5 / 114 on H100 PCIe). Each SM runs
+  many warps concurrently and has its own L1 cache and shared memory.
+  First introduced in {doc}`notebooks/07_gpu/01_gpu_architecture_tour`.
 
 SIMT
   Single Instruction, Multiple Threads. The execution model where 32
@@ -35,9 +35,12 @@ warp
   {doc}`notebooks/07_gpu/01_gpu_architecture_tour`.
 
 tensor core
-  A specialized matrix-multiply unit on modern NVIDIA GPUs (Volta and
-  later). Delivers most of the advertised FP16/BF16/FP8 TFLOPs;
-  non-tensor-core FP32 is far slower. First introduced in
+  A specialized matrix-multiply unit on modern NVIDIA GPUs. Supported
+  precisions expand per generation: Volta (cc 7.0) added FP16; Turing
+  (cc 7.5) added INT8/INT4; Ampere (cc 8.0) added BF16 and TF32; Ada
+  Lovelace (cc 8.9) and Hopper (cc 9.0) added FP8. Delivers most of
+  the advertised tensor-core TFLOPs; non-tensor-core FP32 is far
+  slower. First introduced in
   {doc}`notebooks/07_gpu/01_gpu_architecture_tour`.
 
 compute capability
@@ -103,14 +106,16 @@ SLO
 prefill
   The parallel forward pass over the entire input prompt. Computes
   hidden states and fills the KV cache for every prompt token. High
-  arithmetic intensity - compute-bound. Introduced in
-  {doc}`notebooks/01_inference/01_autoregressive_decoding_kv_cache`.
+  arithmetic intensity - compute-bound. First introduced in
+  {doc}`notebooks/07_gpu/01_gpu_architecture_tour`; covered in depth
+  in {doc}`notebooks/01_inference/01_autoregressive_decoding_kv_cache`.
 
 decode
   The autoregressive loop that emits output tokens one at a time,
   reading the cached KV of prior tokens. Low arithmetic intensity -
-  memory-bound. Introduced in
-  {doc}`notebooks/01_inference/01_autoregressive_decoding_kv_cache`.
+  memory-bound. First introduced in
+  {doc}`notebooks/07_gpu/01_gpu_architecture_tour`; covered in depth
+  in {doc}`notebooks/01_inference/01_autoregressive_decoding_kv_cache`.
 
 autoregressive
   A generative model that conditions each new token on all previous
@@ -211,7 +216,8 @@ BF16
 
 FP8
   8-bit float (E4M3 or E5M2 encoding). Half the bandwidth of FP16.
-  Supported by Hopper tensor cores. Covered in
+  Supported on Ada Lovelace (cc 8.9; RTX 4090, L4, L40) and Hopper
+  (cc 9.0; H100) tensor cores. Covered in
   {doc}`notebooks/05_serving/06_smoothquant_fp8_nf4`.
 
 INT8 / INT4
@@ -241,10 +247,18 @@ QuaRot / SpinQuant
   {doc}`notebooks/05_serving/07_quarot_spinquant_rotations`.
 
 KV quantization
-  Storing K and V in 2-, 4-, or 8-bit formats to shrink the KV cache.
-  KIVI (2-bit), SnapKV, H2O. Covered in
-  {doc}`notebooks/05_serving/03_kv_compression_streamingllm_h2o_snapkv`
-  and {doc}`notebooks/05_serving/04_2bit_kv_quantization_kivi`.
+  Storing K and V in fewer bits per value (2, 4, or 8) to shrink the
+  KV cache. Representative method: KIVI (asymmetric per-channel K,
+  per-token V at 2 bits). Covered in
+  {doc}`notebooks/05_serving/04_2bit_kv_quantization_kivi`.
+
+KV eviction
+  Shrinking the KV cache by *dropping* tokens rather than
+  re-encoding them. StreamingLLM keeps attention sinks + a recent
+  window; H2O keeps "heavy hitter" tokens by historical attention
+  mass; SnapKV uses an observation window to score prompt tokens.
+  Covered in
+  {doc}`notebooks/05_serving/03_kv_compression_streamingllm_h2o_snapkv`.
 ```
 
 ## Batching, parallelism, serving

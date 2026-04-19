@@ -4,7 +4,7 @@
 :alt: LLM Systems Cookbook
 ```
 
-**A hands-on curriculum for modern LLM systems engineering.** 56 Jupyter
+**A hands-on curriculum for modern LLM systems engineering.** 55 Jupyter
 notebooks that teach inference, RAG, training, agents, serving,
 evaluation, and GPU programming - each by reimplementing the core
 technique from first principles, comparing it to a production tool, and
@@ -65,7 +65,7 @@ KV variants (MHA/GQA/MLA), compression (StreamingLLM/H2O/SnapKV),
 KIVI, GPTQ/AWQ, SmoothQuant/FP8/NF4, QuaRot/SpinQuant, batching,
 MoE, DistServe, observability + autoscaler.
 
-*11 chapters · CPU-safe*
+*10 chapters · CPU-safe*
 :::
 
 :::{grid-item-card} 🔍 Retrieval-augmented generation
@@ -106,10 +106,11 @@ lm-eval vs Inspect AI.
 :link-type: doc
 
 Mixed precision + gradient accumulation + checkpointing,
-DDP vs FSDP2 (+ tensor parallel, pipeline parallel, LoRA, QLoRA,
-DPO, GRPO - landing soon).
+DDP vs FSDP2. Tensor parallel, pipeline parallel, LoRA, QLoRA,
+DPO, and GRPO are specified in CURRICULUM_SPEC.md and scheduled
+for v0.2.
 
-*2 of 8 chapters today · rest land in the next PR*
+*2 of 8 planned chapters shipped in v0.1*
 :::
 
 :::{grid-item-card} 📚 Reference
@@ -132,9 +133,10 @@ thresholds, paper citations, and prerequisite DAG.
 - **Computer architecture.** Helpful to have seen cache hierarchy and
   memory bandwidth concepts once; the GPU architecture tour
   re-introduces them from first principles.
-- **Hardware.** Free Colab T4 is enough for 53 of 56 chapters. Three
-  chapters (FA2 Triton kernels, Nsight profiling) note their
-  requirements in their chapter header.
+- **Hardware.** Free Colab T4 is enough for 52 of 55 chapters. Three
+  chapters (the two FA2 Triton kernel notebooks in 01_inference/05 and
+  07_gpu/04, plus 07_gpu/07 Nsight profiling) note their requirements
+  in their chapter header.
 
 ## Citation
 

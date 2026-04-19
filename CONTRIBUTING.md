@@ -4,8 +4,8 @@ Short and practical.
 
 ## Branches
 
-Work on topic branches off `main`. Name them `<user>/<topic>` or
-`claude/<topic>-<tag>` for automated sessions. Do not push directly to `main`.
+Work on topic branches off `main`. Name them `<user>/<topic>`
+(e.g. `hassan11196/paged-attention`). Do not push directly to `main`.
 
 ## Commits
 

@@ -72,6 +72,7 @@ class Scorer:
         expected: float,
         rtol: float = 0.05,
     ) -> bool:
+        t0 = time.time()
         denom = max(abs(expected), 1e-12)
         rel = abs(actual - expected) / denom
         ok = rel <= rtol
@@ -79,6 +80,7 @@ class Scorer:
             name,
             ok,
             (f"actual={actual:.4g} expected={expected:.4g} rel_err={rel:.3%} tol={rtol:.1%}"),
+            duration_s=time.time() - t0,
             details={
                 "actual": float(actual),
                 "expected": float(expected),
@@ -135,13 +137,13 @@ class Scorer:
         self.results.append(r)
         print(f"SKIP  {name}  {reason}")
 
-    def summary(self) -> dict[str, Any]:
+    def _build_summary(self) -> dict[str, Any]:
         scored = [r for r in self.results if not r.skipped]
         total = len(scored)
         # Coerce to native int so ``sum`` of numpy bools doesn't produce
         # numpy scalars that json.dumps then stringifies via default=str.
         passed = int(sum(1 for r in scored if r.passed))
-        out = {
+        return {
             "notebook_id": self.notebook_id,
             "passed": passed,
             "total": total,
@@ -150,14 +152,20 @@ class Scorer:
             "elapsed_s": time.time() - self._start,
             "results": [asdict(r) for r in self.results],
         }
+
+    def summary(self) -> dict[str, Any]:
+        out = self._build_summary()
         print(
-            f"\n[{self.notebook_id}] {passed}/{total} checks passed "
+            f"\n[{self.notebook_id}] {out['passed']}/{out['total']} checks passed "
             f"({out['score']:.0%}); skipped={out['skipped']}"
         )
         return out
 
     def save(self) -> Path:
-        data = self.summary()
+        # Build the summary without printing; the notebook will have
+        # already called summary() explicitly. Calling save() alone also
+        # works - nothing prints twice in either ordering.
+        data = self._build_summary()
         path = SCORES_DIR / f"{self.notebook_id}.json"
         path.write_text(json.dumps(data, indent=2, default=str))
         return path
