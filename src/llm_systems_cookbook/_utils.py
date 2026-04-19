@@ -180,5 +180,8 @@ def download_wikitext2(split: str = "test") -> Path:
     out_path = data_dir() / f"wikitext-2-raw-v1-{split}.txt"
     if not out_path.exists():
         text = "\n".join(row["text"] for row in ds if row["text"].strip())
-        out_path.write_text(text)
+        # Pin encoding: wikitext contains non-ASCII (em-dashes, accents,
+        # math symbols) and Windows defaults to cp1252 which would mangle
+        # those on write-back-then-read roundtrips.
+        out_path.write_text(text, encoding="utf-8")
     return out_path

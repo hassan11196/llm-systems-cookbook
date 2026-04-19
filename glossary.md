@@ -19,9 +19,9 @@ HBM
 
 SM
   Streaming Multiprocessor. An NVIDIA GPU is a grid of SMs (40 on T4,
-  132 on H100). Each SM runs many warps concurrently and has its own
-  L1 cache and shared memory. First introduced in
-  {doc}`notebooks/07_gpu/01_gpu_architecture_tour`.
+  108 on A100, 132 on H100 SXM5 / 114 on H100 PCIe). Each SM runs
+  many warps concurrently and has its own L1 cache and shared memory.
+  First introduced in {doc}`notebooks/07_gpu/01_gpu_architecture_tour`.
 
 SIMT
   Single Instruction, Multiple Threads. The execution model where 32
