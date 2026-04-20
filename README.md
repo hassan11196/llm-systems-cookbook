@@ -109,6 +109,7 @@ Format and structure inspired by
 [Project Pythia cookbooks](https://projectpythia.org/),
 [EECS 245 notes](https://notes.eecs245.org/), and
 [IRSA tutorials](https://caltech-ipac.github.io/irsa-tutorials/).
+Claude and ChatGPT were also used to support research and notebook generation.
 
 ## License
 
