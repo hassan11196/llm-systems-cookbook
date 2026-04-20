@@ -407,6 +407,10 @@ calibration
   rates. A model is well-calibrated if "I'm 70% confident" is right
   70% of the time.
 
+Expected Calibration Error (ECE)
+  Bin predicted confidence scores and measure the weighted gap between
+  confidence and empirical accuracy in each bin. Lower is better.
+
 pass@k
   Probability that at least one of `k` code samples passes all unit
   tests. Standard HumanEval metric; unbiased estimator in Chen et al.
@@ -454,6 +458,11 @@ structured outputs
   common methods: JSON mode, tool-call schemas, grammar-constrained
   decoding. Covered in
   {doc}`notebooks/04_agents/02_structured_outputs_three_ways`.
+
+finite-state machine (FSM)
+  A graph of allowed states and transitions used to constrain decoding
+  to valid output formats. If a token would violate the graph, it is
+  disallowed.
 
 MCP
   Model Context Protocol. An open standard for exposing tools and

@@ -18,6 +18,15 @@ Every later part of the book — inference, serving, training — ends up
 on a graph whose axes are arithmetic intensity and throughput. This
 part builds the axes.
 
+
+## Key terms used in this part
+
+- **{term}`HBM`** bandwidth and **{term}`TFLOPs`** ceilings define the hardware limits.
+- **{term}`arithmetic intensity`** and **{term}`roofline`** are the primary analysis tools.
+- **{term}`kernel`** launch and memory movement costs explain why fusion matters.
+- **{term}`FlashAttention`**, **{term}`RoPE`**, and **{term}`RMSNorm`** are
+  recurring primitives reused throughout later tracks.
+
 ## Reading order
 
 1. `01_gpu_architecture_tour` — device discovery + peak-bandwidth

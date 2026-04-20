@@ -17,6 +17,18 @@
   Prometheus-shaped observability + SLO-driven autoscaling.
 ```
 
+
+## Key terms used in this part
+
+- **{term}`MHA`**, **{term}`GQA`**, and **{term}`MLA`** are attention
+  variants with different KV-cache memory footprints.
+- **{term}`KV quantization`** and **{term}`KV eviction`** reduce KV memory
+  using different tradeoffs (numeric precision vs token retention).
+- **{term}`continuous batching`** and **{term}`chunked prefill`** are
+  scheduler patterns for higher goodput under mixed workloads.
+- **{term}`MoE`** and **{term}`expert parallel`** describe sparse expert routing at scale.
+- **{term}`SLO`** is the service reliability target that autoscaling is designed to satisfy.
+
 ## Reading order
 
 Prerequisites: Part I (roofline) and Part II (KV cache, PagedAttention).
