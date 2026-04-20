@@ -14,6 +14,17 @@
 - Evaluating agents with τ-bench / SWE-bench-shaped benchmarks.
 ```
 
+
+## Key terms used in this part
+
+- **{term}`ReAct`** is the baseline loop pattern used to teach tool-using agents.
+- **{term}`structured outputs`** means constraining model outputs to a
+  schema instead of free-form text.
+- **FSM (Finite-State Machine)** constraints are one way to enforce valid
+  output structure during decoding.
+- **{term}`MCP`** exposes tools/data over JSON-RPC so clients can use them uniformly.
+- **{term}`DSPy`** frames prompts/pipelines as optimizable programs.
+
 ## Reading order
 
 No mandatory prerequisites — CPU-only.

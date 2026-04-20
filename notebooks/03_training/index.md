@@ -11,6 +11,17 @@
 - Preference optimisation (DPO, GRPO) from first principles.
 ```
 
+
+## Key terms used in this part
+
+- **{term}`mixed precision`** (often **{term}`BF16`**) is the default way
+  to reduce training memory and increase throughput.
+- **{term}`gradient accumulation`** and **{term}`activation checkpointing`**
+  are the two first memory-saving levers used in this track.
+- **{term}`DDP`** and **{term}`FSDP`** are two distributed-training
+  strategies with different memory/communication tradeoffs.
+- **{term}`LoRA`** and **{term}`QLoRA`** are parameter-efficient fine-tuning methods.
+
 ## Reading order
 
 Prerequisites: Part I (roofline) and Part II (KV cache).

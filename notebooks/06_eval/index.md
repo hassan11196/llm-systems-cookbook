@@ -16,6 +16,15 @@
 - Reconciling numbers across `lm-eval` and Inspect AI.
 ```
 
+
+## Key terms used in this part
+
+- **{term}`perplexity`** is the core language-modeling metric.
+- **{term}`calibration`** asks whether confidence estimates match empirical correctness.
+- **Expected Calibration Error (ECE)** summarizes calibration gap across confidence bins.
+- **{term}`pass@k`** is the standard code-generation success metric.
+- **{term}`LLM-as-judge`**, **{term}`Elo`**, and **{term}`Bradley-Terry`** are core concepts for preference-based evaluation.
+
 ## Reading order
 
 No mandatory prerequisites — all CPU-safe, all from-scratch.

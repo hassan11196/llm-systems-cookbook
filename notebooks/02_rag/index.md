@@ -13,6 +13,14 @@
 - RAGAS evaluation metrics implemented from scratch.
 ```
 
+
+## Key terms used in this part
+
+- **{term}`dense retrieval`** retrieves by vector similarity; **{term}`sparse retrieval`** retrieves by lexical overlap.
+- **{term}`BM25`**, **{term}`SPLADE`**, and **{term}`RRF`** are baseline building blocks for hybrid retrieval systems.
+- **{term}`ColBERT`** is a late-interaction retriever that balances quality and serving cost.
+- **{term}`HyDE`** and **{term}`reranking`** are common techniques for improving top-k relevance.
+
 ## Reading order
 
 No mandatory prerequisites — this part is self-contained and CPU-safe.

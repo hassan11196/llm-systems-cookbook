@@ -13,6 +13,19 @@
 - FlashAttention-2 drop-in for any transformer layer.
 ```
 
+
+## Key terms used in this part
+
+- **{term}`prefill`** and **{term}`decode`** are the two inference
+  phases; most optimizations here target one phase more than the other.
+- **{term}`KV cache`** and **{term}`PagedAttention`** are the memory
+  primitives behind modern LLM serving.
+- **{term}`continuous batching`**, **{term}`chunked prefill`**, and
+  **{term}`disaggregated prefill/decode`** are scheduler/system design
+  patterns used to improve throughput and tail latency.
+- **{term}`speculative decoding`** uses a draft/verify pattern to reduce
+  target-model decode work.
+
 ## Reading order
 
 Prerequisites: Part I (GPU architecture tour + roofline).
