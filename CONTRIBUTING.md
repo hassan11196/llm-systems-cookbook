@@ -32,14 +32,30 @@ source.
 ## Style
 
 - PEP-604 type hints on every user-defined function.
-- `from __future__ import annotations` at the top of every `.py` file and
-  every notebook's first code cell.
+- `from __future__ import annotations` at the top of every `.py` file.
+  (Notebook cells no longer need it — annotations aren't used inside the
+  bootstrap cell.)
 - `make lint` must pass.
 - Tone: neutral and technical. Avoid marketing copy, quiz-style framing, or
   apologetic prose. The repo reads as a reference, not a diary.
+
+## Notebook init cell
+
+Every notebook's first code cell uses a single `bootstrap(...)` call:
+
+```python
+from llm_systems_cookbook.nb import bootstrap
+# ...any notebook-specific imports (torch, numpy, math, dataclasses, ...)...
+s = bootstrap("<track>_<NN>_<slug>")
+```
+
+`bootstrap` seeds the RNGs, prints a hardware summary, returns a `Scorer`,
+and injects `DEVICE` / `IS_CUDA` into the notebook's globals for cells that
+need them. New notebooks should follow the same shape; `scripts/rewrite_init_cells.py`
+is available to migrate any that drift.
 
 ## Scoring
 
 Every notebook ends with a `Scorer.save()` call that writes
 `scores/{track}_{NN}_{slug}.json`. Scoring checks must be deterministic given
-the seed set in cell 2.
+the seed set by `bootstrap` in cell 2.
