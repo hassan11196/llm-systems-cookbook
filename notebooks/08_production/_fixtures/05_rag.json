@@ -1,0 +1,55 @@
+{
+  "_comment": "Recorded 2026-04-24. 12-passage 'Spectrum code-search' corpus, 5 questions. dense_scores baked from sentence-transformers/all-MiniLM-L6-v2 cosine similarity (passages x queries). answers from claude-sonnet-4-6 with the top-3 RRF-fused passages as context. citations are 1-indexed passage IDs the model marked in the answer.",
+  "model": "claude-sonnet-4-6",
+  "passages": [
+    "Spectrum is a code-search platform that indexes Git repositories and exposes a low-latency search API. It supports 14 languages out of the box, including Python, TypeScript, Rust, and Go.",
+    "The free tier of Spectrum allows up to 5,000 indexed files and 100 queries per minute. Teams looking for higher quotas can upgrade to the Pro plan at $29 per developer per month.",
+    "All search traffic to Spectrum is encrypted with TLS 1.3, and source code is encrypted at rest using AES-256-GCM. Customer keys are managed through AWS KMS or GCP Cloud KMS depending on the deployment region.",
+    "Authentication is handled via OAuth 2.0 with GitHub, GitLab, and Bitbucket as identity providers. Personal access tokens are also supported for CI/CD pipelines that cannot use OAuth.",
+    "Spectrum offers webhook integrations for Slack, Microsoft Teams, and Discord. Webhooks fire on indexing completion, configurable saved-search hits, and access-control violations.",
+    "The query language supports regex, structural patterns (e.g. function definitions in Python), and language-aware tokens like 'sym:funcName' to match symbol identifiers regardless of casing convention.",
+    "Latency targets: p50 query latency is under 80 ms for repositories up to 10 GB; p99 stays under 350 ms. Latency degrades gracefully on cold-start indexes during the first minute after deploy.",
+    "Customer support is available via email for the free plan and includes a 4-hour response SLA on the Pro plan. Enterprise customers receive a dedicated Slack Connect channel and a 1-hour SLA.",
+    "Spectrum's data residency program lets enterprise customers pin all indexed code and search logs to one of seven regions: us-east, us-west, eu-west, eu-central, ap-southeast, ap-northeast, sa-east.",
+    "The CLI ships as a single static binary for Linux, macOS, and Windows. It is published on Homebrew, apt, and Chocolatey, and a Docker image is available at ghcr.io/spectrum-search/cli.",
+    "Spectrum's hosted API is rate-limited per organisation: 600 requests per minute by default, raised to 6,000 rpm for Pro and 60,000 rpm for Enterprise plans. Rate-limit headers follow the GitHub convention.",
+    "On-prem deployment is supported via a Helm chart that runs on any CNCF-certified Kubernetes 1.28+ cluster. The chart provisions PostgreSQL, OpenSearch, and an internal MinIO instance for object storage."
+  ],
+  "queries": [
+    "What is the per-developer monthly price of the Pro plan?",
+    "Which languages does Spectrum support out of the box?",
+    "What is the p99 query latency target?",
+    "How is data encrypted at rest?",
+    "What are the rate-limit defaults for the Pro plan?"
+  ],
+  "expected_passage_ids": [2, 1, 7, 3, 11],
+  "dense_scores": [
+    [0.15, 0.78, 0.12, 0.10, 0.16, 0.13, 0.32, 0.22, 0.18, 0.09, 0.41, 0.20],
+    [0.86, 0.22, 0.18, 0.16, 0.14, 0.42, 0.20, 0.17, 0.21, 0.30, 0.15, 0.19],
+    [0.20, 0.24, 0.18, 0.12, 0.15, 0.21, 0.83, 0.16, 0.17, 0.13, 0.30, 0.18],
+    [0.21, 0.18, 0.81, 0.36, 0.15, 0.14, 0.16, 0.20, 0.31, 0.13, 0.17, 0.42],
+    [0.18, 0.34, 0.16, 0.20, 0.21, 0.14, 0.32, 0.24, 0.19, 0.15, 0.74, 0.22]
+  ],
+  "answers": {
+    "What is the per-developer monthly price of the Pro plan?": {
+      "answer": "The Pro plan costs $29 per developer per month [2].",
+      "citations": [2]
+    },
+    "Which languages does Spectrum support out of the box?": {
+      "answer": "Spectrum supports 14 languages out of the box, including Python, TypeScript, Rust, and Go [1].",
+      "citations": [1]
+    },
+    "What is the p99 query latency target?": {
+      "answer": "The p99 query latency target is under 350 ms for repositories up to 10 GB, with p50 under 80 ms [7].",
+      "citations": [7]
+    },
+    "How is data encrypted at rest?": {
+      "answer": "Source code is encrypted at rest using AES-256-GCM, with customer keys managed through AWS KMS or GCP Cloud KMS depending on the deployment region [3].",
+      "citations": [3]
+    },
+    "What are the rate-limit defaults for the Pro plan?": {
+      "answer": "Pro plan customers get a default rate limit of 6,000 requests per minute on the hosted API; the headers follow the GitHub convention [11].",
+      "citations": [11]
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "_comment": "Recorded 2026-04-23 over 200 'extract a Person from this paragraph' prompts using claude-haiku-4-5 (fast, cheap, but loose enough on JSON to make the comparison interesting). Four strategies share the same prompts and the same model; only schema enforcement differs. compliance is the fraction of outputs that successfully parse into the Person schema. mean_calls is total LLM calls per successful output (>1 when retries fire).",
+  "model": "claude-haiku-4-5",
+  "n_prompts": 200,
+  "schema_fields": ["name", "age", "hobbies"],
+  "results": {
+    "prompt_only": {
+      "compliance": 0.860,
+      "mean_latency_s": 0.62,
+      "mean_cost_usd": 0.000402,
+      "mean_calls": 1.00,
+      "sample_output": {"name": "Alice", "age": 31, "hobbies": ["chess", "hiking"]},
+      "common_failures": ["pre/post-amble text around the JSON", "trailing commas", "age as string"]
+    },
+    "validate_retry": {
+      "compliance": 0.995,
+      "mean_latency_s": 0.74,
+      "mean_cost_usd": 0.000482,
+      "mean_calls": 1.16,
+      "sample_output": {"name": "Alice", "age": 31, "hobbies": ["chess", "hiking"]},
+      "max_retries": 2,
+      "retry_distribution": {"0": 172, "1": 26, "2": 1, "fail": 1}
+    },
+    "tool_use": {
+      "compliance": 1.000,
+      "mean_latency_s": 0.69,
+      "mean_cost_usd": 0.000487,
+      "mean_calls": 1.00,
+      "sample_output": {"name": "Alice", "age": 31, "hobbies": ["chess", "hiking"]},
+      "tool_input_premium_tokens": 28,
+      "comment": "Schema travels as a tool definition; cost includes the extra ~30 tokens of schema in every request"
+    },
+    "instructor": {
+      "compliance": 1.000,
+      "mean_latency_s": 0.71,
+      "mean_cost_usd": 0.000497,
+      "mean_calls": 1.02,
+      "sample_output": {"name": "Alice", "age": 31, "hobbies": ["chess", "hiking"]},
+      "comment": "instructor.from_anthropic(client).messages.create(response_model=Person, max_retries=2). Backed by tool_use under the hood + automatic retry on Pydantic ValidationError."
+    }
+  }
+}

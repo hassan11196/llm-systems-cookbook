@@ -100,6 +100,13 @@ parts:
       - file: notebooks/08_production/index
         sections:
           - file: notebooks/08_production/01_claude_sdk_prompt_caching
+          - file: notebooks/08_production/02_litellm_router_fallbacks
+          - file: notebooks/08_production/03_tool_use_agent
+          - file: notebooks/08_production/04_structured_outputs_real
+          - file: notebooks/08_production/05_hybrid_rag_production
+          - file: notebooks/08_production/06_mcp_real_server
+          - file: notebooks/08_production/07_dspy_miprov2_optimizer
+          - file: notebooks/08_production/08_inspect_ai_eval_harness
 
   - caption: Reference
     chapters:

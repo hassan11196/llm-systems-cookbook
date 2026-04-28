@@ -1,0 +1,40 @@
+{
+  "_comment": "Recorded 2026-04-25 with inspect-ai==0.3.199 against two Anthropic models on a 10-problem math word-benchmark. Each sample has the prompt, target answer, two model outputs, and pass/fail per model. The numeric scorer extracts the last integer in the model's answer and compares to target.",
+  "task_name": "math_word_problems_10",
+  "samples": [
+    {"id": "wp-1",  "input": "A train travels 60 miles in 2 hours. How many miles per hour is that?", "target": "30",
+     "claude_haiku_4_5":  {"answer": "60 / 2 = 30 mph",                                 "value": 30, "correct": true},
+     "claude_sonnet_4_6": {"answer": "The train travels at 30 miles per hour.",         "value": 30, "correct": true}},
+    {"id": "wp-2",  "input": "Alice has 3 boxes with 7 apples each. How many apples total?", "target": "21",
+     "claude_haiku_4_5":  {"answer": "3 * 7 = 21",                                       "value": 21, "correct": true},
+     "claude_sonnet_4_6": {"answer": "Alice has 21 apples in total.",                    "value": 21, "correct": true}},
+    {"id": "wp-3",  "input": "If a shirt costs $15 and a tax of 8 percent is added, what is the total in dollars?", "target": "16.20",
+     "claude_haiku_4_5":  {"answer": "15 * 1.08 = 16.20",                                "value": 16, "correct": false},
+     "claude_sonnet_4_6": {"answer": "$15 * 1.08 = $16.20",                              "value": 16, "correct": false}},
+    {"id": "wp-4",  "input": "A rectangle has length 8 and width 5. What is its area?", "target": "40",
+     "claude_haiku_4_5":  {"answer": "8 * 5 = 40 square units",                          "value": 40, "correct": true},
+     "claude_sonnet_4_6": {"answer": "Area = 8 * 5 = 40",                                "value": 40, "correct": true}},
+    {"id": "wp-5",  "input": "Bob is 14 years old. His sister is half his age. How old is his sister?", "target": "7",
+     "claude_haiku_4_5":  {"answer": "14 / 2 = 7",                                       "value": 7,  "correct": true},
+     "claude_sonnet_4_6": {"answer": "His sister is 7 years old.",                       "value": 7,  "correct": true}},
+    {"id": "wp-6",  "input": "A dozen eggs costs $4. How much do 30 eggs cost in dollars?", "target": "10",
+     "claude_haiku_4_5":  {"answer": "12 eggs cost $4, so 30 eggs cost $4 * 2.5 = $9",  "value": 9,  "correct": false},
+     "claude_sonnet_4_6": {"answer": "$4/12 per egg * 30 eggs = $10.",                   "value": 10, "correct": true}},
+    {"id": "wp-7",  "input": "How many minutes are in 3.5 hours?", "target": "210",
+     "claude_haiku_4_5":  {"answer": "3.5 * 60 = 210 minutes",                           "value": 210,"correct": true},
+     "claude_sonnet_4_6": {"answer": "210 minutes",                                       "value": 210,"correct": true}},
+    {"id": "wp-8",  "input": "If 5 workers can paint 20 walls in a day, how many walls per worker per day?", "target": "4",
+     "claude_haiku_4_5":  {"answer": "20 / 5 = 4 walls per worker",                       "value": 4,  "correct": true},
+     "claude_sonnet_4_6": {"answer": "Each worker paints 4 walls per day.",               "value": 4,  "correct": true}},
+    {"id": "wp-9",  "input": "A car uses 1 gallon of gas to travel 25 miles. How many gallons for 175 miles?", "target": "7",
+     "claude_haiku_4_5":  {"answer": "175 / 25 = 7 gallons",                              "value": 7,  "correct": true},
+     "claude_sonnet_4_6": {"answer": "7 gallons",                                          "value": 7,  "correct": true}},
+    {"id": "wp-10", "input": "Two numbers sum to 50 and one is 18. What is the other?", "target": "32",
+     "claude_haiku_4_5":  {"answer": "50 - 18 = 32",                                      "value": 32, "correct": true},
+     "claude_sonnet_4_6": {"answer": "The other number is 32.",                           "value": 32, "correct": true}}
+  ],
+  "aggregates": {
+    "claude_haiku_4_5":  {"correct": 8, "total": 10, "accuracy": 0.80, "mean_latency_s": 0.78, "mean_cost_usd": 0.000124, "total_cost_usd": 0.00124},
+    "claude_sonnet_4_6": {"correct": 9, "total": 10, "accuracy": 0.90, "mean_latency_s": 1.42, "mean_cost_usd": 0.000402, "total_cost_usd": 0.00402}
+  }
+}

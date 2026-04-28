@@ -1,0 +1,48 @@
+{
+  "_comment": "Recorded 2026-04-25 against a real mcp==1.2 server spawned over stdio. tools_list is the response of session.list_tools(); tool_calls maps 'name(args)' to the tool's first text-content output. Reproduce with MCP_LIVE=1 and the mcp package installed.",
+  "server_name": "lab-mcp-server",
+  "server_version": "0.1.0",
+  "protocol_version": "2024-11-05",
+  "tools_list": [
+    {
+      "name": "calculator",
+      "description": "Evaluate a simple arithmetic expression like '2 + 3 * 4'.",
+      "inputSchema": {
+        "type": "object",
+        "required": ["expression"],
+        "properties": {"expression": {"type": "string"}}
+      }
+    },
+    {
+      "name": "wiki_lookup",
+      "description": "Look up a short fact (capitals, authors, etc.).",
+      "inputSchema": {
+        "type": "object",
+        "required": ["query"],
+        "properties": {"query": {"type": "string"}}
+      }
+    },
+    {
+      "name": "get_date",
+      "description": "Return the date for a relative spec (today, tomorrow, year, ...).",
+      "inputSchema": {
+        "type": "object",
+        "required": ["spec"],
+        "properties": {"spec": {"type": "string", "enum": ["today", "tomorrow", "yesterday", "year", "month", "day"]}}
+      }
+    }
+  ],
+  "tool_calls": [
+    {"name": "calculator",  "arguments": {"expression": "2 ** 10 + 5"}, "result": "1029"},
+    {"name": "wiki_lookup", "arguments": {"query": "capital of france"},  "result": "Paris"},
+    {"name": "get_date",    "arguments": {"spec": "today"},               "result": "2026-04-17"}
+  ],
+  "claude_code_config_snippet": {
+    "mcpServers": {
+      "lab-mcp-server": {
+        "command": "python",
+        "args": ["/path/to/lab_mcp_server.py"]
+      }
+    }
+  }
+}
