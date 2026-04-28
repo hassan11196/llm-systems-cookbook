@@ -95,6 +95,12 @@ parts:
           - file: notebooks/06_eval/07_contamination_detection
           - file: notebooks/06_eval/08_lm_eval_inspect_ai
 
+  - caption: Part VIII — Production patterns
+    chapters:
+      - file: notebooks/08_production/index
+        sections:
+          - file: notebooks/08_production/01_claude_sdk_prompt_caching
+
   - caption: Reference
     chapters:
       - file: glossary
