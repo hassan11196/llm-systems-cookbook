@@ -4,11 +4,11 @@
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hassan11196/llm-systems-cookbook/blob/main/intro.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**A hands-on curriculum for modern LLM systems engineering.** 55 Jupyter
+**A hands-on curriculum for modern LLM systems engineering.** 63 Jupyter
 notebooks covering inference, retrieval, training, agents, serving,
-evaluation, and GPU programming. Each notebook reimplements a core
-technique from first principles, compares against a production tool,
-and self-scores with numerical checks.
+evaluation, GPU programming, and production LLM patterns. Each notebook
+either reimplements a core technique from first principles or exercises
+a real production library, and self-scores with numerical checks.
 
 Target audience: a computer-science undergrad who wants to go from
 "I know what softmax is" to "I can reason about LLM serving
@@ -24,7 +24,7 @@ Start with [`07_gpu/01_gpu_architecture_tour`](notebooks/07_gpu/01_gpu_architect
 if you're new to GPU programming; otherwise jump to the track you
 want from the book's landing page.
 
-## The seven parts
+## The eight parts
 
 | Part | Chapters | Theme |
 |---|---|---|
@@ -35,8 +35,23 @@ want from the book's landing page.
 | **V · Retrieval-augmented generation** | [9](notebooks/02_rag/index.md) | Chunking, indices, hybrid, RAPTOR, GraphRAG, RAGAS |
 | **VI · Agent frameworks** | [7](notebooks/04_agents/index.md) | ReAct, structured outputs, LangGraph, DSPy, MCP |
 | **VII · Evaluation** | [8](notebooks/06_eval/index.md) | Perplexity, MMLU, HumanEval, Arena, NIAH, contamination |
+| **VIII · Production patterns** | [8](notebooks/08_production/index.md) | Anthropic SDK caching, LiteLLM routing, native tool use, structured outputs, hybrid RAG, MCP server, DSPy MIPROv2, Inspect AI |
 
-Full 61-notebook spec: [`CURRICULUM_SPEC.md`](CURRICULUM_SPEC.md). v0.1 ships 55 of the 61 (the remaining 6 are the training-track notebooks 03-08).
+Full curriculum spec: [`CURRICULUM_SPEC.md`](CURRICULUM_SPEC.md). v0.1 ships 63 notebooks; the remaining 6 (training-track 03-08) are scheduled for v0.2.
+
+### Production patterns track
+
+The Part VIII notebooks are different from the rest of the cookbook: instead of
+re-implementing a technique from scratch, each one exercises a real production
+LLM library on a real task. Every notebook works in two modes:
+
+- **LIVE** — when the relevant API key is set (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`,
+  etc.), hits the real provider and reports fresh numbers.
+- **Replay** — without keys, loads recorded responses from `notebooks/08_production/_fixtures/`
+  so the notebook still runs end-to-end on a fresh Colab. The fixtures are real
+  responses from a previous run, not mocks.
+
+All eight notebooks pass their `s.check()` assertions in replay mode (40 checks total).
 
 ## Run it locally
 
@@ -47,10 +62,11 @@ make book          # builds into _build/html/
 open _build/html/index.html
 
 # Or run notebooks directly (pick only the tracks you need)
-pip install -e ".[inference,serving,gpu]"     # GPU-bound parts
-pip install -e ".[rag,eval,agents,dev]"       # fully CPU-safe
+pip install -e ".[inference,serving,gpu]"          # GPU-bound parts
+pip install -e ".[rag,eval,agents,dev]"            # fully CPU-safe
+pip install -e ".[production,dev]"                  # Part VIII (anthropic, litellm, instructor, outlines)
 jupyter lab notebooks/
-python -m scoring.run_all                      # aggregate scores/*.json
+python -m scoring.run_all                          # aggregate scores/*.json
 ```
 
 ## Hardware
@@ -77,15 +93,18 @@ only use open models (SmolLM2, Qwen2.5, Phi-3.5) need no token.
 ```
 llm-systems-cookbook/
 ├── intro.md                      # book landing page
-├── _toc.yml                      # seven-part table of contents
+├── _toc.yml                      # eight-part table of contents
 ├── _config.yml                   # Jupyter Book config (launch buttons, theme)
 ├── environment.yml               # Binder / conda-forge reproducible env
 ├── CITATION.cff                  # academic citation metadata
 ├── CURRICULUM_SPEC.md            # per-chapter specification
-├── notebooks/                    # the 55 chapters, grouped by track
+├── notebooks/                    # the 63 chapters, grouped by track
 │   ├── 01_inference/index.md
 │   ├── 02_rag/index.md
 │   ├── …
+│   ├── 08_production/            # production-pattern notebooks + recorded fixtures
+│   │   ├── _fixtures/            # JSON of real API responses for replay mode
+│   │   └── index.md
 ├── src/llm_systems_cookbook/     # shared helpers (hardware_check, seed, etc.)
 ├── scoring/                      # Scorer harness + aggregator + unit tests
 ├── scripts/                      # fetch_data.py, warm_cache.py
@@ -109,7 +128,6 @@ Format and structure inspired by
 [Project Pythia cookbooks](https://projectpythia.org/),
 [EECS 245 notes](https://notes.eecs245.org/), and
 [IRSA tutorials](https://caltech-ipac.github.io/irsa-tutorials/).
-Claude and ChatGPT were also used to support research and notebook generation.
 
 ## License
 
