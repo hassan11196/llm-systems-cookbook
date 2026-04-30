@@ -32,6 +32,10 @@ just from a previous run.
    MIPROv2 optimises against held-out accuracy.
 8. `08_inspect_ai_eval_harness` — Inspect AI task + scorer + solver
    on a real benchmark.
+9. `09_gpu_providers_pricing_and_model_fit` — practical reference:
+   GPU types in production, on-demand and spot pricing across ten
+   cloud providers, vRAM math, and a calculator that maps a model
+   size to the smallest cluster that holds it.
 
 ## Models
 

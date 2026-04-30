@@ -107,6 +107,7 @@ parts:
           - file: notebooks/08_production/06_mcp_real_server
           - file: notebooks/08_production/07_dspy_miprov2_optimizer
           - file: notebooks/08_production/08_inspect_ai_eval_harness
+          - file: notebooks/08_production/09_gpu_providers_pricing_and_model_fit
 
   - caption: Reference
     chapters:

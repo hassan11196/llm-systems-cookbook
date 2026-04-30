@@ -4,7 +4,7 @@
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hassan11196/llm-systems-cookbook/blob/main/intro.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**A hands-on curriculum for modern LLM systems engineering.** 63 Jupyter
+**A hands-on curriculum for modern LLM systems engineering.** 64 Jupyter
 notebooks covering inference, retrieval, training, agents, serving,
 evaluation, GPU programming, and production LLM patterns. Each notebook
 either reimplements a core technique from first principles or exercises
@@ -35,9 +35,9 @@ want from the book's landing page.
 | **V · Retrieval-augmented generation** | [9](notebooks/02_rag/index.md) | Chunking, indices, hybrid, RAPTOR, GraphRAG, RAGAS |
 | **VI · Agent frameworks** | [7](notebooks/04_agents/index.md) | ReAct, structured outputs, LangGraph, DSPy, MCP |
 | **VII · Evaluation** | [8](notebooks/06_eval/index.md) | Perplexity, MMLU, HumanEval, Arena, NIAH, contamination |
-| **VIII · Production patterns** | [8](notebooks/08_production/index.md) | Anthropic SDK caching, LiteLLM routing, native tool use, structured outputs, hybrid RAG, MCP server, DSPy MIPROv2, Inspect AI |
+| **VIII · Production patterns** | [9](notebooks/08_production/index.md) | Anthropic SDK caching, LiteLLM routing, native tool use, structured outputs, hybrid RAG, MCP server, DSPy MIPROv2, Inspect AI, GPU pricing & model fit |
 
-Full curriculum spec: [`CURRICULUM_SPEC.md`](CURRICULUM_SPEC.md). v0.1 ships 63 notebooks; the remaining 6 (training-track 03-08) are scheduled for v0.2.
+Full curriculum spec: [`CURRICULUM_SPEC.md`](CURRICULUM_SPEC.md). v0.1 ships 64 notebooks; the remaining 6 (training-track 03-08) are scheduled for v0.2.
 
 ### Production patterns track
 
@@ -51,7 +51,7 @@ LLM library on a real task. Every notebook works in two modes:
   so the notebook still runs end-to-end on a fresh Colab. The fixtures are real
   responses from a previous run, not mocks.
 
-All eight notebooks pass their `s.check()` assertions in replay mode (40 checks total).
+All nine notebooks pass their `s.check()` assertions in replay mode (46 checks total).
 
 ## Run it locally
 
