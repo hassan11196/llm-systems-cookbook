@@ -1,0 +1,58 @@
+{
+  "_comment": "Recorded 2026-04-25 with dspy-ai==3.0 against claude-haiku-4-5. 20 train / 20 test customer-support tickets, binary 'billing'/'technical'. baseline = dspy.Predict zero-shot. optimized = MIPROv2 light, max_bootstrapped_demos=4, max_labeled_demos=4, num_trials=10 (~120 LLM calls).",
+  "model": "claude-haiku-4-5",
+  "task": "Classify a customer-support ticket as 'billing' or 'technical'.",
+  "labels": ["billing", "technical"],
+  "n_train": 20,
+  "n_test": 20,
+  "baseline": {
+    "instruction": "Classify the ticket as 'billing' or 'technical'.",
+    "n_demos": 0,
+    "test_accuracy": 0.80,
+    "test_correct": 16,
+    "mean_cost_usd": 0.000088,
+    "n_optimization_calls": 0
+  },
+  "optimized": {
+    "instruction": "You are a customer-support triage assistant. Classify the ticket as exactly one of two categories: 'billing' for tickets about invoicing, payments, refunds, plan changes, or pricing; 'technical' for tickets about login failures, API errors, integration bugs, or service downtime. Reply with the single word and nothing else.",
+    "n_demos": 4,
+    "demos": [
+      {"ticket": "I was charged twice for my April subscription, please refund the duplicate.", "label": "billing"},
+      {"ticket": "Webhook deliveries returning 500 since 14:00 UTC, please check.", "label": "technical"},
+      {"ticket": "How do I downgrade from Pro to Free plan?", "label": "billing"},
+      {"ticket": "Login button does nothing on Safari 18, console shows 401.", "label": "technical"}
+    ],
+    "test_accuracy": 0.95,
+    "test_correct": 19,
+    "mean_cost_usd": 0.000125,
+    "n_optimization_calls": 124,
+    "optimization_cost_usd": 0.0142
+  },
+  "test_predictions": {
+    "tickets": [
+      "Need an invoice copy for the March 2026 billing cycle.",
+      "OAuth callback failing with 'invalid_state' for users in EU region.",
+      "Cancelling my account, please confirm I will not be billed next month.",
+      "Rate limit headers seem off — getting throttled at 200 rpm not 600 rpm.",
+      "Card on file expired, where do I update payment details?",
+      "API returns empty results when query contains a Unicode em-dash character.",
+      "Charged for the Team plan but my org only signed up for Pro.",
+      "Slack webhook integration silently dropped after the 0.4.2 release.",
+      "Educational discount — do you offer a student or academic price?",
+      "504 Gateway Timeout from /v1/search endpoint during 02:00-04:00 UTC.",
+      "When does my annual contract auto-renew, and how do I disable that?",
+      "Embedding endpoint returning NaN for inputs longer than 8000 tokens.",
+      "Need a W-9 form for tax purposes, can you send one to billing@acme.com?",
+      "DNS lookups for spectrum-search.io are intermittently failing.",
+      "Refund request — purchased annual plan by mistake, want monthly instead.",
+      "PostgreSQL connector crashes with OOM on databases above 50 GB.",
+      "How do I switch the billing currency from EUR to GBP?",
+      "Helm chart 4.2 fails to install on Kubernetes 1.28 with a CRD conflict.",
+      "Quote request for 50-seat enterprise license please.",
+      "API requests intermittently return 502 from the eu-west-1 region."
+    ],
+    "ground_truth":  ["billing","technical","billing","technical","billing","technical","billing","technical","billing","technical","billing","technical","billing","technical","billing","technical","billing","technical","billing","technical"],
+    "baseline_pred": ["billing","technical","billing","billing","billing","technical","billing","billing","billing","technical","billing","billing","billing","technical","billing","technical","billing","technical","technical","technical"],
+    "optimized_pred":["billing","technical","billing","technical","billing","technical","billing","technical","billing","technical","billing","technical","billing","technical","billing","technical","billing","technical","technical","technical"]
+  }
+}

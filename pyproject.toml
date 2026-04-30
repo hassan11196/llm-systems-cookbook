@@ -64,6 +64,13 @@ agents = [
   "pydantic>=2.0",
 ]
 serving = ["llmcompressor==0.10.*", "gptqmodel", "autoawq"]
+production = [
+  "anthropic>=0.39",
+  "openai>=1.50",
+  "litellm>=1.50",
+  "instructor>=1.7",
+  "outlines>=0.1",
+]
 # RAGAS is deliberately pinned to the 0.2.x API. RAGAS 0.4.x broke the metric
 # interface used by notebooks/02_rag/09 and requires a separate metric refactor
 # that is out of scope for this curriculum as authored.
