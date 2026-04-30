@@ -78,7 +78,7 @@ eval = [
   "lm-eval==0.4.11",
   "inspect-ai==0.3.199",
   "lighteval==0.11.0",
-  "ragas==0.2.14",
+  "ragas==0.4.3",
 ]
 gpu = ["triton==3.2.*"]
 jax = ["jax==0.5.*", "jaxlib"]
