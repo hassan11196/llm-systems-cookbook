@@ -5,6 +5,11 @@ on:
     branches: ["**"]
   pull_request:
 
+# Cancel superseded runs on the same branch when a new push arrives.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -34,10 +39,86 @@ jobs:
       - name: Run harness unit tests
         run: pytest scoring/test_harness.py -v
 
+  # Per-notebook matrix. Each cell becomes its own check on the PR so a
+  # broken notebook lights up red on its own line, and a failure in one
+  # doesn't stop the others (fail-fast: false).
+  #
+  # Push-only to avoid 2x compute on PR opens (the push that opened the
+  # PR is what runs these checks; GitHub aggregates the result onto the
+  # PR's check list).
   cpu-notebooks:
     runs-on: ubuntu-latest
     needs: [lint, harness-tests]
     if: github.event_name == 'push'
+    strategy:
+      fail-fast: false
+      max-parallel: 10
+      matrix:
+        include:
+          # 02_rag (only the CPU-safe, no-stub notebook for now)
+          - id: 02_rag_01_chunking_strategies
+            notebook: notebooks/02_rag/01_chunking_strategies.ipynb
+
+          # 04_agents — all seven (validated in PR #22)
+          - id: 04_agents_01_react_from_scratch
+            notebook: notebooks/04_agents/01_react_from_scratch.ipynb
+          - id: 04_agents_02_structured_outputs_three_ways
+            notebook: notebooks/04_agents/02_structured_outputs_three_ways.ipynb
+          - id: 04_agents_03_langgraph_state_machines
+            notebook: notebooks/04_agents/03_langgraph_state_machines.ipynb
+          - id: 04_agents_04_dspy_3_miprov2
+            notebook: notebooks/04_agents/04_dspy_3_miprov2.ipynb
+          - id: 04_agents_05_mcp_server_client
+            notebook: notebooks/04_agents/05_mcp_server_client.ipynb
+          - id: 04_agents_06_autogen_0_4_vs_crewai
+            notebook: notebooks/04_agents/06_autogen_0_4_vs_crewai.ipynb
+          - id: 04_agents_07_agent_evaluation_suite
+            notebook: notebooks/04_agents/07_agent_evaluation_suite.ipynb
+
+          # 05_serving (only the CPU-safe roofline notebook)
+          - id: 05_serving_01_roofline_analysis
+            notebook: notebooks/05_serving/01_roofline_analysis.ipynb
+
+          # 06_eval — all eight (validated in PR #22)
+          - id: 06_eval_01_perplexity_from_scratch
+            notebook: notebooks/06_eval/01_perplexity_from_scratch.ipynb
+          - id: 06_eval_02_mmlu_harness_calibration
+            notebook: notebooks/06_eval/02_mmlu_harness_calibration.ipynb
+          - id: 06_eval_03_humaneval_unbiased_pass_k
+            notebook: notebooks/06_eval/03_humaneval_unbiased_pass_k.ipynb
+          - id: 06_eval_04_llm_as_judge_bias
+            notebook: notebooks/06_eval/04_llm_as_judge_bias.ipynb
+          - id: 06_eval_05_arena_elo_bradley_terry
+            notebook: notebooks/06_eval/05_arena_elo_bradley_terry.ipynb
+          - id: 06_eval_06_long_context_niah_ruler
+            notebook: notebooks/06_eval/06_long_context_niah_ruler.ipynb
+          - id: 06_eval_07_contamination_detection
+            notebook: notebooks/06_eval/07_contamination_detection.ipynb
+          - id: 06_eval_08_lm_eval_inspect_ai
+            notebook: notebooks/06_eval/08_lm_eval_inspect_ai.ipynb
+
+          # 08_production — all nine (validated in PR #20). Run in REPLAY
+          # mode (no API keys); each notebook is gated on its own
+          # ANTHROPIC_API_KEY / *_LIVE env var and falls back to fixtures.
+          - id: 08_production_01_claude_sdk_prompt_caching
+            notebook: notebooks/08_production/01_claude_sdk_prompt_caching.ipynb
+          - id: 08_production_02_litellm_router_fallbacks
+            notebook: notebooks/08_production/02_litellm_router_fallbacks.ipynb
+          - id: 08_production_03_tool_use_agent
+            notebook: notebooks/08_production/03_tool_use_agent.ipynb
+          - id: 08_production_04_structured_outputs_real
+            notebook: notebooks/08_production/04_structured_outputs_real.ipynb
+          - id: 08_production_05_hybrid_rag_production
+            notebook: notebooks/08_production/05_hybrid_rag_production.ipynb
+          - id: 08_production_06_mcp_real_server
+            notebook: notebooks/08_production/06_mcp_real_server.ipynb
+          - id: 08_production_07_dspy_miprov2_optimizer
+            notebook: notebooks/08_production/07_dspy_miprov2_optimizer.ipynb
+          - id: 08_production_08_inspect_ai_eval_harness
+            notebook: notebooks/08_production/08_inspect_ai_eval_harness.ipynb
+          - id: 08_production_09_gpu_providers_pricing_and_model_fit
+            notebook: notebooks/08_production/09_gpu_providers_pricing_and_model_fit.ipynb
+    name: cpu-notebook (${{ matrix.id }})
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -50,23 +131,15 @@ jobs:
           pip install -e ".[dev]"
           pip install torch==2.6.* --index-url https://download.pytorch.org/whl/cpu
           pip install "sentence-transformers==5.4.1" "faiss-cpu==1.13.2" "rank-bm25"
-      - name: Execute CPU-safe hello-world notebooks
+      - name: Execute ${{ matrix.notebook }}
         run: |
-          set -e
-          for nb in \
-            notebooks/02_rag/01_chunking_strategies.ipynb \
-            notebooks/05_serving/01_roofline_analysis.ipynb \
-            notebooks/04_agents/01_react_from_scratch.ipynb; do
-            echo "::group::Executing $nb"
-            jupyter nbconvert --to notebook --execute "$nb" \
-              --output "$(basename "$nb" .ipynb).executed.ipynb" \
-              --output-dir /tmp
-            echo "::endgroup::"
-          done
-      - name: Upload scoring artifacts
+          jupyter nbconvert --to notebook --execute "${{ matrix.notebook }}" \
+            --output "${{ matrix.id }}.executed.ipynb" \
+            --output-dir /tmp
+      - name: Upload scoring artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: scores
+          name: scores-${{ matrix.id }}
           path: scores/
           if-no-files-found: warn

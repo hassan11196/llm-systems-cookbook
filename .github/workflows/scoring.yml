@@ -13,13 +13,17 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: Download CI scores artifact
+      - name: Download CI scores artifacts
         uses: dawidd6/action-download-artifact@v6
         continue-on-error: true
         with:
           workflow: ci.yml
-          name: scores
+          # ci.yml emits one `scores-<notebook_id>` artifact per matrix
+          # cell; download all of them and flatten into ./scores/.
+          name: ^scores-.*$
+          name_is_regexp: true
           path: scores
+          merge_multiple: true
       - name: Aggregate scores
         run: |
           if [ -d scores ] && [ -n "$(ls -A scores 2>/dev/null)" ]; then
