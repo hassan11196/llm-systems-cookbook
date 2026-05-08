@@ -4,11 +4,11 @@
 :alt: LLM Systems Cookbook
 ```
 
-**A hands-on curriculum for modern LLM systems engineering.** 55 Jupyter
+**A hands-on curriculum for modern LLM systems engineering.** 64 Jupyter
 notebooks that teach inference, RAG, training, agents, serving,
-evaluation, and GPU programming - each by reimplementing the core
-technique from first principles, comparing it to a production tool, and
-self-scoring the result with numerical checks.
+evaluation, GPU programming, and production LLM patterns - each by
+reimplementing the core technique from first principles, exercising a
+real production library, or both, with deterministic numerical checks.
 
 Written for a computer-science undergraduate who wants to go from
 "I know what softmax is" to "I can reason about LLM serving economics,"
@@ -113,11 +113,23 @@ for v0.2.
 *2 of 8 planned chapters shipped in v0.1*
 :::
 
+:::{grid-item-card} 🚢 Production patterns
+:link: notebooks/08_production/index
+:link-type: doc
+
+Anthropic SDK prompt caching, LiteLLM multi-provider routing,
+native tool-use, structured outputs head-to-head (tool-use /
+Instructor / Outlines), hybrid RAG with citations, MCP server +
+client, DSPy 3 + MIPROv2, Inspect AI, GPU pricing.
+
+*9 chapters · CPU-safe, replay-mode fixtures included*
+:::
+
 :::{grid-item-card} 📚 Reference
 :link: CURRICULUM_SPEC
 :link-type: doc
 
-The full 61-notebook specification with per-chapter scoring
+The full curriculum specification with per-chapter scoring
 thresholds, paper citations, and prerequisite DAG.
 
 *If a chapter and the spec disagree, the chapter is authoritative.*
@@ -133,7 +145,7 @@ thresholds, paper citations, and prerequisite DAG.
 - **Computer architecture.** Helpful to have seen cache hierarchy and
   memory bandwidth concepts once; the GPU architecture tour
   re-introduces them from first principles.
-- **Hardware.** Free Colab T4 is enough for 52 of 55 chapters. Three
+- **Hardware.** Free Colab T4 is enough for 61 of 64 chapters. Three
   chapters (the two FA2 Triton kernel notebooks in 01_inference/05 and
   07_gpu/04, plus 07_gpu/07 Nsight profiling) note their requirements
   in their chapter header.
