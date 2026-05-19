@@ -6,13 +6,29 @@
 
 **A hands-on curriculum for modern LLM systems engineering.** 64 Jupyter
 notebooks that teach inference, RAG, training, agents, serving,
-evaluation, GPU programming, and production LLM patterns - each by
+evaluation, GPU programming, and production LLM patterns — each by
 reimplementing the core technique from first principles, exercising a
 real production library, or both, with deterministic numerical checks.
 
 Written for a computer-science undergraduate who wants to go from
 "I know what softmax is" to "I can reason about LLM serving economics,"
 with no prior deep-learning background assumed.
+
+```{admonition} What's new — May 2026
+:class: note
+
+- **Glossary** extended with 2025–2026 terms: test-time compute, reasoning
+  models, BitNet / ternary quantization, FP4 (Blackwell), VLM / SigLIP,
+  NVIDIA Dynamo / NIXL, DoRA, ORPO, and more.
+- **Curriculum spec** updated with the v0.3 roadmap: inference-time scaling
+  notebook, BitNet/sub-2-bit serving notebook, a 5-notebook multimodal track,
+  and a safety/red-teaming track.
+- **Framework pins** refreshed to the May 2026 ecosystem (torch 2.7, vLLM
+  0.8, TRL 0.26, PEFT 0.14, JAX 0.6).
+- **Training track (v0.2):** six remaining notebooks (tensor parallel,
+  pipeline parallel, LoRA/DoRA, QLoRA, DPO/ORPO, GRPO) are fully specified
+  and in active development.
+```
 
 ```{admonition} How to read this book
 :class: tip
@@ -106,11 +122,11 @@ lm-eval vs Inspect AI.
 :link-type: doc
 
 Mixed precision + gradient accumulation + checkpointing,
-DDP vs FSDP2. Tensor parallel, pipeline parallel, LoRA, QLoRA,
-DPO, and GRPO are specified in CURRICULUM_SPEC.md and scheduled
-for v0.2.
+DDP vs FSDP2. Tensor parallel, pipeline parallel, LoRA/DoRA,
+QLoRA, DPO/ORPO, and GRPO (DeepSeek-R1 style) are fully specified
+and in active v0.2 development.
 
-*2 of 8 planned chapters shipped in v0.1*
+*2 of 8 chapters shipped · 6 specified, in progress*
 :::
 
 :::{grid-item-card} 🚢 Production patterns
@@ -133,6 +149,26 @@ The full curriculum specification with per-chapter scoring
 thresholds, paper citations, and prerequisite DAG.
 
 *If a chapter and the spec disagree, the chapter is authoritative.*
+:::
+
+:::{grid-item-card} 🔭 Coming in v0.3
+:link: CURRICULUM_SPEC
+:link-type: doc
+
+**Test-time compute & reasoning models** — best-of-N, process reward
+models, budget forcing (S1 "wait" trick), MCTS over reasoning steps.
+
+**BitNet & sub-2-bit serving** — ternary `BitLinear`, ternary-aware
+training, `bitnet.cpp` CPU inference.
+
+**Multimodal / VLM track** — SigLIP 2 fine-tune, LLaVA projection,
+VLM evaluation (MMBench / POPE / HallusionBench), Phi-4-Multimodal
+document QA, Vision-Language-Action overview.
+
+**Safety & red-teaming** — HarmBench, constitutional self-critique,
+hard-list watermarking, toxicity scoring.
+
+*Fully specified in CURRICULUM_SPEC.md · contributions welcome*
 :::
 ```
 
