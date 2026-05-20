@@ -11,6 +11,14 @@
   SARATHI chunked prefill, disaggregated prefill/decode.
 - Speculative decoding, Medusa heads, EAGLE tree speculation.
 - FlashAttention-2 drop-in for any transformer layer.
+
+For H100/Hopper context: **{term}`FlashAttention-3`** (arXiv 2407.08608)
+extends these ideas with async TMA pipelining and FP8 support, reaching
+740 TFLOPs/s — 2× faster than FA2 on the same chip. The 2024–2026
+**{term}`reasoning model`** wave (o1, o3, DeepSeek-R1) introduces a new
+axis — **{term}`test-time compute`** / **{term}`inference-time scaling`**
+— where spending more generation tokens trades compute for accuracy;
+see the glossary for orientation.
 ```
 
 

@@ -24,6 +24,12 @@
 - **Expected Calibration Error (ECE)** summarizes calibration gap across confidence bins.
 - **{term}`pass@k`** is the standard code-generation success metric.
 - **{term}`LLM-as-judge`**, **{term}`Elo`**, and **{term}`Bradley-Terry`** are core concepts for preference-based evaluation.
+- **{term}`GPQA`** and **{term}`HLE`** are the 2025 frontier benchmarks that
+  replaced MMLU as the discriminating tests for top-tier models.
+- **{term}`LiveCodeBench`** is a contamination-resistant alternative to
+  HumanEval for coding evaluation.
+- **{term}`ARC-AGI`** is a reasoning benchmark whose hard-problem score
+  became a proxy for AGI progress in 2024-2025.
 
 ## Reading order
 

@@ -11,6 +11,13 @@
 - Hierarchical retrieval (RAPTOR) and graph-based retrieval
   (GraphRAG + Leiden communities).
 - RAGAS evaluation metrics implemented from scratch.
+
+These building blocks are the foundation of agentic RAG systems —
+where an agent controls the retrieval loop, issues follow-up queries,
+and applies corrective retrieval when initial results are poor.
+See the glossary entries for **{term}`agentic RAG`** and
+**{term}`corrective RAG`** for an overview of how these chapters
+compose into a full agentic pipeline.
 ```
 
 
@@ -20,6 +27,7 @@
 - **{term}`BM25`**, **{term}`SPLADE`**, and **{term}`RRF`** are baseline building blocks for hybrid retrieval systems.
 - **{term}`ColBERT`** is a late-interaction retriever that balances quality and serving cost.
 - **{term}`HyDE`** and **{term}`reranking`** are common techniques for improving top-k relevance.
+- **{term}`agentic RAG`** and **{term}`corrective RAG`** are the dominant production patterns in 2025-2026.
 
 ## Reading order
 

@@ -53,6 +53,8 @@ profiling, JAX sharding.
 KV cache, attention roofline, PagedAttention, continuous batching,
 FA2-in-layer, radix prefix cache, speculative + tree decoding,
 SARATHI chunked prefill, disaggregated serving.
+FlashAttention-3 (H100/Hopper, FP8) and test-time compute scaling
+are covered in the glossary; v0.2 will add dedicated chapters.
 
 *10 chapters · one Ampere-only*
 :::
@@ -74,7 +76,8 @@ MoE, DistServe, observability + autoscaler.
 
 Chunking strategies, FAISS indices, BM25/SPLADE/RRF, ColBERTv2
 late interaction, two-stage reranking, HyDE, RAPTOR, GraphRAG,
-RAGAS.
+RAGAS. Agentic RAG and corrective RAG patterns are documented in
+the glossary; production examples appear in Part VIII.
 
 *9 chapters · CPU-safe*
 :::
@@ -85,7 +88,8 @@ RAGAS.
 
 ReAct from scratch, structured outputs, LangGraph state machines,
 DSPy/MIPROv2, MCP server+client, AutoGen vs CrewAI,
-τ-bench/SWE-bench evaluation.
+τ-bench/SWE-bench evaluation. Patterns apply directly to OpenAI
+Agents SDK, Google ADK, Pydantic AI, and smolagents.
 
 *7 chapters · CPU-safe*
 :::
@@ -107,8 +111,9 @@ lm-eval vs Inspect AI.
 
 Mixed precision + gradient accumulation + checkpointing,
 DDP vs FSDP2. Tensor parallel, pipeline parallel, LoRA, QLoRA,
-DPO, and GRPO are specified in CURRICULUM_SPEC.md and scheduled
-for v0.2.
+DPO, GRPO (DeepSeek-R1 style), and RLVR (reinforcement learning
+from verifiable rewards) are specified in CURRICULUM_SPEC.md and
+scheduled for v0.2.
 
 *2 of 8 planned chapters shipped in v0.1*
 :::
