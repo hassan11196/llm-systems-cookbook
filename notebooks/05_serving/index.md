@@ -28,6 +28,9 @@
   scheduler patterns for higher goodput under mixed workloads.
 - **{term}`MoE`** and **{term}`expert parallel`** describe sparse expert routing at scale.
 - **{term}`SLO`** is the service reliability target that autoscaling is designed to satisfy.
+- **{term}`FP8`** is now a first-class production format on H100; the 2025
+  NVIDIA **{term}`Blackwell / GB200`** generation adds NV-FP4 tensor cores
+  and higher HBM bandwidth.
 
 ## Reading order
 

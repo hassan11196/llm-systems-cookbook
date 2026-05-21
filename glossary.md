@@ -51,6 +51,20 @@ compute capability
 kernel
   A function that runs on the GPU. You launch kernels from the host;
   each launch has fixed overhead, so batching work per launch matters.
+
+ThunderKittens
+  A tile-based GPU kernel DSL from Hazy Research / Stanford (2024).
+  The atomic unit of work is the 16×16 tile that maps to one H100
+  Tensor Core instruction; full kernels fit in ~100 lines of C++.
+  Their FlashAttention implementation reaches 855 TFLOPs/s — matching
+  FlashAttention-3 — and outperforms best Triton implementations of
+  Mamba-2, RoPE, and LayerNorm by 6–14×.
+
+Blackwell / GB200
+  NVIDIA's 2025 GPU architecture (compute capability 10.0). Adds NV-FP4
+  (4-bit float) tensor cores and a new NVLink Switch interconnect.
+  Two GB200 dies share 192 GB of HBM3e on a single NVL2 board,
+  reaching 14.4 TB/s of aggregate memory bandwidth.
 ```
 
 ## Roofline, throughput, latency
@@ -158,6 +172,23 @@ draft model
 target model
   The model whose distribution speculative decoding must preserve
   bit-for-bit (via rejection sampling).
+
+reasoning model
+  An LLM trained with reinforcement learning to emit an extended
+  chain-of-thought (CoT) trace before producing its final answer.
+  Examples: OpenAI o1/o3, DeepSeek-R1, Qwen-QwQ. Accuracy scales
+  with the compute budget allocated at inference, not just model size.
+
+test-time compute
+  Extra inference-time FLOPs spent on extended reasoning traces, best-
+  of-N sampling, beam search, or process-reward-guided tree search.
+  The dominant post-2024 scaling axis for hard reasoning tasks —
+  often more FLOPs-efficient than proportionally scaling parameters.
+
+inference-time scaling
+  The empirical observation that harder tasks benefit from longer
+  generation budgets (more "thinking" tokens). Motivates test-time
+  compute strategies and the training recipe for reasoning models.
 ```
 
 ## Attention variants
@@ -188,6 +219,13 @@ FlashAttention
   A tiled, recomputation-based attention kernel that never materialises
   the `N × N` attention matrix. O(N²) FLOPs but O(N) HBM traffic.
   Covered in {doc}`notebooks/07_gpu/04_triton_flashattention`.
+
+FlashAttention-3
+  H100/Hopper-specific attention kernel (Shah et al., NeurIPS 2024;
+  arXiv 2407.08608). Exploits Hopper's async TMA units and
+  warp-specialization to pipeline compute and data movement, and adds
+  block-wise FP8 quantization. Reaches 740 TFLOPs/s in FP16 (1.5–2×
+  faster than FA2 on the same chip) and ~1.2 PFLOPs/s in FP8.
 
 RoPE
   Rotary Position Embedding. Rotates Q and K by position-dependent
@@ -334,6 +372,27 @@ DPO
 RLHF
   Reinforcement Learning from Human Feedback. Classic 3-stage recipe:
   SFT → reward model → PPO. DPO and GRPO are simpler alternatives.
+
+GRPO
+  Group Relative Policy Optimization. A memory-efficient RL algorithm
+  (DeepSeek, 2024) that replaces the PPO value network with group-level
+  reward baselines: sample a group of G outputs, compute rewards, and
+  normalize. Eliminates the critic model entirely. TRL ships
+  `GRPOTrainer`; covered in
+  {doc}`notebooks/03_training/08_grpo_deepseek_r1_style`.
+
+RLVR
+  Reinforcement Learning from Verifiable Rewards. Uses reward functions
+  whose ground truth can be checked programmatically — math correctness,
+  code test passing, structured-output validity — instead of a trained
+  preference model. The post-training recipe behind DeepSeek-R1 and
+  most 2025-2026 reasoning models.
+
+DoRA
+  Weight-Decomposed Low-Rank Adaptation (Liu et al. 2024). Decomposes
+  each weight matrix into magnitude and direction, updating both with
+  LoRA-style efficiency. Typically outperforms LoRA at equal parameter
+  budget; supported by PEFT ≥ 0.10.
 ```
 
 ## Retrieval
@@ -379,6 +438,19 @@ ColBERT
 reranking
   Re-score a retriever's top-k with a stronger (usually cross-encoder)
   model. Two-stage retrieval is standard in production.
+
+agentic RAG
+  A RAG pattern where a reasoning agent controls the retrieval loop:
+  it decides whether to retrieve, what query to issue, whether the
+  results are sufficient, and whether to iterate. Enables multi-hop
+  reasoning, self-correction, and dynamic query reformulation (arXiv
+  2501.09136 provides a 2025 survey).
+
+corrective RAG
+  A self-improvement variant (Shi et al. 2024) where a lightweight
+  evaluator grades retrieved documents as relevant, ambiguous, or
+  irrelevant and triggers a web-search fallback for low-quality
+  retrievals before generation.
 
 HyDE
   Hypothetical Document Embeddings. Generate a pseudo-answer with an
@@ -439,6 +511,30 @@ RULER
 contamination
   When benchmark examples leak into training data, inflating scores.
   Detectable via membership-inference or length-canary tests.
+
+GPQA
+  Graduate-Level Google-Proof Q&A. 448 expert-authored questions in
+  biology, chemistry, and physics that PhD-level domain experts answer
+  correctly only ~65% of the time. Became a standard frontier benchmark
+  as MMLU saturated in 2025.
+
+HLE
+  Humanity's Last Exam. A 2,500-question expert benchmark released Jan
+  2025 by the Center for AI Safety and Scale AI. Covers math, science,
+  and humanities at the level of PhD qualifying exams; frontier models
+  scored below 10% on release, making it a long-term frontier target.
+
+LiveCodeBench
+  A contamination-resistant coding benchmark that continuously adds new
+  problems from competitive programming contests (LeetCode, Codeforces,
+  AtCoder) after the training cutoffs of all evaluated models.
+
+ARC-AGI
+  Abstraction and Reasoning Corpus for Artificial General Intelligence
+  (François Chollet, 2019). Grid transformation tasks designed to
+  require novel analogy-making; no model broke 5% until o3 reached
+  96.7% in late 2024, after which ARC-AGI-2 was released as the
+  successor frontier challenge.
 ```
 
 ## Agents
@@ -473,4 +569,33 @@ DSPy
   A framework that compiles high-level program-like agents into
   optimised prompt+weights pairs. Covered in
   {doc}`notebooks/04_agents/04_dspy_3_miprov2`.
+
+A2A
+  Agent-to-Agent Protocol. An open specification (Google, April 2025)
+  for agents to discover each other via JSON "Agent Cards" and delegate
+  subtasks over a REST interface. Horizontal complement to MCP: where
+  MCP connects a single agent to tools/data, A2A connects agents to
+  other agents. Merged under the Linux Foundation in late 2025.
+
+handoff
+  Transferring control and conversation state from one agent to another.
+  The core primitive in the OpenAI Agents SDK (released March 2025);
+  implemented as a specialized tool call `transfer_to_<agent>`.
+
+guardrail
+  A validation function that runs before or after an LLM call to
+  enforce safety or format constraints without model retraining.
+  First-class primitive in the OpenAI Agents SDK; analogous to
+  middleware in web frameworks.
+
+Pydantic AI
+  An agent framework from the Pydantic team (2024) with FastAPI-style
+  dependency injection and first-class Pydantic validation. Supports
+  tool calls, structured outputs, streaming, and multi-agent graphs.
+
+smolagents
+  A minimalist agent library by Hugging Face (~1,000 lines of Python).
+  Its `CodeAgent` generates executable Python snippets that invoke
+  tools directly rather than emitting JSON tool-call objects, closing
+  the execution loop in one step.
 ```

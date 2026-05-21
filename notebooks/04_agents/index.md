@@ -12,6 +12,13 @@
 - Conversation-driven (AutoGen) vs role-driven (CrewAI) multi-agent
   idioms.
 - Evaluating agents with τ-bench / SWE-bench-shaped benchmarks.
+
+The primitives here — tools, state graphs, handoffs, guardrails —
+are the same building blocks used by OpenAI Agents SDK (handoff
+chains), Google ADK (supervisor hierarchies), Pydantic AI
+(dependency-injected agents), and smolagents (code-as-actions).
+The 2025 A2A protocol (Agent-to-Agent) adds horizontal discovery
+across agent boundaries; see the glossary for an overview.
 ```
 
 
@@ -24,6 +31,10 @@
   output structure during decoding.
 - **{term}`MCP`** exposes tools/data over JSON-RPC so clients can use them uniformly.
 - **{term}`DSPy`** frames prompts/pipelines as optimizable programs.
+- **{term}`A2A`** (Agent-to-Agent Protocol) is the 2025 open standard for
+  inter-agent delegation and discovery.
+- **{term}`handoff`** and **{term}`guardrail`** are the two new first-class
+  primitives introduced by the OpenAI Agents SDK.
 
 ## Reading order
 
