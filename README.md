@@ -86,7 +86,15 @@ A few notebooks (training track, some inference notebooks) download
 **gated** - you must accept Meta's Llama community license on the
 model page and then authenticate once with `huggingface-cli login`
 (or set `HF_TOKEN`) before the notebook will run. Notebooks that
-only use open models (SmolLM2, Qwen2.5, Phi-3.5) need no token.
+only use open models (SmolLM2, Qwen2.5, Qwen3, Phi-3.5) need no
+token.
+
+`Qwen/Qwen3-1.7B` is added to the model registry as of v0.2. It
+supports hybrid thinking/non-thinking via `/think` and `/no_think`
+prefixes; use `/no_think` for latency-sensitive benchmarks. Larger
+Llama 4 models (Scout 17B-16E, Maverick 17B-128E) are documented in
+the GPU pricing notebook and in the model registry but are too large
+for free Colab T4 — they require A100 80 GB+ or H100.
 
 ## Layout
 

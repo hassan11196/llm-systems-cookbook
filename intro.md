@@ -107,8 +107,8 @@ lm-eval vs Inspect AI.
 
 Mixed precision + gradient accumulation + checkpointing,
 DDP vs FSDP2. Tensor parallel, pipeline parallel, LoRA, QLoRA,
-DPO, and GRPO are specified in CURRICULUM_SPEC.md and scheduled
-for v0.2.
+DPO, and GRPO (DeepSeek-R1-style reasoning) are specified in
+CURRICULUM_SPEC.md and scheduled for v0.2.
 
 *2 of 8 planned chapters shipped in v0.1*
 :::

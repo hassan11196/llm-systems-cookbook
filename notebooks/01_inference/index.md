@@ -54,3 +54,10 @@ Prerequisites: Part I (GPU architecture tour + roofline).
 Part III turns the compute/memory tradeoffs here into serving-level
 economics: goodput, SLO attainment, autoscaling.
 ```
+
+## Recent developments (2025–2026)
+
+- **EAGLE-3** (arXiv 2503.01840): multi-layer hidden-state fusion for draft candidates; surpasses EAGLE-2 on long-context tasks. Referenced as a stretch goal in `08_medusa_eagle_tree_speculation`.
+- **QuantSpec** (arXiv 2502.10424, Apple ML Research): combines self-speculative decoding with a hierarchical quantized KV cache, targeting both latency and memory simultaneously — a natural v0.2 addition to the speculative decoding notebooks.
+- **IndexCache** (2025): reuses token-level attention indices across transformer layers and requests, cutting compute 15-25% on conversational workloads with no measurable quality loss.
+- **Llama 4 Scout 10M-token context**: demonstrates practical very-long-context inference; stretch goal for `06_radix_prefix_cache` (cache hit-rate analysis at 1M+ token prefixes).

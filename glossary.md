@@ -473,4 +473,54 @@ DSPy
   A framework that compiles high-level program-like agents into
   optimised prompt+weights pairs. Covered in
   {doc}`notebooks/04_agents/04_dspy_3_miprov2`.
+
+A2A protocol
+  Agent-to-Agent protocol. An open standard (Google ADK, April 2025)
+  for agents built on different frameworks to discover and invoke each
+  other via a shared task interface, enabling cross-framework agent
+  communication without bespoke adapters.
+
+reasoning tokens
+  Tokens generated internally by a reasoning model (o-series, R1-style)
+  during its extended "thinking" phase. Reasoning tokens are consumed
+  but not returned to the caller; only the final completion is
+  returned. Training via GRPO produces models that generate useful
+  reasoning tokens. Covered in {doc}`notebooks/03_training/02_ddp_vs_fsdp2`.
+
+thinking budget
+  A configurable limit on reasoning tokens a model may generate before
+  producing its final answer. Increasing the budget improves accuracy
+  on hard tasks up to a saturation point; simply maximising budget does
+  not always help (BudgetThinker, arXiv 2508.17196).
+```
+
+## New model families (2025)
+
+```{glossary}
+Llama 4
+  Meta's 2025 open-weight model family. Scout (17B active / 109B total,
+  16 experts, 10 million token context) and Maverick (17B active /
+  400B total, 128 experts) are the two released variants. Both use
+  Multi-head Latent Attention (MLA) and FP8 native inference.
+
+Qwen3
+  Alibaba's 2025 open-weight family. Supports a hybrid thinking
+  (reasoning) and non-thinking mode selectable per-request via
+  ``/think`` or ``/no_think`` prompt prefixes. Sizes from 0.6B to
+  235B total (22B active in the MoE flagship). Qwen3-235B-A22B leads
+  open models on GPQA-Diamond and AIME 2025/2026.
+
+SGLang
+  UC Berkeley / LMSYS serving framework with RadixAttention (shared
+  prefix caching) and async constrained decoding. Version 0.4+ shows
+  3.1× throughput vs vLLM on DeepSeek-V3 traffic patterns; generally
+  preferred over vLLM when requests share long common prefixes.
+
+vLLM V2
+  Major architectural rewrite of vLLM (version 0.8+) replacing the
+  synchronous V1 scheduler with an async-first design. Deprecates
+  ``engine_use_ray`` and ``worker_use_ray``; introduces a new
+  Prometheus metrics schema. HuggingFace TGI moved to maintenance mode
+  in 2025; vLLM V2 and SGLang are the recommended production
+  replacements.
 ```
