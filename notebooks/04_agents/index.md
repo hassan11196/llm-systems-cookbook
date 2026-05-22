@@ -9,8 +9,8 @@
 - State-machine-shaped agents (LangGraph-style 50-line clone).
 - DSPy's signature + MIPROv2 prompt optimisation.
 - The Model Context Protocol as a 2-file server + client.
-- Conversation-driven (AutoGen) vs role-driven (CrewAI) multi-agent
-  idioms.
+- Conversation-driven (AutoGen / Microsoft Agent Framework) vs
+  role-driven (CrewAI) multi-agent idioms.
 - Evaluating agents with τ-bench / SWE-bench-shaped benchmarks.
 
 The primitives here — tools, state graphs, handoffs, guardrails —
@@ -19,6 +19,9 @@ chains), Google ADK (supervisor hierarchies), Pydantic AI
 (dependency-injected agents), and smolagents (code-as-actions).
 The 2025 A2A protocol (Agent-to-Agent) adds horizontal discovery
 across agent boundaries; see the glossary for an overview.
+**Microsoft Agent Framework 1.0** (April 2026) unified AutoGen 0.4
+and Semantic Kernel into one production SDK; the patterns in notebook
+06 apply directly to it.
 ```
 
 
@@ -35,6 +38,8 @@ across agent boundaries; see the glossary for an overview.
   inter-agent delegation and discovery.
 - **{term}`handoff`** and **{term}`guardrail`** are the two new first-class
   primitives introduced by the OpenAI Agents SDK.
+- **{term}`Microsoft Agent Framework`** is the April 2026 merger of AutoGen
+  and Semantic Kernel into a single production-ready agent SDK.
 
 ## Reading order
 

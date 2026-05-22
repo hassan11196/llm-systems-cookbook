@@ -38,10 +38,10 @@ tensor core
   A specialized matrix-multiply unit on modern NVIDIA GPUs. Supported
   precisions expand per generation: Volta (cc 7.0) added FP16; Turing
   (cc 7.5) added INT8/INT4; Ampere (cc 8.0) added BF16 and TF32; Ada
-  Lovelace (cc 8.9) and Hopper (cc 9.0) added FP8. Delivers most of
-  the advertised tensor-core TFLOPs; non-tensor-core FP32 is far
-  slower. First introduced in
-  {doc}`notebooks/07_gpu/01_gpu_architecture_tour`.
+  Lovelace (cc 8.9) and Hopper (cc 9.0) added FP8; Blackwell (cc 10.0)
+  added NV-FP4 (4-bit float). Delivers most of the advertised
+  tensor-core TFLOPs; non-tensor-core FP32 is far slower. First
+  introduced in {doc}`notebooks/07_gpu/01_gpu_architecture_tour`.
 
 compute capability
   A `major.minor` version tag on NVIDIA GPUs (e.g. 7.5 on T4, 9.0 on
@@ -62,9 +62,13 @@ ThunderKittens
 
 Blackwell / GB200
   NVIDIA's 2025 GPU architecture (compute capability 10.0). Adds NV-FP4
-  (4-bit float) tensor cores and a new NVLink Switch interconnect.
-  Two GB200 dies share 192 GB of HBM3e on a single NVL2 board,
-  reaching 14.4 TB/s of aggregate memory bandwidth.
+  (4-bit float) tensor cores and a new NVLink Switch interconnect. The
+  B200 GPU has 180 GB of HBM3e with ~8 TB/s of memory bandwidth —
+  roughly 2× the H100's capacity. The GB200 NVL72 rack-scale system
+  aggregates 36 Grace CPUs and 72 B200 GPUs with 1,440 GB of total
+  HBM3e, delivering up to 1.5 million tokens/second on large MoE models
+  and ~15× H100 throughput on FP8 inference workloads. MLPerf v5.0
+  showed up to 2.6× faster training vs Hopper at equivalent scale.
 ```
 
 ## Roofline, throughput, latency
@@ -258,6 +262,14 @@ FP8
   (cc 9.0; H100) tensor cores. Covered in
   {doc}`notebooks/05_serving/06_smoothquant_fp8_nf4`.
 
+NV-FP4
+  NVIDIA's 4-bit float format introduced with the Blackwell
+  architecture (cc 10.0; B200, GB200). Two bytes per value pair,
+  E2M1 encoding. Unlocks 2× throughput vs FP8 on Blackwell tensor
+  cores; used by TensorRT-LLM and vLLM MRV2 for weight and KV-cache
+  storage on GB200 systems. Block-scaling is required to avoid outlier
+  collapse at this precision level.
+
 INT8 / INT4
   8- or 4-bit integer weights. Used for post-training weight
   quantization (GPTQ, AWQ).
@@ -299,6 +311,29 @@ KV eviction
   {doc}`notebooks/05_serving/03_kv_compression_streamingllm_h2o_snapkv`.
 ```
 
+SGLang
+  Structured Generation Language. An open-source LLM inference engine
+  from LMSYS / Stanford (2024) that co-designs a high-level Python
+  DSL with an optimized runtime. Key innovations: RadixAttention for
+  automatic prefix caching, compressed finite-state machines for
+  grammar-constrained decoding, and native integration of DeepSeek
+  multi-token prediction. As of 2026-04, SGLang leads vLLM on certain
+  workloads — DeepSeek MoE, structured outputs, speculative decoding —
+  and matches it on standard throughput benchmarks. Covered structurally
+  in {doc}`notebooks/01_inference/06_radix_prefix_cache`.
+
+NVIDIA Dynamo
+  A datacenter-scale distributed inference serving framework announced
+  at GTC 2025. Key components: a KV-aware router that routes requests
+  to workers with matching prefix caches to minimize redundant
+  recomputation, NIXL (low-latency point-to-point KV transfer between
+  GPUs), a KV Block Manager that tiers KV state across GPU/CPU/NVMe,
+  and an SLO Planner that dynamically rebalances prefill/decode GPU
+  ratios to hit latency targets. Compatible with vLLM, SGLang, and
+  TensorRT-LLM backends. On DeepSeek-R1 with GB200 NVL72, Dynamo
+  demonstrated 30× more requests served vs a single-node baseline.
+  Referenced in {doc}`notebooks/05_serving/10_disaggregated_serving_distserve`.
+
 ## Batching, parallelism, serving
 
 ```{glossary}
@@ -337,7 +372,10 @@ expert parallel
 MoE
   Mixture of Experts. A sparse architecture where each token activates
   only a few of many "expert" FFN blocks. Parameters scale decoupled
-  from per-token FLOPs.
+  from per-token FLOPs. MoE has become the de-facto architecture for
+  flagship open models as of 2026: DeepSeek-V4-Pro (1.6T total / 49B
+  active), Llama 4 Maverick (400B / 17B active), Qwen3.5 (397B / 17B
+  active), and Mistral Large 3 (675B / 41B active) all use sparse MoE.
 ```
 
 ## Training
@@ -598,4 +636,16 @@ smolagents
   Its `CodeAgent` generates executable Python snippets that invoke
   tools directly rather than emitting JSON tool-call objects, closing
   the execution loop in one step.
+
+Microsoft Agent Framework
+  Microsoft's production-ready open-source agent SDK, released v1.0 in
+  April 2026, formed by merging AutoGen and Semantic Kernel into a single
+  unified library. Provides AutoGen's simple agent abstractions together
+  with Semantic Kernel's enterprise features (session state, type safety,
+  middleware, telemetry) and adds graph-based multi-agent orchestration
+  with cross-runtime interoperability via A2A and MCP. AutoGen and
+  Semantic Kernel entered maintenance mode (security/bug fixes only) at
+  the same time; the community fork of AutoGen continues as AG2.
+  Covered idiomatically through the AutoGen 0.4 notebook in
+  {doc}`notebooks/04_agents/06_autogen_0_4_vs_crewai`.
 ```

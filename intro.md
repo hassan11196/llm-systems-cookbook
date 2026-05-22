@@ -65,7 +65,10 @@ are covered in the glossary; v0.2 will add dedicated chapters.
 
 KV variants (MHA/GQA/MLA), compression (StreamingLLM/H2O/SnapKV),
 KIVI, GPTQ/AWQ, SmoothQuant/FP8/NF4, QuaRot/SpinQuant, batching,
-MoE, DistServe, observability + autoscaler.
+MoE, DistServe, observability + autoscaler. The 2025 **NVIDIA
+Dynamo** framework (KV-aware routing, NIXL, SLO Planner) extends
+these patterns to datacenter scale; the **Blackwell B200** GPU
+(180 GB HBM3e, NV-FP4 tensor cores) sets the new hardware baseline.
 
 *10 chapters · CPU-safe*
 :::
@@ -89,7 +92,9 @@ the glossary; production examples appear in Part VIII.
 ReAct from scratch, structured outputs, LangGraph state machines,
 DSPy/MIPROv2, MCP server+client, AutoGen vs CrewAI,
 τ-bench/SWE-bench evaluation. Patterns apply directly to OpenAI
-Agents SDK, Google ADK, Pydantic AI, and smolagents.
+Agents SDK, Google ADK, Pydantic AI, smolagents, and the
+**Microsoft Agent Framework 1.0** (AutoGen + Semantic Kernel,
+April 2026).
 
 *7 chapters · CPU-safe*
 :::

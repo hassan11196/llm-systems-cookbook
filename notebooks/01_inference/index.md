@@ -19,6 +19,12 @@ extends these ideas with async TMA pipelining and FP8 support, reaching
 axis — **{term}`test-time compute`** / **{term}`inference-time scaling`**
 — where spending more generation tokens trades compute for accuracy;
 see the glossary for orientation.
+
+On the production side, **vLLM's Model Runner V2 (MRV2)** (v0.17.0+,
+2026) delivers 56% throughput improvement over the legacy runner on
+GB200 GPUs, and **{term}`SGLang`** has become a competitive or leading
+alternative for MoE models, structured outputs, and speculative
+decoding workloads.
 ```
 
 
