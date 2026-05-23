@@ -1,11 +1,13 @@
 # A 70-notebook curriculum for LLM systems engineering
 
-> **v0.1 status:** this spec describes the original 61-notebook design plus
-> the 9-notebook **Production patterns** track (Part VIII) added after v0.1.
-> The repository currently ships **64 of 70**; the six remaining gaps are
-> all in the training track (notebooks `03_training/03..08`: tensor
-> parallel, pipeline parallel, LoRA, QLoRA, DPO, GRPO), planned for v0.2.
-> Every other track is complete.
+> **Current status (May 2026):** The repository ships **64 of 70** notebooks.
+> The six remaining gaps (`03_training/03..08`: tensor parallel, pipeline
+> parallel, LoRA, QLoRA, DPO, GRPO) are fully specified below and targeted
+> for **v0.2**. A **v0.3 roadmap** extending the curriculum to ~80 notebooks
+> is outlined in the [Implementation notes](#implementation-notes-and-coverage-gaps)
+> section and covers: (1) test-time compute / reasoning models, (2) BitNet
+> and sub-2-bit quantization, (3) a multimodal/VLM track, and (4) safety and
+> red-teaming.  Every track outside the training stub is currently complete.
 
 This report delivers **70 fully-specified Jupyter notebooks** organized across eight engineering areas of modern LLM systems: inference engines, retrieval-augmented generation, training and fine-tuning, agent frameworks, serving and scaling, evaluation, GPU programming, and production patterns. Every notebook includes exact 2026 package pins, a demo model drawn from a Colab-T4-compatible shortlist (SmolLM2-135M/360M, Qwen2.5-0.5B, Llama-3.2-1B, Phi-3.5-mini), a 12-20 cell outline with fully type-hinted function signatures, 4-6 numerical scoring checks with concrete thresholds (e.g., "Triton matmul ≥ 70% cuBLAS TFLOPs at 4096² FP16"), expected runtime outputs, and 2-3 stretch goals. The design is lab-style throughout - **no interview framing** - and every notebook instantiates a common `Scorer` that emits `scores/NN.json` for CI aggregation. The Production track adds a LIVE/Replay shim so each notebook works against real APIs when keys are set and against recorded fixtures otherwise — runnable end-to-end on Colab without secrets. Difficulty progresses within each track from single-GPU toy kernels to multi-process disaggregated serving; shared utilities (`_utils.py`, `scoring/harness.py`) keep the surface area small. The specs below are written so an implementer can produce each notebook directly without re-researching APIs.
 
@@ -15,7 +17,7 @@ The repo is organized as `notebooks/{01_inference, 02_rag, 03_training, 04_agent
 
 **Model shortlist** (all Colab-T4 feasible in fp16): `HuggingFaceTB/SmolLM2-135M`, `SmolLM2-360M-Instruct`, `Qwen/Qwen2.5-0.5B[-Instruct]`, `Qwen/Qwen2.5-1.5B`, `Qwen/Qwen2.5-Coder-0.5B-Instruct`, `Qwen/Qwen3-0.6B` (thinking-capable), `meta-llama/Llama-3.2-1B[-Instruct]`, `meta-llama/Llama-4-Scout-17B-16E` (requires A100/H100 or quantization), `TinyLlama/TinyLlama-1.1B-Chat-v1.0`, `microsoft/Phi-3.5-mini-instruct`, `google/gemma-3-1b-it`. Larger models (Qwen2.5-3B judge, DeepSeek-R1-Distill-Qwen-1.5B for reasoning demos) are invoked only where strictly needed and marked as such. Llama-4 and Qwen3 variants are preferred for new notebooks targeting v0.2 due to their native MoE and thinking-token support.
 
-**Framework version pins (last validated April 2026; pins in `pyproject.toml` and `environment.yml` are authoritative and may drift as the ecosystem moves):** `torch==2.6.*` (2.9 for FSDP2 notebooks), `triton==3.2.*`, `transformers==4.46.3-4.56.*`, `vllm==0.19.*` (V1 engine), `sentence-transformers==5.4.1`, `faiss-cpu==1.13.2`, `peft==0.13.*` (DoRA supported ≥ 0.10), `trl==0.24.*`, `bitsandbytes==0.44.*`, `llmcompressor==0.10.*`, `langgraph==1.1.*`, `dspy-ai==3.0.*`, `autogen-agentchat==0.4.*` (note: Microsoft merged AutoGen with Semantic Kernel into Microsoft Agent Framework in Q1 2026; community fork continues as AG2), `crewai==0.80.*`, `mcp==1.2.*`, `openai-agents==0.1.*` (OpenAI Agents SDK, March 2025), `lm-eval==0.4.11`, `inspect-ai==0.3.199`, `lighteval==0.11.0`, `ragas==0.2.14` (API-stable), `jax==0.5.*`.
+**Framework version pins (last validated May 2026; pins in `pyproject.toml` and `environment.yml` are authoritative and may drift as the ecosystem moves):** `torch==2.7.*` (2.9 for FSDP2 notebooks), `triton==3.3.*`, `transformers==4.51.*`, `vllm==0.8.*` (V1 engine; NVIDIA Dynamo backend available as optional extra), `sentence-transformers==5.4.1`, `faiss-cpu==1.13.2`, `peft==0.14.*` (DoRA supported ≥ 0.10), `trl==0.26.*`, `bitsandbytes==0.45.*`, `llmcompressor==0.4.*`, `langgraph==1.1.*`, `dspy-ai==3.0.*`, `autogen-agentchat==0.4.*` (note: Microsoft merged AutoGen with Semantic Kernel into Microsoft Agent Framework in Q1 2026; community fork continues as AG2), `crewai==0.80.*`, `mcp==1.3.*`, `openai-agents==0.1.*` (OpenAI Agents SDK, March 2025), `lm-eval==0.4.11`, `inspect-ai==0.3.199`, `lighteval==0.11.0`, `ragas==0.2.14` (API-stable; upgrade to 0.4.x is a v0.2 stretch goal), `jax==0.6.*`.
 
 **Progression and prerequisites.** Within each track, notebooks form a DAG: GPU track gates Triton kernels before FlashAttention; inference track requires `02_attention_roofline` before `05_flashattention2_triton`; training gates DDP before FSDP2; serving requires roofline before disaggregation. Cross-track edges are minimal by design - the radix-cache notebook (inference-06) assumes nothing from RAG; MoE (serving-09) is independent of training.
 
@@ -186,11 +188,91 @@ This track exercises real production LLM libraries (Anthropic SDK, LiteLLM, `mcp
 
 ## Implementation notes and coverage gaps
 
-Several topics are intentionally absent and worth flagging for a v2. **Multimodal** (vision encoders, speech, audio/video tokenization) gets no notebook; a natural addition is a `08_multimodal/` track with CLIP dual-encoder retrieval, LLaVA-style vision-language fine-tune, and Whisper streaming inference. **Safety and red-teaming** (jailbreak evals, constitutional AI, watermarking) is also absent - a candidate extension mirrors the eval track. **Embedding training** (contrastive loss, hard negative mining, Matryoshka) is referenced via stretch goals but not taught directly.
+### v0.2 gap: training track notebooks 03-08
 
-Two spec-level risks deserve attention. First, the **2026 version pin stack is not fully mutually compatible**: sentence-transformers 5.4.1 + pylate 1.1.7 have not been validated against `transformers` 5.x, so RAG notebooks pin `transformers==4.46.3`, while some training notebooks want 4.56.x for newer TRL features - expect one environment per track rather than one unified env. Second, **RAGAS 0.4.3 (Jan 2026)** broke the 0.2.x metric API used in notebook 02_rag/09; the spec pins 0.2.14 deliberately and flags the upgrade as a stretch goal. Third, **FSDP2's `fully_shard`** has no `auto_wrap_policy` / `use_orig_params` kwargs - implementers porting from FSDP1 tutorials will hit errors if they pass these.
+The six remaining training-track notebooks (tensor parallel, pipeline parallel,
+LoRA, QLoRA, DPO, GRPO) are fully specified above and targeted for v0.2.
+Implementers should note:
+- **FSDP2's `fully_shard`** has no `auto_wrap_policy` / `use_orig_params`
+  kwargs — porting from FSDP1 tutorials that pass these will raise.
+- **DoRA** (weight-decomposed LoRA, 2402.09353) should replace standard LoRA
+  in notebook 03_training/05 as the default first-principles implementation;
+  the PEFT library ships `use_dora=True` as a drop-in flag since PEFT 0.10.
+- **ORPO** (odds-ratio preference optimization, 2403.07691) should be added as
+  a `loss_type` option alongside DPO in notebook 03_training/07 — it removes
+  the reference model, halving training memory.
+- **GRPO** (notebook 03_training/08, 2501.12948) is now the canonical method
+  for reasoning model training; the verifier framework from τ-bench evaluation
+  (04_agents/07) can be reused as the GRPO reward function.
 
-The 70 notebooks are **runnable end-to-end on a free Colab T4** with two exceptions: FlashAttention notebooks (inference-05, gpu-04) require Ampere+, and Nsight profiling (gpu-07) needs a local GPU or Colab Pro (the spec includes a `torch.profiler` fallback path). Notebook 05_serving/06 gates FP8 on `torch.cuda.get_device_capability() >= (8,9)` and simulates with block-wise `torch.float8_e4m3fn` casts otherwise. The Production track's 9 notebooks all run on CPU via recorded fixtures when API keys are not set. Total estimated cumulative runtime across the curriculum on a single L4 is approximately **6-8 hours of wall-clock compute** plus model-download time.
+### v0.3 roadmap (planned extensions)
+
+Four topic areas represent the most important coverage gaps given the 2025-2026
+state of the field:
+
+**Test-time compute and reasoning models.** The dominant 2025 scaling axis
+shifted from training-time parameter growth to inference-time chain-of-thought.
+A planned `01_inference/11_inference_time_scaling.ipynb` would implement: (a)
+best-of-N with a process reward model, (b) MCTS-style tree search over
+reasoning steps, and (c) the budget forcing / "wait" token trick from S1
+(2501.10921). Scoring threshold: best-of-N@16 ≥ 10 pp over greedy on GSM8K;
+tree search ≥ best-of-N at same token budget. Dependencies: a fast CPU-friendly
+reward model (`Qwen/Qwen2.5-Math-RM-72B` is too large; a fine-tuned
+SmolLM2-360M reward head should be the fallback).
+
+**BitNet and sub-2-bit weight quantization.** Microsoft's BitNet b1.58-2B-4T
+(April 2025, trained from scratch with ternary weights {-1,0,+1}) achieves
+45 tok/s on Apple M2 CPU at 0.15 kWh/M tokens — ~15× more efficient than FP16
+Llama 3 8B on the same hardware. A planned `05_serving/12_bitnet_ternary.ipynb`
+would: implement a from-scratch `BitLinear` with `absmean` activation
+quantization and ternary weight rounding; benchmark PPL vs INT4/INT8 on
+SmolLM2-135M; and demonstrate CPU-native inference via `bitnet.cpp`. Scoring:
+BitLinear PPL within 0.5 of FP16 on WikiText-2 after ternary-aware training
+for 500 steps; memory ≤ 2× INT4 (ternary packing benefit); CPU tok/s ≥ 2×
+FP16 at batch=1.
+
+**Multimodal / Vision-Language Models.** A new `09_multimodal/` track (5
+notebooks) would cover: (01) SigLIP 2 dual-encoder fine-tune for image–text
+retrieval on COCO captions; (02) LLaVA-style cross-modal projection from
+scratch (vision encoder → MLP connector → LLM token space); (03) VLM
+evaluation with MMBench / POPE / HallusionBench; (04) Phi-4-Multimodal
+document understanding on DocVQA; (05) Vision-Language-Action (VLA) model
+overview with LeRobot as a hands-on integration target. All five are
+Colab T4-feasible with SmolVLM-256M or InternVL2-1B as the base.
+
+**Safety and red-teaming.** A planned `10_safety/` track (4 notebooks) would
+cover: jailbreak evaluation with HarmBench, constitutional AI self-critique,
+watermarking (Kirchenbauer et al. 2302.03162 hard red-list), and output
+toxicity scoring with Perspective API / Detoxify.
+
+### Environment compatibility notes
+
+The **2026 version pin stack is not fully mutually compatible**: `sentence-
+transformers==5.4.1` + `pylate==1.1.7` have not been validated against
+`transformers==5.x`, so RAG notebooks pin `transformers==4.46.3`, while
+training notebooks may want `4.51.x` for newer TRL features — use one
+conda/venv per track rather than a monolithic install.
+
+**RAGAS 0.4.3** (Jan 2026) broke the 0.2.x metric API used in notebook
+02_rag/09; the spec pins `ragas==0.2.14` deliberately and flags the upgrade
+as a v0.2 stretch goal.
+
+**vLLM V1** (`vllm>=0.8`) brings a redesigned execution engine. NVIDIA Dynamo
+(GTC March 2025) is now an optional backend for disaggregated serving that
+replaces the `multiprocessing.SharedMemory` + `torch.save` handoff used in
+`05_serving/10`; enabling it requires `nvidia-dynamo` and `nixl` extras and
+two A100-class GPUs, so the notebook retains the pure-Python shm path as the
+default and documents the Dynamo upgrade path in the exercises.
+
+The 70 notebooks are **runnable end-to-end on a free Colab T4** with two
+exceptions: FlashAttention notebooks (inference-05, gpu-04) require Ampere+,
+and Nsight profiling (gpu-07) needs a local GPU or Colab Pro (the spec includes
+a `torch.profiler` fallback). Notebook 05_serving/06 gates FP8 on
+`torch.cuda.get_device_capability() >= (8,9)` and simulates with block-wise
+`torch.float8_e4m3fn` casts otherwise. The Production track's 9 notebooks all
+run on CPU via recorded fixtures when API keys are not set. Total estimated
+cumulative runtime across the curriculum on a single L4 is approximately
+**6-8 hours of wall-clock compute** plus model-download time.
 
 ## Conclusion
 

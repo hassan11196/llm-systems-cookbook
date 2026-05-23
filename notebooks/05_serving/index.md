@@ -32,6 +32,24 @@
   NVIDIA **{term}`Blackwell / GB200`** generation adds NV-FP4 tensor cores
   and higher HBM bandwidth.
 
+```{admonition} Coming in v0.3
+:class: note
+
+**12 — BitNet and sub-2-bit weight quantization** will implement a
+from-scratch `BitLinear` with ternary {-1, 0, +1} weights using
+`absmean` activation scaling, benchmark PPL vs INT4/INT8, and
+demonstrate `bitnet.cpp` CPU-native inference achieving 15× better
+energy efficiency than FP16. See {term}`BitNet` in the glossary.
+
+NVIDIA **Dynamo** (GTC March 2025) and **NIXL** (see glossary) are
+the production successor to the pure-Python `SharedMemory` approach
+in chapter 10. The disaggregated serving notebook now documents the
+Dynamo/NIXL upgrade path for multi-node production deployments.
+**FP4** inference (Blackwell GB200) will be added as a hardware-gated
+extension to the quantization notebooks once cc 10.0 hardware is
+available in Colab.
+```
+
 ## Reading order
 
 Prerequisites: Part I (roofline) and Part II (KV cache, PagedAttention).

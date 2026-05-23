@@ -61,4 +61,18 @@ Prerequisites: Part I (GPU architecture tour + roofline).
 ```{seealso}
 Part III turns the compute/memory tradeoffs here into serving-level
 economics: goodput, SLO attainment, autoscaling.
+
+{term}`NVIDIA Dynamo` is the 2025 production successor to the
+hand-rolled disaggregated shm approach in chapter 10; the notebook
+documents the Dynamo upgrade path in its exercises.
+```
+
+```{admonition} Coming in v0.3
+:class: note
+
+**11 — Inference-time compute scaling** will implement best-of-N
+with a process reward model, MCTS-style tree search over reasoning
+steps, and the "wait" budget-forcing trick from S1 (2501.10921).
+This is the dominant 2025-2026 quality-scaling axis for reasoning
+models like DeepSeek-R1, o3, and QwQ.
 ```
