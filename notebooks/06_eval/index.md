@@ -47,4 +47,19 @@ No mandatory prerequisites — all CPU-safe, all from-scratch.
 7. `07_contamination_detection` — n-gram overlap + Min-K Prob.
 8. `08_lm_eval_inspect_ai` — cross-framework reconciliation on a
    synthetic task.
-```
+
+## Benchmark landscape (mid-2026)
+
+The evaluation frontier has shifted since 2024. Several previously-challenging benchmarks are now saturated:
+
+| Benchmark | 2024 SOTA | 2026 SOTA | Status |
+|---|---|---|---|
+| MMLU | ~86% | 88–94% | Saturated |
+| HumanEval | ~95% | ~99% | Saturated |
+| GSM8K | ~97% | ~99% | Saturated |
+| GPQA-Diamond | ~70% | 91–94% | Active frontier |
+| ARC-AGI-2 | ~5% | ~60–65% | Active frontier |
+| AIME 2025 | — | 91–94% | Active frontier |
+| SWE-bench Verified | ~45% | ~77–80% | Active frontier |
+
+The notebooks in this part teach the **mechanics** of evaluation on un-saturated tasks; the numerical thresholds in the scoring checks target 2026-accessible open-weight models (Qwen2.5-0.5B, Phi-3.5-mini, SmolLM2-360M) that still show non-trivial variance on MMLU and HumanEval, making them pedagogically useful even as frontier models approach ceiling.

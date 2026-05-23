@@ -72,4 +72,13 @@ Prerequisites: Part I (roofline) and Part II (KV cache, PagedAttention).
     prefill/decode ratios.
 11. `11_serving_observability_slo_autoscaler` — metrics + control
     loop.
-```
+
+## Serving ecosystem (mid-2026)
+
+Two open-source engines dominate production deployments:
+
+- **vLLM v0.8+** (V2 engine): async-first scheduler, Prometheus metrics, FP8 KV cache, multi-lora, NVIDIA Dynamo integration. Default choice for most workloads; HuggingFace TGI officially entered maintenance mode in 2025.
+- **SGLang v0.4+**: RadixAttention (shared prefix caching) + async constrained decoding. Benchmarks show 3.1× throughput vs vLLM on DeepSeek-V3 traffic; consistently wins when requests share long common prefixes (system prompts, RAG context).
+- **TensorRT-LLM**: highest raw throughput on H100/H200 when compiled, but requires a compile step and custom kernels for new models — remains useful for highest-scale inference at fixed model versions.
+
+FP8 weight + KV cache + continuous batching + speculative decoding on H100 delivers 5-8× better cost-efficiency than naive FP16 with static batching (empirical from 2025 serving comparisons). The B200's native FP4 (9000 TFLOPS) is the next frontier, with 1.3-1.6× throughput improvement over FP8 for 7-8B models.
