@@ -15,6 +15,8 @@
   loss.
 - DistServe-style goodput-optimised disaggregation and
   Prometheus-shaped observability + SLO-driven autoscaling.
+- **NVIDIA Dynamo** (GTC 2025): production disaggregated serving with
+  KV-aware routing, NIXL KV transfer, and SLO-driven GPU rebalancing.
 ```
 
 
@@ -29,8 +31,10 @@
 - **{term}`MoE`** and **{term}`expert parallel`** describe sparse expert routing at scale.
 - **{term}`SLO`** is the service reliability target that autoscaling is designed to satisfy.
 - **{term}`FP8`** is now a first-class production format on H100; the 2025
-  NVIDIA **{term}`Blackwell / GB200`** generation adds NV-FP4 tensor cores
-  and higher HBM bandwidth.
+  NVIDIA **{term}`Blackwell / GB200`** generation adds **{term}`NV-FP4`**
+  tensor cores and ~8 TB/s HBM3e bandwidth on the B200.
+- **{term}`SGLang`** and **{term}`NVIDIA Dynamo`** are the two new
+  production serving runtimes that complement vLLM in 2025–2026.
 
 ```{admonition} Coming in v0.3
 :class: note
