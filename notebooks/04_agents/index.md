@@ -31,7 +31,9 @@ and Semantic Kernel into one production SDK; the patterns in notebook
 - **{term}`structured outputs`** means constraining model outputs to a
   schema instead of free-form text.
 - **FSM (Finite-State Machine)** constraints are one way to enforce valid
-  output structure during decoding.
+  output structure during decoding. **{term}`XGrammar`** (v2, May 2026)
+  is the current production-grade FSM engine, delivering ~3× faster
+  constrained decoding via its Structural Tag protocol.
 - **{term}`MCP`** exposes tools/data over JSON-RPC so clients can use them uniformly.
 - **{term}`DSPy`** frames prompts/pipelines as optimizable programs.
 - **{term}`A2A`** (Agent-to-Agent Protocol) is the 2025 open standard for

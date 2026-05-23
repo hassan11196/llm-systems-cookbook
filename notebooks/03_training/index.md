@@ -21,6 +21,10 @@
 - **{term}`DDP`** and **{term}`FSDP`** are two distributed-training
   strategies with different memory/communication tradeoffs.
 - **{term}`LoRA`** and **{term}`QLoRA`** are parameter-efficient fine-tuning methods.
+- **{term}`GRPO`** is the group-relative RL algorithm behind DeepSeek-R1;
+  **{term}`DAPO`** (ByteDance, 2025) is a variant that removes the KL
+  penalty and clips per-token, achieving faster convergence on math
+  reasoning without a reference model.
 
 ## Reading order
 

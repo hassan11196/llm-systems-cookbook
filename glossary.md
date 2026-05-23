@@ -317,10 +317,14 @@ SGLang
   DSL with an optimized runtime. Key innovations: RadixAttention for
   automatic prefix caching, compressed finite-state machines for
   grammar-constrained decoding, and native integration of DeepSeek
-  multi-token prediction. As of 2026-04, SGLang leads vLLM on certain
-  workloads — DeepSeek MoE, structured outputs, speculative decoding —
-  and matches it on standard throughput benchmarks. Covered structurally
-  in {doc}`notebooks/01_inference/06_radix_prefix_cache`.
+  multi-token prediction. **v0.5.11** (May 5, 2026) ships with
+  XGrammar-2 integration, delivering ~3× faster constrained decoding
+  vs vLLM on structured-output workloads. In production, SGLang powers
+  xAI's Grok, Microsoft Azure endpoints, LinkedIn AI features, and
+  Cursor code completion across 400,000+ GPUs. **RadixArk** — the
+  company spun out to commercialize SGLang — raised a $100M seed round
+  at a $400M valuation in May 2026 (Accel, Spark Capital). Covered
+  structurally in {doc}`notebooks/01_inference/06_radix_prefix_cache`.
 
 NVIDIA Dynamo
   A datacenter-scale distributed inference serving framework announced
@@ -376,6 +380,18 @@ MoE
   flagship open models as of 2026: DeepSeek-V4-Pro (1.6T total / 49B
   active), Llama 4 Maverick (400B / 17B active), Qwen3.5 (397B / 17B
   active), and Mistral Large 3 (675B / 41B active) all use sparse MoE.
+
+AIBrix
+  A Kubernetes-native control plane for vLLM inference, open-sourced by
+  ByteDance (vllm-project/aibrix). Key features: high-density LoRA
+  management (dynamic adapter scheduling without model reload),
+  prefix-aware and load-aware request routing, SLO-driven autoscaling,
+  and a distributed KV cache that shares prefix hits across nodes —
+  reported 50% throughput gain and 70% latency reduction in production.
+  v0.6.0 (May 2026) adds OpenAI-compatible audio transcription,
+  image-generation, and rerank endpoints. Complements NVIDIA Dynamo
+  for clusters that run on standard Kubernetes rather than Dynamo's
+  dedicated scheduler.
 ```
 
 ## Training
@@ -425,6 +441,15 @@ RLVR
   code test passing, structured-output validity — instead of a trained
   preference model. The post-training recipe behind DeepSeek-R1 and
   most 2025-2026 reasoning models.
+
+DAPO
+  Decoupled Clip and Dynamic Sampling Policy Optimization (ByteDance /
+  arXiv 2503.14476). A GRPO variant that removes the KL-divergence
+  penalty term and clips policy ratios at the token level rather than
+  the sequence level, avoiding entropy collapse on long-horizon math
+  reasoning. Dynamic sampling discards prompts whose training signal is
+  saturated. Achieves faster convergence than vanilla GRPO on AIME 2024
+  and LiveMathBench without a reference model.
 
 DoRA
   Weight-Decomposed Low-Rank Adaptation (Liu et al. 2024). Decomposes
@@ -567,6 +592,23 @@ LiveCodeBench
   problems from competitive programming contests (LeetCode, Codeforces,
   AtCoder) after the training cutoffs of all evaluated models.
 
+SWE-bench
+  A benchmark of real GitHub issues requiring a model to generate a
+  code patch that makes a failing test-suite pass. SWE-bench Verified
+  (500 human-validated instances) and SWE-bench Lite are the standard
+  subsets. **SWE-bench Live** (arXiv 2505.23419, May 2026) extends this
+  with a live-updatable harness of 1,319 tasks from issues created after
+  model training cutoffs, making contamination structurally impossible.
+  As of May 2026 the SWE-bench Verified top score is 93.9%.
+
+Terminal-Bench
+  A CLI-focused agentic benchmark (January 2026) that evaluates models
+  on 89 realistic terminal tasks — file manipulation, system
+  administration, data processing, debugging — executed through a
+  subprocess shell. Terminal-Bench 2.0 complements SWE-bench by testing
+  multi-step command-line workflows rather than code patch generation;
+  Qwen 3.6 Plus leads the leaderboard at 61.6%.
+
 ARC-AGI
   Abstraction and Reasoning Corpus for Artificial General Intelligence
   (François Chollet, 2019). Grid transformation tasks designed to
@@ -597,6 +639,20 @@ finite-state machine (FSM)
   A graph of allowed states and transitions used to constrain decoding
   to valid output formats. If a token would violate the graph, it is
   disallowed.
+
+XGrammar
+  A fast, flexible structured-generation engine from MLC / CMU (arXiv
+  2411.15100). Compiles context-free grammars into persistent execution
+  contexts for efficient token-mask generation. **XGrammar-2** (May
+  2026) delivers 80× faster grammar compilation and ~7× lower
+  end-to-end latency versus v1, and introduces **Structural Tag** — a
+  composable JSON protocol that uniformly expresses OpenAI tool-call
+  format, reasoning channels (`<think>…</think>`), and any custom
+  output schema. Integrated natively into SGLang (v0.5+), vLLM
+  (v0.20+), and TensorRT-LLM; SGLang constrained decoding is ~3× faster
+  than vLLM's on structured-output workloads as a result. Covered
+  structurally in
+  {doc}`notebooks/04_agents/02_structured_outputs_three_ways`.
 
 MCP
   Model Context Protocol. An open standard for exposing tools and
