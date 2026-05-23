@@ -21,7 +21,11 @@ classifiers = [
 dependencies = [
   "torch==2.6.*",
   "numpy>=1.26",
-  "transformers==4.46.3",
+  # transformers 5.0 is a major release that may not be ABI-compatible with
+  # sentence-transformers==5.4.1 / pylate==1.1.7 (both pinned for the RAG
+  # track). If RAG notebooks fail to import, install the RAG extra into a
+  # separate venv that pins `transformers>=4.46.3,<5.0`.
+  "transformers==5.0.0rc3",
   "tokenizers>=0.20",
   "accelerate>=0.34",
   "datasets>=2.20",
