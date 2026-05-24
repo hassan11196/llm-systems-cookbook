@@ -50,7 +50,7 @@ The agent framework landscape has consolidated around a few dominant patterns:
 - **LangGraph** (v1.4): now the most-starred agent framework on GitHub. First-class checkpointing, durable execution, and human-in-the-loop approvals make it the default for production stateful agents.
 - **AutoGen / AG2**: Microsoft's AutoGen v0.4 ships streaming and event-driven architecture; the community maintains the proven v0.2 lineage as `ag2ai/ag2` with typed tools and dependency injection. Both run on the same core `SelectorGroupChat` / `GroupChatManager` API.
 - **CrewAI** (v1.12): added agent skills, hierarchical memory isolation, and native support for OpenRouter, DeepSeek, Ollama, and vLLM providers.
-- **Google ADK** (April 2025): hierarchical agent tree where a root agent delegates to sub-agents; introduces the **A2A (Agent-to-Agent) protocol** so a LangGraph or CrewAI agent can be invoked by an ADK agent without bespoke adapters.
+- **Google ADK v1.0** (stable 2026): hierarchical agent tree where a root agent delegates to sub-agents; v1.0 ships stable releases in Python, Go, Java, and TypeScript. Introduces the **A2A (Agent-to-Agent) protocol v1.0** (in production at 150+ organisations as of 2026) so a LangGraph or CrewAI agent can be invoked by an ADK agent without bespoke adapters. Announced at Google Cloud Next 2026 alongside Workspace Studio (no-code agent builder) and managed MCP servers via Apigee.
 - **Pydantic AI**: lightweight, type-safe alternative gaining traction for simple agents where full LangGraph state management is overkill.
 
 ## Reading order

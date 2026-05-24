@@ -16,10 +16,19 @@ economics." No prior deep-learning background assumed.
 
 > **May 2026 update:** Glossary extended with test-time compute,
 > reasoning models, BitNet/FP4, VLM/SigLIP, NVIDIA Dynamo/NIXL, DoRA,
-> and ORPO. Framework pins refreshed (torch 2.7, vLLM 0.8, TRL 0.26).
-> v0.3 roadmap published: inference-time scaling, BitNet serving, VLM
-> track, and safety/red-teaming track — see
-> [`CURRICULUM_SPEC.md`](CURRICULUM_SPEC.md).
+> and ORPO. Framework pins refreshed (torch 2.7, vLLM 0.20, TRL 0.26,
+> SGLang 0.5 + XGrammar-2). v0.3 roadmap published: inference-time
+> scaling, BitNet serving, VLM track, and safety/red-teaming track.
+> **Google I/O 2026 (May 19):** Gemini 3.5 Flash GA — frontier Flash
+> performance, 1 M-token context, 4× faster output than peer frontier
+> models; Gemini Spark persistent agent; ADK v1.0 stable across Python,
+> Go, Java, TypeScript; A2A v1.0 in production at 150+ organisations.
+> **Hardware:** NVIDIA Vera Rubin platform announced (GTC 2026) — Rubin
+> GPU with 288 GB HBM4, 50 PFLOPS FP4, NVLink 6; 5× Blackwell
+> inference throughput at 10× lower token cost; H2 2026 availability.
+> **Infrastructure:** PegaFlow (Novita AI, May 2026) — Rust-core
+> external KV cache for vLLM/SGLang with GPU offload, SSD tiering, and
+> RDMA cross-node sharing. See [`CURRICULUM_SPEC.md`](CURRICULUM_SPEC.md).
 
 ## ▶️ Run in Colab - no install
 

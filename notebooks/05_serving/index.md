@@ -79,10 +79,11 @@ Prerequisites: Part I (roofline) and Part II (KV cache, PagedAttention).
 
 ## Serving ecosystem (mid-2026)
 
-Two open-source engines dominate production deployments:
+Three open-source engines and one external KV layer dominate production deployments:
 
-- **vLLM v0.8+** (V2 engine): async-first scheduler, Prometheus metrics, FP8 KV cache, multi-lora, NVIDIA Dynamo integration. Default choice for most workloads; HuggingFace TGI officially entered maintenance mode in 2025.
-- **SGLang v0.4+**: RadixAttention (shared prefix caching) + async constrained decoding. Benchmarks show 3.1× throughput vs vLLM on DeepSeek-V3 traffic; consistently wins when requests share long common prefixes (system prompts, RAG context).
+- **vLLM v0.20+** (V2 engine): async-first scheduler, Prometheus metrics, FP8 KV cache, multi-lora, NVIDIA Dynamo integration. Model Runner V2 delivers ~56% throughput improvement on GB200 via GPU-native Triton kernels and async scheduling. Default choice for most workloads; HuggingFace TGI officially entered maintenance mode in 2025.
+- **SGLang v0.5+**: RadixAttention (shared prefix caching) + XGrammar-2 for ~80× faster grammar compilation and ~3× faster constrained decoding vs vLLM on structured-output workloads. Benchmarks show 3.1× throughput vs vLLM on DeepSeek-V3 traffic; consistently wins when requests share long common prefixes (system prompts, RAG context).
 - **TensorRT-LLM**: highest raw throughput on H100/H200 when compiled, but requires a compile step and custom kernels for new models — remains useful for highest-scale inference at fixed model versions.
+- **PegaFlow** (Novita AI, May 2026): Rust-core external KV cache storage engine that offloads GPU KV state to host memory or SSD and shares it across nodes via RDMA. Integrates with vLLM and SGLang as a drop-in KV connector with built-in Prometheus metrics. Enables effective KV capacity beyond GPU VRAM and cross-node prefix-cache sharing.
 
-FP8 weight + KV cache + continuous batching + speculative decoding on H100 delivers 5-8× better cost-efficiency than naive FP16 with static batching (empirical from 2025 serving comparisons). The B200's native FP4 (9000 TFLOPS) is the next frontier, with 1.3-1.6× throughput improvement over FP8 for 7-8B models.
+FP8 weight + KV cache + continuous batching + speculative decoding on H100 delivers 5-8× better cost-efficiency than naive FP16 with static batching (empirical from 2025 serving comparisons). The B200's native FP4 (9000 TFLOPS) is the current frontier, with 1.3-1.6× throughput improvement over FP8 for 7-8B models. **NVIDIA Vera Rubin** (H2 2026) targets 5× Blackwell inference throughput at 10× lower token cost with 288 GB HBM4 and 50 PFLOPS FP4 — the Rubin CPX variant is specifically designed for massive-context workloads.

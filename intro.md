@@ -19,15 +19,26 @@ with no prior deep-learning background assumed.
 
 - **Glossary** extended with 2025–2026 terms: test-time compute, reasoning
   models, BitNet / ternary quantization, FP4 (Blackwell), VLM / SigLIP,
-  NVIDIA Dynamo / NIXL, DoRA, ORPO, and more.
+  NVIDIA Dynamo / NIXL, DoRA, ORPO, Vera Rubin GPU, PegaFlow, Gemini 3.5
+  Flash, and more.
 - **Curriculum spec** updated with the v0.3 roadmap: inference-time scaling
   notebook, BitNet/sub-2-bit serving notebook, a 5-notebook multimodal track,
   and a safety/red-teaming track.
 - **Framework pins** refreshed to the May 2026 ecosystem (torch 2.7, vLLM
-  0.8, TRL 0.26, PEFT 0.14, JAX 0.6).
+  0.20, SGLang 0.5 + XGrammar-2, TRL 0.26, PEFT 0.14, JAX 0.6).
 - **Training track (v0.2):** six remaining notebooks (tensor parallel,
   pipeline parallel, LoRA/DoRA, QLoRA, DPO/ORPO, GRPO) are fully specified
   and in active development.
+- **Google I/O 2026 (May 19):** Gemini 3.5 Flash GA — frontier Flash-tier
+  speed with Pro-tier coding/agentic accuracy; Gemini Spark persistent 24/7
+  agent; ADK v1.0 stable across Python, Go, Java, and TypeScript; A2A v1.0
+  in production at 150+ organisations.
+- **Hardware roadmap:** NVIDIA Vera Rubin platform (announced GTC 2026) —
+  Rubin GPU (288 GB HBM4, 50 PFLOPS FP4), Vera CPU (72-core ARM), NVLink 6;
+  targeting 5× Blackwell inference throughput at 10× lower cost; H2 2026.
+- **Serving infrastructure:** PegaFlow (Novita AI, May 2026) — GIL-free Rust
+  external KV cache for vLLM/SGLang with GPU offload, SSD tiering, and RDMA
+  cross-node KV sharing.
 ```
 
 ```{admonition} How to read this book
