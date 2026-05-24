@@ -19,6 +19,12 @@ extends these ideas with async TMA pipelining and FP8 support, reaching
 axis — **{term}`test-time compute`** / **{term}`inference-time scaling`**
 — where spending more generation tokens trades compute for accuracy;
 see the glossary for orientation.
+
+On the production side, **vLLM's Model Runner V2 (MRV2)** (v0.17.0+,
+2026) delivers 56% throughput improvement over the legacy runner on
+GB200 GPUs, and **{term}`SGLang`** has become a competitive or leading
+alternative for MoE models, structured outputs, and speculative
+decoding workloads.
 ```
 
 
@@ -61,4 +67,25 @@ Prerequisites: Part I (GPU architecture tour + roofline).
 ```{seealso}
 Part III turns the compute/memory tradeoffs here into serving-level
 economics: goodput, SLO attainment, autoscaling.
+
+{term}`NVIDIA Dynamo` is the 2025 production successor to the
+hand-rolled disaggregated shm approach in chapter 10; the notebook
+documents the Dynamo upgrade path in its exercises.
 ```
+
+```{admonition} Coming in v0.3
+:class: note
+
+**11 — Inference-time compute scaling** will implement best-of-N
+with a process reward model, MCTS-style tree search over reasoning
+steps, and the "wait" budget-forcing trick from S1 (2501.10921).
+This is the dominant 2025-2026 quality-scaling axis for reasoning
+models like DeepSeek-R1, o3, and QwQ.
+```
+
+## Recent developments (2025–2026)
+
+- **EAGLE-3** (arXiv 2503.01840): multi-layer hidden-state fusion for draft candidates; surpasses EAGLE-2 on long-context tasks. Referenced as a stretch goal in `08_medusa_eagle_tree_speculation`.
+- **QuantSpec** (arXiv 2502.10424, Apple ML Research): combines self-speculative decoding with a hierarchical quantized KV cache, targeting both latency and memory simultaneously — a natural v0.2 addition to the speculative decoding notebooks.
+- **IndexCache** (2025): reuses token-level attention indices across transformer layers and requests, cutting compute 15-25% on conversational workloads with no measurable quality loss.
+- **Llama 4 Scout 10M-token context**: demonstrates practical very-long-context inference; stretch goal for `06_radix_prefix_cache` (cache hit-rate analysis at 1M+ token prefixes).

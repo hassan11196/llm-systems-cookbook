@@ -21,6 +21,10 @@
 - **{term}`DDP`** and **{term}`FSDP`** are two distributed-training
   strategies with different memory/communication tradeoffs.
 - **{term}`LoRA`** and **{term}`QLoRA`** are parameter-efficient fine-tuning methods.
+- **{term}`GRPO`** is the group-relative RL algorithm behind DeepSeek-R1;
+  **{term}`DAPO`** (ByteDance, 2025) is a variant that removes the KL
+  penalty and clips per-token, achieving faster convergence on math
+  reasoning without a reference model.
 
 ## Reading order
 
@@ -33,8 +37,17 @@ Prerequisites: Part I (roofline) and Part II (KV cache).
 
 ```{note}
 v0.1 of this book ships 2 of the 8 planned training-track notebooks.
-The remaining six (tensor parallel, pipeline parallel, LoRA, QLoRA,
-DPO, GRPO) are fully specified in
-[`CURRICULUM_SPEC.md`](../../CURRICULUM_SPEC.md) and scheduled for
-v0.2. This index will grow as each lands.
+The remaining six are fully specified in
+[`CURRICULUM_SPEC.md`](../../CURRICULUM_SPEC.md) and in active v0.2
+development:
+
+- **03** Tensor parallel from scratch (ColumnParallelLinear / RowParallelLinear)
+- **04** Pipeline parallelism — GPipe and 1F1B schedules
+- **05** LoRA + **DoRA** (weight-decomposed LoRA) vs PEFT
+- **06** QLoRA NF4 fine-tune on Llama-3.2-1B
+- **07** DPO preference tuning + **ORPO** (no reference model)
+- **08** GRPO DeepSeek-R1-style reasoning RL (GSM8K reward shaping)
+
+This index will grow as each notebook lands. Contributions welcome —
+see [`CONTRIBUTING.md`](../../CONTRIBUTING.md).
 ```

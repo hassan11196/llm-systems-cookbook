@@ -38,10 +38,10 @@ tensor core
   A specialized matrix-multiply unit on modern NVIDIA GPUs. Supported
   precisions expand per generation: Volta (cc 7.0) added FP16; Turing
   (cc 7.5) added INT8/INT4; Ampere (cc 8.0) added BF16 and TF32; Ada
-  Lovelace (cc 8.9) and Hopper (cc 9.0) added FP8. Delivers most of
-  the advertised tensor-core TFLOPs; non-tensor-core FP32 is far
-  slower. First introduced in
-  {doc}`notebooks/07_gpu/01_gpu_architecture_tour`.
+  Lovelace (cc 8.9) and Hopper (cc 9.0) added FP8; Blackwell (cc 10.0)
+  added NV-FP4 (4-bit float). Delivers most of the advertised
+  tensor-core TFLOPs; non-tensor-core FP32 is far slower. First
+  introduced in {doc}`notebooks/07_gpu/01_gpu_architecture_tour`.
 
 compute capability
   A `major.minor` version tag on NVIDIA GPUs (e.g. 7.5 on T4, 9.0 on
@@ -62,9 +62,13 @@ ThunderKittens
 
 Blackwell / GB200
   NVIDIA's 2025 GPU architecture (compute capability 10.0). Adds NV-FP4
-  (4-bit float) tensor cores and a new NVLink Switch interconnect.
-  Two GB200 dies share 192 GB of HBM3e on a single NVL2 board,
-  reaching 14.4 TB/s of aggregate memory bandwidth.
+  (4-bit float) tensor cores and a new NVLink Switch interconnect. The
+  B200 GPU has 180 GB of HBM3e with ~8 TB/s of memory bandwidth —
+  roughly 2× the H100's capacity. The GB200 NVL72 rack-scale system
+  aggregates 36 Grace CPUs and 72 B200 GPUs with 1,440 GB of total
+  HBM3e, delivering up to 1.5 million tokens/second on large MoE models
+  and ~15× H100 throughput on FP8 inference workloads. MLPerf v5.0
+  showed up to 2.6× faster training vs Hopper at equivalent scale.
 ```
 
 ## Roofline, throughput, latency
@@ -258,9 +262,24 @@ FP8
   (cc 9.0; H100) tensor cores. Covered in
   {doc}`notebooks/05_serving/06_smoothquant_fp8_nf4`.
 
+FP4 / NV-FP4
+  4-bit float. Native tensor-core support on Blackwell (NVIDIA GB200 /
+  B200, cc 10.0) with E2M1 encoding (two bytes per value pair). Delivers
+  2× the throughput of FP8 for inference with acceptable quality loss on
+  most frontier models (ΔPPL < 0.5 vs FP8 with block-scaling). Used by
+  TensorRT-LLM and vLLM MRV2 for weight and KV-cache storage on GB200
+  systems. Block-scaling is required to avoid outlier collapse at this
+  precision level.
+
 INT8 / INT4
   8- or 4-bit integer weights. Used for post-training weight
   quantization (GPTQ, AWQ).
+
+INT2 / ternary
+  2-bit or ternary {-1, 0, +1} weight encoding. Extreme compression
+  reduces weight memory 8× vs FP16. KIVI covers 2-bit KV caches;
+  BitNet covers ternary training-from-scratch models. Post-training
+  2-bit (QuIP#, AQLM) with codebook lookup is an active research area.
 
 NF4
   4-bit NormalFloat. A non-uniform 4-bit encoding tuned for normal-
@@ -298,6 +317,33 @@ KV eviction
   Covered in
   {doc}`notebooks/05_serving/03_kv_compression_streamingllm_h2o_snapkv`.
 ```
+
+SGLang
+  Structured Generation Language. An open-source LLM inference engine
+  from LMSYS / Stanford (2024) that co-designs a high-level Python
+  DSL with an optimized runtime. Key innovations: RadixAttention for
+  automatic prefix caching, compressed finite-state machines for
+  grammar-constrained decoding, and native integration of DeepSeek
+  multi-token prediction. **v0.5.11** (May 5, 2026) ships with
+  XGrammar-2 integration, delivering ~3× faster constrained decoding
+  vs vLLM on structured-output workloads. In production, SGLang powers
+  xAI's Grok, Microsoft Azure endpoints, LinkedIn AI features, and
+  Cursor code completion across 400,000+ GPUs. **RadixArk** — the
+  company spun out to commercialize SGLang — raised a $100M seed round
+  at a $400M valuation in May 2026 (Accel, Spark Capital). Covered
+  structurally in {doc}`notebooks/01_inference/06_radix_prefix_cache`.
+
+NVIDIA Dynamo
+  A datacenter-scale distributed inference serving framework announced
+  at GTC 2025. Key components: a KV-aware router that routes requests
+  to workers with matching prefix caches to minimize redundant
+  recomputation, NIXL (low-latency point-to-point KV transfer between
+  GPUs), a KV Block Manager that tiers KV state across GPU/CPU/NVMe,
+  and an SLO Planner that dynamically rebalances prefill/decode GPU
+  ratios to hit latency targets. Compatible with vLLM, SGLang, and
+  TensorRT-LLM backends. On DeepSeek-R1 with GB200 NVL72, Dynamo
+  demonstrated 30× more requests served vs a single-node baseline.
+  Referenced in {doc}`notebooks/05_serving/10_disaggregated_serving_distserve`.
 
 ## Batching, parallelism, serving
 
@@ -337,7 +383,22 @@ expert parallel
 MoE
   Mixture of Experts. A sparse architecture where each token activates
   only a few of many "expert" FFN blocks. Parameters scale decoupled
-  from per-token FLOPs.
+  from per-token FLOPs. MoE has become the de-facto architecture for
+  flagship open models as of 2026: DeepSeek-V4-Pro (1.6T total / 49B
+  active), Llama 4 Maverick (400B / 17B active), Qwen3.5 (397B / 17B
+  active), and Mistral Large 3 (675B / 41B active) all use sparse MoE.
+
+AIBrix
+  A Kubernetes-native control plane for vLLM inference, open-sourced by
+  ByteDance (vllm-project/aibrix). Key features: high-density LoRA
+  management (dynamic adapter scheduling without model reload),
+  prefix-aware and load-aware request routing, SLO-driven autoscaling,
+  and a distributed KV cache that shares prefix hits across nodes —
+  reported 50% throughput gain and 70% latency reduction in production.
+  v0.6.0 (May 2026) adds OpenAI-compatible audio transcription,
+  image-generation, and rerank endpoints. Complements NVIDIA Dynamo
+  for clusters that run on standard Kubernetes rather than Dynamo's
+  dedicated scheduler.
 ```
 
 ## Training
@@ -356,10 +417,21 @@ activation checkpointing
   Recompute activations during the backward pass instead of storing
   them. Trades 1.3× compute for large memory savings.
 
+SFT
+  Supervised Fine-Tuning. Fine-tune on labelled (prompt, completion)
+  pairs with the standard cross-entropy objective. The first stage of
+  most alignment pipelines.
+
 LoRA
   Low-Rank Adaptation. Freeze the base model; learn rank-r update
   matrices `B·A` added to selected linears. Reduces trainable params
   100-1000×.
+
+DoRA
+  Weight-Decomposed Low-Rank Adaptation. Splits each pre-trained weight
+  into magnitude and direction components, then applies LoRA only to the
+  direction, improving fine-tuning quality especially at very low ranks
+  (r ≤ 8) without increasing inference cost.
 
 QLoRA
   LoRA on top of a 4-bit-quantized base model. Enables fine-tuning
@@ -368,6 +440,20 @@ QLoRA
 DPO
   Direct Preference Optimization. Learns from preference pairs without
   an explicit reward model, by reweighting the base policy's log-probs.
+
+ORPO
+  Odds-Ratio Preference Optimization. A single-stage SFT+alignment
+  recipe that adds a log-odds-ratio penalty term to the cross-entropy
+  loss, eliminating the need for a separate reference model. More
+  memory-efficient than DPO.
+
+GRPO
+  Group Relative Policy Optimization. A reinforcement learning
+  algorithm (DeepSeek-R1, 2501.12948) that estimates advantage from
+  within-group reward statistics instead of a value network, enabling
+  RL fine-tuning of reasoning models at lower compute than PPO. Covered
+  in {doc}`notebooks/03_training/02_ddp_vs_fsdp2` prerequisites; fully
+  specified in `CURRICULUM_SPEC.md` notebook 03_training/08.
 
 RLHF
   Reinforcement Learning from Human Feedback. Classic 3-stage recipe:
@@ -388,11 +474,27 @@ RLVR
   preference model. The post-training recipe behind DeepSeek-R1 and
   most 2025-2026 reasoning models.
 
+DAPO
+  Decoupled Clip and Dynamic Sampling Policy Optimization (ByteDance /
+  arXiv 2503.14476). A GRPO variant that removes the KL-divergence
+  penalty term and clips policy ratios at the token level rather than
+  the sequence level, avoiding entropy collapse on long-horizon math
+  reasoning. Dynamic sampling discards prompts whose training signal is
+  saturated. Achieves faster convergence than vanilla GRPO on AIME 2024
+  and LiveMathBench without a reference model.
+
 DoRA
   Weight-Decomposed Low-Rank Adaptation (Liu et al. 2024). Decomposes
   each weight matrix into magnitude and direction, updating both with
   LoRA-style efficiency. Typically outperforms LoRA at equal parameter
   budget; supported by PEFT ≥ 0.10.
+
+BitNet
+  A training-from-scratch quantization scheme (Microsoft, 2402.17764)
+  where each weight is constrained to {-1, 0, +1} (ternary / 1.58-bit).
+  BitNet b1.58-2B-4T (April 2025) is the first openly released 1.58-bit
+  model at production scale (2B params, 4T tokens). Enables 15× better
+  energy efficiency than FP16 equivalents on CPU inference.
 ```
 
 ## Retrieval
@@ -529,6 +631,23 @@ LiveCodeBench
   problems from competitive programming contests (LeetCode, Codeforces,
   AtCoder) after the training cutoffs of all evaluated models.
 
+SWE-bench
+  A benchmark of real GitHub issues requiring a model to generate a
+  code patch that makes a failing test-suite pass. SWE-bench Verified
+  (500 human-validated instances) and SWE-bench Lite are the standard
+  subsets. **SWE-bench Live** (arXiv 2505.23419, May 2026) extends this
+  with a live-updatable harness of 1,319 tasks from issues created after
+  model training cutoffs, making contamination structurally impossible.
+  As of May 2026 the SWE-bench Verified top score is 93.9%.
+
+Terminal-Bench
+  A CLI-focused agentic benchmark (January 2026) that evaluates models
+  on 89 realistic terminal tasks — file manipulation, system
+  administration, data processing, debugging — executed through a
+  subprocess shell. Terminal-Bench 2.0 complements SWE-bench by testing
+  multi-step command-line workflows rather than code patch generation;
+  Qwen 3.6 Plus leads the leaderboard at 61.6%.
+
 ARC-AGI
   Abstraction and Reasoning Corpus for Artificial General Intelligence
   (François Chollet, 2019). Grid transformation tasks designed to
@@ -560,6 +679,20 @@ finite-state machine (FSM)
   to valid output formats. If a token would violate the graph, it is
   disallowed.
 
+XGrammar
+  A fast, flexible structured-generation engine from MLC / CMU (arXiv
+  2411.15100). Compiles context-free grammars into persistent execution
+  contexts for efficient token-mask generation. **XGrammar-2** (May
+  2026) delivers 80× faster grammar compilation and ~7× lower
+  end-to-end latency versus v1, and introduces **Structural Tag** — a
+  composable JSON protocol that uniformly expresses OpenAI tool-call
+  format, reasoning channels (`<think>…</think>`), and any custom
+  output schema. Integrated natively into SGLang (v0.5+), vLLM
+  (v0.20+), and TensorRT-LLM; SGLang constrained decoding is ~3× faster
+  than vLLM's on structured-output workloads as a result. Covered
+  structurally in
+  {doc}`notebooks/04_agents/02_structured_outputs_three_ways`.
+
 MCP
   Model Context Protocol. An open standard for exposing tools and
   data sources to LLM clients over JSON-RPC. Covered in
@@ -571,11 +704,12 @@ DSPy
   {doc}`notebooks/04_agents/04_dspy_3_miprov2`.
 
 A2A
-  Agent-to-Agent Protocol. An open specification (Google, April 2025)
+  Agent-to-Agent Protocol. An open specification (Google ADK, April 2025)
   for agents to discover each other via JSON "Agent Cards" and delegate
   subtasks over a REST interface. Horizontal complement to MCP: where
   MCP connects a single agent to tools/data, A2A connects agents to
-  other agents. Merged under the Linux Foundation in late 2025.
+  other agents. Enables cross-framework agent communication without
+  bespoke adapters. Merged under the Linux Foundation in late 2025.
 
 handoff
   Transferring control and conversation state from one agent to another.
@@ -598,4 +732,177 @@ smolagents
   Its `CodeAgent` generates executable Python snippets that invoke
   tools directly rather than emitting JSON tool-call objects, closing
   the execution loop in one step.
+
+computer use
+  A tool-use modality where an LLM controls a GUI: clicks, types, and
+  takes screenshots to drive desktop applications. Standardised as a
+  special tool type in the same protocol as JSON tool calls.
+
+Microsoft Agent Framework
+  Microsoft's production-ready open-source agent SDK, released v1.0 in
+  April 2026, formed by merging AutoGen and Semantic Kernel into a single
+  unified library. Provides AutoGen's simple agent abstractions together
+  with Semantic Kernel's enterprise features (session state, type safety,
+  middleware, telemetry) and adds graph-based multi-agent orchestration
+  with cross-runtime interoperability via A2A and MCP. AutoGen 0.4 and
+  Semantic Kernel entered maintenance mode (security/bug fixes only) at
+  the same time; the community fork of AutoGen continues as AG2.
+  Covered idiomatically through the AutoGen 0.4 notebook in
+  {doc}`notebooks/04_agents/06_autogen_0_4_vs_crewai`.
+```
+
+## Reasoning and inference-time scaling
+
+```{glossary}
+test-time compute
+  Spending additional GPU flops at inference (rather than training)
+  to improve output quality. Strategies include longer chain-of-thought,
+  best-of-N sampling, beam search over reasoning steps, and parallel
+  coordinated reasoning (PaCoRe). The dominant 2025 scaling axis.
+
+reasoning model
+  An LLM that emits an extended internal chain-of-thought
+  ("thinking tokens") before its final answer. Trained with RL reward
+  signals (GRPO, REINFORCE) on verifiable tasks. Representative
+  models: DeepSeek-R1 (2501.12948), o1/o3 (OpenAI), QwQ-32B.
+
+thinking tokens
+  Tokens generated by a reasoning model during its latent scratchpad
+  phase that are shown to the user but not part of the final answer.
+  Budget scales linearly with problem difficulty; pruning techniques
+  (MatryoshkaThinking) reduce unnecessary token spend.
+
+best-of-N
+  Generate N independent completions and return the one scored highest
+  by a verifier or reward model. Simple but effective test-time scaling
+  strategy; acceptance rate is `1 − (1 − p)^N` for iid Bernoulli pass.
+
+parallel coordinated reasoning
+  A test-time scaling technique (PaCoRe, 2601.05593) where multiple
+  reasoning "threads" run in parallel and cross-coordinate their
+  intermediate conclusions, achieving further quality gains beyond
+  sequential chain-of-thought at the same token budget.
+
+reasoning tokens
+  Tokens generated internally by a reasoning model (o-series, R1-style)
+  during its extended "thinking" phase. Reasoning tokens are consumed
+  but not returned to the caller; only the final completion is
+  returned. Training via GRPO produces models that generate useful
+  reasoning tokens.
+
+thinking budget
+  A configurable limit on reasoning tokens a model may generate before
+  producing its final answer. Increasing the budget improves accuracy
+  on hard tasks up to a saturation point; simply maximising budget does
+  not always help (BudgetThinker, arXiv 2508.17196).
+```
+
+## Multimodal and vision
+
+```{glossary}
+VLM
+  Vision-Language Model. An LLM extended with a vision encoder so it
+  can process image or video inputs alongside text. Representative
+  open models (2025-2026): Qwen2.5-VL, InternVL3, Phi-4-Multimodal,
+  LLaVA-OneVision.
+
+vision encoder
+  The component of a VLM that maps a raw image into patch embeddings
+  that the LLM backbone can attend to. Earlier systems used CLIP
+  (ViT-L/14); the 2025 standard shifted to SigLIP 2.
+
+SigLIP
+  Sigmoid Loss for Language-Image Pre-training. A vision encoder from
+  Google that replaces the softmax over the full batch with per-pair
+  sigmoid, enabling larger batch sizes and better multilingual and
+  localisation performance. SigLIP 2 (Feb 2025) became the default
+  vision backbone for open VLMs (Qwen2.5-VL, PaliGemma 2).
+
+cross-modal adapter
+  A lightweight projection (linear or MLP) that aligns vision encoder
+  patch embeddings into the LLM token embedding space. Also called a
+  visual projector or connector module.
+
+VLA
+  Vision-Language-Action model. Extends a VLM with an action decoder
+  for robot control — the model ingests camera observations and
+  language instructions and predicts motor actions. Examples: NVIDIA
+  Groot N1, Physical Intelligence π0.
+```
+
+## Serving infrastructure
+
+```{glossary}
+NVIDIA Dynamo
+  An open-source distributed inference serving framework (announced
+  GTC March 2025) designed for the disaggregated prefill/decode
+  pattern. Supports multiple backends (vLLM, TensorRT-LLM, SGLang)
+  and includes a Smart Router, SLA-based Planner, and integration with
+  NIXL for GPU-to-GPU KV cache transfer at wire speed.
+
+NIXL
+  NVIDIA Inference Transfer Library. A point-to-point library for
+  transferring KV cache tensors between GPUs over RDMA (InfiniBand /
+  RoCE), TCP, NVMe-oF, or S3. Open-sourced alongside Dynamo at GTC
+  2025. Replaces the `multiprocessing.SharedMemory` approach used in
+  the DistServe prototype (see
+  {doc}`notebooks/05_serving/10_disaggregated_serving_distserve`).
+
+LMCache
+  A community KV-cache sharing layer that integrates with vLLM V1 to
+  bring production-grade prefill/decode disaggregation without
+  requiring NVIDIA hardware-specific NIXL (though NIXL is optional for
+  maximum bandwidth).
+
+NVLink
+  NVIDIA's high-bandwidth chip-to-chip interconnect. NVLink 4 (H100)
+  provides 900 GB/s bidirectional; NVLink 5 (Blackwell GB200) reaches
+  1.8 TB/s. Critical for tensor-parallel within a node.
+
+Blackwell
+  NVIDIA's 2025 GPU generation (GB200, B100, B200). Key additions:
+  FP4 tensor cores (2× Hopper INT8 throughput), NVLink 5, and a
+  10 TB/s chip-to-chip NVLink interconnect in the GB200 NVL72 rack
+  configuration.
+```
+
+## New model families (2025)
+
+```{glossary}
+Llama 4
+  Meta's 2025 open-weight model family. Scout (17B active / 109B total,
+  16 experts, 10 million token context) and Maverick (17B active /
+  400B total, 128 experts) are the two released variants. Both use
+  Multi-head Latent Attention (MLA) and FP8 native inference.
+
+Qwen3
+  Alibaba's 2025 open-weight family. Supports a hybrid thinking
+  (reasoning) and non-thinking mode selectable per-request via
+  ``/think`` or ``/no_think`` prompt prefixes. Sizes from 0.6B to
+  235B total (22B active in the MoE flagship). Qwen3-235B-A22B leads
+  open models on GPQA-Diamond and AIME 2025/2026.
+
+SGLang
+  UC Berkeley / LMSYS serving framework with RadixAttention (shared
+  prefix caching) and async constrained decoding. Version 0.4+ shows
+  3.1× throughput vs vLLM on DeepSeek-V3 traffic patterns; generally
+  preferred over vLLM when requests share long common prefixes.
+
+vLLM V2
+  Major architectural rewrite of vLLM (version 0.8+) replacing the
+  synchronous V1 scheduler with an async-first design. Deprecates
+  ``engine_use_ray`` and ``worker_use_ray``; introduces a new
+  Prometheus metrics schema. HuggingFace TGI moved to maintenance mode
+  in 2025; vLLM V2 and SGLang are the recommended production
+  replacements.
+
+XGrammar
+  An FSM-based constrained-decoding engine used by vLLM and SGLang to
+  enforce grammar/JSON-schema output structure during generation.
+  XGrammar-2 (May 2026) ships a Structural Tag protocol that unifies
+  tool calling, reasoning channels, and custom output formats; it
+  delivers ~80× faster grammar compilation and ~3× faster constrained
+  decoding versus the prior generation. Now the default constrained-
+  decoding backend in SGLang 0.5 and an optional integration in vLLM
+  0.20 and TensorRT-LLM.
 ```

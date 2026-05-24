@@ -98,6 +98,36 @@ REGISTRY: dict[str, ModelSpec] = {
         chat=True,
         role="compact instruct model for agents and eval judges",
     ),
+    "qwen3-1.7b": ModelSpec(
+        hf_id="Qwen/Qwen3-1.7B",
+        params_m=1700,
+        family="qwen3",
+        context_length=32768,
+        role="Qwen3 base model with hybrid thinking/non-thinking modes",
+    ),
+    "qwen3-1.7b-instruct": ModelSpec(
+        hf_id="Qwen/Qwen3-1.7B",
+        params_m=1700,
+        family="qwen3",
+        context_length=32768,
+        chat=True,
+        role="Qwen3 instruct model; use /think or /no_think prefix",
+    ),
+    "llama-4-scout-17b-16e": ModelSpec(
+        hf_id="meta-llama/Llama-4-Scout-17B-16E",
+        params_m=17000,
+        family="llama-4",
+        context_length=10_000_000,
+        role="Llama 4 Scout MoE; 17B active params out of 109B total, 10M-token context",
+    ),
+    "llama-4-scout-17b-16e-instruct": ModelSpec(
+        hf_id="meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        params_m=17000,
+        family="llama-4",
+        context_length=10_000_000,
+        chat=True,
+        role="Llama 4 Scout MoE instruct variant",
+    ),
 }
 
 
