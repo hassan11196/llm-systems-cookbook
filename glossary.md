@@ -69,6 +69,18 @@ Blackwell / GB200
   HBM3e, delivering up to 1.5 million tokens/second on large MoE models
   and ~15× H100 throughput on FP8 inference workloads. MLPerf v5.0
   showed up to 2.6× faster training vs Hopper at equivalent scale.
+
+Vera Rubin / Rubin GPU
+  NVIDIA's next-generation GPU architecture announced at GTC 2026,
+  succeeding Blackwell. The Rubin R100 GPU packs 336 B transistors,
+  288 GB HBM4 memory, and 50 PFLOPS FP4 throughput — 2.5× the FP4
+  throughput of Blackwell B200. Paired with the Vera CPU (72 ARM Grace
+  cores, 3× the memory bandwidth of x86 rivals) and NVLink 6
+  interconnect, the full Vera Rubin platform targets 5× Blackwell
+  inference throughput at 10× lower cost per token. A dedicated
+  Rubin CPX variant is optimised for massive-context inference
+  workloads. Partner availability (AWS, GCP, Azure, CoreWeave, Lambda)
+  is planned for H2 2026.
 ```
 
 ## Roofline, throughput, latency
@@ -710,6 +722,9 @@ A2A
   MCP connects a single agent to tools/data, A2A connects agents to
   other agents. Enables cross-framework agent communication without
   bespoke adapters. Merged under the Linux Foundation in late 2025.
+  **A2A v1.0** reached production status in 2026 and is now deployed at
+  over 150 organisations. Google ADK v1.0 (announced Google Cloud Next
+  2026) ships stable implementations in Python, Go, Java, and TypeScript.
 
 handoff
   Transferring control and conversation state from one agent to another.
@@ -854,6 +869,17 @@ LMCache
   requiring NVIDIA hardware-specific NIXL (though NIXL is optional for
   maximum bandwidth).
 
+PegaFlow
+  A high-performance external KV cache storage engine for LLM inference,
+  open-sourced by Novita AI (May 2026). Implemented as a standalone
+  process with a GIL-free Rust core (zero Python overhead on the hot
+  path), PegaFlow offloads KV cache from GPU to host memory or SSD and
+  shares it across nodes via RDMA. It integrates with vLLM and SGLang
+  as a drop-in KV connector, with built-in Prometheus metrics and OTLP
+  export. Key use cases: extending effective KV capacity beyond GPU VRAM
+  for long-context workloads, and enabling cross-node prefix-cache
+  sharing in distributed inference clusters.
+
 NVLink
   NVIDIA's high-bandwidth chip-to-chip interconnect. NVLink 4 (H100)
   provides 900 GB/s bidirectional; NVLink 5 (Blackwell GB200) reaches
@@ -866,7 +892,7 @@ Blackwell
   configuration.
 ```
 
-## New model families (2025)
+## New model families (2025–2026)
 
 ```{glossary}
 Llama 4
@@ -874,6 +900,33 @@ Llama 4
   16 experts, 10 million token context) and Maverick (17B active /
   400B total, 128 experts) are the two released variants. Both use
   Multi-head Latent Attention (MLA) and FP8 native inference.
+
+Gemini 3.5 Flash
+  Google's frontier Flash-tier model released at Google I/O 2026 (May
+  19, 2026). Accepts text, images, audio, video, and PDF inputs with a
+  1 M-token context window. Dynamic thinking is enabled by default.
+  Outperforms Gemini 3.1 Pro on demanding agentic and coding benchmarks
+  (Terminal-Bench 2.1: 76.2%, MCP Atlas: 83.6%) while running ~4× faster
+  than peer frontier models on output tokens per second. Pricing: $1.50
+  input / $9.00 output / $0.15 cached-read per 1 M tokens. Available
+  via Google AI Studio, Gemini API, and the Antigravity framework.
+
+MiMo-V2.5
+  Xiaomi's fully open-source multimodal reasoning model, released April
+  22, 2026. A 310 B-parameter sparse MoE architecture with 15 B active
+  parameters, trained on 48 T tokens across text, vision, and audio.
+  Competitive with frontier closed-source models on multimodal agentic
+  tasks. Context window extends to 1 M tokens after progressive
+  fine-tuning. Weights and tokenizer are available on Hugging Face under
+  a permissive open license.
+
+Gemini Spark
+  A persistent 24/7 personal AI agent announced at Google I/O 2026 (May
+  19, 2026). Powered by Gemini 3.5 and Google's Antigravity framework,
+  it runs on dedicated Google Cloud virtual machines and can continue
+  executing tasks independently when a user's device is offline.
+  Supports third-party tools through MCP and is planned to operate as
+  an agentic browser inside Chrome.
 
 Qwen3
   Alibaba's 2025 open-weight family. Supports a hybrid thinking
