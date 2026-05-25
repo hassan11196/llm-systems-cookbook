@@ -15,16 +15,21 @@
 For H100/Hopper context: **{term}`FlashAttention-3`** (arXiv 2407.08608)
 extends these ideas with async TMA pipelining and FP8 support, reaching
 740 TFLOPs/s — 2× faster than FA2 on the same chip. The 2024–2026
-**{term}`reasoning model`** wave (o1, o3, DeepSeek-R1) introduces a new
-axis — **{term}`test-time compute`** / **{term}`inference-time scaling`**
-— where spending more generation tokens trades compute for accuracy;
-see the glossary for orientation.
+**{term}`reasoning model`** wave (o1, o3, DeepSeek-R1, GPT-5.5 Thinking)
+introduces a new axis — **{term}`test-time compute`** /
+**{term}`inference-time scaling`** — where spending more generation tokens
+trades compute for accuracy; see the glossary for orientation.
+GPT-5.5 Thinking (May 2026) is the first unified model to auto-route
+between fast and extended chain-of-thought at inference, retiring the
+standalone o-series numbering.
 
-On the production side, **vLLM's Model Runner V2 (MRV2)** (v0.17.0+,
-2026) delivers 56% throughput improvement over the legacy runner on
-GB200 GPUs, and **{term}`SGLang`** has become a competitive or leading
-alternative for MoE models, structured outputs, and speculative
-decoding workloads.
+On the production side, **vLLM's Model Runner V2 (MRV2)** — enabled via
+`VLLM_USE_V2_MODEL_RUNNER=1` in vLLM ≥ 0.20 — delivers 56% higher
+throughput on GB200 via GPU-native Triton kernels and zero-CPU-sync
+speculative decoding. **{term}`SGLang`** has become a competitive or
+leading alternative for MoE models, structured outputs, and speculative
+decoding workloads; SGLang v0.5 on GB300 NVL72 demonstrated 25× the
+inference performance of the H100 baseline (Feb 2026).
 ```
 
 
@@ -80,7 +85,7 @@ documents the Dynamo upgrade path in its exercises.
 with a process reward model, MCTS-style tree search over reasoning
 steps, and the "wait" budget-forcing trick from S1 (2501.10921).
 This is the dominant 2025-2026 quality-scaling axis for reasoning
-models like DeepSeek-R1, o3, and QwQ.
+models like DeepSeek-R1, GPT-5.5 Thinking, and QwQ.
 ```
 
 ## Recent developments (2025–2026)

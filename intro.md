@@ -30,12 +30,25 @@ with no prior deep-learning background assumed.
   pipeline parallel, LoRA/DoRA, QLoRA, DPO/ORPO, GRPO) are fully specified
   and in active development.
 - **Google I/O 2026 (May 19):** Gemini 3.5 Flash GA — frontier Flash-tier
-  speed with Pro-tier coding/agentic accuracy; Gemini Spark persistent 24/7
-  agent; ADK v1.0 stable across Python, Go, Java, and TypeScript; A2A v1.0
-  in production at 150+ organisations.
+  speed with Pro-tier coding/agentic accuracy; 1 M-token context window;
+  dynamic thinking on by default; Gemini Spark persistent 24/7 agent; ADK v1.0
+  stable across Python, Go, Java, and TypeScript; A2A v1.0 in production at
+  150+ organisations. **Gemini 3.5 Pro** expected June 2026.
+- **OpenAI (May 5):** GPT-5.5 Instant is now the default ChatGPT model for
+  all tiers — 52.5% fewer hallucinated claims, 30% more concise output,
+  personalisation via past conversations, files, and Gmail. GPT-5.5 Thinking
+  is OpenAI's unified reasoning model: a single router auto-selects between
+  fast and extended chain-of-thought inference, retiring the standalone
+  o-series (o4-mini et al.).
+- **vLLM Model Runner V2 (MRV2):** opt-in via `VLLM_USE_V2_MODEL_RUNNER=1`
+  in vLLM ≥ 0.20; replaces CPU PyTorch ops with GPU-native Triton kernels,
+  delivering 56% higher throughput on GB200 and zero-synchronization
+  speculative decoding (6.3% lower TPOT on 4×GB200).
 - **Hardware roadmap:** NVIDIA Vera Rubin platform (announced GTC 2026) —
   Rubin GPU (288 GB HBM4, 50 PFLOPS FP4), Vera CPU (72-core ARM), NVLink 6;
   targeting 5× Blackwell inference throughput at 10× lower cost; H2 2026.
+  Rubin CPX variant optimised for massive-context inference now documented in
+  the glossary.
 - **Serving infrastructure:** PegaFlow (Novita AI, May 2026) — GIL-free Rust
   external KV cache for vLLM/SGLang with GPU offload, SSD tiering, and RDMA
   cross-node KV sharing.
