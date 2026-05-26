@@ -35,6 +35,13 @@
   tensor cores and ~8 TB/s HBM3e bandwidth on the B200.
 - **{term}`SGLang`** and **{term}`NVIDIA Dynamo`** are the two new
   production serving runtimes that complement vLLM in 2025–2026.
+- **vLLM Model Runner V2 (MRV2)** (`VLLM_USE_V2_MODEL_RUNNER=1`, vLLM
+  ≥ 0.20): GPU-native Triton ops replace the CPU PyTorch prep path,
+  delivering 56% more throughput on GB200 and eliminating CPU–GPU sync
+  during speculative decoding.
+- **{term}`Vera Rubin / Rubin GPU`** (H2 2026): NVIDIA's next platform
+  targeting 5× Blackwell inference throughput at 10× lower cost per
+  token; Rubin CPX variant optimised for massive-context inference.
 
 ```{admonition} Coming in v0.3
 :class: note

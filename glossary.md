@@ -192,8 +192,10 @@ target model
 reasoning model
   An LLM trained with reinforcement learning to emit an extended
   chain-of-thought (CoT) trace before producing its final answer.
-  Examples: OpenAI o1/o3, DeepSeek-R1, Qwen-QwQ. Accuracy scales
-  with the compute budget allocated at inference, not just model size.
+  Examples: OpenAI o1/o3/o4-mini (now retired into the GPT-5 family),
+  GPT-5.5 Thinking (unified successor — a single router auto-selects
+  fast vs extended CoT), DeepSeek-R1, Qwen-QwQ. Accuracy scales with
+  the compute budget allocated at inference, not just model size.
 
 test-time compute
   Extra inference-time FLOPs spent on extended reasoning traces, best-

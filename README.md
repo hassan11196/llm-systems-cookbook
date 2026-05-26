@@ -23,6 +23,16 @@ economics." No prior deep-learning background assumed.
 > performance, 1 M-token context, 4× faster output than peer frontier
 > models; Gemini Spark persistent agent; ADK v1.0 stable across Python,
 > Go, Java, TypeScript; A2A v1.0 in production at 150+ organisations.
+> **Gemini 3.5 Pro** expected June 2026 (announced at I/O 2026).
+> **OpenAI (May 5):** GPT-5.5 Instant became the default ChatGPT model
+> for all tiers — 52.5% fewer hallucinated claims vs GPT-5.3 Instant,
+> 30% more concise output, and personalization via past conversations,
+> files, and Gmail. GPT-5.5 Thinking (unified successor to the o-series)
+> integrates extended chain-of-thought into the GPT-5 family; the
+> standalone o-series (o4-mini etc.) enters retirement.
+> **Inference (vLLM MRV2):** Model Runner V2 (`VLLM_USE_V2_MODEL_RUNNER=1`,
+> vLLM ≥ 0.20) achieves 56% higher throughput on GB200 via GPU-native
+> Triton kernels and zero-synchronization speculative decoding.
 > **Hardware:** NVIDIA Vera Rubin platform announced (GTC 2026) — Rubin
 > GPU with 288 GB HBM4, 50 PFLOPS FP4, NVLink 6; 5× Blackwell
 > inference throughput at 10× lower token cost; H2 2026 availability.
