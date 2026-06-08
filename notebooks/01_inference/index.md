@@ -26,10 +26,15 @@ standalone o-series numbering.
 On the production side, **vLLM's Model Runner V2 (MRV2)** — enabled via
 `VLLM_USE_V2_MODEL_RUNNER=1` in vLLM ≥ 0.20 — delivers 56% higher
 throughput on GB200 via GPU-native Triton kernels and zero-CPU-sync
-speculative decoding. **{term}`SGLang`** has become a competitive or
-leading alternative for MoE models, structured outputs, and speculative
-decoding workloads; SGLang v0.5 on GB300 NVL72 demonstrated 25× the
-inference performance of the H100 baseline (Feb 2026).
+speculative decoding. **vLLM v0.22.0** (May 29, 2026) extends MRV2 with
+an experimental Rust frontend (DP Supervisor), 28.9% latency reduction
+via Cutlass FP8 kernels, and multi-tier KV offload (CPU/filesystem/
+Mooncake disk); **v0.22.1** (June 5, 2026) adds JetBrains Mellum v2
+support and patches DeepSeek-V4 initialization. **{term}`SGLang`**
+v0.5.12.post1 (May 26, 2026) adds HiCache hierarchical KV + SSD offload,
+EAGLE-3 speculative decoding, and fixes a DeepSeek V4 accuracy regression
+on B200/B300; SGLang v0.5 on GB300 NVL72 demonstrated 25× the inference
+performance of the H100 baseline (Feb 2026).
 ```
 
 

@@ -52,6 +52,7 @@ The agent framework landscape has consolidated around a few dominant patterns:
 - **CrewAI** (v1.12): added agent skills, hierarchical memory isolation, and native support for OpenRouter, DeepSeek, Ollama, and vLLM providers.
 - **Google ADK v1.0** (stable 2026): hierarchical agent tree where a root agent delegates to sub-agents; v1.0 ships stable releases in Python, Go, Java, and TypeScript. Introduces the **A2A (Agent-to-Agent) protocol v1.0** (in production at 150+ organisations as of 2026) so a LangGraph or CrewAI agent can be invoked by an ADK agent without bespoke adapters. Announced at Google Cloud Next 2026 alongside Workspace Studio (no-code agent builder) and managed MCP servers via Apigee.
 - **Pydantic AI**: lightweight, type-safe alternative gaining traction for simple agents where full LangGraph state management is overkill.
+- **MCP 2026 RC** (published May 2026, final specification July 28 2026): stateless protocol core via Streamable HTTP; SEP-2549 TTL/cache-scope on resource reads; long-running Tasks extension; MCP Apps for server-rendered UIs; OAuth/OIDC authorization hardening. The RC is live at `modelcontextprotocol.io`; production SDKs targeting the RC are expected before the final spec date.
 
 ## Reading order
 

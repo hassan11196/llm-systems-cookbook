@@ -14,18 +14,19 @@ Written for a computer-science undergraduate who wants to go from
 "I know what softmax is" to "I can reason about LLM serving economics,"
 with no prior deep-learning background assumed.
 
-```{admonition} What's new — May 2026
+```{admonition} What's new — June 2026
 :class: note
 
 - **Glossary** extended with 2025–2026 terms: test-time compute, reasoning
   models, BitNet / ternary quantization, FP4 (Blackwell), VLM / SigLIP,
-  NVIDIA Dynamo / NIXL, DoRA, ORPO, Vera Rubin GPU, PegaFlow, Gemini 3.5
-  Flash, and more.
+  NVIDIA Dynamo / NIXL, DoRA, ORPO, Vera Rubin GPU, PegaFlow, Google TPU
+  8t/8i, DeepSeek V4 Pro/Flash, Kimi K2.6, Qwen3.7-Max, MiniMax M3,
+  VeriCache, and more.
 - **Curriculum spec** updated with the v0.3 roadmap: inference-time scaling
   notebook, BitNet/sub-2-bit serving notebook, a 5-notebook multimodal track,
   and a safety/red-teaming track.
-- **Framework pins** refreshed to the May 2026 ecosystem (torch 2.7, vLLM
-  0.20, SGLang 0.5 + XGrammar-2, TRL 0.26, PEFT 0.14, JAX 0.6).
+- **Framework pins** refreshed to the June 2026 ecosystem (torch 2.7, vLLM
+  0.22, SGLang 0.5.12, XGrammar-2, TRL 0.26, PEFT 0.14, JAX 0.6).
 - **Training track (v0.2):** six remaining notebooks (tensor parallel,
   pipeline parallel, LoRA/DoRA, QLoRA, DPO/ORPO, GRPO) are fully specified
   and in active development.
@@ -40,18 +41,42 @@ with no prior deep-learning background assumed.
   is OpenAI's unified reasoning model: a single router auto-selects between
   fast and extended chain-of-thought inference, retiring the standalone
   o-series (o4-mini et al.).
-- **vLLM Model Runner V2 (MRV2):** opt-in via `VLLM_USE_V2_MODEL_RUNNER=1`
-  in vLLM ≥ 0.20; replaces CPU PyTorch ops with GPU-native Triton kernels,
-  delivering 56% higher throughput on GB200 and zero-synchronization
-  speculative decoding (6.3% lower TPOT on 4×GB200).
+- **vLLM v0.22.0 (May 29):** Rust frontend preview (DP Supervisor), 28.9%
+  latency reduction via Cutlass FP8 kernels, multi-tier KV offload
+  (CPU/filesystem/Mooncake disk), DeepSeek V4 Pro/Flash with NVFP4 fused MoE
+  + piecewise CUDA graphs. **vLLM v0.22.1 (June 5):** patch adding JetBrains
+  Mellum v2 support, zentorch AMD Zen CPU quantized linear inference, and
+  DeepSeek-V4 init fix. **SGLang v0.5.12.post1 (May 26):** HiCache
+  hierarchical KV + SSD offload, EAGLE-3 speculative decoding, and patches a
+  DeepSeek V4 accuracy regression on B200/B300 (GSM8K 0.825 → 0.960).
+- **New frontier models (April–June 2026):** DeepSeek V4 Pro (1.6T/49B active
+  MoE, 80.6% SWE-bench Verified, MIT); Kimi K2.6 (1T/32B active MoE, 80.2%
+  SWE-bench, Apache 2.0); Qwen3.7-Max (closed API, 1M context, #1 Chinese
+  model Intelligence Index v4.0); **MiniMax M3** (June 1, 2026 — first
+  open-weight model combining frontier coding, 1M context, and native
+  multimodal input; 59.0% SWE-bench Pro, 70.06% OSWorld-Verified; MSA
+  architecture delivers 9× prefill / 15× decode speedup at 1M ctx vs M2).
+- **DeepSeek R1-0528 (May 28):** major reasoning upgrade — AIME 2025 accuracy
+  70% → 87.5%, avg thinking depth 12K → 23K tokens, 45-50% hallucination
+  reduction, improved function calling.
+- **Google TPU 8t/8i (Cloud Next, April 22 2026):** First bifurcated TPU
+  architecture — TPU 8t for training (9,600-chip pods, 121 exaFLOPS FP4;
+  ~3× Ironwood per pod) and TPU 8i for inference (1,152-chip pods, 11.6
+  exaFLOPS FP8, 80% better perf/$ vs Ironwood; 19.2 Tbps scale-up bandwidth;
+  new Boardfly topology cuts MoE/reasoning network diameter ~56%).
 - **Hardware roadmap:** NVIDIA Vera Rubin platform (announced GTC 2026) —
   Rubin GPU (288 GB HBM4, 50 PFLOPS FP4), Vera CPU (72-core ARM), NVLink 6;
   targeting 5× Blackwell inference throughput at 10× lower cost; H2 2026.
   Rubin CPX variant optimised for massive-context inference now documented in
   the glossary.
+- **MCP 2026 RC:** stateless-core specification via Streamable HTTP published;
+  adds TTL caching (SEP-2549), long-running Tasks extension, MCP Apps for
+  server-rendered UIs, OAuth/OIDC hardening; final specification July 28 2026.
 - **Serving infrastructure:** PegaFlow (Novita AI, May 2026) — GIL-free Rust
   external KV cache for vLLM/SGLang with GPU offload, SSD tiering, and RDMA
-  cross-node KV sharing.
+  cross-node KV sharing. **VeriCache** (arXiv:2605.17613) — uses compressed KV
+  to draft tokens then verifies with full KV on CPU/disk for lossless output at
+  compressed-cache throughput.
 ```
 
 ```{admonition} How to read this book
