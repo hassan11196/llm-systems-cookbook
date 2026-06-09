@@ -40,7 +40,7 @@ just from a previous run.
 ## Models
 
 Defaults: `claude-sonnet-4-6` (Anthropic), `gpt-5.5` (OpenAI; GPT-5.5
-Instant is the current ChatGPT default as of May 5 2026; GPT-5.5 Thinking
+Instant is the current ChatGPT default; GPT-5.5 Thinking
 is the unified successor to the o-series for reasoning tasks),
 `Qwen/Qwen2.5-1.5B-Instruct` (local via Ollama or vLLM). Override with
 the `MODEL_*` env vars listed at the top of each notebook.
