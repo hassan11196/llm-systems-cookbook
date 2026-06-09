@@ -32,7 +32,7 @@
   became a proxy for AGI progress in 2024-2025.
 - **{term}`SWE-bench`** and its live-updatable successor **SWE-bench Live**
   measure real GitHub issue resolution; **{term}`Terminal-Bench`** 2.0
-  (January 2026) extends agentic evaluation to multi-step CLI workflows.
+  extends agentic evaluation to multi-step CLI workflows.
 
 ## Reading order
 

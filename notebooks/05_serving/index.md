@@ -52,7 +52,7 @@ from-scratch `BitLinear` with ternary {-1, 0, +1} weights using
 demonstrate `bitnet.cpp` CPU-native inference achieving 15× better
 energy efficiency than FP16. See {term}`BitNet` in the glossary.
 
-NVIDIA **Dynamo** (GTC March 2025) and **NIXL** (see glossary) are
+NVIDIA **Dynamo** (GTC 2025) and **NIXL** (see glossary) are
 the production successor to the pure-Python `SharedMemory` approach
 in chapter 10. The disaggregated serving notebook now documents the
 Dynamo/NIXL upgrade path for multi-node production deployments.
@@ -84,14 +84,14 @@ Prerequisites: Part I (roofline) and Part II (KV cache, PagedAttention).
 11. `11_serving_observability_slo_autoscaler` — metrics + control
     loop.
 
-## Serving ecosystem (June 2026)
+## Serving ecosystem
 
-Three open-source engines, one external KV layer, and two new hardware platforms define the June 2026 production landscape:
+Three open-source engines, one external KV layer, and two new hardware platforms define the current production landscape:
 
-- **vLLM v0.22.1** (June 5, 2026): async-first scheduler, Prometheus metrics, FP8 KV cache, multi-lora, NVIDIA Dynamo integration. Model Runner V2 delivers ~56% throughput improvement on GB200. New in v0.22: experimental Rust frontend (DP Supervisor), 28.9% latency improvement via Cutlass FP8 kernels, multi-tier KV offload (CPU/filesystem/Mooncake disk), DeepSeek V4 Pro/Flash with NVFP4 fused MoE + piecewise CUDA graphs. v0.22.1 adds Mellum v2 and zentorch AMD CPU support. HuggingFace TGI officially entered maintenance mode in 2025.
-- **SGLang v0.5.12.post1** (May 26, 2026): RadixAttention + XGrammar-2 (~3× faster constrained decoding vs vLLM). New in v0.5.12: HiCache (UnifiedRadixTree + SSD offload via Mooncake), EAGLE-3 speculative decoding, DeepSeek V4/Ring-2.6-1T/Gemma 4 support. The .post1 patch restores DeepSeek V4 HiSparse accuracy on B200/B300 (GSM8K 0.825 → 0.960). Consistently wins when requests share long common prefixes.
+- **vLLM v0.22.1**: async-first scheduler, Prometheus metrics, FP8 KV cache, multi-lora, NVIDIA Dynamo integration. Model Runner V2 delivers ~56% throughput improvement on GB200. New in v0.22: experimental Rust frontend (DP Supervisor), 28.9% latency improvement via Cutlass FP8 kernels, multi-tier KV offload (CPU/filesystem/Mooncake disk), DeepSeek V4 Pro/Flash with NVFP4 fused MoE + piecewise CUDA graphs. v0.22.1 adds Mellum v2 and zentorch AMD CPU support. HuggingFace TGI officially entered maintenance mode in 2025.
+- **SGLang v0.5.12.post1**: RadixAttention + XGrammar-2 (~3× faster constrained decoding vs vLLM). New in v0.5.12: HiCache (UnifiedRadixTree + SSD offload via Mooncake), EAGLE-3 speculative decoding, DeepSeek V4/Ring-2.6-1T/Gemma 4 support. The .post1 patch restores DeepSeek V4 HiSparse accuracy on B200/B300 (GSM8K 0.825 → 0.960). Consistently wins when requests share long common prefixes.
 - **TensorRT-LLM**: highest raw throughput on H100/H200 when compiled. v25.12 base: PyTorch 2.9.1, Transformers 4.57.3, NIXL 0.8.0, EAGLE speculative decoding, FlashInfer sampling default.
-- **PegaFlow** (Novita AI, May 2026): Rust-core external KV cache storage engine — offloads GPU KV to host memory or SSD, shares across nodes via RDMA. Drop-in KV connector for vLLM and SGLang.
-- **VeriCache** (arXiv 2605.17613, May 2026): compressed KV drafts tokens, full-precision KV (CPU/disk) verifies — lossless output quality at compressed-cache throughput.
+- **PegaFlow** (Novita AI): Rust-core external KV cache storage engine — offloads GPU KV to host memory or SSD, shares across nodes via RDMA. Drop-in KV connector for vLLM and SGLang.
+- **VeriCache** (arXiv 2605.17613): compressed KV drafts tokens, full-precision KV (CPU/disk) verifies — lossless output quality at compressed-cache throughput.
 
-FP8 weight + KV cache + continuous batching + speculative decoding on H100 delivers 5-8× better cost-efficiency than naive FP16 with static batching. The B200's native FP4 (9000 TFLOPS) is the current GPU frontier, with 1.3-1.6× throughput improvement over FP8 for 7-8B models. **Google TPU 8i** (Cloud Next April 22, GA later 2026) offers 80% better perf/$ vs Ironwood for inference with 19.2 Tbps scale-up bandwidth. **NVIDIA Vera Rubin** (H2 2026) targets 5× Blackwell throughput at 10× lower token cost with 288 GB HBM4 and 50 PFLOPS FP4.
+FP8 weight + KV cache + continuous batching + speculative decoding on H100 delivers 5-8× better cost-efficiency than naive FP16 with static batching. The B200's native FP4 (9000 TFLOPS) is the current GPU frontier, with 1.3-1.6× throughput improvement over FP8 for 7-8B models. **Google TPU 8i** (announced Cloud Next 2026, GA later in the year) offers 80% better perf/$ vs Ironwood for inference with 19.2 Tbps scale-up bandwidth. **NVIDIA Vera Rubin** (H2 2026) targets 5× Blackwell throughput at 10× lower token cost with 288 GB HBM4 and 50 PFLOPS FP4.
