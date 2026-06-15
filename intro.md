@@ -14,6 +14,44 @@ Written for a computer-science undergraduate who wants to go from
 "I know what softmax is" to "I can reason about LLM serving economics,"
 with no prior deep-learning background assumed.
 
+```{admonition} What's new — June 2026
+:class: note
+
+- **GPT-5** achieves 100% on AIME 2026 and leads Chatbot Arena (Elo 1,561); **GPT-5.5
+  Thinking** retires the o-series into a single router that auto-selects fast vs extended
+  chain-of-thought inference.
+- **Gemini 3.5 Pro** in limited Vertex preview — 2 M-token context, "Deep Think"
+  reasoning mode, frontier multimodal understanding; GA expected before end of June 2026.
+  **Gemini 3.1 Pro** leads GPQA-Diamond at 94.3% ($2 / $12 per M tokens).
+- **Llama 4** (April 5, 2026): Scout (10 M-token context, 2,600 tok/s, MLA + FP8 native)
+  and Maverick (Chatbot Arena Elo ≈ 1,417) openly released by Meta; Behemoth in training.
+- **Qwen 3.5** MoE (397 B / 17 B active): Qwen3.5-plus scores 91.3% on AIME 2026 —
+  strongest open-weight result on the math-reasoning leaderboard.
+- **DeepSeek V4**: 1 T parameters, 1 M-token context; supported by Megatron Core, vLLM
+  0.20, and SGLang 0.5.
+- **Benchmark landscape**: MMLU, HumanEval, and GSM8K are saturated (≥ 92 %, ≥ 99 %,
+  ≥ 99 %); active frontier is GPQA-Diamond (~94% SOTA), Humanity's Last Exam (~65%
+  SOTA), SWE-bench Verified (93.9% SOTA), and AIME 2026.
+- **TGI maintenance**: Hugging Face Text Generation Inference moves to maintenance mode —
+  vLLM and SGLang are the recommended production engines. SGLang serves xAI Grok, Azure,
+  LinkedIn, and Cursor across 400,000+ GPUs; **RadixArk** (SGLang company) raised a
+  $100 M seed round at $400 M valuation.
+- **MCP** crosses 200 server implementations; **ACP** merges into **A2A** under the
+  Linux Foundation.
+- **Microsoft Agent Framework v1.0** (April 2026): AutoGen and Semantic Kernel unified
+  into one library. AutoGen 0.4 and Semantic Kernel enter maintenance mode; LangGraph
+  surpasses CrewAI in GitHub stars.
+- **Google Cloud Next 2026** (April 2026): **TPU 8t (Sunfish)** — 12.6 FP4 PFLOPS/chip,
+  1 M-chip training clusters — and **TPU 8i (Zebrafish)** — 288 GB HBM, 10.1 FP4
+  PFLOPS/chip, purpose-built for long-context reasoning — announced. **AMD MI400**
+  (MI455X): 432 GB HBM4, 19.6 TB/s bandwidth, CES 2026 announcement.
+- **Vera Rubin NVL72** entering volume production (Q3 2026): 288 GB HBM4, NVLink 6
+  (3.6 TB/s per GPU), 336 B transistors; HBM4 supplied by SK Hynix, Samsung, and Micron.
+  **NVLink Fusion** opens NVLink to third-party silicon (Intel, Qualcomm, Marvell et al.).
+- **Blackwell B300** shipping since Q1 2026: 288 GB HBM3e, 8 TB/s bandwidth, 15 PFLOPS
+  FP4 per card.
+```
+
 ```{admonition} What's new — May 2026
 :class: note
 
