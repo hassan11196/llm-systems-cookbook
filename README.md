@@ -98,6 +98,14 @@ Llama 4 models (Scout 17B-16E, Maverick 17B-128E) are documented in
 the GPU pricing notebook and in the model registry but are too large
 for free Colab T4 — they require A100 80 GB+ or H100.
 
+The frontier model tier has expanded in 2026: **Claude Fable 5**
+(`claude-fable-5`) is the first publicly-available Mythos-class model,
+leading SWE-bench Pro at 80.3%; **Gemini 3.5 Pro** (limited Vertex AI
+preview) targets a 2M-token context window with Deep Think reasoning;
+**GPT-5.6** is in early preview. The Production patterns track (Part
+VIII) uses `claude-sonnet-4-6` as the default Anthropic model but
+accepts any model ID via `MODEL_ANTHROPIC`.
+
 ## Layout
 
 ```

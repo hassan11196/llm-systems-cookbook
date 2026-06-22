@@ -40,7 +40,15 @@ just from a previous run.
 ## Models
 
 Defaults: `claude-sonnet-4-6` (Anthropic), `gpt-5.5` (OpenAI; GPT-5.5
-Instant is the current ChatGPT default as of May 5 2026; GPT-5.5 Thinking
-is the unified successor to the o-series for reasoning tasks),
+Instant is the current ChatGPT default; GPT-5.5 Thinking is the unified
+successor to the o-series for reasoning tasks),
 `Qwen/Qwen2.5-1.5B-Instruct` (local via Ollama or vLLM). Override with
 the `MODEL_*` env vars listed at the top of each notebook.
+
+The current frontier tier (mid-2026): **Claude Fable 5** (`claude-fable-5`,
+$10/$50 per M tokens) leads on SWE-bench Pro (80.3%) and long-context
+agentic tasks; **Gemini 3.5 Pro** (limited Vertex AI preview, 2M-token
+context window with Deep Think reasoning) targets enterprise document
+workloads; **GPT-5.6** is the next OpenAI release in preview. For
+cost-sensitive production use, `claude-haiku-4-5-20251001` and
+`gpt-5.5-instant` remain the default latency-optimised choices.

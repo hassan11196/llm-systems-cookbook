@@ -31,9 +31,9 @@ and Semantic Kernel into one production SDK; the patterns in notebook
 - **{term}`structured outputs`** means constraining model outputs to a
   schema instead of free-form text.
 - **FSM (Finite-State Machine)** constraints are one way to enforce valid
-  output structure during decoding. **{term}`XGrammar`** (v2, May 2026)
-  is the current production-grade FSM engine, delivering ~3× faster
-  constrained decoding via its Structural Tag protocol.
+  output structure during decoding. **{term}`XGrammar`** v2 is the
+  current production-grade FSM engine, delivering ~3× faster constrained
+  decoding via its Structural Tag protocol.
 - **{term}`MCP`** exposes tools/data over JSON-RPC so clients can use them uniformly.
 - **{term}`DSPy`** frames prompts/pipelines as optimizable programs.
 - **{term}`A2A`** (Agent-to-Agent Protocol, Google ADK 2025) is the open standard
@@ -47,11 +47,12 @@ and Semantic Kernel into one production SDK; the patterns in notebook
 
 The agent framework landscape has consolidated around a few dominant patterns:
 
-- **LangGraph** (v1.4): now the most-starred agent framework on GitHub. First-class checkpointing, durable execution, and human-in-the-loop approvals make it the default for production stateful agents.
-- **AutoGen / AG2**: Microsoft's AutoGen v0.4 ships streaming and event-driven architecture; the community maintains the proven v0.2 lineage as `ag2ai/ag2` with typed tools and dependency injection. Both run on the same core `SelectorGroupChat` / `GroupChatManager` API.
-- **CrewAI** (v1.12): added agent skills, hierarchical memory isolation, and native support for OpenRouter, DeepSeek, Ollama, and vLLM providers.
-- **Google ADK v1.0** (stable 2026): hierarchical agent tree where a root agent delegates to sub-agents; v1.0 ships stable releases in Python, Go, Java, and TypeScript. Introduces the **A2A (Agent-to-Agent) protocol v1.0** (in production at 150+ organisations as of 2026) so a LangGraph or CrewAI agent can be invoked by an ADK agent without bespoke adapters. Announced at Google Cloud Next 2026 alongside Workspace Studio (no-code agent builder) and managed MCP servers via Apigee.
+- **LangGraph v1.0** (stable): now the most-starred agent framework on GitHub, adopted in production by companies including Uber, LinkedIn, and Klarna. The 1.0 release delivers durable state (automatic execution persistence), built-in human-in-the-loop approvals, native sandboxing, sub-agents, first-class MCP support, and distributed runtime via the CLI. Surpassed CrewAI in GitHub stars during early 2026.
+- **AutoGen / AG2**: Microsoft's AutoGen v0.4 ships streaming and event-driven architecture; the community maintains the proven v0.2 lineage as `ag2ai/ag2` with typed tools and dependency injection. AG2 Beta (`autogen.beta`) is a ground-up redesign with multi-provider LLM support and first-class testing. Both run on the same core `SelectorGroupChat` / `GroupChatManager` API.
+- **CrewAI** (v1.12): added agent skills, hierarchical memory isolation, Qdrant Edge memory backend, and native support for OpenRouter, DeepSeek, Ollama, vLLM, Cerebras, and Dashscope providers.
+- **Google ADK v1.0** (stable): hierarchical agent tree where a root agent delegates to sub-agents; ships stable releases in Python, Go, Java, and TypeScript. Introduces the **A2A (Agent-to-Agent) protocol v1.0** (in production at 150+ organisations) so a LangGraph or CrewAI agent can be invoked by an ADK agent without bespoke adapters. Announced at Google Cloud Next 2026 alongside Workspace Studio (no-code agent builder) and managed MCP servers via Apigee.
 - **Pydantic AI**: lightweight, type-safe alternative gaining traction for simple agents where full LangGraph state management is overkill.
+- **MCP (Model Context Protocol)**: the upcoming 2026 release candidate introduces a **stateless protocol core** (scales on ordinary HTTP), the **Tasks extension** (long-running async tool calls with `tasks/get`, `tasks/update`, `tasks/cancel`), **MCP Apps** (server-rendered interactive UIs in sandboxed iframes), and hardened OAuth/OIDC authorization. MCP is now the de-facto standard for AI tool integration, with enterprise adoption requiring SSO-integrated auth, audit trails, and gateway behavior.
 
 ## Reading order
 
