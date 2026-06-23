@@ -81,6 +81,27 @@ Vera Rubin / Rubin GPU
   Rubin CPX variant is optimised for massive-context inference
   workloads. Partner availability (AWS, GCP, Azure, CoreWeave, Lambda)
   is planned for H2 2026.
+
+Google TPU 8t / TPU 8i
+  Google's eighth-generation TPU family, announced at Cloud Next
+  2026 — the first bifurcated TPU architecture with separate
+  training and inference chips. **TPU 8t** (training): scales to
+  9,600-chip pods with 2 PB HBM, delivers 121 exaFLOPS FP4, roughly
+  3× Ironwood per pod. **TPU 8i** (inference): scales to 1,152-chip
+  pods with 331.8 TB HBM per pod, 11.6 exaFLOPS FP8, 19.2 Tbps
+  scale-up bandwidth per chip, 384 MB on-chip SRAM (3× Ironwood), and
+  a new Boardfly topology that reduces MoE/reasoning network diameter
+  ~56%; delivers 80% better performance-per-dollar vs Ironwood. Both
+  chips support PyTorch (TorchTPU preview), JAX, vLLM, and SGLang.
+  GA expected later 2026.
+
+AMD MI400 Series / Helios Rack
+  AMD's next-generation AI accelerator platform (announced CES 2026).
+  The MI400 family — MI430X, MI440X, MI455X — uses 2 nm process
+  (Venice Zen 6 CPU + MI455X GPU). The Helios rack-scale platform is
+  based on Meta's 2025 OCP rack design. Production target is H2 2026;
+  a 6 GW Meta deployment agreement was announced with the first 1 GW
+  wave in H2 2026.
 ```
 
 ## Roofline, throughput, latency
@@ -338,14 +359,20 @@ SGLang
   DSL with an optimized runtime. Key innovations: RadixAttention for
   automatic prefix caching, compressed finite-state machines for
   grammar-constrained decoding, and native integration of DeepSeek
-  multi-token prediction. **v0.5.11** (May 5, 2026) ships with
+  multi-token prediction. **v0.5.11** ships with
   XGrammar-2 integration, delivering ~3× faster constrained decoding
-  vs vLLM on structured-output workloads. In production, SGLang powers
-  xAI's Grok, Microsoft Azure endpoints, LinkedIn AI features, and
-  Cursor code completion across 400,000+ GPUs. **RadixArk** — the
-  company spun out to commercialize SGLang — raised a $100M seed round
-  at a $400M valuation in May 2026 (Accel, Spark Capital). Covered
-  structurally in {doc}`notebooks/01_inference/06_radix_prefix_cache`.
+  vs vLLM on structured-output workloads. **v0.5.12**
+  adds HiCache (UnifiedRadixTree + SSD offload via Mooncake), EAGLE-3
+  speculative decoding, DeepSeek V4 / Ring-2.6-1T / Gemma 4 model
+  support, and CUDA 13 DeepEP migration. **v0.5.12.post1**
+  is a stability patch that restores DeepSeek V4 HiSparse
+  accuracy on B200/B300 (GSM8K 0.825 → 0.960) and fixes disaggregation
+  crashes. In production, SGLang powers xAI's Grok, Microsoft Azure
+  endpoints, LinkedIn AI features, and Cursor code completion across
+  400,000+ GPUs. **RadixArk** — the company spun out to commercialize
+  SGLang — raised a $100M seed round at a $400M valuation in 2026
+  (Accel, Spark Capital). Covered structurally in
+  {doc}`notebooks/01_inference/06_radix_prefix_cache`.
 
 NVIDIA Dynamo
   A datacenter-scale distributed inference serving framework announced
@@ -398,9 +425,11 @@ MoE
   Mixture of Experts. A sparse architecture where each token activates
   only a few of many "expert" FFN blocks. Parameters scale decoupled
   from per-token FLOPs. MoE has become the de-facto architecture for
-  flagship open models as of 2026: DeepSeek-V4-Pro (1.6T total / 49B
-  active), Llama 4 Maverick (400B / 17B active), Qwen3.5 (397B / 17B
-  active), and Mistral Large 3 (675B / 41B active) all use sparse MoE.
+  flagship open models as of 2026: DeepSeek V4 Pro (1.6T / 49B active),
+  Llama 4 Maverick (400B / 17B active), Kimi K2.6 (~1T / 32B active),
+  MiniMax M3 (~456B / unknown active, MSA architecture), Qwen3.5 (397B
+  / 17B active), and Mistral Large 3 (675B / 41B active) all use sparse
+  MoE or sparse-attention variants.
 
 AIBrix
   A Kubernetes-native control plane for vLLM inference, open-sourced by
@@ -409,7 +438,7 @@ AIBrix
   prefix-aware and load-aware request routing, SLO-driven autoscaling,
   and a distributed KV cache that shares prefix hits across nodes —
   reported 50% throughput gain and 70% latency reduction in production.
-  v0.6.0 (May 2026) adds OpenAI-compatible audio transcription,
+  v0.6.0 adds OpenAI-compatible audio transcription,
   image-generation, and rerank endpoints. Complements NVIDIA Dynamo
   for clusters that run on standard Kubernetes rather than Dynamo's
   dedicated scheduler.
@@ -506,7 +535,7 @@ DoRA
 BitNet
   A training-from-scratch quantization scheme (Microsoft, 2402.17764)
   where each weight is constrained to {-1, 0, +1} (ternary / 1.58-bit).
-  BitNet b1.58-2B-4T (April 2025) is the first openly released 1.58-bit
+  BitNet b1.58-2B-4T (2025) is the first openly released 1.58-bit
   model at production scale (2B params, 4T tokens). Enables 15× better
   energy efficiency than FP16 equivalents on CPU inference.
 ```
@@ -635,7 +664,7 @@ GPQA
   as MMLU saturated in 2025.
 
 HLE
-  Humanity's Last Exam. A 2,500-question expert benchmark released Jan
+  Humanity's Last Exam. A 2,500-question expert benchmark released in
   2025 by the Center for AI Safety and Scale AI. Covers math, science,
   and humanities at the level of PhD qualifying exams; frontier models
   scored below 10% on release, making it a long-term frontier target.
@@ -647,15 +676,20 @@ LiveCodeBench
 
 SWE-bench
   A benchmark of real GitHub issues requiring a model to generate a
-  code patch that makes a failing test-suite pass. SWE-bench Verified
-  (500 human-validated instances) and SWE-bench Lite are the standard
-  subsets. **SWE-bench Live** (arXiv 2505.23419, May 2026) extends this
-  with a live-updatable harness of 1,319 tasks from issues created after
-  model training cutoffs, making contamination structurally impossible.
-  As of May 2026 the SWE-bench Verified top score is 93.9%.
+  code patch that makes a failing test-suite pass. **SWE-bench Verified**
+  (500 human-validated instances) is the standard subset; top reported
+  scores now exceed 90%. **SWE-bench Lite** is the 300-instance subset
+  used for rapid iteration. **SWE-bench Pro** is an independently harder
+  tier used in 2026 model releases (DeepSeek V4 Pro 80.6%, Kimi K2.6
+  58.6%, Mistral Medium 3.5 77.6%, MiniMax M3 59.0%) — note that
+  SWE-bench Pro and SWE-bench Verified scores are not directly
+  comparable. **SWE-bench Live** (arXiv 2505.23419) extends
+  this with a live-updatable harness of 1,319 tasks from issues created
+  after model training cutoffs, making contamination structurally
+  impossible.
 
 Terminal-Bench
-  A CLI-focused agentic benchmark (January 2026) that evaluates models
+  A CLI-focused agentic benchmark (2026) that evaluates models
   on 89 realistic terminal tasks — file manipulation, system
   administration, data processing, debugging — executed through a
   subprocess shell. Terminal-Bench 2.0 complements SWE-bench by testing
@@ -696,8 +730,8 @@ finite-state machine (FSM)
 XGrammar
   A fast, flexible structured-generation engine from MLC / CMU (arXiv
   2411.15100). Compiles context-free grammars into persistent execution
-  contexts for efficient token-mask generation. **XGrammar-2** (May
-  2026) delivers 80× faster grammar compilation and ~7× lower
+  contexts for efficient token-mask generation. **XGrammar-2**
+  delivers 80× faster grammar compilation and ~7× lower
   end-to-end latency versus v1, and introduces **Structural Tag** — a
   composable JSON protocol that uniformly expresses OpenAI tool-call
   format, reasoning channels (`<think>…</think>`), and any custom
@@ -710,7 +744,12 @@ XGrammar
 MCP
   Model Context Protocol. An open standard for exposing tools and
   data sources to LLM clients over JSON-RPC. Covered in
-  {doc}`notebooks/04_agents/05_mcp_server_client`.
+  {doc}`notebooks/04_agents/05_mcp_server_client`. The **MCP 2026
+  specification RC** introduces a stateless protocol core via
+  Streamable HTTP, SEP-2243
+  routing headers, SEP-2549 TTL/cache-scope on list and resource reads,
+  a Tasks extension for long-running work, MCP Apps for server-rendered
+  UIs, and OAuth/OIDC authorization hardening.
 
 DSPy
   A framework that compiles high-level program-like agents into
@@ -718,7 +757,7 @@ DSPy
   {doc}`notebooks/04_agents/04_dspy_3_miprov2`.
 
 A2A
-  Agent-to-Agent Protocol. An open specification (Google ADK, April 2025)
+  Agent-to-Agent Protocol. An open specification (Google ADK, 2025)
   for agents to discover each other via JSON "Agent Cards" and delegate
   subtasks over a REST interface. Horizontal complement to MCP: where
   MCP connects a single agent to tools/data, A2A connects agents to
@@ -730,7 +769,7 @@ A2A
 
 handoff
   Transferring control and conversation state from one agent to another.
-  The core primitive in the OpenAI Agents SDK (released March 2025);
+  The core primitive in the OpenAI Agents SDK (released 2025);
   implemented as a specialized tool call `transfer_to_<agent>`.
 
 guardrail
@@ -757,7 +796,7 @@ computer use
 
 Microsoft Agent Framework
   Microsoft's production-ready open-source agent SDK, released v1.0 in
-  April 2026, formed by merging AutoGen and Semantic Kernel into a single
+  2026, formed by merging AutoGen and Semantic Kernel into a single
   unified library. Provides AutoGen's simple agent abstractions together
   with Semantic Kernel's enterprise features (session state, type safety,
   middleware, telemetry) and adds graph-based multi-agent orchestration
@@ -832,7 +871,7 @@ SigLIP
   Sigmoid Loss for Language-Image Pre-training. A vision encoder from
   Google that replaces the softmax over the full batch with per-pair
   sigmoid, enabling larger batch sizes and better multilingual and
-  localisation performance. SigLIP 2 (Feb 2025) became the default
+  localisation performance. SigLIP 2 (2025) became the default
   vision backbone for open VLMs (Qwen2.5-VL, PaliGemma 2).
 
 cross-modal adapter
@@ -852,7 +891,7 @@ VLA
 ```{glossary}
 NVIDIA Dynamo
   An open-source distributed inference serving framework (announced
-  GTC March 2025) designed for the disaggregated prefill/decode
+  GTC 2025) designed for the disaggregated prefill/decode
   pattern. Supports multiple backends (vLLM, TensorRT-LLM, SGLang)
   and includes a Smart Router, SLA-based Planner, and integration with
   NIXL for GPU-to-GPU KV cache transfer at wire speed.
@@ -873,7 +912,7 @@ LMCache
 
 PegaFlow
   A high-performance external KV cache storage engine for LLM inference,
-  open-sourced by Novita AI (May 2026). Implemented as a standalone
+  open-sourced by Novita AI (2026). Implemented as a standalone
   process with a GIL-free Rust core (zero Python overhead on the hot
   path), PegaFlow offloads KV cache from GPU to host memory or SSD and
   shares it across nodes via RDMA. It integrates with vLLM and SGLang
@@ -881,6 +920,16 @@ PegaFlow
   export. Key use cases: extending effective KV capacity beyond GPU VRAM
   for long-context workloads, and enabling cross-node prefix-cache
   sharing in distributed inference clusters.
+
+VeriCache
+  A KV-cache management technique (arXiv 2605.17613; U
+  Chicago / Tensormesh / Samsung / Microsoft Research) that decouples
+  throughput from correctness: a compressed KV cache (GPU-resident,
+  high throughput) drafts tokens, while the full-precision KV cache
+  (CPU or disk) verifies and corrects them via a speculative-decoding
+  style accept/reject step. Achieves lossless output quality at
+  compressed-cache throughput — combining the memory savings of lossy
+  KV compression with the accuracy guarantees of full-precision KV.
 
 NVLink
   NVIDIA's high-bandwidth chip-to-chip interconnect. NVLink 4 (H100)
@@ -904,8 +953,8 @@ Llama 4
   Multi-head Latent Attention (MLA) and FP8 native inference.
 
 Gemini 3.5 Flash
-  Google's frontier Flash-tier model released at Google I/O 2026 (May
-  19, 2026). Accepts text, images, audio, video, and PDF inputs with a
+  Google's frontier Flash-tier model released at Google I/O 2026.
+  Accepts text, images, audio, video, and PDF inputs with a
   1 M-token context window. Dynamic thinking is enabled by default.
   Outperforms Gemini 3.1 Pro on demanding agentic and coding benchmarks
   (Terminal-Bench 2.1: 76.2%, MCP Atlas: 83.6%) while running ~4× faster
@@ -914,8 +963,8 @@ Gemini 3.5 Flash
   via Google AI Studio, Gemini API, and the Antigravity framework.
 
 MiMo-V2.5
-  Xiaomi's fully open-source multimodal reasoning model, released April
-  22, 2026. A 310 B-parameter sparse MoE architecture with 15 B active
+  Xiaomi's fully open-source multimodal reasoning model, released in
+  2026. A 310 B-parameter sparse MoE architecture with 15 B active
   parameters, trained on 48 T tokens across text, vision, and audio.
   Competitive with frontier closed-source models on multimodal agentic
   tasks. Context window extends to 1 M tokens after progressive
@@ -923,12 +972,62 @@ MiMo-V2.5
   a permissive open license.
 
 Gemini Spark
-  A persistent 24/7 personal AI agent announced at Google I/O 2026 (May
-  19, 2026). Powered by Gemini 3.5 and Google's Antigravity framework,
+  A persistent 24/7 personal AI agent announced at Google I/O 2026.
+  Powered by Gemini 3.5 and Google's Antigravity framework,
   it runs on dedicated Google Cloud virtual machines and can continue
   executing tasks independently when a user's device is offline.
   Supports third-party tools through MCP and is planned to operate as
   an agentic browser inside Chrome.
+
+DeepSeek V4 Pro / V4 Flash
+  DeepSeek's 2026 open-weight MoE model family.
+  **V4 Pro**: 1.6 T total / 49 B active parameters, MIT license,
+  1 M-token context, 80.6% on SWE-bench Verified (top open-weight score
+  at release). **V4 Flash**: 284 B total / 13 B active parameters, MIT
+  license, 1 M-token context — lightweight serving variant. Both models
+  use Multi-head Latent Attention (MLA) and are optimized for NVFP4
+  fused MoE kernels on Blackwell; vLLM v0.22 and SGLang v0.5.12 ship
+  dedicated DeepSeek V4 support packages.
+
+DeepSeek R1-0528
+  A major capability upgrade to DeepSeek-R1, released in 2026.
+  Improves depth of reasoning by increasing average thinking-token
+  budget (12K → 23K tokens per query). Key gains: AIME 2025 accuracy
+  70% → 87.5% (approaching O3/Gemini 2.5 Pro); 45–50% hallucination
+  reduction on rewriting, summarization, and reading-comprehension
+  tasks; significantly improved function calling; no need to manually
+  insert ``<think>`` tokens. Available in the full 671B model and an
+  updated 8B distilled variant on Hugging Face.
+
+Kimi K2.6
+  Moonshot AI's open-weight long-context MoE model (2026).
+  ~1 T total / 32 B active parameters; Apache 2.0 license; 256 K-token
+  context window. Scores 80.2% on SWE-bench Verified and 54 on
+  Intelligence Index v4.0 (#1 open / #4 overall at release). Uses
+  paged-attention-friendly MLA attention and is available on Hugging
+  Face.
+
+Qwen3.7-Max / Qwen3.7-Plus
+  Alibaba's 2026 closed-weights frontier models, announced at the
+  Alibaba Cloud Summit (Hangzhou). **Qwen3.7-Max**:
+  text-only flagship with a 1 M-token context window; scores 56.6 on
+  Intelligence Index v4.0 (#1 Chinese model, #5 overall) and 50.8% on
+  Terminal-Bench Hard; claims the lowest hallucination rate among
+  frontier models (22.9%). **Qwen3.7-Plus**: multimodal variant adding
+  vision input. Pricing: $2.50/M input, $7.50/M output on DashScope.
+  An open-weight release has been announced as forthcoming.
+
+MiniMax M3
+  MiniMax's 2026 frontier open-weight model.
+  The first open-weight model to combine frontier-tier coding,
+  a 1 M-token context window, and native multimodal input (images,
+  video, and computer use) in a single system. Architecture uses MSA
+  (MiniMax Sparse Attention), a novel sparse-attention design that
+  achieves 9× prefill and 15× decode speedup at 1M-token context versus
+  M2, at 1/20th the per-token compute. Benchmark scores: 59.0%
+  SWE-bench Pro, 70.06% OSWorld-Verified, 74.2% MCP Atlas, 66.0%
+  Terminal-Bench 2.1. API available on the MiniMax platform, with open
+  weights published shortly after launch.
 
 Qwen3
   Alibaba's 2025 open-weight family. Supports a hybrid thinking
@@ -949,12 +1048,19 @@ vLLM V2
   ``engine_use_ray`` and ``worker_use_ray``; introduces a new
   Prometheus metrics schema. HuggingFace TGI moved to maintenance mode
   in 2025; vLLM V2 and SGLang are the recommended production
-  replacements.
+  replacements. **v0.22.0** adds: an experimental Rust
+  frontend with DP Supervisor, 28.9% latency reduction via Cutlass FP8
+  kernels, multi-tier KV offload (CPU/filesystem/Mooncake disk),
+  DeepSeek V4 Pro/Flash support with NVFP4 fused MoE + piecewise CUDA
+  graphs, and shared KV-cache layers for Qwen3 dense models; requires
+  C++20 build toolchain; Transformers v4 deprecated. **v0.22.1**
+  patches JetBrains Mellum v2 support, zentorch AMD Zen CPU
+  quantized linear inference, and a DeepSeek-V4 CUTLASS fmin init fix.
 
 XGrammar
   An FSM-based constrained-decoding engine used by vLLM and SGLang to
   enforce grammar/JSON-schema output structure during generation.
-  XGrammar-2 (May 2026) ships a Structural Tag protocol that unifies
+  XGrammar-2 ships a Structural Tag protocol that unifies
   tool calling, reasoning channels, and custom output formats; it
   delivers ~80× faster grammar compilation and ~3× faster constrained
   decoding versus the prior generation. Now the default constrained-

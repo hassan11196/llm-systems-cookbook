@@ -19,7 +19,7 @@ chains), Google ADK (supervisor hierarchies), Pydantic AI
 (dependency-injected agents), and smolagents (code-as-actions).
 The 2025 A2A protocol (Agent-to-Agent) adds horizontal discovery
 across agent boundaries; see the glossary for an overview.
-**Microsoft Agent Framework 1.0** (April 2026) unified AutoGen 0.4
+**Microsoft Agent Framework 1.0** unified AutoGen 0.4
 and Semantic Kernel into one production SDK; the patterns in notebook
 06 apply directly to it.
 ```
@@ -40,7 +40,7 @@ and Semantic Kernel into one production SDK; the patterns in notebook
   for cross-framework inter-agent delegation and discovery.
 - **{term}`handoff`** and **{term}`guardrail`** are the two new first-class
   primitives introduced by the OpenAI Agents SDK.
-- **{term}`Microsoft Agent Framework`** is the April 2026 merger of AutoGen
+- **{term}`Microsoft Agent Framework`** is the 2026 merger of AutoGen
   and Semantic Kernel into a single production-ready agent SDK.
 
 ## Ecosystem snapshot (mid-2026)
@@ -52,7 +52,7 @@ The agent framework landscape has consolidated around a few dominant patterns:
 - **CrewAI** (v1.12): added agent skills, hierarchical memory isolation, Qdrant Edge memory backend, and native support for OpenRouter, DeepSeek, Ollama, vLLM, Cerebras, and Dashscope providers.
 - **Google ADK v1.0** (stable): hierarchical agent tree where a root agent delegates to sub-agents; ships stable releases in Python, Go, Java, and TypeScript. Introduces the **A2A (Agent-to-Agent) protocol v1.0** (in production at 150+ organisations) so a LangGraph or CrewAI agent can be invoked by an ADK agent without bespoke adapters. Announced at Google Cloud Next 2026 alongside Workspace Studio (no-code agent builder) and managed MCP servers via Apigee.
 - **Pydantic AI**: lightweight, type-safe alternative gaining traction for simple agents where full LangGraph state management is overkill.
-- **MCP (Model Context Protocol)**: the upcoming 2026 release candidate introduces a **stateless protocol core** (scales on ordinary HTTP), the **Tasks extension** (long-running async tool calls with `tasks/get`, `tasks/update`, `tasks/cancel`), **MCP Apps** (server-rendered interactive UIs in sandboxed iframes), and hardened OAuth/OIDC authorization. MCP is now the de-facto standard for AI tool integration, with enterprise adoption requiring SSO-integrated auth, audit trails, and gateway behavior.
+- **MCP (Model Context Protocol)**: the upcoming 2026 release candidate introduces a **stateless protocol core** (Streamable HTTP, SEP-2549 TTL/cache-scope on resource reads), the **Tasks extension** (long-running async tool calls with `tasks/get`, `tasks/update`, `tasks/cancel`), **MCP Apps** (server-rendered interactive UIs in sandboxed iframes), and hardened OAuth/OIDC authorization. MCP is now the de-facto standard for AI tool integration; production SDKs targeting the RC are expected ahead of the final spec.
 
 ## Reading order
 

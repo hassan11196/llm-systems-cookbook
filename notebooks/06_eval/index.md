@@ -32,7 +32,7 @@
   became a proxy for AGI progress in 2024-2025.
 - **{term}`SWE-bench`** and its live-updatable successor **SWE-bench Live**
   measure real GitHub issue resolution; **{term}`Terminal-Bench`** 2.0
-  (January 2026) extends agentic evaluation to multi-step CLI workflows.
+  extends agentic evaluation to multi-step CLI workflows.
 
 ## Reading order
 
@@ -63,10 +63,12 @@ The evaluation frontier has shifted since 2024. Several previously-challenging b
 | GPQA-Diamond | ~70% | 91–94% | Active frontier |
 | ARC-AGI-2 | ~5% | ~60–65% | Active frontier |
 | AIME 2025 | — | 91–94% | Active frontier |
-| SWE-bench Verified | ~45% | ~77–80% | Active frontier |
+| SWE-bench Verified | ~45% | ~93.9% | Active frontier |
 | SWE-bench Pro | — | 80.3% | Active frontier |
 | FrontierCode (Diamond) | — | 29.3% | Active frontier |
+| Terminal-Bench Hard | — | ~50–51% | Emerging frontier |
+| Intelligence Index v4 | — | 56.6 (Qwen3.7-Max) | Emerging metric |
 
-**SWE-bench Pro** and **FrontierCode** (Cognition's hardest coding split) are the new discriminating benchmarks for frontier coding agents; the leading model on SWE-bench Pro leads the next-best by over 11 points. **Hebbia Finance Benchmark** covers senior-level reasoning over financial documents and is gaining adoption as a proxy for document-understanding capability.
+**SWE-bench Pro** is a distinct harder tier than SWE-bench Verified; scores across the two are not directly comparable (top model leads next-best by 11+ points on Pro). **FrontierCode** (Cognition's Diamond split) and **Terminal-Bench Hard** (2026 agentic CLI extension) are emerging as complementary coding-agent discriminators alongside SWE-bench. **Hebbia Finance Benchmark** covers senior-level reasoning over financial documents and is gaining adoption as a proxy for document-understanding capability.
 
 The notebooks in this part teach the **mechanics** of evaluation on un-saturated tasks; the numerical thresholds in the scoring checks target 2026-accessible open-weight models (Qwen2.5-0.5B, Phi-3.5-mini, SmolLM2-360M) that still show non-trivial variance on MMLU and HumanEval, making them pedagogically useful even as frontier models approach ceiling.
