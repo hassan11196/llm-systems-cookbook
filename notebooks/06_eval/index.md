@@ -64,5 +64,9 @@ The evaluation frontier has shifted since 2024. Several previously-challenging b
 | ARC-AGI-2 | ~5% | ~60–65% | Active frontier |
 | AIME 2025 | — | 91–94% | Active frontier |
 | SWE-bench Verified | ~45% | ~77–80% | Active frontier |
+| SWE-bench Pro | — | 80.3% | Active frontier |
+| FrontierCode (Diamond) | — | 29.3% | Active frontier |
+
+**SWE-bench Pro** and **FrontierCode** (Cognition's hardest coding split) are the new discriminating benchmarks for frontier coding agents; the leading model on SWE-bench Pro leads the next-best by over 11 points. **Hebbia Finance Benchmark** covers senior-level reasoning over financial documents and is gaining adoption as a proxy for document-understanding capability.
 
 The notebooks in this part teach the **mechanics** of evaluation on un-saturated tasks; the numerical thresholds in the scoring checks target 2026-accessible open-weight models (Qwen2.5-0.5B, Phi-3.5-mini, SmolLM2-360M) that still show non-trivial variance on MMLU and HumanEval, making them pedagogically useful even as frontier models approach ceiling.
