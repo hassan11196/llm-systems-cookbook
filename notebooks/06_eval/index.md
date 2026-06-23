@@ -64,14 +64,11 @@ The evaluation frontier has shifted since 2024. Several previously-challenging b
 | ARC-AGI-2 | ~5% | ~60–65% | Active frontier |
 | AIME 2025 | — | 91–94% | Active frontier |
 | SWE-bench Verified | ~45% | ~93.9% | Active frontier |
+| SWE-bench Pro | — | 80.3% | Active frontier |
+| FrontierCode (Diamond) | — | 29.3% | Active frontier |
 | Terminal-Bench Hard | — | ~50–51% | Emerging frontier |
 | Intelligence Index v4 | — | 56.6 (Qwen3.7-Max) | Emerging metric |
 
-Note: **SWE-bench Pro** is a distinct harder tier used in 2026 model
-announcements (DeepSeek V4 Pro 80.6%, Mistral Medium 3.5 77.6%, Kimi
-K2.6 58.6%, MiniMax M3 59.0%) — scores are not directly comparable to
-SWE-bench Verified. **Terminal-Bench Hard** (2026 extension of
-Terminal-Bench 2.0) is emerging as a standard agentic CLI evaluation
-alongside SWE-bench.
+**SWE-bench Pro** is a distinct harder tier than SWE-bench Verified; scores across the two are not directly comparable (top model leads next-best by 11+ points on Pro). **FrontierCode** (Cognition's Diamond split) and **Terminal-Bench Hard** (2026 agentic CLI extension) are emerging as complementary coding-agent discriminators alongside SWE-bench. **Hebbia Finance Benchmark** covers senior-level reasoning over financial documents and is gaining adoption as a proxy for document-understanding capability.
 
 The notebooks in this part teach the **mechanics** of evaluation on un-saturated tasks; the numerical thresholds in the scoring checks target 2026-accessible open-weight models (Qwen2.5-0.5B, Phi-3.5-mini, SmolLM2-360M) that still show non-trivial variance on MMLU and HumanEval, making them pedagogically useful even as frontier models approach ceiling.
