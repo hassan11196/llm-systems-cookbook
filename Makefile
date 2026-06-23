@@ -1,5 +1,5 @@
 .PHONY: install install-dev test lint format clean score warm-cache nbclear nb-execute \
-        book book-clean book-serve
+        book book-clean book-serve check-evergreen
 
 PYTHON ?= python
 
@@ -21,6 +21,9 @@ test:
 lint:
 	ruff check src/ scoring/ scripts/
 	ruff format --check src/ scoring/ scripts/
+
+check-evergreen:
+	$(PYTHON) scripts/check_evergreen.py
 
 format:
 	ruff format src/ scoring/ scripts/
