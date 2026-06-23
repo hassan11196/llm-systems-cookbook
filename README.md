@@ -14,6 +14,7 @@ Target audience: a computer-science undergrad who wants to go from
 "I know what softmax is" to "I can reason about LLM serving
 economics." No prior deep-learning background assumed.
 
+
 ## ▶️ Run in Colab - no install
 
 Every notebook has an Open-in-Colab badge at the top. Landing page:
@@ -29,15 +30,16 @@ want from the book's landing page.
 | Part | Chapters | Theme |
 |---|---|---|
 | **I · Foundations** | [9](notebooks/07_gpu/index.md) | GPU architecture, Triton, roofline |
-| **II · Inference engines** | [10](notebooks/01_inference/index.md) | KV cache, PagedAttention, speculative, SARATHI |
-| **III · Serving & scaling** | [10](notebooks/05_serving/index.md) | KV variants/compression, quantisation, MoE, DistServe |
-| **IV · Training** | [2 of 8](notebooks/03_training/index.md) | Mixed precision, FSDP2; rest specified, scheduled for v0.2 |
-| **V · Retrieval-augmented generation** | [9](notebooks/02_rag/index.md) | Chunking, indices, hybrid, RAPTOR, GraphRAG, RAGAS |
-| **VI · Agent frameworks** | [7](notebooks/04_agents/index.md) | ReAct, structured outputs, LangGraph, DSPy, MCP |
-| **VII · Evaluation** | [8](notebooks/06_eval/index.md) | Perplexity, MMLU, HumanEval, Arena, NIAH, contamination |
-| **VIII · Production patterns** | [9](notebooks/08_production/index.md) | Anthropic SDK caching, LiteLLM routing, native tool use, structured outputs, hybrid RAG, MCP server, DSPy MIPROv2, Inspect AI, GPU pricing & model fit |
+| **II · Inference engines** | [10](notebooks/01_inference/index.md) | KV cache, PagedAttention, speculative decoding, SARATHI, disaggregated prefill/decode |
+| **III · Serving & scaling** | [10](notebooks/05_serving/index.md) | KV variants/compression, KIVI, GPTQ/AWQ, FP8, QuaRot, MoE, DistServe/Dynamo |
+| **IV · Training** | [2 of 8](notebooks/03_training/index.md) | Mixed precision, FSDP2; LoRA/DoRA, QLoRA, DPO/ORPO, GRPO in v0.2 |
+| **V · Retrieval-augmented generation** | [9](notebooks/02_rag/index.md) | Chunking, FAISS, BM25/SPLADE, ColBERTv2, reranking, HyDE, RAPTOR, GraphRAG, RAGAS |
+| **VI · Agent frameworks** | [7](notebooks/04_agents/index.md) | ReAct, structured outputs, LangGraph, DSPy/MIPROv2, MCP, AutoGen, τ-bench/SWE-bench |
+| **VII · Evaluation** | [8](notebooks/06_eval/index.md) | Perplexity, MMLU, HumanEval, LLM-as-judge, Arena Elo, NIAH/RULER, contamination |
+| **VIII · Production patterns** | [9](notebooks/08_production/index.md) | SDK prompt caching, LiteLLM routing, native tool use, structured outputs, hybrid RAG, MCP server, DSPy MIPROv2, Inspect AI, GPU pricing |
+| **v0.3 planned** | ~10 | Test-time compute, BitNet/FP4 serving, VLM track (SigLIP 2, LLaVA, VLM eval), safety & red-teaming |
 
-Full curriculum spec: [`CURRICULUM_SPEC.md`](CURRICULUM_SPEC.md). v0.1 ships 64 notebooks; the remaining 6 (training-track 03-08) are scheduled for v0.2.
+Full curriculum spec: [`CURRICULUM_SPEC.md`](CURRICULUM_SPEC.md). v0.1 ships 64 notebooks; the remaining 6 training-track notebooks are specified for v0.2; the v0.3 roadmap adds ~10 more.
 
 ### Production patterns track
 
@@ -86,7 +88,23 @@ A few notebooks (training track, some inference notebooks) download
 **gated** - you must accept Meta's Llama community license on the
 model page and then authenticate once with `huggingface-cli login`
 (or set `HF_TOKEN`) before the notebook will run. Notebooks that
-only use open models (SmolLM2, Qwen2.5, Phi-3.5) need no token.
+only use open models (SmolLM2, Qwen2.5, Qwen3, Phi-3.5) need no
+token.
+
+`Qwen/Qwen3-1.7B` is added to the model registry as of v0.2. It
+supports hybrid thinking/non-thinking via `/think` and `/no_think`
+prefixes; use `/no_think` for latency-sensitive benchmarks. Larger
+Llama 4 models (Scout 17B-16E, Maverick 17B-128E) are documented in
+the GPU pricing notebook and in the model registry but are too large
+for free Colab T4 — they require A100 80 GB+ or H100.
+
+The frontier model tier has expanded in 2026: **Claude Fable 5**
+(`claude-fable-5`) is the first publicly-available Mythos-class model,
+leading SWE-bench Pro at 80.3%; **Gemini 3.5 Pro** (limited Vertex AI
+preview) targets a 2M-token context window with Deep Think reasoning;
+**GPT-5.6** is in early preview. The Production patterns track (Part
+VIII) uses `claude-sonnet-4-6` as the default Anthropic model but
+accepts any model ID via `MODEL_ANTHROPIC`.
 
 ## Layout
 

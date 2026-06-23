@@ -52,3 +52,17 @@ Companion reading: **Part II** uses the ridge intensity numbers from
 this part to classify every inference workload; **Part III** uses the
 same math to reason about quantisation and KV compression.
 ```
+
+## Hardware roadmap (mid-2026)
+
+Notebooks are validated on Colab T4 (Turing, cc 7.5) and spot-checked
+on A100/H100. The current generation in production is NVIDIA Blackwell
+(B200, cc 10.0): 180 GB HBM3e, ~8 TB/s bandwidth, native FP4 tensor
+cores at 9000 TFLOPS. **NVIDIA Vera Rubin** (announced GTC 2026) is the
+next platform: Rubin GPU with 288 GB HBM4, 50 PFLOPS FP4 (2.5× B200),
+paired with the Vera CPU (72 ARM Grace cores) over NVLink 6; targeting
+5× Blackwell inference throughput at 10× lower token cost. Partner
+cloud availability (AWS, GCP, Azure, CoreWeave, Lambda) is planned for
+H2 2026. All roofline, arithmetic intensity, and throughput formulas in
+this track remain architecture-agnostic; only the peak numbers change.
+See {term}`Vera Rubin / Rubin GPU` in the glossary.
