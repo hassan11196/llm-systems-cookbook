@@ -78,14 +78,14 @@ production = [
   "instructor>=1.7",
   "outlines>=0.1",
 ]
-# RAGAS is deliberately pinned to the 0.2.x API. RAGAS 0.4.x broke the metric
-# interface used by notebooks/02_rag/09 and requires a separate metric refactor
-# that is out of scope for this curriculum as authored.
+# notebooks/02_rag/09 reimplements RAGAS-style metrics from scratch and does
+# not import ragas, so the package version is purely a reference for the
+# "compare to the real library" stretch goal.
 eval = [
   "lm-eval==0.4.11",
   "inspect-ai==0.3.199",
   "lighteval==0.11.0",
-  "ragas==0.2.14",
+  "ragas==0.4.3",
 ]
 gpu = ["triton==3.3.*"]
 jax = ["jax==0.6.*", "jaxlib"]
