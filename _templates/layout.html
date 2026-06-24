@@ -1,0 +1,30 @@
+{% extends "!layout.html" %}
+{% block extrahead %}
+  {{ super() }}
+  <meta name="description" content="64 hands-on Jupyter notebooks for LLM systems engineering: inference optimization, RAG pipelines, AI agent frameworks, LLM serving and scaling, evaluation, GPU programming, and production LLM patterns." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="The LLM Systems Cookbook" />
+  <meta property="og:title" content="{{ title|e }} — The LLM Systems Cookbook" />
+  <meta property="og:description" content="64 hands-on Jupyter notebooks for LLM systems engineering: inference optimization, RAG pipelines, AI agent frameworks, LLM serving and scaling, evaluation, GPU programming, and production LLM patterns." />
+  <meta property="og:url" content="https://hassan11196.github.io/llm-systems-cookbook/" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="{{ title|e }} — The LLM Systems Cookbook" />
+  <meta name="twitter:description" content="64 hands-on Jupyter notebooks for LLM systems engineering: inference optimization, RAG pipelines, AI agent frameworks, LLM serving and scaling, evaluation, GPU programming, and production LLM patterns." />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    "name": "The LLM Systems Cookbook",
+    "description": "A hands-on curriculum for modern LLM systems engineering. 64 Jupyter notebooks covering inference optimization, retrieval-augmented generation, training and fine-tuning, AI agent frameworks, serving and scaling, evaluation methodology, GPU programming, and production LLM patterns.",
+    "url": "https://hassan11196.github.io/llm-systems-cookbook/",
+    "codeRepository": "https://github.com/hassan11196/llm-systems-cookbook",
+    "license": "https://opensource.org/licenses/MIT",
+    "programmingLanguage": "Python",
+    "author": {
+      "@type": "Person",
+      "name": "Muhammad Hassan Ahmed"
+    },
+    "keywords": ["LLM systems", "LLM engineering", "production LLM applications", "RAG system design", "LLM inference optimization", "AI agent architecture", "LLM evaluation", "GPU programming", "LLM serving", "LLM observability", "Jupyter notebook curriculum", "practical LLM system design"]
+  }
+  </script>
+{% endblock %}

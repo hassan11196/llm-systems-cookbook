@@ -1,3 +1,8 @@
+---
+html_meta:
+  description: "LLM serving and scaling: KV-cache variants (MHA/GQA/MLA), KV compression, GPTQ/AWQ quantization, FP8, MoE serving, DistServe/Dynamo, and LLM observability — production deployment from first principles."
+---
+
 # Serving and scaling
 
 ```{admonition} What you'll learn in this part

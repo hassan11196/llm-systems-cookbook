@@ -1,3 +1,8 @@
+---
+html_meta:
+  description: "Master LLM inference optimization: KV cache mechanics, PagedAttention, continuous batching, FlashAttention-2, speculative decoding, SARATHI chunked prefill, and disaggregated serving — from first principles."
+---
+
 # Inference engines
 
 ```{admonition} What you'll learn in this part
