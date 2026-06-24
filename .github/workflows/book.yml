@@ -35,7 +35,7 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install "jupyter-book==1.0.*" "sphinx-book-theme>=1.1" \
-                      "myst-nb>=1.1" "linkify-it-py"
+                      "myst-nb>=1.1" "linkify-it-py" "sphinx-sitemap>=2.6"
 
       - name: Build the book
         run: jupyter-book build .

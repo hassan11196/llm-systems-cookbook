@@ -1,3 +1,8 @@
+---
+html_meta:
+  description: "LLM training and fine-tuning: mixed precision training, gradient accumulation, FSDP2 distributed training, LoRA, QLoRA, DPO/ORPO, and GRPO — hands-on Jupyter notebooks from first principles."
+---
+
 # Training and fine-tuning
 
 ```{admonition} What you'll learn in this part

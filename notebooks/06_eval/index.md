@@ -1,3 +1,8 @@
+---
+html_meta:
+  description: "LLM evaluation methodology: perplexity, MMLU calibration, HumanEval pass@k, LLM-as-judge bias, Arena Elo/Bradley-Terry, NIAH/RULER needle-in-haystack, contamination detection, and evaluation harnesses (lm-eval, Inspect AI)."
+---
+
 # Evaluation
 
 ```{admonition} What you'll learn in this part
