@@ -1,6 +1,6 @@
 ---
 html_meta:
-  description: "64 hands-on Jupyter notebooks for LLM systems engineering: inference optimization, RAG pipelines, AI agent frameworks, serving and scaling, evaluation, GPU programming, and production LLM patterns — free to run on Colab."
+  description: "The LLM Systems Cookbook: 64 Jupyter notebooks for LLM systems engineering — inference optimization, RAG pipelines, AI agent frameworks, LLM serving and scaling, evaluation, GPU programming, and production LLM patterns. Free to run on Colab."
   og:type: "website"
   og:title: "The LLM Systems Cookbook"
   og:description: "64 hands-on Jupyter notebooks for LLM systems engineering: inference optimization, RAG pipelines, AI agent frameworks, serving and scaling, evaluation, GPU programming, and production LLM patterns."
@@ -10,7 +10,7 @@ html_meta:
   twitter:description: "64 hands-on Jupyter notebooks for LLM systems engineering: inference optimization, RAG, agents, serving, evaluation, GPU programming, and production LLM patterns."
 ---
 
-# LLM Systems Cookbook
+# The LLM Systems Cookbook
 
 ```{image} https://img.shields.io/badge/book-llm--systems--cookbook-2ea44f?style=for-the-badge
 :alt: LLM Systems Cookbook
@@ -25,46 +25,6 @@ real production library, or both, with deterministic numerical checks.
 Written for a computer-science undergraduate who wants to go from
 "I know what softmax is" to "I can reason about LLM serving economics,"
 with no prior deep-learning background assumed.
-
-```{admonition} What's new — May 2026
-:class: note
-
-- **Glossary** extended with 2025–2026 terms: test-time compute, reasoning
-  models, BitNet / ternary quantization, FP4 (Blackwell), VLM / SigLIP,
-  NVIDIA Dynamo / NIXL, DoRA, ORPO, Vera Rubin GPU, PegaFlow, Gemini 3.5
-  Flash, and more.
-- **Curriculum spec** updated with the v0.3 roadmap: inference-time scaling
-  notebook, BitNet/sub-2-bit serving notebook, a 5-notebook multimodal track,
-  and a safety/red-teaming track.
-- **Framework pins** refreshed to the May 2026 ecosystem (torch 2.7, vLLM
-  0.20, SGLang 0.5 + XGrammar-2, TRL 0.26, PEFT 0.14, JAX 0.6).
-- **Training track (v0.2):** six remaining notebooks (tensor parallel,
-  pipeline parallel, LoRA/DoRA, QLoRA, DPO/ORPO, GRPO) are fully specified
-  and in active development.
-- **Google I/O 2026 (May 19):** Gemini 3.5 Flash GA — frontier Flash-tier
-  speed with Pro-tier coding/agentic accuracy; 1 M-token context window;
-  dynamic thinking on by default; Gemini Spark persistent 24/7 agent; ADK v1.0
-  stable across Python, Go, Java, and TypeScript; A2A v1.0 in production at
-  150+ organisations. **Gemini 3.5 Pro** expected June 2026.
-- **OpenAI (May 5):** GPT-5.5 Instant is now the default ChatGPT model for
-  all tiers — 52.5% fewer hallucinated claims, 30% more concise output,
-  personalisation via past conversations, files, and Gmail. GPT-5.5 Thinking
-  is OpenAI's unified reasoning model: a single router auto-selects between
-  fast and extended chain-of-thought inference, retiring the standalone
-  o-series (o4-mini et al.).
-- **vLLM Model Runner V2 (MRV2):** opt-in via `VLLM_USE_V2_MODEL_RUNNER=1`
-  in vLLM ≥ 0.20; replaces CPU PyTorch ops with GPU-native Triton kernels,
-  delivering 56% higher throughput on GB200 and zero-synchronization
-  speculative decoding (6.3% lower TPOT on 4×GB200).
-- **Hardware roadmap:** NVIDIA Vera Rubin platform (announced GTC 2026) —
-  Rubin GPU (288 GB HBM4, 50 PFLOPS FP4), Vera CPU (72-core ARM), NVLink 6;
-  targeting 5× Blackwell inference throughput at 10× lower cost; H2 2026.
-  Rubin CPX variant optimised for massive-context inference now documented in
-  the glossary.
-- **Serving infrastructure:** PegaFlow (Novita AI, May 2026) — GIL-free Rust
-  external KV cache for vLLM/SGLang with GPU offload, SSD tiering, and RDMA
-  cross-node KV sharing.
-```
 
 ```{admonition} How to read this book
 :class: tip
@@ -231,6 +191,46 @@ hard-list watermarking, toxicity scoring.
   chapters (the two FA2 Triton kernel notebooks in 01_inference/05 and
   07_gpu/04, plus 07_gpu/07 Nsight profiling) note their requirements
   in their chapter header.
+
+```{admonition} What's new — May 2026
+:class: note
+
+- **Glossary** extended with 2025–2026 terms: test-time compute, reasoning
+  models, BitNet / ternary quantization, FP4 (Blackwell), VLM / SigLIP,
+  NVIDIA Dynamo / NIXL, DoRA, ORPO, Vera Rubin GPU, PegaFlow, Gemini 3.5
+  Flash, and more.
+- **Curriculum spec** updated with the v0.3 roadmap: inference-time scaling
+  notebook, BitNet/sub-2-bit serving notebook, a 5-notebook multimodal track,
+  and a safety/red-teaming track.
+- **Framework pins** refreshed to the May 2026 ecosystem (torch 2.7, vLLM
+  0.20, SGLang 0.5 + XGrammar-2, TRL 0.26, PEFT 0.14, JAX 0.6).
+- **Training track (v0.2):** six remaining notebooks (tensor parallel,
+  pipeline parallel, LoRA/DoRA, QLoRA, DPO/ORPO, GRPO) are fully specified
+  and in active development.
+- **Google I/O 2026 (May 19):** Gemini 3.5 Flash GA — frontier Flash-tier
+  speed with Pro-tier coding/agentic accuracy; 1 M-token context window;
+  dynamic thinking on by default; Gemini Spark persistent 24/7 agent; ADK v1.0
+  stable across Python, Go, Java, and TypeScript; A2A v1.0 in production at
+  150+ organisations. **Gemini 3.5 Pro** expected June 2026.
+- **OpenAI (May 5):** GPT-5.5 Instant is now the default ChatGPT model for
+  all tiers — 52.5% fewer hallucinated claims, 30% more concise output,
+  personalisation via past conversations, files, and Gmail. GPT-5.5 Thinking
+  is OpenAI's unified reasoning model: a single router auto-selects between
+  fast and extended chain-of-thought inference, retiring the standalone
+  o-series (o4-mini et al.).
+- **vLLM Model Runner V2 (MRV2):** opt-in via `VLLM_USE_V2_MODEL_RUNNER=1`
+  in vLLM ≥ 0.20; replaces CPU PyTorch ops with GPU-native Triton kernels,
+  delivering 56% higher throughput on GB200 and zero-synchronization
+  speculative decoding (6.3% lower TPOT on 4×GB200).
+- **Hardware roadmap:** NVIDIA Vera Rubin platform (announced GTC 2026) —
+  Rubin GPU (288 GB HBM4, 50 PFLOPS FP4), Vera CPU (72-core ARM), NVLink 6;
+  targeting 5× Blackwell inference throughput at 10× lower cost; H2 2026.
+  Rubin CPX variant optimised for massive-context inference now documented in
+  the glossary.
+- **Serving infrastructure:** PegaFlow (Novita AI, May 2026) — GIL-free Rust
+  external KV cache for vLLM/SGLang with GPU offload, SSD tiering, and RDMA
+  cross-node KV sharing.
+```
 
 ## Citation
 

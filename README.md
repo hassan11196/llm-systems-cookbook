@@ -9,9 +9,12 @@ A hands-on curriculum for **LLM systems engineering** — 64 Jupyter notebooks c
 
 **[Read the book online →](https://hassan11196.github.io/llm-systems-cookbook/)**
 
+> **Who this is for:** engineers and researchers who want to understand how production LLM systems work under the hood — not just how to call an API.
+
 ## Table of contents
 
 - [What is this?](#what-is-this)
+- [What makes this different](#what-makes-this-different)
 - [Who is it for?](#who-is-it-for)
 - [Topics covered](#topics-covered)
 - [Learning paths](#learning-paths)
@@ -38,6 +41,14 @@ Each notebook follows a consistent six-step structure:
 6. **Exercises** — stretch goals for deeper exploration
 
 The curriculum emphasizes building reliable LLM applications: understanding where systems break, how to measure them, and how to scale them cost-effectively.
+
+## What makes this different
+
+Most LLM tutorials show you how to call an API. This cookbook teaches you what is happening inside the API and how to reason about the systems that serve it.
+
+Every notebook answers a specific engineering question with a numerical result, not just a prose explanation. You reimplement FlashAttention-2 as a Triton GPU kernel, benchmark the roofline model with real memory bandwidth numbers, build a RAG pipeline you can evaluate end-to-end with RAGAS, and run PagedAttention's block allocator in pure Python. The built-in scoring harness verifies that each notebook produces correct numerical outputs before you move on.
+
+The result is a curriculum that covers the full production LLM stack — from GPU kernel programming and KV-cache mechanics to multi-provider serving, LLM observability, and agent evaluation — in a single structured sequence, with real code you can run on a free Colab T4.
 
 ## Who is it for?
 
