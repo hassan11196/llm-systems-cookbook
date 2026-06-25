@@ -58,6 +58,7 @@ sphinx:
     html_show_copyright: false
     html_last_updated_fmt: "%Y-%m-%d"
     html_baseurl: "https://hassan11196.github.io/llm-systems-cookbook/"
+    sitemap_url_scheme: "{link}"
     html_extra_path:
       - robots.txt
     templates_path:

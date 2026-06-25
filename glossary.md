@@ -1,3 +1,8 @@
+---
+html_meta:
+  description: "LLM systems glossary: 100+ terms covering GPU architecture, KV cache, attention mechanisms, RAG pipelines, AI agent frameworks, LLM serving, evaluation methodology, quantization, and production deployment — with chapter pointers for every concept."
+---
+
 # Glossary
 
 A reference for the cross-cutting terms that show up in more than one
