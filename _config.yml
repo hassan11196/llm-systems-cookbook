@@ -38,6 +38,7 @@ html:
   use_repository_button: true
   use_issues_button: true
   use_edit_page_button: false
+  description: "64 hands-on Jupyter notebooks for LLM systems engineering: inference optimization, RAG pipelines, AI agent frameworks, serving and scaling, evaluation, GPU programming, and production LLM patterns."
   extra_footer: |
     <p>Licensed under MIT.
     Source and issues at
@@ -56,6 +57,12 @@ sphinx:
   config:
     html_show_copyright: false
     html_last_updated_fmt: "%Y-%m-%d"
+    html_baseurl: "https://hassan11196.github.io/llm-systems-cookbook/"
+    sitemap_url_scheme: "{link}"
+    html_extra_path:
+      - robots.txt
+    templates_path:
+      - _templates
     html_theme_options:
       # Make the navigation sidebar wider so Part captions don't wrap.
       show_navbar_depth: 2
@@ -70,3 +77,4 @@ sphinx:
       - ["html", "application/javascript", 20]
   extra_extensions:
     - sphinx_design
+    - sphinx_sitemap

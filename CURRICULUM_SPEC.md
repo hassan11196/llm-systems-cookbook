@@ -1,3 +1,8 @@
+---
+html_meta:
+  description: "Full curriculum specification for the LLM Systems Cookbook: 70 Jupyter notebooks with per-chapter learning outcomes, scoring thresholds, paper citations, and prerequisite DAG — covering LLM inference, RAG, agents, serving, evaluation, GPU programming, and production patterns."
+---
+
 # A 70-notebook curriculum for LLM systems engineering
 
 > **Current status (May 2026):** The repository ships **64 of 70** notebooks.

@@ -1,3 +1,8 @@
+---
+html_meta:
+  description: "LLM systems glossary: 100+ terms covering GPU architecture, KV cache, attention mechanisms, RAG pipelines, AI agent frameworks, LLM serving, evaluation methodology, quantization, and production deployment — with chapter pointers for every concept."
+---
+
 # Glossary
 
 A reference for the cross-cutting terms that show up in more than one
@@ -1055,4 +1060,41 @@ RadixArk
   Raised a $100 M seed round at a $400 M valuation in 2026. SGLang
   (the open-source serving framework) runs across 400,000+ GPUs at
   xAI (Grok), Azure, LinkedIn, and Cursor. See also: {term}`SGLang`.
+
+Claude Opus 4.8 / Claude Mythos
+  Anthropic's 2026 frontier models. **Claude Opus 4.8** (released May 28,
+  2026) achieves 88.6% on SWE-bench Verified and 69.2% on SWE-bench Pro —
+  over 10 points ahead of competing proprietary models on SWE-bench Pro.
+  Features a 3× cheaper fast mode and alignment substantially improved over
+  Opus 4.7, with misaligned-behavior rates approaching Claude Mythos Preview
+  levels. **Claude Mythos Preview** leads GPQA Diamond at 94.6% (multimodal-
+  grounded: 92.4 vs 76.1 for Opus 4.8); general availability expected H2 2026.
+  Restricted for cybersecurity work during the preview phase. See also the
+  ``claude-mythos-preview`` model ID in the Anthropic API.
+
+MiniMax M3
+  MiniMax's open-weight multimodal foundation model (released June 1, 2026).
+  Accepts text, image, and video inputs natively; 1 M-token context window.
+  Benchmark highlights: 59.0% SWE-bench Pro, 66.0% Terminal-Bench 2.1, 74.2%
+  MCP Atlas. Positioned as a strong open-weight baseline for agentic and long-
+  context workloads where multimodal grounding is required.
+
+NVIDIA Nemotron 3 Ultra
+  NVIDIA's open-weight frontier MoE model announced at Computex 2026 (June
+  2026). Architecture: 550 B total / 55 B active parameters. Ships under a
+  fully permissive commercial license — unlike most frontier-scale open
+  weights. Day-0 inference support in SGLang at launch. Competes with Kimi
+  K2.6 and Qwen 3.5 on agent-productivity, coding, and knowledge benchmarks.
+
+Kimi K2.7 Code
+  Moonshot AI's open-source coding model (released June 12, 2026). MoE
+  architecture: 1 T total / 32 B active parameters. Reduces reasoning-token
+  usage by 30% compared with K2.6, substantially lowering cost for long
+  autonomous coding sessions. Part of the Kimi K2 family optimised for
+  code generation, debugging, and multi-step agentic software tasks.
+
+GLM-5.2
+  Zhipu AI's June 2026 update to the GLM-5 series. Features a 1 M-token
+  context window; top-ranked open-source model on GPQA Diamond at 91.2%
+  as of mid-2026. Available via the Zhipu AI API and open-weight release.
 ```

@@ -1,0 +1,51 @@
+{% extends "!layout.html" %}
+{% block extrahead %}
+  {{ super() }}
+  {%- set _base = 'https://hassan11196.github.io/llm-systems-cookbook/' %}
+  {%- if pagename == 'intro' %}
+  {%- set _page_url = _base %}
+  {%- else %}
+  {%- set _page_url = _base ~ pagename ~ '.html' %}
+  {%- endif %}
+  {%- set _site_desc = '64 hands-on Jupyter notebooks for LLM systems engineering: inference optimization, RAG pipelines, AI agent frameworks, LLM serving and scaling, evaluation, GPU programming, and production LLM patterns.' %}
+  <meta name="description" content="{{ _site_desc }}" />
+  <meta name="keywords" content="LLM systems engineering, LLM inference optimization, RAG system design, AI agent architecture, LLM evaluation, LLM serving and scaling, GPU programming for LLMs, production LLM applications, LLM observability, LLM engineering cookbook, building reliable LLM applications, practical LLM system design" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="The LLM Systems Cookbook" />
+  <meta property="og:title" content="{{ title|e }} — The LLM Systems Cookbook" />
+  <meta property="og:description" content="{{ _site_desc }}" />
+  <meta property="og:url" content="{{ _page_url }}" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@hassan11196" />
+  <meta name="twitter:title" content="{{ title|e }} — The LLM Systems Cookbook" />
+  <meta name="twitter:description" content="{{ _site_desc }}" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["SoftwareSourceCode", "LearningResource"],
+    "name": "The LLM Systems Cookbook",
+    "description": "A hands-on curriculum for modern LLM systems engineering. 64 Jupyter notebooks covering inference optimization, retrieval-augmented generation, training and fine-tuning, AI agent frameworks, serving and scaling, evaluation methodology, GPU programming, and production LLM patterns.",
+    "url": "https://hassan11196.github.io/llm-systems-cookbook/",
+    "codeRepository": "https://github.com/hassan11196/llm-systems-cookbook",
+    "license": "https://opensource.org/licenses/MIT",
+    "programmingLanguage": "Python",
+    "educationalLevel": "undergraduate",
+    "learningResourceType": "Jupyter notebook curriculum",
+    "teaches": [
+      "LLM inference optimization",
+      "RAG pipeline design",
+      "AI agent frameworks",
+      "LLM serving and scaling",
+      "LLM evaluation methodology",
+      "GPU programming with Triton",
+      "production LLM patterns",
+      "LLM observability"
+    ],
+    "author": {
+      "@type": "Person",
+      "name": "Muhammad Hassan Ahmed"
+    },
+    "keywords": ["LLM systems", "LLM engineering", "production LLM applications", "RAG system design", "LLM inference optimization", "AI agent architecture", "LLM evaluation", "GPU programming", "LLM serving", "LLM observability", "Jupyter notebook curriculum", "practical LLM system design"]
+  }
+  </script>
+{% endblock %}
