@@ -36,37 +36,37 @@
 
 ## Reading order
 
-No mandatory prerequisites — all CPU-safe, all from-scratch.
+No mandatory prerequisites. All notebooks are CPU-safe and written from scratch.
 
-1. `01_perplexity_from_scratch` — the canonical metric derived and
+1. `01_perplexity_from_scratch`: the canonical metric derived and
    implemented three ways.
-2. `02_mmlu_harness_calibration` — logit-based multiple-choice +
+2. `02_mmlu_harness_calibration`: logit-based multiple-choice plus
    ECE.
-3. `03_humaneval_unbiased_pass_k` — sandboxed candidate execution +
+3. `03_humaneval_unbiased_pass_k`: sandboxed candidate execution plus
    unbiased estimator.
-4. `04_llm_as_judge_bias` — position and verbosity bias, quantified.
-5. `05_arena_elo_bradley_terry` — pairwise preferences to rankings.
-6. `06_long_context_niah_ruler` — decay model + RULER composite.
-7. `07_contamination_detection` — n-gram overlap + Min-K Prob.
-8. `08_lm_eval_inspect_ai` — cross-framework reconciliation on a
+4. `04_llm_as_judge_bias`: position and verbosity bias, quantified.
+5. `05_arena_elo_bradley_terry`: pairwise preferences to rankings.
+6. `06_long_context_niah_ruler`: decay model plus RULER composite.
+7. `07_contamination_detection`: n-gram overlap plus Min-K Prob.
+8. `08_lm_eval_inspect_ai`: cross-framework reconciliation on a
    synthetic task.
 
 ## Benchmark landscape (mid-2026)
 
-The evaluation frontier has shifted since 2024. Several previously-challenging benchmarks are now saturated:
+The evaluation frontier has shifted since 2024. Several benchmarks that were difficult in 2024 are now saturated:
 
 | Benchmark | 2024 SOTA | 2026 SOTA | Status |
 |---|---|---|---|
-| MMLU | ~86% | 88–94% | Saturated |
+| MMLU | ~86% | 88-94% | Saturated |
 | HumanEval | ~95% | ~99% | Saturated |
 | GSM8K | ~97% | ~99% | Saturated |
-| GPQA-Diamond | ~70% | 91–94% | Active frontier |
-| ARC-AGI-2 | ~5% | ~60–65% | Active frontier |
-| AIME 2025 | — | 91–94% | Active frontier |
-| SWE-bench Verified | ~45% | ~77–80% | Active frontier |
-| SWE-bench Pro | — | 80.3% | Active frontier |
-| FrontierCode (Diamond) | — | 29.3% | Active frontier |
+| GPQA-Diamond | ~70% | 91-94% | Active frontier |
+| ARC-AGI-2 | ~5% | ~60-65% | Active frontier |
+| AIME 2025 | N/A | 91-94% | Active frontier |
+| SWE-bench Verified | ~45% | ~77-80% | Active frontier |
+| SWE-bench Pro | N/A | 80.3% | Active frontier |
+| FrontierCode (Diamond) | N/A | 29.3% | Active frontier |
 
-**SWE-bench Pro** and **FrontierCode** (Cognition's hardest coding split) are the new discriminating benchmarks for frontier coding agents; the leading model on SWE-bench Pro leads the next-best by over 11 points. **Hebbia Finance Benchmark** covers senior-level reasoning over financial documents and is gaining adoption as a proxy for document-understanding capability.
+SWE-bench Pro and FrontierCode (Cognition's hardest coding split) are the new discriminating benchmarks for frontier coding agents. The leading model on SWE-bench Pro leads the next-best by over 11 points. The Hebbia Finance Benchmark covers senior-level reasoning over financial documents and is gaining adoption as a proxy for document-understanding capability.
 
-The notebooks in this part teach the **mechanics** of evaluation on un-saturated tasks; the numerical thresholds in the scoring checks target 2026-accessible open-weight models (Qwen2.5-0.5B, Phi-3.5-mini, SmolLM2-360M) that still show non-trivial variance on MMLU and HumanEval, making them pedagogically useful even as frontier models approach ceiling.
+The notebooks in this part teach the mechanics of evaluation on un-saturated tasks. The numerical thresholds in the scoring checks target 2026-accessible open-weight models (Qwen2.5-0.5B, Phi-3.5-mini, SmolLM2-360M) that still show non-trivial variance on MMLU and HumanEval, which keeps them useful for teaching even as frontier models approach the ceiling.

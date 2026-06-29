@@ -6,8 +6,8 @@
 
 **A hands-on curriculum for modern LLM systems engineering.** 64 Jupyter
 notebooks that teach inference, RAG, training, agents, serving,
-evaluation, GPU programming, and production LLM patterns — each by
-reimplementing the core technique from first principles, exercising a
+evaluation, GPU programming, and production LLM patterns. Each chapter
+reimplements the core technique from first principles, exercises a
 real production library, or both, with deterministic numerical checks.
 
 Written for a computer-science undergraduate who wants to go from
@@ -18,7 +18,7 @@ with no prior deep-learning background assumed.
 :class: tip
 
 1. Click the **rocket 🚀 button** at the top-right of any chapter and
-   choose *Colab* to run it end-to-end on a free T4 - no install.
+   choose *Colab* to run it end-to-end on a free T4, with no install.
 2. Start with the **Foundations** part if you're new to GPU
    programming; otherwise jump directly into the track that interests
    you.
@@ -149,17 +149,17 @@ thresholds, paper citations, and prerequisite DAG.
 :link: CURRICULUM_SPEC
 :link-type: doc
 
-**Test-time compute & reasoning models** — best-of-N, process reward
+**Test-time compute & reasoning models**: best-of-N, process reward
 models, budget forcing (S1 "wait" trick), MCTS over reasoning steps.
 
-**BitNet & sub-2-bit serving** — ternary `BitLinear`, ternary-aware
+**BitNet & sub-2-bit serving**: ternary `BitLinear`, ternary-aware
 training, `bitnet.cpp` CPU inference.
 
-**Multimodal / VLM track** — SigLIP 2 fine-tune, LLaVA projection,
+**Multimodal / VLM track**: SigLIP 2 fine-tune, LLaVA projection,
 VLM evaluation (MMBench / POPE / HallusionBench), Phi-4-Multimodal
 document QA, Vision-Language-Action overview.
 
-**Safety & red-teaming** — HarmBench, constitutional self-critique,
+**Safety & red-teaming**: HarmBench, constitutional self-critique,
 hard-list watermarking, toxicity scoring.
 
 *Fully specified in CURRICULUM_SPEC.md · contributions welcome*
@@ -180,10 +180,10 @@ hard-list watermarking, toxicity scoring.
   07_gpu/04, plus 07_gpu/07 Nsight profiling) note their requirements
   in their chapter header.
 
-```{admonition} What's new — May 2026
+```{admonition} What's new in May 2026
 :class: note
 
-- **Glossary** extended with 2025–2026 terms: test-time compute, reasoning
+- **Glossary** extended with 2025 to 2026 terms: test-time compute, reasoning
   models, BitNet / ternary quantization, FP4 (Blackwell), VLM / SigLIP,
   NVIDIA Dynamo / NIXL, DoRA, ORPO, Vera Rubin GPU, PegaFlow, Gemini 3.5
   Flash, and more.
@@ -195,14 +195,14 @@ hard-list watermarking, toxicity scoring.
 - **Training track (v0.2):** six remaining notebooks (tensor parallel,
   pipeline parallel, LoRA/DoRA, QLoRA, DPO/ORPO, GRPO) are fully specified
   and in active development.
-- **Google I/O 2026 (May 19):** Gemini 3.5 Flash GA — frontier Flash-tier
-  speed with Pro-tier coding/agentic accuracy; 1 M-token context window;
+- **Google I/O 2026 (May 19):** Gemini 3.5 Flash GA, with Flash-tier
+  speed and Pro-tier coding/agentic accuracy; 1 M-token context window;
   dynamic thinking on by default; Gemini Spark persistent 24/7 agent; ADK v1.0
   stable across Python, Go, Java, and TypeScript; A2A v1.0 in production at
   150+ organisations. **Gemini 3.5 Pro** expected June 2026.
 - **OpenAI (May 5):** GPT-5.5 Instant is now the default ChatGPT model for
-  all tiers — 52.5% fewer hallucinated claims, 30% more concise output,
-  personalisation via past conversations, files, and Gmail. GPT-5.5 Thinking
+  all tiers, with 52.5% fewer hallucinated claims, 30% more concise output,
+  and personalisation via past conversations, files, and Gmail. GPT-5.5 Thinking
   is OpenAI's unified reasoning model: a single router auto-selects between
   fast and extended chain-of-thought inference, retiring the standalone
   o-series (o4-mini et al.).
@@ -210,12 +210,12 @@ hard-list watermarking, toxicity scoring.
   in vLLM ≥ 0.20; replaces CPU PyTorch ops with GPU-native Triton kernels,
   delivering 56% higher throughput on GB200 and zero-synchronization
   speculative decoding (6.3% lower TPOT on 4×GB200).
-- **Hardware roadmap:** NVIDIA Vera Rubin platform (announced GTC 2026) —
+- **Hardware roadmap:** NVIDIA Vera Rubin platform (announced GTC 2026):
   Rubin GPU (288 GB HBM4, 50 PFLOPS FP4), Vera CPU (72-core ARM), NVLink 6;
   targeting 5× Blackwell inference throughput at 10× lower cost; H2 2026.
   Rubin CPX variant optimised for massive-context inference now documented in
   the glossary.
-- **Serving infrastructure:** PegaFlow (Novita AI, May 2026) — GIL-free Rust
+- **Serving infrastructure:** PegaFlow (Novita AI, May 2026): GIL-free Rust
   external KV cache for vLLM/SGLang with GPU offload, SSD tiering, and RDMA
   cross-node KV sharing.
 ```

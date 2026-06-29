@@ -1,4 +1,4 @@
-# Foundations — GPU programming and the roofline
+# Foundations: GPU programming and the roofline
 
 ```{admonition} What you'll learn in this part
 :class: tip
@@ -14,7 +14,7 @@
 - Translate to JAX for distributed arrays and automatic sharding.
 ```
 
-Every later part of the book — inference, serving, training — ends up
+Every later part of the book (inference, serving, training) ends up
 on a graph whose axes are arithmetic intensity and throughput. This
 part builds the axes.
 
@@ -29,21 +29,21 @@ part builds the axes.
 
 ## Reading order
 
-1. `01_gpu_architecture_tour` — device discovery + peak-bandwidth
+1. `01_gpu_architecture_tour`: device discovery plus peak-bandwidth
    and peak-TFLOPs microbenchmarks.
-2. `02_triton_101_softmax` — first Triton kernel.
-3. `03_triton_tiled_matmul` — grouped-order tiled matmul, target 70 %
+2. `02_triton_101_softmax`: first Triton kernel.
+3. `03_triton_tiled_matmul`: grouped-order tiled matmul, target 70 %
    of cuBLAS.
-4. `04_triton_flashattention` — FA2 forward with online softmax.
-5. `05_fused_rope_rmsnorm` — position-dependent rotation + variance
+4. `04_triton_flashattention`: FA2 forward with online softmax.
+5. `05_fused_rope_rmsnorm`: position-dependent rotation plus variance
    normalisation fused into two kernels.
-6. `06_torch_compile_deep_dive` — TorchDynamo + Inductor, graph
+6. `06_torch_compile_deep_dive`: TorchDynamo plus Inductor, graph
    breaks, reduce-overhead mode.
-7. `07_nsight_profiling` — NVTX annotations + `torch.profiler`
+7. `07_nsight_profiling`: NVTX annotations plus `torch.profiler`
    fallback.
-8. `08_jax_sharding_pipeline` — distributed arrays, 1-D mesh,
+8. `08_jax_sharding_pipeline`: distributed arrays, 1-D mesh,
    PartitionSpec.
-9. `05_serving/01_roofline_analysis` (cross-reference) — closes the
+9. `05_serving/01_roofline_analysis` (cross-reference): closes the
    foundations arc by applying the roofline to LLM serving
    workloads.
 
