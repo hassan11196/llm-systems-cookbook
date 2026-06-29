@@ -38,6 +38,11 @@ source.
 - `make lint` must pass.
 - Tone: neutral and technical. Avoid marketing copy, quiz-style framing, or
   apologetic prose. The repo reads as a reference, not a diary.
+- Prose stays evergreen: no month-stamped claims (`released May 2026`,
+  `as of June 2026`) in docs or notebook markdown — year-level granularity
+  at most. `make check-evergreen` verifies this; dated identifiers inside
+  inline code spans (API headers, spec versions) and fixture data are
+  exempt. See `IMPROVEMENT_PLAN.md`.
 
 ## Notebook init cell
 

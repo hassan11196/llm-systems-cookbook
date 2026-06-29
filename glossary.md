@@ -73,19 +73,72 @@ Blackwell / GB200
   aggregates 36 Grace CPUs and 72 B200 GPUs with 1,440 GB of total
   HBM3e, delivering up to 1.5 million tokens/second on large MoE models
   and ~15× H100 throughput on FP8 inference workloads. MLPerf v5.0
-  showed up to 2.6× faster training vs Hopper at equivalent scale.
+  showed up to 2.6× faster training vs Hopper at equivalent scale. The
+  follow-on **B300** (shipping since Q1 2026) doubles HBM3e to 288 GB
+  at 8 TB/s bandwidth and delivers 15 PFLOPS of FP4 compute per card —
+  the same HBM3e capacity as the forthcoming Vera Rubin R100 GPU.
 
 Vera Rubin / Rubin GPU
-  NVIDIA's next-generation GPU architecture announced at GTC 2026,
-  succeeding Blackwell. The Rubin R100 GPU packs 336 B transistors,
-  288 GB HBM4 memory, and 50 PFLOPS FP4 throughput — 2.5× the FP4
-  throughput of Blackwell B200. Paired with the Vera CPU (72 ARM Grace
-  cores, 3× the memory bandwidth of x86 rivals) and NVLink 6
-  interconnect, the full Vera Rubin platform targets 5× Blackwell
-  inference throughput at 10× lower cost per token. A dedicated
-  Rubin CPX variant is optimised for massive-context inference
-  workloads. Partner availability (AWS, GCP, Azure, CoreWeave, Lambda)
-  is planned for H2 2026.
+  NVIDIA's next-generation GPU architecture (announced GTC 2026, volume
+  production Q3 2026), succeeding Blackwell. The Rubin R100 GPU packs
+  336 B transistors, 288 GB HBM4 (8 stacks × 36 GB, 22 TB/s aggregate
+  bandwidth), and 50 PFLOPS FP4 throughput — 2.5× the FP4 throughput of
+  Blackwell B200. HBM4 is supplied by SK Hynix (~66%), Samsung (~25%),
+  and Micron (remainder) — all three certified by NVIDIA in June 2026.
+  Paired with the Vera CPU (72 ARM Grace cores, 3× the memory bandwidth
+  of x86 rivals) and **NVLink 6** (3.6 TB/s bidirectional per GPU,
+  2× NVLink 5), the Vera Rubin NVL72 rack delivers 260 TB/s scale-up
+  bandwidth. The platform targets 5× Blackwell inference throughput at
+  10× lower cost per token. **NVLink Fusion** (announced GTC 2026)
+  opens the NVLink 6 interface to third-party silicon (Intel, Qualcomm,
+  Marvell, Fujitsu et al.). First cloud deliveries (AWS, GCP, Azure,
+  CoreWeave, Lambda) are planned for H2 2026.
+
+Google TPU v6 (Trillium)
+  Google's sixth-generation Tensor Processing Unit, generally available
+  December 2024. Delivers 4× more compute per chip than TPU v5e and 4×
+  the HBM capacity (32 GB per chip). Trillium chips interconnect at
+  4,096 chips per pod via Interchip Interconnect (ICI) with no
+  top-of-rack switch, enabling up to 100 PFLOPs FP8 per pod. Available
+  on Google Cloud as the ``v6e`` accelerator SKU.
+
+Google TPU v7 (Ironwood)
+  Google's seventh-generation TPU, announced at Google Cloud Next 2025
+  and reaching general availability in late 2025. Doubles per-chip peak
+  FLOPs and HBM vs Trillium; includes the first in-hardware SparseCore
+  accelerator for embedding-table lookups at scale. Primary compute
+  substrate for Gemini 2.x training and serving.
+
+Google TPU 8t / 8i (Sunfish / Zebrafish)
+  Google's eighth-generation TPU variants announced at Google Cloud Next
+  2026 (April 2026). The **8t (Sunfish)** is training-optimised:
+  12.6 FP4 PFLOPS per chip, supporting million-chip training clusters
+  via next-generation ICI. The **8i (Zebrafish)** is inference-optimised:
+  288 GB HBM, 10.1 FP4 PFLOPS per chip, purpose-built for long-context
+  reasoning workloads. The "8t / 8i" naming convention (eighth-gen,
+  training / inference) supersedes the prior v6/v7 numbering.
+
+HBM4
+  The fourth generation of High Bandwidth Memory (JEDEC JESD270-4,
+  finalised April 2025). The most significant architectural overhaul
+  since HBM's introduction: bus width doubles to 2,048 bits (from
+  1,024 bits in HBM3/3e), independent channels increase from 16 to 32
+  (64 pseudo-channels), and the base die moves to a logic-process
+  foundry (TSMC 12 nm FFC+) for the first time, enabling inline ECC
+  and advanced power management. JEDEC floor: 8 Gbps / 2.0 TB/s per
+  stack. Commercial parts exceed this significantly — Samsung's first
+  HBM4 shipment (February 2026) runs at 11.7–13 Gbps (up to 3.3 TB/s
+  per stack at 2,048-bit width); SK Hynix 16-Hi HBM4 reaches 48 GB at
+  10+ Gbps (mass production Q3 2026). Power efficiency improves ~40%
+  vs HBM3e (~5–6 pJ/bit vs ~7–9 pJ/bit). All three major suppliers
+  (SK Hynix, Samsung, Micron) are NVIDIA-certified for Vera Rubin.
+
+AMD MI400 / Instinct MI455X
+  AMD's CDNA 5 AI accelerator, announced at CES 2026. The MI455X
+  variant features 432 GB HBM4 — the largest on-package memory of any
+  GPU at launch — and 19.6 TB/s of memory bandwidth, surpassing Vera
+  Rubin R100 on raw bandwidth. Built on TSMC 3 nm. Targets large-model
+  inference workloads where memory capacity is the primary constraint.
 ```
 
 ## Roofline, throughput, latency
@@ -965,4 +1018,83 @@ XGrammar
   decoding versus the prior generation. Now the default constrained-
   decoding backend in SGLang 0.5 and an optional integration in vLLM
   0.20 and TensorRT-LLM.
+
+GPT-5 / GPT-5.5 Thinking
+  OpenAI's 2026 frontier models. **GPT-5** achieves 100% on AIME 2026
+  and leads Chatbot Arena at Elo 1,561 as of June 2026. **GPT-5.5
+  Instant** (May 2026) became the default ChatGPT model for all tiers
+  with 52.5% fewer hallucinated claims and 30% more concise output.
+  **GPT-5.5 Thinking** is a unified reasoning model: a single router
+  auto-selects between fast and extended chain-of-thought inference,
+  retiring the standalone o-series (o1, o3, o4-mini et al.) into one
+  product line.
+
+Gemini 3.5 Pro
+  Google DeepMind's mid-2026 frontier model. In limited Vertex AI
+  preview as of June 2026 — 2 M-token context window, "Deep Think"
+  extended reasoning mode, and frontier multimodal understanding (text,
+  images, video, audio). GA expected before end of June 2026. The
+  preceding **Gemini 3.1 Pro** leads GPQA-Diamond at 94.3% ($2 / $12
+  per million tokens).
+
+Qwen 3.5
+  Alibaba's 2026 MoE update to the Qwen3 series. Flagship
+  **Qwen3.5** is a 397 B total / 17 B active Mixture-of-Experts model.
+  **Qwen3.5-plus** scores 91.3% on AIME 2026, the strongest
+  open-weight result on the math-reasoning leaderboard as of mid-2026.
+
+DeepSeek V4
+  DeepSeek's 2026 flagship MoE model: 1 T total parameters with a
+  1 M-token context window. Native support added at launch in Megatron
+  Core, vLLM 0.20, and SGLang 0.5.
+
+Microsoft Agent Framework v1.0
+  Released April 2026, this library unifies AutoGen and Semantic Kernel
+  into a single SDK. AutoGen 0.4 and Semantic Kernel separately move
+  to maintenance mode. LangGraph surpassed CrewAI in GitHub stars in
+  the same month. The framework implements the A2A v1.0 and MCP
+  protocols natively.
+
+RadixArk
+  The company behind SGLang, spun out of UC Berkeley's LMSYS group.
+  Raised a $100 M seed round at a $400 M valuation in 2026. SGLang
+  (the open-source serving framework) runs across 400,000+ GPUs at
+  xAI (Grok), Azure, LinkedIn, and Cursor. See also: {term}`SGLang`.
+
+Claude Opus 4.8 / Claude Mythos
+  Anthropic's 2026 frontier models. **Claude Opus 4.8** (released May 28,
+  2026) achieves 88.6% on SWE-bench Verified and 69.2% on SWE-bench Pro —
+  over 10 points ahead of competing proprietary models on SWE-bench Pro.
+  Features a 3× cheaper fast mode and alignment substantially improved over
+  Opus 4.7, with misaligned-behavior rates approaching Claude Mythos Preview
+  levels. **Claude Mythos Preview** leads GPQA Diamond at 94.6% (multimodal-
+  grounded: 92.4 vs 76.1 for Opus 4.8); general availability expected H2 2026.
+  Restricted for cybersecurity work during the preview phase. See also the
+  ``claude-mythos-preview`` model ID in the Anthropic API.
+
+MiniMax M3
+  MiniMax's open-weight multimodal foundation model (released June 1, 2026).
+  Accepts text, image, and video inputs natively; 1 M-token context window.
+  Benchmark highlights: 59.0% SWE-bench Pro, 66.0% Terminal-Bench 2.1, 74.2%
+  MCP Atlas. Positioned as a strong open-weight baseline for agentic and long-
+  context workloads where multimodal grounding is required.
+
+NVIDIA Nemotron 3 Ultra
+  NVIDIA's open-weight frontier MoE model announced at Computex 2026 (June
+  2026). Architecture: 550 B total / 55 B active parameters. Ships under a
+  fully permissive commercial license — unlike most frontier-scale open
+  weights. Day-0 inference support in SGLang at launch. Competes with Kimi
+  K2.6 and Qwen 3.5 on agent-productivity, coding, and knowledge benchmarks.
+
+Kimi K2.7 Code
+  Moonshot AI's open-source coding model (released June 12, 2026). MoE
+  architecture: 1 T total / 32 B active parameters. Reduces reasoning-token
+  usage by 30% compared with K2.6, substantially lowering cost for long
+  autonomous coding sessions. Part of the Kimi K2 family optimised for
+  code generation, debugging, and multi-step agentic software tasks.
+
+GLM-5.2
+  Zhipu AI's June 2026 update to the GLM-5 series. Features a 1 M-token
+  context window; top-ranked open-source model on GPQA Diamond at 91.2%
+  as of mid-2026. Available via the Zhipu AI API and open-weight release.
 ```

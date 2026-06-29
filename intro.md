@@ -26,6 +26,95 @@ Written for a computer-science undergraduate who wants to go from
 "I know what softmax is" to "I can reason about LLM serving economics,"
 with no prior deep-learning background assumed.
 
+```{admonition} What's new — June 2026
+:class: note
+
+- **Claude Opus 4.8** (May 28, 2026): leads SWE-bench Pro at 69.2% and SWE-bench Verified
+  at 88.6% — over 10 points ahead of competing models on SWE-bench Pro; 3× cheaper fast mode
+  than Opus 4.7. **Claude Mythos Preview** (in preview): leads GPQA Diamond at 94.6% and
+  multimodal-grounded tasks at 92.4%; general availability expected imminently.
+- **MiniMax M3** (June 1, 2026): open-weight multimodal model (text, image, video); 1 M-token
+  context window; 59.0% SWE-bench Pro, 66.0% Terminal-Bench 2.1, 74.2% MCP Atlas — strong
+  open-weight baseline for agentic and long-context workloads.
+- **NVIDIA Nemotron 3 Ultra** (Computex 2026, June 2026): 550 B / 55 B active MoE with a
+  fully permissive commercial license; day-0 SGLang support; competes with Kimi K2.6 and
+  Qwen 3.5 on agent and knowledge tasks.
+- **Kimi K2.7 Code** (June 12, 2026): Moonshot AI's 1 T / 32 B active MoE open-source coding
+  model; 30% fewer thinking tokens than K2.6, cutting cost on long autonomous coding sessions.
+- **GLM-5.2** (June 13, 2026): Zhipu AI 1 M-token context model; top open-source model on
+  GPQA at 91.2%.
+- **Vera Rubin production confirmed**: entered full production at GTC Taipei (June 2026);
+  cloud partner availability (AWS, GCP, Azure, CoreWeave, Lambda) on track for H2 2026.
+- **Benchmark landscape updated**: Claude Opus 4.5 leads SWE-bench Verified at 80.9%;
+  Claude Opus 4.8 leads SWE-bench Pro at 69.2% (vendor-reported); Claude Mythos Preview
+  leads GPQA Diamond at 94.6% — superseding Gemini 3.1 Pro (94.3%). GPT-5.2 models
+  deprecated in ChatGPT (June 2026); GPT-5.5 is now the current OpenAI production line.
+- **GPT-5** achieves 100% on AIME 2026 and leads Chatbot Arena (Elo 1,561); **GPT-5.5
+  Thinking** retires the o-series into a single router that auto-selects fast vs extended
+  chain-of-thought inference.
+- **Gemini 3.5 Pro** in limited Vertex preview — 2 M-token context, "Deep Think"
+  reasoning mode, frontier multimodal understanding; GA expected H2 2026.
+- **Llama 4** (April 5, 2026): Scout (10 M-token context, 2,600 tok/s, MLA + FP8 native)
+  and Maverick (Chatbot Arena Elo ≈ 1,417) openly released by Meta; Behemoth in training.
+- **Qwen 3.5** MoE (397 B / 17 B active): Qwen3.5-plus scores 91.3% on AIME 2026 —
+  strongest open-weight math-reasoning result as of mid-2026.
+- **DeepSeek V4**: 1 T parameters, 1 M-token context; day-0 support in Megatron Core, vLLM
+  0.20, and SGLang 0.5.
+- **TGI maintenance**: Hugging Face Text Generation Inference moves to maintenance mode —
+  vLLM and SGLang are the recommended production engines. SGLang serves xAI Grok, Azure,
+  LinkedIn, and Cursor across 400,000+ GPUs; **RadixArk** (SGLang company) raised a
+  $100 M seed round at $400 M valuation.
+- **MCP** crosses 200 server implementations; **ACP** merges into **A2A v1.0** under the
+  Linux Foundation. **CrewAI v1.14.6** ships native MCP and A2A support.
+- **Microsoft Agent Framework v1.0** (April 2026): AutoGen and Semantic Kernel unified
+  into one library; LangGraph surpasses CrewAI in GitHub stars.
+- **Google Cloud Next 2026** (April 2026): **TPU 8t (Sunfish)** and **TPU 8i (Zebrafish)**
+  announced; **AMD MI400** (MI455X): 432 GB HBM4, 19.6 TB/s bandwidth.
+- **Vera Rubin NVL72**: 288 GB HBM4, NVLink 6 (3.6 TB/s per GPU); **NVLink Fusion** opens
+  NVLink to third-party silicon. **Blackwell B300** (Q1 2026): 288 GB HBM3e, 8 TB/s.
+```
+
+```{admonition} What's new — May 2026
+:class: note
+
+- **Glossary** extended with 2025–2026 terms: test-time compute, reasoning
+  models, BitNet / ternary quantization, FP4 (Blackwell), VLM / SigLIP,
+  NVIDIA Dynamo / NIXL, DoRA, ORPO, Vera Rubin GPU, PegaFlow, Gemini 3.5
+  Flash, and more.
+- **Curriculum spec** updated with the v0.3 roadmap: inference-time scaling
+  notebook, BitNet/sub-2-bit serving notebook, a 5-notebook multimodal track,
+  and a safety/red-teaming track.
+- **Framework pins** refreshed to the May 2026 ecosystem (torch 2.7, vLLM
+  0.20, SGLang 0.5 + XGrammar-2, TRL 0.26, PEFT 0.14, JAX 0.6).
+- **Training track (v0.2):** six remaining notebooks (tensor parallel,
+  pipeline parallel, LoRA/DoRA, QLoRA, DPO/ORPO, GRPO) are fully specified
+  and in active development.
+- **Google I/O 2026 (May 19):** Gemini 3.5 Flash GA — frontier Flash-tier
+  speed with Pro-tier coding/agentic accuracy; 1 M-token context window;
+  dynamic thinking on by default; Gemini Spark persistent 24/7 agent; ADK v1.0
+  stable across Python, Go, Java, and TypeScript; A2A v1.0 in production at
+  150+ organisations. **Gemini 3.5 Pro** expected June 2026.
+- **OpenAI (May 5):** GPT-5.5 Instant is now the default ChatGPT model for
+  all tiers — 52.5% fewer hallucinated claims, 30% more concise output,
+  personalisation via past conversations, files, and Gmail. GPT-5.5 Thinking
+  is OpenAI's unified reasoning model: a single router auto-selects between
+  fast and extended chain-of-thought inference, retiring the standalone
+  o-series (o4-mini et al.).
+- **vLLM Model Runner V2 (MRV2):** opt-in via `VLLM_USE_V2_MODEL_RUNNER=1`
+  in vLLM ≥ 0.20; replaces CPU PyTorch ops with GPU-native Triton kernels,
+  delivering 56% higher throughput on GB200 and zero-synchronization
+  speculative decoding (6.3% lower TPOT on 4×GB200).
+- **Hardware roadmap:** NVIDIA Vera Rubin platform (announced GTC 2026) —
+  Rubin GPU (288 GB HBM4, 50 PFLOPS FP4), Vera CPU (72-core ARM), NVLink 6;
+  targeting 5× Blackwell inference throughput at 10× lower cost; H2 2026.
+  Rubin CPX variant optimised for massive-context inference now documented in
+  the glossary.
+- **Serving infrastructure:** PegaFlow (Novita AI, May 2026) — GIL-free Rust
+  external KV cache for vLLM/SGLang with GPU offload, SSD tiering, and RDMA
+  cross-node KV sharing.
+```
+
+
 ```{admonition} How to read this book
 :class: tip
 
