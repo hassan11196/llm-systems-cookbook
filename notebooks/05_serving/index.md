@@ -1,8 +1,3 @@
----
-html_meta:
-  description: "LLM serving and scaling: KV-cache variants (MHA/GQA/MLA), KV compression, GPTQ/AWQ quantization, FP8, MoE serving, DistServe/Dynamo, and LLM observability — production deployment from first principles."
----
-
 # Serving and scaling
 
 ```{admonition} What you'll learn in this part
@@ -36,7 +31,7 @@ html_meta:
 - **{term}`MoE`** and **{term}`expert parallel`** describe sparse expert routing at scale.
 - **{term}`SLO`** is the service reliability target that autoscaling is designed to satisfy.
 - **{term}`FP8`** is now a first-class production format on H100; the 2025
-  NVIDIA **{term}`Blackwell / GB200`** generation adds **{term}`NV-FP4`**
+  NVIDIA **{term}`Blackwell / GB200`** generation adds **NV-FP4**
   tensor cores and ~8 TB/s HBM3e bandwidth on the B200.
 - **{term}`SGLang`** and **{term}`NVIDIA Dynamo`** are the two new
   production serving runtimes that complement vLLM in 2025–2026.
