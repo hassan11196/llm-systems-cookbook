@@ -1,8 +1,3 @@
----
-html_meta:
-  description: "Production LLM patterns: Anthropic SDK prompt caching, LiteLLM multi-provider routing, tool use, structured outputs, hybrid RAG with citations, MCP server, DSPy MIPROv2, Inspect AI eval harness, and GPU cost modeling — with real API fixtures for replay mode."
----
-
 # Production patterns
 
 Real LLM code that runs against real APIs (Anthropic, OpenAI, Ollama,

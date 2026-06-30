@@ -1,8 +1,3 @@
----
-html_meta:
-  description: "GPU programming for LLMs: GPU architecture, roofline model, Triton kernel development (softmax, tiled matmul, FlashAttention-2), fused ops, torch.compile, Nsight profiling, and JAX sharding — from first principles."
----
-
 # Foundations — GPU programming and the roofline
 
 ```{admonition} What you'll learn in this part

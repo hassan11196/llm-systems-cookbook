@@ -1,15 +1,3 @@
----
-html_meta:
-  description: "The LLM Systems Cookbook: 64 Jupyter notebooks for LLM systems engineering — inference optimization, RAG pipelines, AI agent frameworks, LLM serving and scaling, evaluation, GPU programming, and production LLM patterns. Free to run on Colab."
-  og:type: "website"
-  og:title: "The LLM Systems Cookbook"
-  og:description: "64 hands-on Jupyter notebooks for LLM systems engineering: inference optimization, RAG pipelines, AI agent frameworks, serving and scaling, evaluation, GPU programming, and production LLM patterns."
-  og:url: "https://hassan11196.github.io/llm-systems-cookbook/"
-  twitter:card: "summary"
-  twitter:title: "The LLM Systems Cookbook"
-  twitter:description: "64 hands-on Jupyter notebooks for LLM systems engineering: inference optimization, RAG, agents, serving, evaluation, GPU programming, and production LLM patterns."
----
-
 # The LLM Systems Cookbook
 
 ```{image} https://img.shields.io/badge/book-llm--systems--cookbook-2ea44f?style=for-the-badge

@@ -1,8 +1,3 @@
----
-html_meta:
-  description: "LLM training and fine-tuning: mixed precision training, gradient accumulation, FSDP2 distributed training, LoRA, QLoRA, DPO/ORPO, and GRPO — hands-on Jupyter notebooks from first principles."
----
-
 # Training and fine-tuning
 
 ```{admonition} What you'll learn in this part
@@ -54,5 +49,5 @@ development:
 - **08** GRPO DeepSeek-R1-style reasoning RL (GSM8K reward shaping)
 
 This index will grow as each notebook lands. Contributions welcome —
-see [`CONTRIBUTING.md`](../../CONTRIBUTING.md).
+see [`CONTRIBUTING.md`](https://github.com/hassan11196/llm-systems-cookbook/blob/main/CONTRIBUTING.md).
 ```

@@ -1,8 +1,3 @@
----
-html_meta:
-  description: "Build AI agent frameworks from scratch: ReAct, structured outputs, LangGraph state machines, DSPy/MIPROv2 prompt optimization, Model Context Protocol (MCP), AutoGen, CrewAI, and agent evaluation with τ-bench and SWE-bench."
----
-
 # Agent frameworks
 
 ```{admonition} What you'll learn in this part

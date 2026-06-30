@@ -33,7 +33,7 @@ repository:
   path_to_book: ""
 
 html:
-  favicon: ""
+  favicon: "assets/favicon.png"
   home_page_in_navbar: true
   use_repository_button: true
   use_issues_button: true
@@ -61,8 +61,25 @@ sphinx:
     sitemap_url_scheme: "{link}"
     html_extra_path:
       - robots.txt
+      - assets
     templates_path:
       - _templates
+    # Per-page meta/OG/Twitter descriptions, consumed by _templates/layout.html.
+    # Single source of truth so each page gets one unique, non-duplicated
+    # description across <meta name="description">, Open Graph, and Twitter cards.
+    html_context:
+      page_descriptions:
+        intro: "The LLM Systems Cookbook: 64 hands-on Jupyter notebooks for LLM systems engineering — inference optimization, RAG pipelines, AI agent frameworks, serving and scaling, evaluation, GPU programming, and production LLM patterns. Free to run on Colab."
+        notebooks/07_gpu/index: "GPU programming for LLMs: GPU architecture, the roofline model, Triton kernel development (softmax, tiled matmul, FlashAttention-2), fused ops, torch.compile, Nsight profiling, and JAX sharding — from first principles."
+        notebooks/01_inference/index: "LLM inference optimization from first principles: KV-cache mechanics, PagedAttention, continuous batching, FlashAttention-2, radix prefix caching, speculative decoding, SARATHI chunked prefill, and disaggregated serving."
+        notebooks/05_serving/index: "LLM serving and scaling: KV-cache variants (MHA/GQA/MLA), KV compression, GPTQ/AWQ quantization, FP8, MoE serving, DistServe/Dynamo, and LLM observability — production deployment patterns from first principles."
+        notebooks/03_training/index: "LLM training and fine-tuning: mixed-precision training, gradient accumulation, FSDP2 distributed training, LoRA, QLoRA, and DPO/ORPO/GRPO preference optimization — hands-on Jupyter notebooks from first principles."
+        notebooks/02_rag/index: "Build production RAG systems: chunking strategies, FAISS dense retrieval, BM25/SPLADE hybrid search, ColBERTv2 late interaction, reranking, HyDE query rewriting, RAPTOR hierarchical retrieval, GraphRAG, and RAGAS evaluation."
+        notebooks/04_agents/index: "Build AI agent frameworks from scratch: ReAct, structured outputs, LangGraph state machines, DSPy/MIPROv2 prompt optimization, the Model Context Protocol (MCP), AutoGen, CrewAI, and agent evaluation with τ-bench and SWE-bench."
+        notebooks/06_eval/index: "LLM evaluation methodology: perplexity, MMLU calibration, HumanEval pass@k, LLM-as-judge bias, Arena Elo/Bradley-Terry, NIAH/RULER long-context tests, contamination detection, and harnesses (lm-eval, Inspect AI)."
+        notebooks/08_production/index: "Production LLM patterns: prompt caching, LiteLLM multi-provider routing and fallbacks, tool use, structured outputs, hybrid RAG with citations, MCP servers, DSPy MIPROv2, Inspect AI evaluation, and GPU cost modeling — with real API fixtures for replay mode."
+        glossary: "LLM systems glossary: 100+ terms covering GPU architecture, KV cache, attention mechanisms, RAG pipelines, AI agent frameworks, LLM serving, evaluation methodology, quantization, and production deployment — with chapter pointers for every concept."
+        CURRICULUM_SPEC: "Full curriculum specification for the LLM Systems Cookbook: 70 Jupyter notebooks with per-chapter learning outcomes, scoring thresholds, paper citations, and prerequisite DAG — covering LLM inference, RAG, agents, serving, evaluation, GPU programming, and production patterns."
     html_theme_options:
       # Make the navigation sidebar wider so Part captions don't wrap.
       show_navbar_depth: 2

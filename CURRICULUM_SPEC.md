@@ -1,8 +1,3 @@
----
-html_meta:
-  description: "Full curriculum specification for the LLM Systems Cookbook: 70 Jupyter notebooks with per-chapter learning outcomes, scoring thresholds, paper citations, and prerequisite DAG — covering LLM inference, RAG, agents, serving, evaluation, GPU programming, and production patterns."
----
-
 # A 70-notebook curriculum for LLM systems engineering
 
 > **Current status (May 2026):** The repository ships **64 of 70** notebooks.
@@ -191,6 +186,7 @@ This track exercises real production LLM libraries (Anthropic SDK, LiteLLM, `mcp
 
 **09 GPU providers, pricing, and model fit** (CPU only, 5 s). Pure-data reference notebook: 13 GPU SKUs (NVIDIA Hopper/Blackwell, AMD MI300X, Intel Gaudi 3, Google TPU v5p, AWS Trainium2) × 10 cloud providers (AWS/GCP/Azure/Oracle/Lambda/CoreWeave/Together AI/Modal/RunPod/Vast.ai); spot/preemptible discount factors per provider; vRAM calculator `weights + kv_cache + activations + overhead` for arbitrary `(params, dtype, layers, kv_heads, head_dim, batch, seq_len)`; "smallest cluster that fits" recommender for 10 popular open models (SmolLM2-1.7B → DeepSeek-V3) at FP16 and FP8; `$ per million output tokens` per GPU at realistic 7-8B-class decode throughput. Notes reservations vs spot, egress charges, MIG partitioning, AMD/Intel viability, and when hosted APIs (Together / Fireworks / Anyscale / Replicate / OpenRouter / DeepInfra) beat self-hosting.
 
+(implementation-notes-and-coverage-gaps)=
 ## Implementation notes and coverage gaps
 
 ### v0.2 gap: training track notebooks 03-08

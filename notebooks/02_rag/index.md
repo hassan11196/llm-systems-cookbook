@@ -1,8 +1,3 @@
----
-html_meta:
-  description: "Build production RAG systems: chunking strategies, FAISS dense retrieval, BM25/SPLADE hybrid search, ColBERTv2 late interaction, reranking, HyDE query rewriting, RAPTOR hierarchical retrieval, GraphRAG, and RAGAS evaluation."
----
-
 # Retrieval-augmented generation
 
 ```{admonition} What you'll learn in this part
