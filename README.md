@@ -5,11 +5,11 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Build](https://github.com/hassan11196/llm-systems-cookbook/actions/workflows/book.yml/badge.svg)](https://github.com/hassan11196/llm-systems-cookbook/actions/workflows/book.yml)
 
-A hands-on curriculum for **LLM systems engineering** — 64 Jupyter notebooks covering inference optimization, retrieval-augmented generation, agent frameworks, serving and scaling, evaluation, GPU programming, and production LLM patterns. Each notebook reimplements a core technique from first principles or exercises a real production library, with self-scoring numerical checks throughout.
+A hands-on curriculum for **LLM systems engineering**. It has 64 Jupyter notebooks covering inference optimization, retrieval-augmented generation, agent frameworks, serving and scaling, evaluation, GPU programming, and production LLM patterns. Each notebook reimplements a core technique from first principles or exercises a production library, with self-scoring numerical checks throughout.
 
 **[Read the book online →](https://hassan11196.github.io/llm-systems-cookbook/)**
 
-> **Who this is for:** engineers and researchers who want to understand how production LLM systems work under the hood — not just how to call an API.
+> **Who this is for:** engineers and researchers who want to understand how production LLM systems work under the hood, not just how to call an API.
 
 ## Table of contents
 
@@ -29,18 +29,18 @@ A hands-on curriculum for **LLM systems engineering** — 64 Jupyter notebooks c
 
 ## What is this?
 
-The LLM Systems Cookbook is a structured curriculum covering the engineering side of large language models — from GPU kernel programming and KV-cache mechanics to production RAG pipelines, AI agent frameworks, LLM evaluation harnesses, and deployment patterns.
+The LLM Systems Cookbook is a structured curriculum covering the engineering side of large language models: GPU kernel programming, KV-cache mechanics, production RAG pipelines, AI agent frameworks, LLM evaluation harnesses, and deployment patterns.
 
 Each notebook follows a consistent six-step structure:
 
-1. **Motivation** — why the technique matters in production LLM systems
-2. **Reference** — the paper or spec that introduced it
-3. **First-principles warm-up** — reimplement the core idea in ≤50 lines
-4. **Real implementation** — exercise the production library or GPU kernel
-5. **Deterministic scoring** — numerical checks via a built-in harness
-6. **Exercises** — stretch goals for deeper exploration
+1. **Motivation**: why the technique matters in production LLM systems
+2. **Reference**: the paper or spec that introduced it
+3. **First-principles warm-up**: reimplement the core idea in ≤50 lines
+4. **Real implementation**: exercise the production library or GPU kernel
+5. **Deterministic scoring**: numerical checks via a built-in harness
+6. **Exercises**: stretch goals for deeper exploration
 
-The curriculum emphasizes building reliable LLM applications: understanding where systems break, how to measure them, and how to scale them cost-effectively.
+The curriculum focuses on building reliable LLM applications: finding where systems break, measuring them, and scaling them cost-effectively.
 
 ## What makes this different
 
@@ -48,7 +48,7 @@ Most LLM tutorials show you how to call an API. This cookbook teaches you what i
 
 Every notebook answers a specific engineering question with a numerical result, not just a prose explanation. You reimplement FlashAttention-2 as a Triton GPU kernel, benchmark the roofline model with real memory bandwidth numbers, build a RAG pipeline you can evaluate end-to-end with RAGAS, and run PagedAttention's block allocator in pure Python. The built-in scoring harness verifies that each notebook produces correct numerical outputs before you move on.
 
-The result is a curriculum that covers the full production LLM stack — from GPU kernel programming and KV-cache mechanics to multi-provider serving, LLM observability, and agent evaluation — in a single structured sequence, with real code you can run on a free Colab T4.
+The result is a curriculum that covers the production LLM stack (GPU kernel programming, KV-cache mechanics, multi-provider serving, LLM observability, and agent evaluation) in a single structured sequence, with code you can run on a free Colab T4.
 
 ## Who is it for?
 
@@ -83,7 +83,7 @@ v0.1 ships 64 notebooks; the remaining 6 training-track notebooks are specified 
 ## Learning paths
 
 **New to GPU programming?**
-Start with [Part I (Foundations)](notebooks/07_gpu/index.md) — GPU architecture tour, roofline model, Triton kernels — then move to [Part II (Inference engines)](notebooks/01_inference/index.md).
+Start with [Part I (Foundations)](notebooks/07_gpu/index.md), which covers the GPU architecture tour, roofline model, and Triton kernels, then move to [Part II (Inference engines)](notebooks/01_inference/index.md).
 
 **Know PyTorch but want to understand LLM serving?**
 Start at [05_serving/01_roofline_kv_budget](notebooks/05_serving/index.md) to understand serving economics, then work through Part II.
@@ -99,7 +99,7 @@ Go straight to [Part V (RAG)](notebooks/02_rag/index.md). Production RAG code wi
 
 ## Quick start
 
-Every notebook has an **Open in Colab** badge. Click it to run on a free T4 GPU — no local install needed.
+Every notebook has an **Open in Colab** badge. Click it to run on a free T4 GPU with no local install needed.
 
 **[→ Browse the full book](https://hassan11196.github.io/llm-systems-cookbook/)**
 
@@ -144,8 +144,8 @@ Part VIII is different from the rest of the cookbook: instead of reimplementing 
 
 Each Part VIII notebook works in two modes:
 
-- **LIVE** — when the relevant API key is set (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, etc.), hits the real provider and reports fresh numbers.
-- **Replay** — without keys, loads recorded responses from `notebooks/08_production/_fixtures/` so the notebook still runs end-to-end on a fresh Colab. The fixtures are real responses from a previous run, not mocks.
+- **LIVE**: when the relevant API key is set (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, etc.), it hits the real provider and reports fresh numbers.
+- **Replay**: without keys, it loads recorded responses from `notebooks/08_production/_fixtures/` so the notebook still runs end-to-end on a fresh Colab. The fixtures are real responses from a previous run, not mocks.
 
 All nine notebooks pass their `s.check()` assertions in replay mode (46 checks total).
 
