@@ -80,7 +80,11 @@ Vera Rubin / Rubin GPU
   inference throughput at 10× lower cost per token. A dedicated
   Rubin CPX variant is optimised for massive-context inference
   workloads. Partner availability (AWS, GCP, Azure, CoreWeave, Lambda)
-  is planned for H2 2026.
+  is planned for H2 2026. NVIDIA's **Vera Rubin DSX AI Factory**
+  reference design and the general-availability release of the
+  **Omniverse DSX Blueprint** (July 2026) package the platform into a
+  rack-to-datacenter build/simulate/operate workflow aimed at
+  continuously-operating "AI factory" inference deployments.
 ```
 
 ## Roofline, throughput, latency
@@ -683,8 +687,15 @@ XGrammar
 
 MCP
   Model Context Protocol. An open standard for exposing tools and
-  data sources to LLM clients over JSON-RPC. Covered in
-  {doc}`notebooks/04_agents/05_mcp_server_client`.
+  data sources to LLM clients over JSON-RPC. The **2026-07-28**
+  specification is the largest revision since launch: it removes the
+  `Mcp-Session-Id` protocol session (any server instance can now
+  handle any request), drops the `initialize`/`initialized` handshake,
+  and rewrites authorization around standard OAuth/OIDC RFCs instead
+  of bespoke wiring. It also introduces a formal **extensions
+  framework** — reverse-DNS-namespaced extensions with their own
+  repositories and version cadence, independent of the core spec.
+  Covered in {doc}`notebooks/04_agents/05_mcp_server_client`.
 
 DSPy
   A framework that compiles high-level program-like agents into
@@ -881,6 +892,16 @@ Llama 4
   16 experts, 10 million token context) and Maverick (17B active /
   400B total, 128 experts) are the two released variants. Both use
   Multi-head Latent Attention (MLA) and FP8 native inference.
+
+Claude Sonnet 5 / Claude Fable 5
+  Anthropic's mid-2026 model refresh. **Claude Sonnet 5** (June 30,
+  2026) is the balanced-tier successor to Sonnet 4.6, posting 63.2%
+  on SWE-bench Pro. **Claude Fable 5** (general availability July 1,
+  2026) is the frontier-tier release, leading SWE-bench Pro at 80.3%
+  and pairing a 200K-token standard context window with a beta
+  1M-token context mode. Both ship at roughly half the per-token
+  price of their predecessors. Referenced as the production-track
+  model defaults in {doc}`notebooks/08_production/index`.
 
 Gemini 3.5 Flash
   Google's frontier Flash-tier model released at Google I/O 2026 (May

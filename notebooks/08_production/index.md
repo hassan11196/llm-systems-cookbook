@@ -46,9 +46,12 @@ successor to the o-series for reasoning tasks),
 the `MODEL_*` env vars listed at the top of each notebook.
 
 The current frontier tier (mid-2026): **Claude Fable 5** (`claude-fable-5`,
-$10/$50 per M tokens) leads on SWE-bench Pro (80.3%) and long-context
-agentic tasks; **Gemini 3.5 Pro** (limited Vertex AI preview, 2M-token
-context window with Deep Think reasoning) targets enterprise document
-workloads; **GPT-5.6** is the next OpenAI release in preview. For
-cost-sensitive production use, `claude-haiku-4-5-20251001` and
-`gpt-5.5-instant` remain the default latency-optimised choices.
+GA July 1, 2026, $10/$50 per M tokens) leads on SWE-bench Pro (80.3%) and
+long-context agentic tasks, at roughly half the per-token price of its
+predecessor; **Claude Sonnet 5** (`claude-sonnet-5`, June 30, 2026, 63.2%
+SWE-bench Pro) is the balanced-tier option one step down; **Gemini 3.5 Pro**
+(limited Vertex AI preview, 2M-token context window with Deep Think
+reasoning) targets enterprise document workloads; **GPT-5.6** is the next
+OpenAI release in preview. For cost-sensitive production use,
+`claude-haiku-4-5-20251001` and `gpt-5.5-instant` remain the default
+latency-optimised choices.
