@@ -180,13 +180,31 @@ hard-list watermarking, toxicity scoring.
   07_gpu/04, plus 07_gpu/07 Nsight profiling) note their requirements
   in their chapter header.
 
-```{admonition} What's new in May 2026
+```{admonition} What's new in July 2026
 :class: note
 
+- **MCP 2026-07-28**: the Model Context Protocol's largest revision since
+  launch ships this month — a stateless protocol core (no more
+  `Mcp-Session-Id`), the `initialize`/`initialized` handshake removed
+  entirely, authorization rebuilt on standard OAuth/OIDC RFCs, and a new
+  extensions framework for independently-versioned protocol additions.
+- **Anthropic model refresh**: Claude Sonnet 5 (June 30) and Claude Fable 5
+  (GA July 1) lead SWE-bench Pro at 63.2% and 80.3% respectively, at
+  roughly half the per-token price of their predecessors.
+- **Benchmark saturation**: as of July 2, 2026, 37% of the 154
+  percentage-scaled benchmarks tracked by BenchLM.ai are saturated
+  (top model ≥ 90%) — GSM8K is effectively solved (99%), MMLU sits at
+  93%. GPQA Diamond, SWE-bench Verified/Pro, and Humanity's Last Exam
+  remain the discriminating frontier evaluations; see the updated
+  benchmark table in [Part VII](notebooks/06_eval/index.md).
+- **NVIDIA Vera Rubin DSX AI Factory** reference design and the
+  **Omniverse DSX Blueprint** reach general availability, packaging the
+  Vera Rubin platform into a rack-to-datacenter build/simulate/operate
+  workflow for continuously-running inference deployments.
 - **Glossary** extended with 2025 to 2026 terms: test-time compute, reasoning
   models, BitNet / ternary quantization, FP4 (Blackwell), VLM / SigLIP,
   NVIDIA Dynamo / NIXL, DoRA, ORPO, Vera Rubin GPU, PegaFlow, Gemini 3.5
-  Flash, and more.
+  Flash, Claude Sonnet 5 / Fable 5, and more.
 - **Curriculum spec** updated with the v0.3 roadmap: inference-time scaling
   notebook, BitNet/sub-2-bit serving notebook, a 5-notebook multimodal track,
   and a safety/red-teaming track.
