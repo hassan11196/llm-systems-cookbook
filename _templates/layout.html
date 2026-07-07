@@ -13,11 +13,16 @@
   {#- Per-page description from html_context (single source of truth in _config.yml), falling back to the site description. -#}
   {%- set _page_desc = page_descriptions.get(pagename, _site_desc) if page_descriptions is defined else _site_desc %}
   {%- set _og_image = _base ~ 'og-image.png' %}
-  {%- set _page_title = (title|striptags|e) ~ ' — The LLM Systems Cookbook' %}
+  {%- set _bare_title = title|striptags|e %}
+  {%- set _page_title = _bare_title ~ ' — The LLM Systems Cookbook' %}
   {#- Emit a description only if the page didn't already declare one via frontmatter, so we never duplicate the tag. -#}
   {%- if 'name="description"' not in (metatags|default('', true)) %}
   <meta name="description" content="{{ _page_desc|e }}" />
   {%- endif %}
+  {#- The canonical <link> is emitted by Sphinx itself (html_baseurl is set in
+      _config.yml), so we deliberately do NOT add a second one here — a page
+      with two canonicals sends search engines conflicting signals. -#}
+  <meta name="author" content="Muhammad Hassan Ahmed" />
   <meta property="og:type" content="{{ _og_type }}" />
   <meta property="og:site_name" content="The LLM Systems Cookbook" />
   <meta property="og:title" content="{{ _page_title }}" />
@@ -63,5 +68,45 @@
     "keywords": ["LLM systems", "LLM engineering", "production LLM applications", "RAG system design", "LLM inference optimization", "AI agent architecture", "LLM evaluation", "GPU programming", "LLM serving", "LLM observability", "Jupyter notebook curriculum", "practical LLM system design"]
   }
   </script>
+  {%- else %}
+  {#- Non-home pages: a breadcrumb trail on every page (helps search engines
+      model the site hierarchy and can render breadcrumb rich results), plus
+      a TechArticle record on the curated section landing / reference pages
+      that target the priority queries (RAG system design, LLM evaluation,
+      AI agent architecture, LLM serving, and so on). -#}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "The LLM Systems Cookbook", "item": "{{ _base }}" },
+      { "@type": "ListItem", "position": 2, "name": "{{ _bare_title }}", "item": "{{ _page_url }}" }
+    ]
+  }
+  </script>
+  {%- if page_descriptions is defined and pagename in page_descriptions %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "{{ _bare_title }}",
+    "name": "{{ _bare_title }}",
+    "description": "{{ _page_desc|e }}",
+    "url": "{{ _page_url }}",
+    "image": "{{ _og_image }}",
+    "inLanguage": "en",
+    "author": { "@type": "Person", "name": "Muhammad Hassan Ahmed" },
+    "publisher": { "@type": "Person", "name": "Muhammad Hassan Ahmed" },
+    "license": "https://opensource.org/licenses/MIT",
+    "isPartOf": {
+      "@type": "CreativeWork",
+      "name": "The LLM Systems Cookbook",
+      "url": "{{ _base }}"
+    },
+    "proficiencyLevel": "Beginner",
+    "keywords": ["LLM systems engineering", "production LLM applications", "RAG system design", "LLM inference optimization", "AI agent architecture", "LLM evaluation", "LLM serving", "GPU programming"]
+  }
+  </script>
+  {%- endif %}
   {%- endif %}
 {% endblock %}
