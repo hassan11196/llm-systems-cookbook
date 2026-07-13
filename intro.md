@@ -183,11 +183,24 @@ hard-list watermarking, toxicity scoring.
 ```{admonition} What's new in July 2026
 :class: note
 
-- **MCP 2026-07-28**: the Model Context Protocol's largest revision since
-  launch ships this month — a stateless protocol core (no more
-  `Mcp-Session-Id`), the `initialize`/`initialized` handshake removed
-  entirely, authorization rebuilt on standard OAuth/OIDC RFCs, and a new
-  extensions framework for independently-versioned protocol additions.
+- **MCP 2026-07-28 (release candidate)**: the Model Context Protocol's
+  largest revision since launch is in release-candidate status, with the
+  final specification shipping July 28, 2026 — a stateless protocol core
+  (no more `Mcp-Session-Id`), the `initialize`/`initialized` handshake
+  removed entirely, authorization rebuilt on standard OAuth/OIDC RFCs, and
+  a new extensions framework for independently-versioned protocol
+  additions. The **Enterprise-Managed Authorization** extension has
+  already graduated to stable and is adopted by Anthropic, Microsoft, and
+  Okta; X (formerly Twitter) shipped a hosted MCP server for its platform
+  API this month.
+- **New frontier entrants**: xAI released **Grok 4.5** (July 8) as its
+  first model built specifically for coding and agentic work, priced
+  over 60% below Claude Opus 4.8 or GPT-5.5 while landing fourth on the
+  Artificial Analysis Intelligence Index. OpenAI released the **GPT-5.6**
+  family — Sol, Terra, and Luna — on July 9; Sol sets a new state of the
+  art on the Artificial Analysis Coding Agent Index (80, edging out
+  Claude Fable 5) at roughly a third of the cost and under half the
+  output tokens.
 - **Anthropic model refresh**: Claude Sonnet 5 (June 30) and Claude Fable 5
   (GA July 1) lead SWE-bench Pro at 63.2% and 80.3% respectively, at
   roughly half the per-token price of their predecessors.

@@ -688,14 +688,17 @@ XGrammar
 MCP
   Model Context Protocol. An open standard for exposing tools and
   data sources to LLM clients over JSON-RPC. The **2026-07-28**
-  specification is the largest revision since launch: it removes the
-  `Mcp-Session-Id` protocol session (any server instance can now
-  handle any request), drops the `initialize`/`initialized` handshake,
-  and rewrites authorization around standard OAuth/OIDC RFCs instead
-  of bespoke wiring. It also introduces a formal **extensions
+  specification (in release-candidate status as of July 2026; final
+  text ships July 28, 2026) is the largest revision since launch: it
+  removes the `Mcp-Session-Id` protocol session (any server instance can
+  now handle any request), drops the `initialize`/`initialized`
+  handshake, and rewrites authorization around standard OAuth/OIDC RFCs
+  instead of bespoke wiring. It also introduces a formal **extensions
   framework** — reverse-DNS-namespaced extensions with their own
-  repositories and version cadence, independent of the core spec.
-  Covered in {doc}`notebooks/04_agents/05_mcp_server_client`.
+  repositories and version cadence, independent of the core spec. The
+  **Enterprise-Managed Authorization** extension reached stable status
+  ahead of the core spec and is adopted by Anthropic, Microsoft, and
+  Okta. Covered in {doc}`notebooks/04_agents/05_mcp_server_client`.
 
 DSPy
   A framework that compiles high-level program-like agents into
@@ -902,6 +905,25 @@ Claude Sonnet 5 / Claude Fable 5
   1M-token context mode. Both ship at roughly half the per-token
   price of their predecessors. Referenced as the production-track
   model defaults in {doc}`notebooks/08_production/index`.
+
+Grok 4.5
+  xAI's July 8, 2026 release, its first model built specifically for
+  coding and agentic work. Lands fourth on the Artificial Analysis
+  Intelligence Index (54, vs. Claude Fable 5's 60), above every
+  open-weight model and all Gemini models, at a price over 60% below
+  Claude Opus 4.8 or GPT-5.5. Highly token-efficient (~14K output
+  tokens per Intelligence Index task vs. 67K for Opus 4.8). Scores
+  64.7% on SWE-bench Pro, behind Claude Fable 5 (80.4%) and Claude
+  Opus 4.8 (69.2%).
+
+GPT-5.6
+  OpenAI's July 9, 2026 release, a family of three models — **Sol**
+  (most capable), **Terra**, and **Luna** — spanning enterprise work,
+  coding, scientific research, and cybersecurity. Sol sets a new state
+  of the art on the Artificial Analysis Coding Agent Index (80, ahead
+  of Claude Fable 5's 77.2) using less than half the output tokens, at
+  roughly a third of the cost. Pricing per million tokens: Sol $5/$30,
+  Terra $2.50/$15, Luna $1/$6.
 
 Gemini 3.5 Flash
   Google's frontier Flash-tier model released at Google I/O 2026 (May

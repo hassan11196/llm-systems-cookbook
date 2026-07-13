@@ -49,9 +49,12 @@ The current frontier tier (mid-2026): **Claude Fable 5** (`claude-fable-5`,
 GA July 1, 2026, $10/$50 per M tokens) leads on SWE-bench Pro (80.3%) and
 long-context agentic tasks, at roughly half the per-token price of its
 predecessor; **Claude Sonnet 5** (`claude-sonnet-5`, June 30, 2026, 63.2%
-SWE-bench Pro) is the balanced-tier option one step down; **Gemini 3.5 Pro**
-(limited Vertex AI preview, 2M-token context window with Deep Think
-reasoning) targets enterprise document workloads; **GPT-5.6** is the next
-OpenAI release in preview. For cost-sensitive production use,
-`claude-haiku-4-5-20251001` and `gpt-5.5-instant` remain the default
-latency-optimised choices.
+SWE-bench Pro) is the balanced-tier option one step down; **GPT-5.6 Sol**
+(OpenAI, July 9, 2026, $5/$30 per M tokens) edges out Fable 5 on the
+Artificial Analysis Coding Agent Index at under half the output tokens;
+**Grok 4.5** (xAI, July 8, 2026) undercuts Opus-class pricing by over 60%
+while landing fourth on the Artificial Analysis Intelligence Index;
+**Gemini 3.5 Pro** (limited Vertex AI preview, 2M-token context window with
+Deep Think reasoning) targets enterprise document workloads. For
+cost-sensitive production use, `claude-haiku-4-5-20251001` and
+`gpt-5.5-instant` remain the default latency-optimised choices.
