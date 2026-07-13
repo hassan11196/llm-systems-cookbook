@@ -24,7 +24,7 @@ dependencies = [
   # RAG notebooks pin the older transformers to stay compatible with
   # pylate==1.1.7 and sentence-transformers==5.4.1; training notebooks
   # may override upward to 4.51.x for newer TRL features.
-  "transformers>=4.46.3,<5.0",
+  "transformers>=4.46.3,<6.0",
   "tokenizers>=0.21",
   "accelerate>=0.36",
   "datasets>=3.0",
