@@ -58,3 +58,12 @@ while landing fourth on the Artificial Analysis Intelligence Index;
 Deep Think reasoning) targets enterprise document workloads. For
 cost-sensitive production use, `claude-haiku-4-5-20251001` and
 `gpt-5.5-instant` remain the default latency-optimised choices.
+
+```{seealso}
+This part is the applied capstone; each notebook builds on a from-scratch part:
+
+- [Part V — Retrieval-augmented generation](../02_rag/index.md) is the design behind the hybrid-RAG-with-citations notebook.
+- [Part VI — Agent frameworks](../04_agents/index.md) is the design behind the native tool-use, MCP server, and DSPy/MIPROv2 notebooks.
+- [Part VII — Evaluation](../06_eval/index.md) is the methodology behind the Inspect AI harness notebook.
+- [Part III — Serving and scaling](../05_serving/index.md) is the serving economics behind the GPU pricing and model-fit notebook.
+```

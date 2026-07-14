@@ -72,3 +72,12 @@ No mandatory prerequisites. CPU-only.
    ways (AutoGen/AG2 and CrewAI).
 7. `07_agent_evaluation_suite`: success rate, trajectory
    efficiency, and code-patch success.
+
+```{seealso}
+Related parts of the cookbook:
+
+- [Part V — Retrieval-augmented generation](../02_rag/index.md) builds the retrieval that agents call as a tool; together they form agentic RAG.
+- [Part VII — Evaluation](../06_eval/index.md) covers the benchmark methodology behind the agent-evaluation suite (τ-bench, SWE-bench, LLM-as-judge).
+- [Part VIII — Production patterns](../08_production/index.md) exercises native tool use, a real MCP server + client, and DSPy/MIPROv2 against live APIs.
+- The [glossary](../../glossary.md) defines ReAct, MCP, DSPy, A2A, and the other agent terms used here.
+```

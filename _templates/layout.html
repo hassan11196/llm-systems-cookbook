@@ -61,6 +61,16 @@
       "production LLM patterns",
       "LLM observability"
     ],
+    "hasPart": [
+      { "@type": "LearningResource", "name": "Foundations: GPU programming and the roofline", "url": "{{ _base }}notebooks/07_gpu/index.html", "learningResourceType": "chapter", "teaches": "GPU architecture, roofline model, Triton kernels, FlashAttention-2, torch.compile, Nsight profiling, JAX sharding" },
+      { "@type": "LearningResource", "name": "Inference engines", "url": "{{ _base }}notebooks/01_inference/index.html", "learningResourceType": "chapter", "teaches": "KV cache, PagedAttention, continuous batching, radix prefix cache, speculative decoding, chunked prefill, disaggregated serving" },
+      { "@type": "LearningResource", "name": "Serving and scaling", "url": "{{ _base }}notebooks/05_serving/index.html", "learningResourceType": "chapter", "teaches": "KV-cache variants, KV compression, GPTQ/AWQ quantization, FP8, MoE serving, DistServe, LLM observability" },
+      { "@type": "LearningResource", "name": "Training and fine-tuning", "url": "{{ _base }}notebooks/03_training/index.html", "learningResourceType": "chapter", "teaches": "mixed-precision training, gradient accumulation, FSDP2, LoRA, QLoRA, DPO/ORPO/GRPO preference optimization" },
+      { "@type": "LearningResource", "name": "Retrieval-augmented generation", "url": "{{ _base }}notebooks/02_rag/index.html", "learningResourceType": "chapter", "teaches": "chunking, FAISS dense retrieval, BM25/SPLADE hybrid search, ColBERTv2, reranking, HyDE, RAPTOR, GraphRAG, RAGAS evaluation" },
+      { "@type": "LearningResource", "name": "Agent frameworks", "url": "{{ _base }}notebooks/04_agents/index.html", "learningResourceType": "chapter", "teaches": "ReAct, structured outputs, LangGraph state machines, DSPy/MIPROv2, Model Context Protocol, AutoGen, CrewAI, agent evaluation" },
+      { "@type": "LearningResource", "name": "Evaluation", "url": "{{ _base }}notebooks/06_eval/index.html", "learningResourceType": "chapter", "teaches": "perplexity, MMLU calibration, HumanEval pass@k, LLM-as-judge bias, Arena Elo, NIAH/RULER, contamination detection" },
+      { "@type": "LearningResource", "name": "Production patterns", "url": "{{ _base }}notebooks/08_production/index.html", "learningResourceType": "chapter", "teaches": "prompt caching, LiteLLM routing and fallbacks, tool use, structured outputs, hybrid RAG, MCP servers, Inspect AI, GPU cost modeling" }
+    ],
     "author": {
       "@type": "Person",
       "name": "Muhammad Hassan Ahmed"

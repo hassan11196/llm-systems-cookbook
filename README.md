@@ -86,7 +86,7 @@ v0.1 ships 64 notebooks; the remaining 6 training-track notebooks are specified 
 Start with [Part I (Foundations)](notebooks/07_gpu/index.md), which covers the GPU architecture tour, roofline model, and Triton kernels, then move to [Part II (Inference engines)](notebooks/01_inference/index.md).
 
 **Know PyTorch but want to understand LLM serving?**
-Start at [05_serving/01_roofline_kv_budget](notebooks/05_serving/index.md) to understand serving economics, then work through Part II.
+Start at [05_serving/01_roofline_analysis](notebooks/05_serving/index.md) to understand serving economics, then work through Part II.
 
 **Building a RAG system?**
 Go straight to [Part V (RAG)](notebooks/02_rag/index.md). Production RAG code with real API fixtures is in [Part VIII](notebooks/08_production/index.md).

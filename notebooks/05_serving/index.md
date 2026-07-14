@@ -98,3 +98,12 @@ FP8 weight + KV cache + continuous batching + speculative decoding on H100 deliv
 KV cache memory, not compute, is the dominant cost lever at long context: production guidance for 2026 stacks it as paged attention (the memory-management substrate this track's notebooks build from scratch) + prefix caching (RadixAttention above) + attention-layer compression (MQA/GQA/MLA) + KV-cache quantization (INT8/FP8, and increasingly mixed-precision schemes like PM-KVQ that assign more bits to the layers/tokens that need them). vLLM's `--kv-cache-dtype fp8` flag now runs the full QK/ScoreV attention matmuls in FP8, not just the cache storage.
 
 **Cloudflare Infire** is a custom inference engine that distributes LLM execution across multiple GPUs more efficiently than standard serving stacks, reducing memory usage and cold-start time. Cloudflare also released **Unweight**, a weight compression system that shrinks LLM sizes 15 to 22% without accuracy loss. It is distinct from quantization: it preserves floating-point precision while reducing parameter count via structured pruning. Production inference now represents roughly two-thirds of all AI compute spend, and open-source model serving infrastructure has become a major VC target (Baseten raised $1.5B at $13B valuation).
+
+```{seealso}
+Related parts of the cookbook:
+
+- [Part I — Foundations](../07_gpu/index.md) derives the roofline model these serving decisions optimise against.
+- [Part II — Inference engines](../01_inference/index.md) builds the KV cache, PagedAttention, and batching primitives this part scales to production.
+- [Part VIII — Production patterns](../08_production/index.md) runs multi-provider routing, fallbacks, and GPU cost modelling against real APIs.
+- The [glossary](../../glossary.md) defines every serving term used here (MHA/GQA/MLA, FP8, MoE, SLO, NVIDIA Dynamo).
+```

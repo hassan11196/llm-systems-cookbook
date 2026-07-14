@@ -72,3 +72,12 @@ SWE-bench Pro and FrontierCode (Cognition's hardest coding split) are the new di
 As of July 2, 2026, BenchLM.ai tracks 249 benchmarks across 272 models; 37% of the 154 percentage-scaled benchmarks with meaningful coverage are now saturated (top model scores ≥ 90%). GSM8K is effectively solved (99%), and HellaSwag exceeds 95%. This is the case for evergreen benchmark hygiene made concrete: a benchmark's useful lifetime as a discriminator is shorter each generation, which is why `07_contamination_detection` and the lm-eval/Inspect AI comparison in `08_lm_eval_inspect_ai` both treat "is this benchmark still measuring anything" as a first-class question rather than an afterthought.
 
 The notebooks in this part teach the mechanics of evaluation on un-saturated tasks. The numerical thresholds in the scoring checks target 2026-accessible open-weight models (Qwen2.5-0.5B, Phi-3.5-mini, SmolLM2-360M) that still show non-trivial variance on MMLU and HumanEval, which keeps them useful for teaching even as frontier models approach the ceiling.
+
+```{seealso}
+Related parts of the cookbook:
+
+- [Part V — Retrieval-augmented generation](../02_rag/index.md) implements RAGAS retrieval-quality metrics, the evaluation counterpart for RAG systems.
+- [Part VI — Agent frameworks](../04_agents/index.md) covers agent-specific evaluation (τ-bench, SWE-bench, trajectory efficiency).
+- [Part VIII — Production patterns](../08_production/index.md) runs the Inspect AI harness against a real benchmark with a live model.
+- The [glossary](../../glossary.md) defines perplexity, pass@k, calibration, Elo, GPQA, and the other evaluation terms used here.
+```

@@ -51,3 +51,11 @@ development:
 This index will grow as each notebook lands. Contributions are welcome;
 see [`CONTRIBUTING.md`](https://github.com/hassan11196/llm-systems-cookbook/blob/main/CONTRIBUTING.md).
 ```
+
+```{seealso}
+Related parts of the cookbook:
+
+- [Part I — Foundations](../07_gpu/index.md) covers the GPU architecture and roofline model that mixed precision, FSDP2, and activation checkpointing trade against.
+- [Part III — Serving and scaling](../05_serving/index.md) shows how the models you fine-tune here are quantised and served in production.
+- [`CURRICULUM_SPEC.md`](../../CURRICULUM_SPEC.md) has the full v0.2 training-track specification (tensor/pipeline parallel, LoRA/DoRA, QLoRA, DPO/ORPO, GRPO).
+```
