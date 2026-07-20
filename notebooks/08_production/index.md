@@ -55,6 +55,10 @@ Artificial Analysis Coding Agent Index at under half the output tokens;
 **Grok 4.5** (xAI, July 8, 2026) undercuts Opus-class pricing by over 60%
 while landing fourth on the Artificial Analysis Intelligence Index;
 **Gemini 3.5 Pro** (limited Vertex AI preview, 2M-token context window with
-Deep Think reasoning) targets enterprise document workloads. For
-cost-sensitive production use, `claude-haiku-4-5-20251001` and
-`gpt-5.5-instant` remain the default latency-optimised choices.
+Deep Think reasoning) targets enterprise document workloads. On the
+open-weight side, **GLM-5.2** (Z.ai, 744B MoE, 62.1% SWE-bench Pro) and
+**Kimi K3** (Moonshot AI, July 16, 2.8T MoE) now edge into frontier-tier
+territory, making self-hosted deployment a credible alternative to the
+closed-API tier for cost-sensitive teams willing to run their own serving
+stack. For cost-sensitive production use via API, `claude-haiku-4-5-20251001`
+and `gpt-5.5-instant` remain the default latency-optimised choices.

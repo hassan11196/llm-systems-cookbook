@@ -184,15 +184,16 @@ hard-list watermarking, toxicity scoring.
 :class: note
 
 - **MCP 2026-07-28 (release candidate)**: the Model Context Protocol's
-  largest revision since launch is in release-candidate status, with the
-  final specification shipping July 28, 2026 — a stateless protocol core
+  largest revision since launch was locked as a release candidate on May
+  21 and ships as final spec on July 28, 2026 — a stateless protocol core
   (no more `Mcp-Session-Id`), the `initialize`/`initialized` handshake
   removed entirely, authorization rebuilt on standard OAuth/OIDC RFCs, and
   a new extensions framework for independently-versioned protocol
-  additions. The **Enterprise-Managed Authorization** extension has
-  already graduated to stable and is adopted by Anthropic, Microsoft, and
-  Okta; X (formerly Twitter) shipped a hosted MCP server for its platform
-  API this month.
+  additions. Beta SDKs with 2026-07-28 support are now available for
+  Python, TypeScript, Go, and C#. The **Enterprise-Managed Authorization**
+  extension has already graduated to stable and is adopted by Anthropic,
+  Microsoft, and Okta; X (formerly Twitter) shipped a hosted MCP server
+  for its platform API this month.
 - **New frontier entrants**: xAI released **Grok 4.5** (July 8) as its
   first model built specifically for coding and agentic work, priced
   over 60% below Claude Opus 4.8 or GPT-5.5 while landing fourth on the
@@ -201,6 +202,14 @@ hard-list watermarking, toxicity scoring.
   art on the Artificial Analysis Coding Agent Index (80, edging out
   Claude Fable 5) at roughly a third of the cost and under half the
   output tokens.
+- **Late-July open-weight wave**: Moonshot AI's **Kimi K3** (July 16,
+  2.8T-parameter MoE) already edges past Claude Opus 4.8 on Artificial
+  Analysis's independent ranking, though its weights don't ship until
+  July 27. Z.ai's **GLM-5.2** (744B MoE) is the new top open-weight model
+  overall, scoring 91.2% on GPQA Diamond and 62.1% on SWE-bench Pro at a
+  fraction of frontier API pricing. **Inkling**, the first flagship model
+  from Mira Murati's Thinking Machines Lab, shipped open-weight around
+  July 15 as a general-purpose reasoning and coding model.
 - **Anthropic model refresh**: Claude Sonnet 5 (June 30) and Claude Fable 5
   (GA July 1) lead SWE-bench Pro at 63.2% and 80.3% respectively, at
   roughly half the per-token price of their predecessors.
@@ -214,6 +223,14 @@ hard-list watermarking, toxicity scoring.
   **Omniverse DSX Blueprint** reach general availability, packaging the
   Vera Rubin platform into a rack-to-datacenter build/simulate/operate
   workflow for continuously-running inference deployments.
+- **Agent frameworks (Q2–Q3 2026):** the busiest quarter since agent
+  frameworks began shipping. The Claude Agent SDK added hierarchical
+  subagent spawning (up to 3 levels deep), fallback model chains, and a
+  community MCP tool marketplace. CrewAI 1.14.6 (June 11) added pluggable
+  memory/knowledge/RAG/flow backends, a Chat API, and native Snowflake
+  Cortex support. Pydantic AI V2 (June 23) shipped a harness-first
+  redesign with capabilities as a core primitive, and LlamaIndex
+  Workflows 1.0 landed June 22.
 - **Glossary** extended with 2025 to 2026 terms: test-time compute, reasoning
   models, BitNet / ternary quantization, FP4 (Blackwell), VLM / SigLIP,
   NVIDIA Dynamo / NIXL, DoRA, ORPO, Vera Rubin GPU, PegaFlow, Gemini 3.5
@@ -243,9 +260,11 @@ hard-list watermarking, toxicity scoring.
   speculative decoding (6.3% lower TPOT on 4×GB200).
 - **Hardware roadmap:** NVIDIA Vera Rubin platform (announced GTC 2026):
   Rubin GPU (288 GB HBM4, 50 PFLOPS FP4), Vera CPU (72-core ARM), NVLink 6;
-  targeting 5× Blackwell inference throughput at 10× lower cost; H2 2026.
-  Rubin CPX variant optimised for massive-context inference now documented in
-  the glossary.
+  targeting 5× Blackwell inference throughput at 10× lower cost. Rubin is
+  now in full production, with July shipments reaching Microsoft, Google,
+  AWS, and OCI alongside NVIDIA Cloud Partners CoreWeave, Lambda, Nebius,
+  and Nscale. Rubin CPX variant optimised for massive-context inference
+  now documented in the glossary.
 - **Serving infrastructure:** PegaFlow (Novita AI, May 2026): GIL-free Rust
   external KV cache for vLLM/SGLang with GPU offload, SSD tiering, and RDMA
   cross-node KV sharing.
