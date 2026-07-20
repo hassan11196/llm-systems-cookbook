@@ -731,6 +731,9 @@ Pydantic AI
   An agent framework from the Pydantic team (2024) with FastAPI-style
   dependency injection and first-class Pydantic validation. Supports
   tool calls, structured outputs, streaming, and multi-agent graphs.
+  **Pydantic AI V2** (June 23, 2026) is a harness-first redesign that
+  makes capabilities (tool access, memory, sandboxing) a core primitive
+  agents declare rather than wire up manually.
 
 smolagents
   A minimalist agent library by Hugging Face (~1,000 lines of Python).
@@ -964,6 +967,23 @@ SGLang
   prefix caching) and async constrained decoding. Version 0.4+ shows
   3.1× throughput vs vLLM on DeepSeek-V3 traffic patterns; generally
   preferred over vLLM when requests share long common prefixes.
+
+Kimi K3
+  Moonshot AI's July 16, 2026 release, a 2.8 trillion-parameter MoE
+  model that edges past Claude Opus 4.8 on Artificial Analysis's
+  independent ranking on release day, though weights don't ship until
+  July 27, 2026. Successor to the Kimi K2.6 / Agent Swarm line.
+
+GLM-5.2
+  Z.ai's July 2026 open-weight release, a 744 billion-parameter MoE
+  model that becomes the top-ranked open-weight model overall: 91.2%
+  on GPQA Diamond and 62.1% on SWE-bench Pro at a fraction of frontier
+  API pricing. Successor to GLM-5.1.
+
+Inkling
+  The first flagship model from Thinking Machines Lab (Mira Murati's
+  AI startup), released open-weight around July 15, 2026, as a
+  general-purpose reasoning and coding model.
 
 vLLM V2
   Major architectural rewrite of vLLM (version 0.8+) replacing the
