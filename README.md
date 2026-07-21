@@ -24,6 +24,7 @@ A hands-on curriculum for **LLM systems engineering**. It has 64 Jupyter noteboo
 - [Production patterns track](#production-patterns-track)
 - [Repository layout](#repository-layout)
 - [Contributing](#contributing)
+- [FAQ](#faq)
 - [Citation](#citation)
 - [License](#license)
 
@@ -178,6 +179,26 @@ llm-systems-cookbook/
 See [`CONTRIBUTING.md`](CONTRIBUTING.md) for branch naming conventions, notebook hygiene, commit style, and the scoring harness API.
 
 The v0.2 training track (6 notebooks: tensor parallel, pipeline parallel, LoRA/DoRA, QLoRA, DPO/ORPO, GRPO) and the v0.3 roadmap (test-time compute, VLM track, safety/red-teaming) are the highest-priority areas for contributions.
+
+## FAQ
+
+**What is LLM systems engineering?**
+The discipline of building, serving, and operating large-language-model applications reliably and cost-effectively — GPU kernels, KV-cache mechanics, serving and quantization, RAG pipelines, agent architecture, evaluation, and observability. Each part of this cookbook maps to one of those layers.
+
+**Who is this for?**
+Engineers and researchers who want to understand how production LLM systems work under the hood, not just how to call an API. You need to be comfortable reading Python and know what softmax is; no deep-learning background is assumed.
+
+**How do I build a production RAG system with this?**
+Work through [Part V (RAG)](notebooks/02_rag/index.md) for retrieval fundamentals, then the hybrid-RAG-with-citations notebook in [Part VIII (Production patterns)](notebooks/08_production/index.md) for a runnable end-to-end pipeline.
+
+**How do I evaluate an LLM?**
+[Part VII (Evaluation)](notebooks/06_eval/index.md) implements perplexity, MMLU calibration, HumanEval pass@k, LLM-as-judge bias, Arena Elo, NIAH/RULER, and contamination detection, plus the lm-eval and Inspect AI harnesses.
+
+**Do I need a GPU?**
+No. 61 of 64 chapters run on a free Colab T4; only three need an Ampere-class or local GPU, and each says so in its header.
+
+**Is it free?**
+Yes — free to read, free to run on Colab, MIT-licensed.
 
 ## Citation
 

@@ -251,6 +251,96 @@ hard-list watermarking, toxicity scoring.
   cross-node KV sharing.
 ```
 
+## Frequently asked questions
+
+```{admonition} What is the LLM Systems Cookbook?
+:class: dropdown
+
+It is a hands-on curriculum for LLM systems engineering: 64 Jupyter
+notebooks that teach how production large-language-model systems work
+under the hood — inference optimization, retrieval-augmented generation
+(RAG), AI agent frameworks, serving and scaling, evaluation, GPU
+programming, and production deployment patterns. Each chapter
+reimplements a core technique from first principles or exercises a
+real production library, with deterministic numerical checks.
+```
+
+```{admonition} Who is this cookbook for?
+:class: dropdown
+
+Engineers and researchers who want to understand *how* production LLM
+systems work, not just how to call an API. It assumes you are
+comfortable reading Python and know what softmax is; no prior
+deep-learning background is required. It is especially useful for
+backend engineers adding RAG or agents to their stack, ML engineers
+moving into LLM serving, and anyone learning LLM inference optimization
+or evaluation methodology.
+```
+
+```{admonition} What is LLM systems engineering?
+:class: dropdown
+
+LLM systems engineering is the discipline of building, serving, and
+operating large-language-model applications reliably and
+cost-effectively. It spans GPU kernel programming, KV-cache mechanics,
+batching and quantization for serving, RAG pipeline design, agent
+architecture, evaluation harnesses, and observability — the layers
+between a trained model and a production application. Every part of
+this cookbook maps to one of those layers.
+```
+
+```{admonition} How do I build a production RAG system?
+:class: dropdown
+
+Start with [Part V — Retrieval-augmented generation](notebooks/02_rag/index.md),
+which covers chunking, dense and sparse retrieval, hybrid search,
+reranking, HyDE, RAPTOR, GraphRAG, and RAGAS evaluation from first
+principles. Then see the hybrid-RAG-with-citations notebook in
+[Part VIII — Production patterns](notebooks/08_production/index.md) for a
+runnable end-to-end pipeline against real API fixtures.
+```
+
+```{admonition} How do I evaluate an LLM?
+:class: dropdown
+
+[Part VII — Evaluation](notebooks/06_eval/index.md) implements the major
+evaluation methods in use today: perplexity, MMLU with calibration,
+HumanEval pass@k, LLM-as-judge (and its biases), Arena Elo /
+Bradley-Terry, NIAH/RULER long-context tests, and contamination
+detection — plus how to run them through the lm-eval and Inspect AI
+harnesses.
+```
+
+```{admonition} How do LLM inference optimization and serving work?
+:class: dropdown
+
+[Part II — Inference engines](notebooks/01_inference/index.md) covers
+the decode loop: KV cache, PagedAttention, continuous batching,
+FlashAttention-2, speculative decoding, and chunked prefill.
+[Part III — Serving and scaling](notebooks/05_serving/index.md) adds the
+production layer: KV-cache variants, quantization (GPTQ/AWQ/FP8), MoE
+serving, disaggregated serving, and observability with SLO-driven
+autoscaling.
+```
+
+```{admonition} Do I need a GPU to run the notebooks?
+:class: dropdown
+
+No local GPU is required. 61 of the 64 chapters run on a free Colab T4 —
+click the rocket 🚀 button on any chapter and choose *Colab*. Only three
+notebooks (two FlashAttention-2 Triton kernels and one Nsight profiling
+chapter) need an Ampere-class or local GPU, and each declares that in
+its header.
+```
+
+```{admonition} Is the cookbook free? What is the license?
+:class: dropdown
+
+Yes. The entire cookbook is free to read online and free to run on
+Colab, released under the MIT License. The source and notebooks live in
+the [GitHub repository](https://github.com/hassan11196/llm-systems-cookbook).
+```
+
 ## Citation
 
 If you use this cookbook in teaching or research, please cite:

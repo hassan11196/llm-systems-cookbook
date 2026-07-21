@@ -1,4 +1,14 @@
 {% extends "!layout.html" %}
+{#- On the home page the page title already IS the site title, so the theme's
+    default "<title>Page — Site</title>" renders it twice. Emit it once there;
+    every other page keeps the theme default (unique title + site suffix). -#}
+{% block htmltitle %}
+{%- if pagename == 'intro' %}
+<title>The LLM Systems Cookbook — LLM Systems Engineering, RAG, Agents &amp; Serving</title>
+{%- else %}
+{{ super() }}
+{%- endif %}
+{% endblock %}
 {% block extrahead %}
   {{ super() }}
   {%- set _base = 'https://hassan11196.github.io/llm-systems-cookbook/' %}
@@ -14,7 +24,13 @@
   {%- set _page_desc = page_descriptions.get(pagename, _site_desc) if page_descriptions is defined else _site_desc %}
   {%- set _og_image = _base ~ 'og-image.png' %}
   {%- set _bare_title = title|striptags|e %}
+  {#- On the home page the bare title already IS the site name, so don't
+      append the suffix (it would read "… — The LLM Systems Cookbook" twice). -#}
+  {%- if pagename == 'intro' or _bare_title == 'The LLM Systems Cookbook' %}
+  {%- set _page_title = 'The LLM Systems Cookbook' %}
+  {%- else %}
   {%- set _page_title = _bare_title ~ ' — The LLM Systems Cookbook' %}
+  {%- endif %}
   {#- Emit a description only if the page didn't already declare one via frontmatter, so we never duplicate the tag. -#}
   {%- if 'name="description"' not in (metatags|default('', true)) %}
   <meta name="description" content="{{ _page_desc|e }}" />
@@ -66,6 +82,81 @@
       "name": "Muhammad Hassan Ahmed"
     },
     "keywords": ["LLM systems", "LLM engineering", "production LLM applications", "RAG system design", "LLM inference optimization", "AI agent architecture", "LLM evaluation", "GPU programming", "LLM serving", "LLM observability", "Jupyter notebook curriculum", "practical LLM system design"]
+  }
+  </script>
+  {#- FAQPage structured data. Mirrors the visible "Frequently asked
+      questions" section on the home page so the answers are eligible for
+      rich results and help search engines match long-tail queries. -#}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the LLM Systems Cookbook?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It is a hands-on curriculum for LLM systems engineering: 64 Jupyter notebooks that teach how production large-language-model systems work under the hood — inference optimization, retrieval-augmented generation (RAG), AI agent frameworks, serving and scaling, evaluation, GPU programming, and production deployment patterns. Each chapter reimplements a core technique from first principles or exercises a real production library, with deterministic numerical checks."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Who is the LLM Systems Cookbook for?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Engineers and researchers who want to understand how production LLM systems work, not just how to call an API. It assumes you are comfortable reading Python and know what softmax is; no prior deep-learning background is required. It is especially useful for backend engineers adding RAG or agents to their stack, ML engineers moving into LLM serving, and anyone learning LLM inference optimization or evaluation methodology."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is LLM systems engineering?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "LLM systems engineering is the discipline of building, serving, and operating large-language-model applications reliably and cost-effectively. It spans GPU kernel programming, KV-cache mechanics, batching and quantization for serving, RAG pipeline design, agent architecture, evaluation harnesses, and observability — the layers between a trained model and a production application."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I build a production RAG system?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Start with Part V (Retrieval-augmented generation), which covers chunking, dense and sparse retrieval, hybrid search, reranking, HyDE, RAPTOR, GraphRAG, and RAGAS evaluation from first principles. Then see the hybrid-RAG-with-citations notebook in Part VIII (Production patterns) for a runnable end-to-end pipeline against real API fixtures."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I evaluate an LLM?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Part VII (Evaluation) implements the major evaluation methods in use today: perplexity, MMLU with calibration, HumanEval pass@k, LLM-as-judge and its biases, Arena Elo / Bradley-Terry, NIAH/RULER long-context tests, and contamination detection — plus how to run them through the lm-eval and Inspect AI harnesses."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do LLM inference optimization and serving work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Part II (Inference engines) covers the decode loop: KV cache, PagedAttention, continuous batching, FlashAttention-2, speculative decoding, and chunked prefill. Part III (Serving and scaling) adds the production layer: KV-cache variants, quantization (GPTQ/AWQ/FP8), MoE serving, disaggregated serving, and observability with SLO-driven autoscaling."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need a GPU to run the notebooks?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No local GPU is required. 61 of the 64 chapters run on a free Colab T4. Only three notebooks (two FlashAttention-2 Triton kernels and one Nsight profiling chapter) need an Ampere-class or local GPU, and each declares that in its header."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the cookbook free? What is the license?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The entire cookbook is free to read online and free to run on Colab, released under the MIT License. The source and notebooks live in the GitHub repository at github.com/hassan11196/llm-systems-cookbook."
+        }
+      }
+    ]
   }
   </script>
   {%- else %}
