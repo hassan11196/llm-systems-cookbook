@@ -84,7 +84,13 @@ Vera Rubin / Rubin GPU
   reference design and the general-availability release of the
   **Omniverse DSX Blueprint** (July 2026) package the platform into a
   rack-to-datacenter build/simulate/operate workflow aimed at
-  continuously-operating "AI factory" inference deployments.
+  continuously-operating "AI factory" inference deployments. As of
+  July 21, 2026 NVIDIA describes Rubin as "going gigascale": NVL72
+  racks are live in production at CoreWeave, Google Cloud, Microsoft
+  Azure, OCI, and Mistral. A July 16 partnership with Japan's Noetra
+  Corp (backed by Japan's METI) will build a 13,750-Vera-CPU /
+  27,500-Rubin-GPU national AI factory for the country's FRONTia
+  Project.
 ```
 
 ## Roofline, throughput, latency
@@ -909,6 +915,18 @@ Claude Sonnet 5 / Claude Fable 5
   price of their predecessors. Referenced as the production-track
   model defaults in {doc}`notebooks/08_production/index`.
 
+Claude Opus 5
+  Anthropic's July 24, 2026 Opus-tier refresh. Holds Opus 4.8's $5/$25
+  per-million-token price while more than doubling its score on
+  Frontier-Bench v0.1, an agentic terminal-coding evaluation (43.3% vs.
+  21.1% for Opus 4.8), ahead of both GPT-5.6 Sol (34.4%) and Claude
+  Fable 5 (33.7%) on that eval. Performs within 0.5% of Fable 5's best
+  CursorBench 3.2 score at half the per-task cost, and beats Fable 5 on
+  OSWorld 2.0 at a third of the cost. Supports 1M-token context and
+  128K-token max output (300K via the Batch API). Carries a May 2026
+  knowledge cutoff — the freshest in Anthropic's lineup, versus January
+  2026 for Fable 5 and Opus 4.8.
+
 Grok 4.5
   xAI's July 8, 2026 release, its first model built specifically for
   coding and agentic work. Lands fourth on the Artificial Analysis
@@ -937,6 +955,23 @@ Gemini 3.5 Flash
   than peer frontier models on output tokens per second. Pricing: $1.50
   input / $9.00 output / $0.15 cached-read per 1 M tokens. Available
   via Google AI Studio, Gemini API, and the Antigravity framework.
+  **Gemini 3.5 Pro** — expected as the enterprise flagship above Flash —
+  has slipped past its original June 2026 target three times running;
+  Google DeepMind reportedly rebuilt the base model after it missed
+  internal hallucination and reliability goals, and it remains
+  unreleased as of late July 2026.
+
+Gemini 3.6 Flash
+  Google's July 21, 2026 successor to Gemini 3.5 Flash, and the new
+  default model in the Gemini family. Cuts output token usage 17%
+  versus 3.5 Flash, advances the knowledge cutoff to March 2026, and
+  improves on SWE-bench Pro (58.7% vs. 55.1%), long-context retrieval,
+  and OSWorld Verified computer use (83% vs. 78.4%). Output pricing
+  drops to $7.50 per million tokens (input unchanged at $1.50).
+  Shipped alongside **Gemini 3.5 Flash-Lite** (a cheaper, low-latency
+  tier at $0.30 input / $2.50 output per million tokens) and **Gemini
+  3.5 Flash Cyber** (a vulnerability-finding model limited to a
+  government/partner pilot, not generally available).
 
 MiMo-V2.5
   Xiaomi's fully open-source multimodal reasoning model, released April
@@ -970,9 +1005,11 @@ SGLang
 
 Kimi K3
   Moonshot AI's July 16, 2026 release, a 2.8 trillion-parameter MoE
-  model that edges past Claude Opus 4.8 on Artificial Analysis's
-  independent ranking on release day, though weights don't ship until
-  July 27, 2026. Successor to the Kimi K2.6 / Agent Swarm line.
+  model that edged past Claude Opus 4.8 on Artificial Analysis's
+  independent ranking on release day. Full weights (594 GB, native
+  MXFP4 safetensors) shipped on Hugging Face on July 27, 2026 under a
+  Modified MIT license — the largest open-weight release to date.
+  Successor to the Kimi K2.6 / Agent Swarm line.
 
 GLM-5.2
   Z.ai's July 2026 open-weight release, a 744 billion-parameter MoE

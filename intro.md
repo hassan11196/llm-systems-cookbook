@@ -183,17 +183,21 @@ hard-list watermarking, toxicity scoring.
 ```{admonition} What's new in July 2026
 :class: note
 
-- **MCP 2026-07-28 (release candidate)**: the Model Context Protocol's
-  largest revision since launch was locked as a release candidate on May
-  21 and ships as final spec on July 28, 2026 — a stateless protocol core
-  (no more `Mcp-Session-Id`), the `initialize`/`initialized` handshake
-  removed entirely, authorization rebuilt on standard OAuth/OIDC RFCs, and
-  a new extensions framework for independently-versioned protocol
-  additions. Beta SDKs with 2026-07-28 support are now available for
-  Python, TypeScript, Go, and C#. The **Enterprise-Managed Authorization**
-  extension has already graduated to stable and is adopted by Anthropic,
-  Microsoft, and Okta; X (formerly Twitter) shipped a hosted MCP server
-  for its platform API this month.
+- **MCP 2026-07-28 (release candidate, final spec ships tomorrow)**: the
+  Model Context Protocol's largest revision since launch was locked as a
+  release candidate on May 21 and ships as final spec on July 28, 2026 — a
+  stateless protocol core (no more `Mcp-Session-Id`), the
+  `initialize`/`initialized` handshake removed entirely, authorization
+  rebuilt on standard OAuth/OIDC RFCs, and a new reverse-DNS-namespaced
+  extensions framework for independently-versioned protocol additions. The
+  first two extensions riding that framework are the **Tasks extension**
+  (long-running async tool calls via `tasks/get` / `tasks/update` /
+  `tasks/cancel`) and **MCP Apps** (server-rendered interactive UIs in
+  sandboxed iframes). Beta SDKs with 2026-07-28 support are now available
+  for Python, TypeScript, Go, and C#. The **Enterprise-Managed
+  Authorization** extension has already graduated to stable and is adopted
+  by Anthropic, Microsoft, and Okta; X (formerly Twitter) shipped a hosted
+  MCP server for its platform API this month.
 - **New frontier entrants**: xAI released **Grok 4.5** (July 8) as its
   first model built specifically for coding and agentic work, priced
   over 60% below Claude Opus 4.8 or GPT-5.5 while landing fourth on the
@@ -201,18 +205,27 @@ hard-list watermarking, toxicity scoring.
   family — Sol, Terra, and Luna — on July 9; Sol sets a new state of the
   art on the Artificial Analysis Coding Agent Index (80, edging out
   Claude Fable 5) at roughly a third of the cost and under half the
-  output tokens.
-- **Late-July open-weight wave**: Moonshot AI's **Kimi K3** (July 16,
-  2.8T-parameter MoE) already edges past Claude Opus 4.8 on Artificial
-  Analysis's independent ranking, though its weights don't ship until
-  July 27. Z.ai's **GLM-5.2** (744B MoE) is the new top open-weight model
-  overall, scoring 91.2% on GPQA Diamond and 62.1% on SWE-bench Pro at a
-  fraction of frontier API pricing. **Inkling**, the first flagship model
-  from Mira Murati's Thinking Machines Lab, shipped open-weight around
-  July 15 as a general-purpose reasoning and coding model.
+  output tokens. Anthropic followed on July 24 with **Claude Opus 5**,
+  which holds Opus 4.8's $5/$25-per-M-token price while more than
+  doubling its score on the Frontier-Bench v0.1 agentic terminal-coding
+  eval (43.3% vs 21.1%) — ahead of both GPT-5.6 Sol (34.4%) and Claude
+  Fable 5 (33.7%) on that eval, at a third to half Fable 5's per-token
+  cost; it carries a May 2026 knowledge cutoff, the freshest of any model
+  in Anthropic's lineup.
+- **Late-July open-weight wave**: Moonshot AI's **Kimi K3** (2.8T-parameter
+  MoE) edged past Claude Opus 4.8 on Artificial Analysis's independent
+  ranking at its July 16 launch, and shipped its full 594 GB MXFP4
+  safetensors release on Hugging Face on July 27 under a Modified MIT
+  license — the largest open-weight release to date. Z.ai's **GLM-5.2**
+  (744B MoE) is the new top open-weight model overall, scoring 91.2% on
+  GPQA Diamond and 62.1% on SWE-bench Pro at a fraction of frontier API
+  pricing. **Inkling**, the first flagship model from Mira Murati's
+  Thinking Machines Lab, shipped open-weight around July 15 as a
+  general-purpose reasoning and coding model.
 - **Anthropic model refresh**: Claude Sonnet 5 (June 30) and Claude Fable 5
-  (GA July 1) lead SWE-bench Pro at 63.2% and 80.3% respectively, at
-  roughly half the per-token price of their predecessors.
+  (GA July 1) lead SWE-bench Pro at 63.2% and 80.3% respectively, and
+  Claude Opus 5 (July 24) now tops Frontier-Bench v0.1 agentic coding —
+  all three at roughly half the per-token price of their predecessors.
 - **Benchmark saturation**: as of July 2, 2026, 37% of the 154
   percentage-scaled benchmarks tracked by BenchLM.ai are saturated
   (top model ≥ 90%) — GSM8K is effectively solved (99%), MMLU sits at
@@ -230,7 +243,9 @@ hard-list watermarking, toxicity scoring.
   memory/knowledge/RAG/flow backends, a Chat API, and native Snowflake
   Cortex support. Pydantic AI V2 (June 23) shipped a harness-first
   redesign with capabilities as a core primitive, and LlamaIndex
-  Workflows 1.0 landed June 22.
+  Workflows 1.0 landed June 22. LangGraph followed with per-node timeouts,
+  a `DeltaChannel` for incremental state updates, and a typed v2 streaming
+  API.
 - **Glossary** extended with 2025 to 2026 terms: test-time compute, reasoning
   models, BitNet / ternary quantization, FP4 (Blackwell), VLM / SigLIP,
   NVIDIA Dynamo / NIXL, DoRA, ORPO, Vera Rubin GPU, PegaFlow, Gemini 3.5
@@ -238,8 +253,8 @@ hard-list watermarking, toxicity scoring.
 - **Curriculum spec** updated with the v0.3 roadmap: inference-time scaling
   notebook, BitNet/sub-2-bit serving notebook, a 5-notebook multimodal track,
   and a safety/red-teaming track.
-- **Framework pins** refreshed to the May 2026 ecosystem (torch 2.7, vLLM
-  0.20, SGLang 0.5 + XGrammar-2, TRL 0.26, PEFT 0.14, JAX 0.6).
+- **Framework pins** refreshed to the July 2026 ecosystem (torch 2.7, vLLM
+  0.25, SGLang 0.5.15 + XGrammar-2, TRL 0.26, PEFT 0.14, JAX 0.6).
 - **Training track (v0.2):** six remaining notebooks (tensor parallel,
   pipeline parallel, LoRA/DoRA, QLoRA, DPO/ORPO, GRPO) are fully specified
   and in active development.
@@ -247,7 +262,16 @@ hard-list watermarking, toxicity scoring.
   speed and Pro-tier coding/agentic accuracy; 1 M-token context window;
   dynamic thinking on by default; Gemini Spark persistent 24/7 agent; ADK v1.0
   stable across Python, Go, Java, and TypeScript; A2A v1.0 in production at
-  150+ organisations. **Gemini 3.5 Pro** expected June 2026.
+  150+ organisations. **Gemini 3.5 Pro** has since slipped past its original
+  June 2026 target for a third time — Google DeepMind reportedly rebuilt the
+  base model after it fell short of internal hallucination and reliability
+  goals — and remains unreleased as of July 27. In its place, Google shipped
+  three Flash-tier models on July 21: **Gemini 3.6 Flash** (the new default
+  model; 17% fewer output tokens than 3.5 Flash, a March 2026 knowledge
+  cutoff, 58.7% on SWE-bench Pro, and output pricing cut to $7.50/M tokens),
+  **Gemini 3.5 Flash-Lite** (high-throughput, low-latency tier at
+  $0.30/$2.50 per M tokens), and **Gemini 3.5 Flash Cyber** (a
+  vulnerability-finding model limited to a government/partner pilot).
 - **OpenAI (May 5):** GPT-5.5 Instant is now the default ChatGPT model for
   all tiers, with 52.5% fewer hallucinated claims, 30% more concise output,
   and personalisation via past conversations, files, and Gmail. GPT-5.5 Thinking
@@ -261,10 +285,13 @@ hard-list watermarking, toxicity scoring.
 - **Hardware roadmap:** NVIDIA Vera Rubin platform (announced GTC 2026):
   Rubin GPU (288 GB HBM4, 50 PFLOPS FP4), Vera CPU (72-core ARM), NVLink 6;
   targeting 5× Blackwell inference throughput at 10× lower cost. Rubin is
-  now in full production, with July shipments reaching Microsoft, Google,
-  AWS, and OCI alongside NVIDIA Cloud Partners CoreWeave, Lambda, Nebius,
-  and Nscale. Rubin CPX variant optimised for massive-context inference
-  now documented in the glossary.
+  now in full production and, per NVIDIA (July 21), "going gigascale":
+  NVL72 racks are live at CoreWeave, Google Cloud, Microsoft Azure, OCI,
+  and Mistral, alongside NVIDIA Cloud Partners Lambda, Nebius, and Nscale.
+  A July 16 partnership with Japan's Noetra Corp — backed by Japan's METI
+  — will build a national Vera Rubin AI factory (13,750 Vera CPUs, 27,500
+  Rubin GPUs) for the country's FRONTia Project. Rubin CPX variant
+  optimised for massive-context inference now documented in the glossary.
 - **Serving infrastructure:** PegaFlow (Novita AI, May 2026): GIL-free Rust
   external KV cache for vLLM/SGLang with GPU offload, SSD tiering, and RDMA
   cross-node KV sharing.

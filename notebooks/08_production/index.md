@@ -45,19 +45,26 @@ successor to the o-series for reasoning tasks),
 `Qwen/Qwen2.5-1.5B-Instruct` (local via Ollama or vLLM). Override with
 the `MODEL_*` env vars listed at the top of each notebook.
 
-The current frontier tier (mid-2026): **Claude Fable 5** (`claude-fable-5`,
-GA July 1, 2026, $10/$50 per M tokens) leads on SWE-bench Pro (80.3%) and
-long-context agentic tasks, at roughly half the per-token price of its
-predecessor; **Claude Sonnet 5** (`claude-sonnet-5`, June 30, 2026, 63.2%
-SWE-bench Pro) is the balanced-tier option one step down; **GPT-5.6 Sol**
+The current frontier tier (late-July 2026): **Claude Fable 5**
+(`claude-fable-5`, GA July 1, 2026, $10/$50 per M tokens) leads on
+SWE-bench Pro (80.3%) and long-context agentic tasks; **Claude Opus 5**
+(`claude-opus-5`, July 24, 2026, $5/$25 per M tokens) holds Opus 4.8's
+price while more than doubling its Frontier-Bench v0.1 agentic-coding
+score (43.3% vs. 21.1%), ahead of GPT-5.6 Sol and Claude Fable 5 on that
+eval, and carries the freshest (May 2026) knowledge cutoff in Anthropic's
+lineup; **Claude Sonnet 5** (`claude-sonnet-5`, June 30, 2026, 63.2%
+SWE-bench Pro) is the balanced-tier option one step down. **GPT-5.6 Sol**
 (OpenAI, July 9, 2026, $5/$30 per M tokens) edges out Fable 5 on the
 Artificial Analysis Coding Agent Index at under half the output tokens;
 **Grok 4.5** (xAI, July 8, 2026) undercuts Opus-class pricing by over 60%
-while landing fourth on the Artificial Analysis Intelligence Index;
-**Gemini 3.5 Pro** (limited Vertex AI preview, 2M-token context window with
-Deep Think reasoning) targets enterprise document workloads. On the
-open-weight side, **GLM-5.2** (Z.ai, 744B MoE, 62.1% SWE-bench Pro) and
-**Kimi K3** (Moonshot AI, July 16, 2.8T MoE) now edge into frontier-tier
+while landing fourth on the Artificial Analysis Intelligence Index.
+Google's flagship **Gemini 3.5 Pro** remains delayed past its third
+target date; in its place, **Gemini 3.6 Flash** (July 21, 2026, the new
+Gemini default, 58.7% SWE-bench Pro, $1.50/$7.50 per M tokens) and the
+low-latency **Gemini 3.5 Flash-Lite** cover the Google tier for
+production use today. On the open-weight side, **GLM-5.2** (Z.ai, 744B
+MoE, 62.1% SWE-bench Pro) and **Kimi K3** (Moonshot AI, 2.8T MoE, full
+594 GB weights shipped July 27, 2026) now edge into frontier-tier
 territory, making self-hosted deployment a credible alternative to the
 closed-API tier for cost-sensitive teams willing to run their own serving
 stack. For cost-sensitive production use via API, `claude-haiku-4-5-20251001`
