@@ -1,0 +1,47 @@
+# The LLM Systems Cookbook
+
+> A hands-on curriculum for LLM systems engineering: 64 Jupyter notebooks covering inference optimization, retrieval-augmented generation (RAG), AI agent frameworks, serving and scaling, evaluation, GPU programming, and production LLM patterns. Each notebook reimplements a core technique from first principles or exercises a production library, with deterministic numerical self-checks. Free to run on a Colab T4.
+
+Written for engineers and researchers who want to understand how production LLM systems work under the hood — GPU kernels, KV-cache mechanics, serving economics, retrieval pipelines, and agent evaluation — not just how to call an API. MIT-licensed. Author: Muhammad Hassan Ahmed.
+
+## Foundations — GPU programming
+
+- [Part I overview](https://hassan11196.github.io/llm-systems-cookbook/notebooks/07_gpu/index.html): GPU architecture, the roofline model, Triton kernel development, fused ops, torch.compile, Nsight profiling, and JAX sharding from first principles.
+
+## Inference engines
+
+- [Part II overview](https://hassan11196.github.io/llm-systems-cookbook/notebooks/01_inference/index.html): LLM inference optimization — KV-cache mechanics, PagedAttention, continuous batching, FlashAttention-2, radix prefix caching, speculative decoding, SARATHI chunked prefill, and disaggregated prefill/decode.
+
+## Serving and scaling
+
+- [Part III overview](https://hassan11196.github.io/llm-systems-cookbook/notebooks/05_serving/index.html): LLM serving and deployment — KV-cache variants (MHA/GQA/MLA), KV compression, GPTQ/AWQ and FP8 quantization, MoE expert parallelism, DistServe/Dynamo, and serving observability with SLOs and autoscaling.
+
+## Retrieval-augmented generation (RAG)
+
+- [Part V overview](https://hassan11196.github.io/llm-systems-cookbook/notebooks/02_rag/index.html): RAG system design — chunking strategies, FAISS dense retrieval, BM25/SPLADE hybrid search, ColBERTv2 late interaction, two-stage reranking, HyDE, RAPTOR, GraphRAG, and RAGAS evaluation.
+
+## AI agent frameworks
+
+- [Part VI overview](https://hassan11196.github.io/llm-systems-cookbook/notebooks/04_agents/index.html): AI agent architecture — ReAct from scratch, structured outputs, LangGraph state machines, DSPy/MIPROv2 prompt optimization, the Model Context Protocol (MCP), AutoGen vs CrewAI, and agent evaluation with τ-bench/SWE-bench.
+
+## Evaluation
+
+- [Part VII overview](https://hassan11196.github.io/llm-systems-cookbook/notebooks/06_eval/index.html): LLM evaluation methodology — perplexity, MMLU calibration, HumanEval pass@k, LLM-as-judge bias, Arena Elo/Bradley-Terry, NIAH/RULER long-context tests, contamination detection, and harnesses (lm-eval, Inspect AI).
+
+## Training and fine-tuning
+
+- [Part IV overview](https://hassan11196.github.io/llm-systems-cookbook/notebooks/03_training/index.html): LLM training — mixed-precision training, gradient accumulation, checkpointing, and DDP vs FSDP2 distributed training (LoRA/QLoRA and preference optimization specified for v0.2).
+
+## Production patterns
+
+- [Part VIII overview](https://hassan11196.github.io/llm-systems-cookbook/notebooks/08_production/index.html): Production LLM patterns — prompt caching, LiteLLM multi-provider routing and fallbacks, tool use, structured outputs, hybrid RAG with citations, MCP servers, DSPy MIPROv2, Inspect AI evaluation, and GPU cost modeling, with real API fixtures for replay mode.
+
+## Reference
+
+- [Glossary](https://hassan11196.github.io/llm-systems-cookbook/glossary.html): 100+ LLM systems terms with chapter pointers, covering GPU architecture, KV cache, attention, RAG, agents, serving, evaluation, and quantization.
+- [Curriculum specification](https://hassan11196.github.io/llm-systems-cookbook/CURRICULUM_SPEC.html): per-chapter learning outcomes, scoring thresholds, paper citations, and the prerequisite DAG.
+
+## Optional
+
+- [Source repository](https://github.com/hassan11196/llm-systems-cookbook): notebooks, scoring harness, and build configuration on GitHub.
+- [Sitemap](https://hassan11196.github.io/llm-systems-cookbook/sitemap.xml): full list of indexable pages.
