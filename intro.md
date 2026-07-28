@@ -251,6 +251,45 @@ hard-list watermarking, toxicity scoring.
   cross-node KV sharing.
 ```
 
+## Frequently asked questions
+
+**Is it free to run?**
+Yes. 61 of the 64 chapters run end-to-end on a free Google Colab T4 GPU with
+no local setup — click the rocket 🚀 button on any chapter and choose *Colab*.
+Three chapters (two FlashAttention-2 Triton kernels and the Nsight profiling
+notebook) need an Ampere-class GPU and say so in their header.
+
+**Do I need API keys or a paid model to use it?**
+No. Every chapter outside Part VIII reimplements techniques locally on small
+open models. The Part VIII production notebooks run in **replay mode** without
+any keys — they load recorded real API responses from `_fixtures/` so the code
+runs on a fresh Colab. Set `ANTHROPIC_API_KEY` / `OPENAI_API_KEY` only if you
+want the notebooks to hit live providers.
+
+**What background do I need?**
+Comfort reading Python and high-school algebra. A little PyTorch helps but is
+not required, and no prior deep-learning background is assumed — the notebooks
+explain each ML-specific equation the first time it appears.
+
+**How is this different from other LLM courses and tutorials?**
+Most tutorials show you how to *call* an API. This cookbook teaches what
+happens *inside* the systems that serve it. Every chapter answers a concrete
+engineering question with a numerical result — you reimplement FlashAttention-2
+as a Triton kernel, run PagedAttention's block allocator in pure Python, and
+evaluate a RAG pipeline with RAGAS — and a built-in scoring harness verifies
+your numbers are correct before you move on.
+
+**Can I use it to teach, or cite it in research?**
+Yes. The cookbook is MIT-licensed; use it in courses, workshops, or reading
+groups. A BibTeX entry is below.
+
+**Which chapter should I start with?**
+Start with [Foundations](notebooks/07_gpu/index.md) if you are new to GPU
+programming. Otherwise jump straight to the track you need:
+[RAG](notebooks/02_rag/index.md), [agents](notebooks/04_agents/index.md),
+[serving](notebooks/05_serving/index.md), or
+[evaluation](notebooks/06_eval/index.md).
+
 ## Citation
 
 If you use this cookbook in teaching or research, please cite:

@@ -68,6 +68,94 @@
     "keywords": ["LLM systems", "LLM engineering", "production LLM applications", "RAG system design", "LLM inference optimization", "AI agent architecture", "LLM evaluation", "GPU programming", "LLM serving", "LLM observability", "Jupyter notebook curriculum", "practical LLM system design"]
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "The LLM Systems Cookbook",
+    "description": "A hands-on, self-paced curriculum in LLM systems engineering across eight tracks: GPU programming, inference optimization, serving and scaling, training, retrieval-augmented generation, agent frameworks, evaluation, and production LLM patterns. 64 Jupyter notebooks, free to run on Colab.",
+    "url": "https://hassan11196.github.io/llm-systems-cookbook/",
+    "inLanguage": "en",
+    "isAccessibleForFree": true,
+    "license": "https://opensource.org/licenses/MIT",
+    "teaches": [
+      "LLM inference optimization",
+      "RAG pipeline design",
+      "AI agent frameworks",
+      "LLM serving and scaling",
+      "LLM evaluation methodology",
+      "GPU programming with Triton",
+      "production LLM patterns"
+    ],
+    "educationalLevel": "undergraduate",
+    "provider": {
+      "@type": "Person",
+      "name": "Muhammad Hassan Ahmed"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Muhammad Hassan Ahmed"
+    },
+    "hasCourseInstance": {
+      "@type": "CourseInstance",
+      "courseMode": "online",
+      "courseWorkload": "PT60H",
+      "isAccessibleForFree": true,
+      "instructor": {
+        "@type": "Person",
+        "name": "Muhammad Hassan Ahmed"
+      }
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is the LLM Systems Cookbook free to run?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. 61 of the 64 chapters run end-to-end on a free Google Colab T4 GPU with no local setup. Three chapters need an Ampere-class GPU and note it in their header."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need API keys or a paid model to use it?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Chapters outside the production track reimplement techniques locally on small open models. The production notebooks run in replay mode without keys, loading recorded real API responses so the code runs on a fresh Colab. Set an API key only if you want live provider calls."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What background do I need for the LLM Systems Cookbook?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Comfort reading Python and high-school algebra. A little PyTorch helps but is not required, and no prior deep-learning background is assumed. Each ML-specific equation is explained the first time it appears."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is this different from other LLM courses and tutorials?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most tutorials show you how to call an API. This cookbook teaches what happens inside the systems that serve it. Every chapter answers a concrete engineering question with a numerical result, and a built-in scoring harness verifies the numbers are correct before you move on."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use the cookbook to teach, or cite it in research?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The cookbook is MIT-licensed, so you can use it in courses, workshops, or reading groups, and a BibTeX citation entry is provided."
+        }
+      }
+    ]
+  }
+  </script>
   {%- else %}
   {#- Non-home pages: a breadcrumb trail on every page (helps search engines
       model the site hierarchy and can render breadcrumb rich results), plus

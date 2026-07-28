@@ -61,6 +61,7 @@ sphinx:
     sitemap_url_scheme: "{link}"
     html_extra_path:
       - robots.txt
+      - llms.txt
       - assets
     templates_path:
       - _templates
