@@ -39,9 +39,16 @@
   ≥ 0.20): GPU-native Triton ops replace the CPU PyTorch prep path,
   delivering 56% more throughput on GB200 and eliminating CPU-GPU sync
   during speculative decoding.
-- **{term}`Vera Rubin / Rubin GPU`** (H2 2026): NVIDIA's next platform
-  targeting 5× Blackwell inference throughput at 10× lower cost per
-  token; Rubin CPX variant optimised for massive-context inference.
+- **{term}`Vera Rubin / Rubin GPU`**: NVIDIA's next platform, now ramping
+  into full production as of early August 2026 — NVIDIA claims 35×
+  inference performance-per-watt and 10× more revenue per
+  trillion-parameter model versus Blackwell, with cloud availability
+  expanding to AWS, Google Cloud, Microsoft, and OCI alongside CoreWeave,
+  Lambda, Nebius, and Nscale. Rubin CPX variant optimised for
+  massive-context inference.
+- **TurboQuant** (ICLR 2026) is a major 2026 reference point in KV-cache
+  quantization research, as KV-cache memory has become the binding
+  constraint for long-context serving.
 
 ```{admonition} Coming in v0.3
 :class: note

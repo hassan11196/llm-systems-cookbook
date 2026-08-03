@@ -60,14 +60,16 @@ The evaluation frontier has shifted since 2024. Several benchmarks that were dif
 | MMLU | ~86% | 88-94% | Saturated |
 | HumanEval | ~95% | ~99% | Saturated |
 | GSM8K | ~97% | ~99% | Saturated |
-| GPQA-Diamond | ~70% | 91-94% | Active frontier |
+| MBPP | ~85% | ~95% | Saturated |
+| GPQA-Diamond | ~70% | 91-94% | Approaching saturation at the top |
+| HLE (Humanity's Last Exam) | <10% | ~50.7% | Active frontier |
 | ARC-AGI-2 | ~5% | ~60-65% | Active frontier |
 | AIME 2025 | N/A | 91-94% | Active frontier |
 | SWE-bench Verified | ~45% | ~77-80% | Active frontier |
 | SWE-bench Pro | N/A | 80.3% | Active frontier |
 | FrontierCode (Diamond) | N/A | 29.3% | Active frontier |
 
-SWE-bench Pro and FrontierCode (Cognition's hardest coding split) are the new discriminating benchmarks for frontier coding agents. The leading model on SWE-bench Pro leads the next-best by over 11 points. The Hebbia Finance Benchmark covers senior-level reasoning over financial documents and is gaining adoption as a proxy for document-understanding capability.
+SWE-bench Pro and FrontierCode (Cognition's hardest coding split) are the new discriminating benchmarks for frontier coding agents. The leading model on SWE-bench Pro leads the next-best by over 11 points. The Hebbia Finance Benchmark covers senior-level reasoning over financial documents and is gaining adoption as a proxy for document-understanding capability. As of early August 2026, MMLU, HumanEval, and MBPP no longer meaningfully separate frontier models, and GPQA-Diamond is approaching saturation at the very top (while still useful in the 60-90% band where most procurement decisions live); **HLE** has become the primary frontier differentiator, with Grok 4 currently leading at 50.7% and most frontier models scoring well below that.
 
 As of July 2, 2026, BenchLM.ai tracks 249 benchmarks across 272 models; 37% of the 154 percentage-scaled benchmarks with meaningful coverage are now saturated (top model scores ≥ 90%). GSM8K is effectively solved (99%), and HellaSwag exceeds 95%. This is the case for evergreen benchmark hygiene made concrete: a benchmark's useful lifetime as a discriminator is shorter each generation, which is why `07_contamination_detection` and the lm-eval/Inspect AI comparison in `08_lm_eval_inspect_ai` both treat "is this benchmark still measuring anything" as a first-class question rather than an afterthought.
 

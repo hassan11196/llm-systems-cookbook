@@ -45,7 +45,7 @@ successor to the o-series for reasoning tasks),
 `Qwen/Qwen2.5-1.5B-Instruct` (local via Ollama or vLLM). Override with
 the `MODEL_*` env vars listed at the top of each notebook.
 
-The current frontier tier (late-July 2026): **Claude Fable 5**
+The current frontier tier (early-August 2026): **Claude Fable 5**
 (`claude-fable-5`, GA July 1, 2026, $10/$50 per M tokens) leads on
 SWE-bench Pro (80.3%) and long-context agentic tasks; **Claude Opus 5**
 (`claude-opus-5`, July 24, 2026, $5/$25 per M tokens) holds Opus 4.8's
@@ -63,9 +63,15 @@ target date; in its place, **Gemini 3.6 Flash** (July 21, 2026, the new
 Gemini default, 58.7% SWE-bench Pro, $1.50/$7.50 per M tokens) and the
 low-latency **Gemini 3.5 Flash-Lite** cover the Google tier for
 production use today. On the open-weight side, **GLM-5.2** (Z.ai, 744B
-MoE, 62.1% SWE-bench Pro) and **Kimi K3** (Moonshot AI, 2.8T MoE, full
-594 GB weights shipped July 27, 2026) now edge into frontier-tier
-territory, making self-hosted deployment a credible alternative to the
-closed-API tier for cost-sensitive teams willing to run their own serving
-stack. For cost-sensitive production use via API, `claude-haiku-4-5-20251001`
-and `gpt-5.5-instant` remain the default latency-optimised choices.
+MoE, 62.1% SWE-bench Pro), **Kimi K3** (Moonshot AI, 2.8T MoE, full
+594 GB weights shipped July 27, 2026), and the **DeepSeek-V4-Flash-0731**
+refresh (July 31, 2026) now edge into frontier-tier territory, making
+self-hosted deployment a credible alternative to the closed-API tier for
+cost-sensitive teams willing to run their own serving stack. Meta's
+**Muse Spark 1.1** (multimodal, agentic-workflow focused) is a closed
+US-only preview that ties GPT-5.6 Luna at 51 on the Artificial Analysis
+Intelligence Index v4.1; Alibaba previewed **Qwen3.8-Max** at WAIC
+Shanghai (July 19, 2026) with a full release expected this month, though
+the Qwen3.x line remains closed-weight. For cost-sensitive production use
+via API, `claude-haiku-4-5-20251001` and `gpt-5.5-instant` remain the
+default latency-optimised choices.

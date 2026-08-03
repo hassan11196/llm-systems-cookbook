@@ -180,24 +180,45 @@ hard-list watermarking, toxicity scoring.
   07_gpu/04, plus 07_gpu/07 Nsight profiling) note their requirements
   in their chapter header.
 
-```{admonition} What's new in July 2026
+```{admonition} What's new in August 2026
 :class: note
 
-- **MCP 2026-07-28 (release candidate, final spec ships tomorrow)**: the
-  Model Context Protocol's largest revision since launch was locked as a
-  release candidate on May 21 and ships as final spec on July 28, 2026 — a
-  stateless protocol core (no more `Mcp-Session-Id`), the
-  `initialize`/`initialized` handshake removed entirely, authorization
-  rebuilt on standard OAuth/OIDC RFCs, and a new reverse-DNS-namespaced
-  extensions framework for independently-versioned protocol additions. The
-  first two extensions riding that framework are the **Tasks extension**
-  (long-running async tool calls via `tasks/get` / `tasks/update` /
-  `tasks/cancel`) and **MCP Apps** (server-rendered interactive UIs in
-  sandboxed iframes). Beta SDKs with 2026-07-28 support are now available
-  for Python, TypeScript, Go, and C#. The **Enterprise-Managed
-  Authorization** extension has already graduated to stable and is adopted
-  by Anthropic, Microsoft, and Okta; X (formerly Twitter) shipped a hosted
-  MCP server for its platform API this month.
+- **Week of August 3, 2026 refresh**: Meta's **Muse Spark 1.1** (a
+  multimodal reasoning model for agentic workflows, closed US-only
+  preview) ties OpenAI's GPT-5.6 Luna at 51 on the Artificial Analysis
+  Intelligence Index v4.1. Alibaba previewed **Qwen3.8-Max** at the World
+  AI Conference in Shanghai (July 19); the full Qwen3.8 release is
+  expected this month, with Qwen 4.0 targeted for September — Qwen3.7
+  remains closed-weight. DeepSeek shipped a **DeepSeek-V4-Flash-0731**
+  refresh on July 31. **Benchmark saturation has widened**: MMLU,
+  HumanEval, and MBPP no longer meaningfully separate frontier models;
+  GPQA Diamond is approaching saturation at the very top but still
+  differentiates the 60-90% band where most procurement decisions live;
+  **Humanity's Last Exam (HLE)** is emerging as the primary frontier
+  differentiator, currently led by Grok 4 at 50.7%. **NVIDIA Vera Rubin**
+  is ramping into full production — NVIDIA claims 35× inference
+  performance-per-watt and 10× more revenue per trillion-parameter model
+  versus Blackwell — with first cloud availability expanding to AWS,
+  Google Cloud, Microsoft, and OCI alongside cloud partners CoreWeave,
+  Lambda, Nebius, and Nscale. **TurboQuant** (ICLR 2026) is now a major
+  reference point in KV-cache quantization research, as KV-cache memory
+  has become the binding constraint for long-context serving.
+- **MCP 2026-07-28 (finalized)**: the Model Context Protocol's largest
+  revision since launch shipped as the final spec on July 28, 2026 — a
+  stateless protocol core (no more `Mcp-Session-Id`, no
+  `initialize`/`initialized` handshake), Multi Round-Trip Requests,
+  header-based routing, cacheable list results, authorization rebuilt on
+  standard OAuth/OIDC RFCs, and a reverse-DNS-namespaced extensions
+  framework. The first two extensions riding that framework are the
+  **Tasks extension** (long-running async tool calls via `tasks/get` /
+  `tasks/update` / `tasks/cancel`) and **MCP Apps** (server-rendered
+  interactive UIs in sandboxed iframes). Tier 1 SDKs (Python, TypeScript,
+  Go, C#) now ship stable 2026-07-28 support and see close to half a
+  billion downloads a month, with the TypeScript and Python SDKs each
+  past 1 billion total downloads. The **Enterprise-Managed Authorization**
+  extension is stable and adopted by Anthropic, Microsoft, and Okta; X
+  (formerly Twitter) shipped a hosted MCP server for its platform API in
+  July.
 - **New frontier entrants**: xAI released **Grok 4.5** (July 8) as its
   first model built specifically for coding and agentic work, priced
   over 60% below Claude Opus 4.8 or GPT-5.5 while landing fourth on the

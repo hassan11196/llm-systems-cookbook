@@ -326,6 +326,13 @@ KV eviction
   mass; SnapKV uses an observation window to score prompt tokens.
   Covered in
   {doc}`notebooks/05_serving/03_kv_compression_streamingllm_h2o_snapkv`.
+
+TurboQuant
+  A near-lossless KV-cache compression method (ICLR 2026) using
+  uniform angle quantization. Became a major reference point in 2026
+  KV-cache quantization research as KV-cache memory — not compute —
+  became the binding constraint for long-context serving. Relevant
+  extension point for {doc}`notebooks/05_serving/04_2bit_kv_quantization_kivi`.
 ```
 
 SGLang
@@ -616,13 +623,18 @@ GPQA
   Graduate-Level Google-Proof Q&A. 448 expert-authored questions in
   biology, chemistry, and physics that PhD-level domain experts answer
   correctly only ~65% of the time. Became a standard frontier benchmark
-  as MMLU saturated in 2025.
+  as MMLU saturated in 2025; by August 2026 the top of GPQA-Diamond
+  (91-94%) is itself approaching saturation, though it still
+  differentiates models in the 60-90% range.
 
 HLE
   Humanity's Last Exam. A 2,500-question expert benchmark released Jan
   2025 by the Center for AI Safety and Scale AI. Covers math, science,
   and humanities at the level of PhD qualifying exams; frontier models
   scored below 10% on release, making it a long-term frontier target.
+  As GPQA-Diamond nears saturation, HLE has become the primary frontier
+  differentiator as of August 2026, with Grok 4 leading at 50.7% and
+  most frontier models scoring substantially below.
 
 LiveCodeBench
   A contamination-resistant coding benchmark that continuously adds new
@@ -694,17 +706,21 @@ XGrammar
 MCP
   Model Context Protocol. An open standard for exposing tools and
   data sources to LLM clients over JSON-RPC. The **2026-07-28**
-  specification (in release-candidate status as of July 2026; final
-  text ships July 28, 2026) is the largest revision since launch: it
-  removes the `Mcp-Session-Id` protocol session (any server instance can
-  now handle any request), drops the `initialize`/`initialized`
-  handshake, and rewrites authorization around standard OAuth/OIDC RFCs
-  instead of bespoke wiring. It also introduces a formal **extensions
+  specification shipped as final text on July 28, 2026, and is the
+  largest revision since launch: it removes the `Mcp-Session-Id`
+  protocol session (any server instance can now handle any request),
+  drops the `initialize`/`initialized` handshake, adds Multi Round-Trip
+  Requests, header-based routing, and cacheable list results, and
+  rewrites authorization around standard OAuth/OIDC RFCs instead of
+  bespoke wiring. It also introduces a formal **extensions
   framework** — reverse-DNS-namespaced extensions with their own
   repositories and version cadence, independent of the core spec. The
   **Enterprise-Managed Authorization** extension reached stable status
   ahead of the core spec and is adopted by Anthropic, Microsoft, and
-  Okta. Covered in {doc}`notebooks/04_agents/05_mcp_server_client`.
+  Okta. Tier 1 SDKs (Python, TypeScript, Go, C#) now ship stable
+  2026-07-28 support and see close to half a billion downloads a month,
+  with the TypeScript and Python SDKs each past 1 billion total
+  downloads. Covered in {doc}`notebooks/04_agents/05_mcp_server_client`.
 
 DSPy
   A framework that compiles high-level program-like agents into
@@ -995,7 +1011,18 @@ Qwen3
   (reasoning) and non-thinking mode selectable per-request via
   ``/think`` or ``/no_think`` prompt prefixes. Sizes from 0.6B to
   235B total (22B active in the MoE flagship). Qwen3-235B-A22B leads
-  open models on GPQA-Diamond and AIME 2025/2026.
+  open models on GPQA-Diamond and AIME 2025/2026. The proprietary
+  **Qwen3.7-Max** (May 2026) and **Qwen3.8-Max** (previewed at WAIC
+  Shanghai, July 19, 2026; full release expected August 2026) extend the
+  closed-API tier — neither has shipped open weights, unlike the base
+  Qwen3 line.
+
+Muse Spark
+  Meta's multimodal reasoning model for agentic workflows, released as
+  a closed, United States-only preview (Meta Model API). **Muse Spark
+  1.1** ties OpenAI's GPT-5.6 Luna at 51 on the Artificial Analysis
+  Intelligence Index v4.1, with a 1M-token context window and cheaper
+  output pricing ($4.25 vs. $6 per million tokens) than Luna.
 
 SGLang
   UC Berkeley / LMSYS serving framework with RadixAttention (shared
