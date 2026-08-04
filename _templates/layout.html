@@ -1,4 +1,16 @@
 {% extends "!layout.html" %}
+{#- Fix the doubled <title> on the home page: Sphinx appends the site name as a
+    suffix, but the home page's own title already IS the site name, producing
+    "The LLM Systems Cookbook — The LLM Systems Cookbook" in tabs and search
+    results. Emit a single clean title there; every other page keeps the
+    default "<page> — <site>" pattern via super(). -#}
+{% block htmltitle %}
+{%- if pagename == 'intro' -%}
+<title>The LLM Systems Cookbook</title>
+{%- else -%}
+{{ super() }}
+{%- endif -%}
+{% endblock %}
 {% block extrahead %}
   {{ super() }}
   {%- set _base = 'https://hassan11196.github.io/llm-systems-cookbook/' %}
@@ -14,7 +26,13 @@
   {%- set _page_desc = page_descriptions.get(pagename, _site_desc) if page_descriptions is defined else _site_desc %}
   {%- set _og_image = _base ~ 'og-image.png' %}
   {%- set _bare_title = title|striptags|e %}
+  {#- The home page's own title already is the site name, so don't append the
+      site-name suffix there (avoids a doubled og:/twitter: title). -#}
+  {%- if pagename == 'intro' %}
+  {%- set _page_title = 'The LLM Systems Cookbook' %}
+  {%- else %}
   {%- set _page_title = _bare_title ~ ' — The LLM Systems Cookbook' %}
+  {%- endif %}
   {#- Emit a description only if the page didn't already declare one via frontmatter, so we never duplicate the tag. -#}
   {%- if 'name="description"' not in (metatags|default('', true)) %}
   <meta name="description" content="{{ _page_desc|e }}" />
@@ -49,8 +67,35 @@
     "codeRepository": "https://github.com/hassan11196/llm-systems-cookbook",
     "license": "https://opensource.org/licenses/MIT",
     "programmingLanguage": "Python",
+    "inLanguage": "en",
+    "isAccessibleForFree": true,
     "educationalLevel": "undergraduate",
     "learningResourceType": "Jupyter notebook curriculum",
+    "audience": {
+      "@type": "EducationalAudience",
+      "educationalRole": "student"
+    },
+    "about": [
+      "Large language models",
+      "LLM systems engineering",
+      "LLM inference optimization",
+      "Retrieval-augmented generation",
+      "AI agents",
+      "LLM serving and scaling",
+      "LLM evaluation",
+      "GPU programming",
+      "Production LLM applications"
+    ],
+    "hasPart": [
+      { "@type": "LearningResource", "name": "Foundations: GPU programming and Triton", "url": "https://hassan11196.github.io/llm-systems-cookbook/notebooks/07_gpu/index.html", "description": "GPU architecture, the roofline model, and Triton kernel development from first principles: softmax, tiled matmul, FlashAttention-2, fused RoPE/RMSNorm, torch.compile, Nsight profiling, and JAX sharding." },
+      { "@type": "LearningResource", "name": "Inference engines", "url": "https://hassan11196.github.io/llm-systems-cookbook/notebooks/01_inference/index.html", "description": "LLM inference optimization: KV-cache mechanics, PagedAttention, continuous batching, FlashAttention-2, radix prefix caching, speculative decoding, SARATHI chunked prefill, and disaggregated serving." },
+      { "@type": "LearningResource", "name": "Serving and scaling", "url": "https://hassan11196.github.io/llm-systems-cookbook/notebooks/05_serving/index.html", "description": "LLM serving and scaling: KV-cache variants (MHA/GQA/MLA), KV compression, GPTQ/AWQ quantization, FP8, MoE serving, DistServe/Dynamo, and LLM observability." },
+      { "@type": "LearningResource", "name": "Training and fine-tuning", "url": "https://hassan11196.github.io/llm-systems-cookbook/notebooks/03_training/index.html", "description": "LLM training and fine-tuning: mixed-precision training, gradient accumulation, FSDP2 distributed training, LoRA, QLoRA, and DPO/ORPO/GRPO preference optimization." },
+      { "@type": "LearningResource", "name": "Retrieval-augmented generation", "url": "https://hassan11196.github.io/llm-systems-cookbook/notebooks/02_rag/index.html", "description": "Production RAG system design: chunking strategies, FAISS dense retrieval, BM25/SPLADE hybrid search, ColBERTv2 late interaction, reranking, HyDE, RAPTOR, GraphRAG, and RAGAS evaluation." },
+      { "@type": "LearningResource", "name": "Agent frameworks", "url": "https://hassan11196.github.io/llm-systems-cookbook/notebooks/04_agents/index.html", "description": "AI agent architecture from scratch: ReAct, structured outputs, LangGraph state machines, DSPy/MIPROv2, the Model Context Protocol (MCP), AutoGen, CrewAI, and agent evaluation." },
+      { "@type": "LearningResource", "name": "Evaluation", "url": "https://hassan11196.github.io/llm-systems-cookbook/notebooks/06_eval/index.html", "description": "LLM evaluation methodology: perplexity, MMLU calibration, HumanEval pass@k, LLM-as-judge bias, Arena Elo/Bradley-Terry, NIAH/RULER long-context tests, and contamination detection." },
+      { "@type": "LearningResource", "name": "Production patterns", "url": "https://hassan11196.github.io/llm-systems-cookbook/notebooks/08_production/index.html", "description": "Production LLM patterns: prompt caching, LiteLLM multi-provider routing and fallbacks, tool use, structured outputs, hybrid RAG with citations, MCP servers, and GPU cost modeling." }
+    ],
     "teaches": [
       "LLM inference optimization",
       "RAG pipeline design",
