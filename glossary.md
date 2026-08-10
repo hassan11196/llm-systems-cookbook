@@ -623,9 +623,11 @@ GPQA
   Graduate-Level Google-Proof Q&A. 448 expert-authored questions in
   biology, chemistry, and physics that PhD-level domain experts answer
   correctly only ~65% of the time. Became a standard frontier benchmark
-  as MMLU saturated in 2025; by August 2026 the top of GPQA-Diamond
-  (91-94%) is itself approaching saturation, though it still
-  differentiates models in the 60-90% range.
+  as MMLU saturated in 2025; by early August 2026 GPQA-Diamond has
+  crossed into saturation at the top — Sakana AI's **Fugu-Ultra v1.1**
+  leads at 95.5% (August 7), with the top three models clustered within
+  0.9 points — though the benchmark still differentiates models in the
+  60-90% range, where most procurement decisions live.
 
 HLE
   Humanity's Last Exam. A 2,500-question expert benchmark released Jan
@@ -633,8 +635,11 @@ HLE
   and humanities at the level of PhD qualifying exams; frontier models
   scored below 10% on release, making it a long-term frontier target.
   As GPQA-Diamond nears saturation, HLE has become the primary frontier
-  differentiator as of August 2026, with Grok 4 leading at 50.7% and
-  most frontier models scoring substantially below.
+  differentiator: the official CAIS/Scale text-only (no-tools)
+  leaderboard sits in the mid-40s% as of August 2026, while tool-assisted
+  scores on some provider leaderboards run higher (Grok 4 reports 50.7%)
+  — either way, leading models still fail roughly half of the
+  expert-written questions.
 
 LiveCodeBench
   A contamination-resistant coding benchmark that continuously adds new
@@ -927,9 +932,16 @@ Claude Sonnet 5 / Claude Fable 5
   on SWE-bench Pro. **Claude Fable 5** (general availability July 1,
   2026) is the frontier-tier release, leading SWE-bench Pro at 80.3%
   and pairing a 200K-token standard context window with a beta
-  1M-token context mode. Both ship at roughly half the per-token
-  price of their predecessors. Referenced as the production-track
-  model defaults in {doc}`notebooks/08_production/index`.
+  1M-token context mode. Both shipped at roughly half the per-token
+  price of their predecessors. Sonnet 5's introductory $2/$10-per-M
+  pricing is temporary: standard $3/$15 pricing takes effect
+  September 1, 2026, and Sonnet 5's newer tokenizer can produce up to
+  ~35% more tokens for the same input than Sonnet 4.6's, so effective
+  per-request cost rises by more than the headline rate change alone
+  suggests — relevant to the cost-modeling notebook in
+  {doc}`notebooks/08_production/index`. Referenced as the
+  production-track model defaults in
+  {doc}`notebooks/08_production/index`.
 
 Claude Opus 5
   Anthropic's July 24, 2026 Opus-tier refresh. Holds Opus 4.8's $5/$25
@@ -972,10 +984,11 @@ Gemini 3.5 Flash
   input / $9.00 output / $0.15 cached-read per 1 M tokens. Available
   via Google AI Studio, Gemini API, and the Antigravity framework.
   **Gemini 3.5 Pro** — expected as the enterprise flagship above Flash —
-  has slipped past its original June 2026 target three times running;
-  Google DeepMind reportedly rebuilt the base model after it missed
-  internal hallucination and reliability goals, and it remains
-  unreleased as of late July 2026.
+  has now slipped past its original June 2026 target four times
+  running; Google DeepMind reportedly rebuilt the base model after it
+  missed internal hallucination and reliability goals, and it remains
+  in limited Vertex AI preview, unreleased as of August 10, 2026. The
+  latest rumored public-launch date is August 12.
 
 Gemini 3.6 Flash
   Google's July 21, 2026 successor to Gemini 3.5 Flash, and the new
@@ -1012,17 +1025,48 @@ Qwen3
   ``/think`` or ``/no_think`` prompt prefixes. Sizes from 0.6B to
   235B total (22B active in the MoE flagship). Qwen3-235B-A22B leads
   open models on GPQA-Diamond and AIME 2025/2026. The proprietary
-  **Qwen3.7-Max** (May 2026) and **Qwen3.8-Max** (previewed at WAIC
-  Shanghai, July 19, 2026; full release expected August 2026) extend the
-  closed-API tier — neither has shipped open weights, unlike the base
-  Qwen3 line.
+  **Qwen3.7-Max** (May 2026) extended the closed-API tier without open
+  weights, but **Qwen3.8-Max** (shipped August 3, 2026; 2.4T total
+  parameters, ~95B active) beats GPT-5.6 Sol Max and Claude Fable 5 on
+  OSWorld-Verified computer use (86.1 vs. 83.2 / 85.0) and leads on
+  PaperBench (93.0) — and open weights follow on August 12, 2026,
+  breaking the closed-only pattern of the Qwen3.x line.
 
 Muse Spark
   Meta's multimodal reasoning model for agentic workflows, released as
   a closed, United States-only preview (Meta Model API). **Muse Spark
-  1.1** ties OpenAI's GPT-5.6 Luna at 51 on the Artificial Analysis
+  1.1** tied OpenAI's GPT-5.6 Luna at 51 on the Artificial Analysis
   Intelligence Index v4.1, with a 1M-token context window and cheaper
-  output pricing ($4.25 vs. $6 per million tokens) than Luna.
+  output pricing ($4.25 vs. $6 per million tokens) than Luna. **Muse
+  Spark 1.2** shipped August 6, 2026.
+
+Astra
+  OpenAI's teased next major model, unreleased as of August 2026.
+  Rather than a launch, OpenAI introduced it on August 1 by publishing
+  machine-checked solutions to ten mathematics and theoretical-CS
+  problems that had been open for a decade or more — including an
+  explicit construction of a non-sofic group (open since Gromov, 1999)
+  and a disproof of Connes's rigidity conjecture — each with a Lean 4
+  proof certificate (zero `sorry`s) posted under Apache 2.0. OpenAI put
+  the total inference cost at roughly $2,000 at GPT-5.6 Sol API rates.
+  Astra is described as coordinating multiple agents over long-horizon
+  tasks, extending the test-time-compute reasoning line of work; it is
+  not yet decided whether it ships as GPT-6, a GPT-5.x point release, or
+  under the Astra name. Relevant context for the planned
+  `01_inference/11_inference_time_scaling.ipynb` notebook (see
+  {doc}`CURRICULUM_SPEC`).
+
+Sakana Fugu / Fugu-Ultra
+  Sakana AI's model family (launched June 22, 2026) built as a
+  multi-model orchestration system rather than a single trained
+  network — a router coordinates multiple underlying models per query.
+  **Fugu-Ultra**, the quality-first variant tuned for harder multi-step
+  tasks, reached a **v1.1** refresh with up to 7.9 points of benchmark
+  improvement over v1.0 at unchanged pricing ($5 input / $30 output per
+  1M tokens), and leads the GPQA-Diamond leaderboard at 95.5% as of
+  August 7, 2026 — the clearest signal yet that GPQA-Diamond has
+  crossed into saturation for frontier models. Both variants support a
+  1M-token context window.
 
 SGLang
   UC Berkeley / LMSYS serving framework with RadixAttention (shared

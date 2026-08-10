@@ -183,6 +183,31 @@ hard-list watermarking, toxicity scoring.
 ```{admonition} What's new in August 2026
 :class: note
 
+- **Week of August 10, 2026 refresh**: OpenAI teased its next model,
+  **Astra**, on August 1 — not with a launch, but by publishing
+  machine-checked Lean 4 proofs for ten mathematics and theoretical-CS
+  problems that had stood open for a decade or more (including an
+  explicit non-sofic group construction), for roughly $2,000 in
+  inference cost; Astra remains unreleased and is framed as an
+  extension of long-horizon, multi-agent test-time reasoning. Sakana
+  AI's **Fugu-Ultra v1.1** (a multi-model orchestration system, not a
+  single trained network) now leads the GPQA-Diamond leaderboard at
+  95.5% (August 7), with the top three models clustered within 0.9
+  points — confirming GPQA-Diamond has crossed into saturation at the
+  top. Alibaba shipped **Qwen3.8-Max** (August 3, 2.4T-parameter MoE)
+  as a closed-API release beating GPT-5.6 Sol Max and Claude Fable 5 on
+  OSWorld-Verified computer use, with open weights following August 12
+  — breaking the closed-only pattern of prior Qwen3.x releases.
+  **Gemini 3.5 Pro** has now slipped a fourth time past its original
+  June target and remains unreleased as of August 10, with the latest
+  rumor pointing to August 12. Anthropic began assembling an internal
+  AI chip design team (August 5) to co-design hardware with future
+  models, and confirmed that Claude Sonnet 5's introductory $2/$10
+  pricing ends August 31, 2026 — standard $3/$15 pricing (plus a newer,
+  more token-hungry tokenizer) takes effect September 1, relevant to
+  the GPU/API cost-modeling notebook in
+  [Part VIII](notebooks/08_production/index.md). Meta shipped **Muse
+  Spark 1.2** (August 6).
 - **Week of August 3, 2026 refresh**: Meta's **Muse Spark 1.1** (a
   multimodal reasoning model for agentic workflows, closed US-only
   preview) ties OpenAI's GPT-5.6 Luna at 51 on the Artificial Analysis

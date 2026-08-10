@@ -58,20 +58,31 @@ SWE-bench Pro) is the balanced-tier option one step down. **GPT-5.6 Sol**
 Artificial Analysis Coding Agent Index at under half the output tokens;
 **Grok 4.5** (xAI, July 8, 2026) undercuts Opus-class pricing by over 60%
 while landing fourth on the Artificial Analysis Intelligence Index.
-Google's flagship **Gemini 3.5 Pro** remains delayed past its third
-target date; in its place, **Gemini 3.6 Flash** (July 21, 2026, the new
-Gemini default, 58.7% SWE-bench Pro, $1.50/$7.50 per M tokens) and the
-low-latency **Gemini 3.5 Flash-Lite** cover the Google tier for
-production use today. On the open-weight side, **GLM-5.2** (Z.ai, 744B
-MoE, 62.1% SWE-bench Pro), **Kimi K3** (Moonshot AI, 2.8T MoE, full
-594 GB weights shipped July 27, 2026), and the **DeepSeek-V4-Flash-0731**
-refresh (July 31, 2026) now edge into frontier-tier territory, making
-self-hosted deployment a credible alternative to the closed-API tier for
-cost-sensitive teams willing to run their own serving stack. Meta's
-**Muse Spark 1.1** (multimodal, agentic-workflow focused) is a closed
-US-only preview that ties GPT-5.6 Luna at 51 on the Artificial Analysis
-Intelligence Index v4.1; Alibaba previewed **Qwen3.8-Max** at WAIC
-Shanghai (July 19, 2026) with a full release expected this month, though
-the Qwen3.x line remains closed-weight. For cost-sensitive production use
-via API, `claude-haiku-4-5-20251001` and `gpt-5.5-instant` remain the
-default latency-optimised choices.
+Google's flagship **Gemini 3.5 Pro** remains delayed past its fourth
+target date and is still unreleased as of August 10, 2026 (limited
+Vertex AI preview only, latest rumored date August 12); in its place,
+**Gemini 3.6 Flash** (July 21, 2026, the new Gemini default, 58.7%
+SWE-bench Pro, $1.50/$7.50 per M tokens) and the low-latency **Gemini
+3.5 Flash-Lite** cover the Google tier for production use today. On the
+open-weight side, **GLM-5.2** (Z.ai, 744B MoE, 62.1% SWE-bench Pro),
+**Kimi K3** (Moonshot AI, 2.8T MoE, full 594 GB weights shipped July 27,
+2026), and the **DeepSeek-V4-Flash-0731** refresh (July 31, 2026) now
+edge into frontier-tier territory, making self-hosted deployment a
+credible alternative to the closed-API tier for cost-sensitive teams
+willing to run their own serving stack. **Qwen3.8-Max** (Alibaba,
+shipped August 3, 2026, 2.4T MoE, ~95B active) beats GPT-5.6 Sol Max and
+Claude Fable 5 on OSWorld-Verified computer use, with open weights
+following August 12 — the first Qwen3.x release to break from the
+closed-only pattern. **Sakana Fugu-Ultra v1.1** takes a different
+approach entirely: a multi-model orchestration system (not a single
+trained network) at $5 input / $30 output per M tokens, now leading the
+GPQA-Diamond leaderboard at 95.5%. Meta's **Muse Spark 1.2** (shipped
+August 6, 2026; multimodal, agentic-workflow focused) is a closed
+US-only preview priced below GPT-5.6 Luna. **Note on cost modeling:**
+Claude Sonnet 5's introductory $2/$10-per-M pricing ends August 31,
+2026 — standard $3/$15 pricing takes effect September 1, and Sonnet 5's
+newer tokenizer can produce up to ~35% more tokens for the same input
+than Sonnet 4.6's, so budget for a larger effective cost increase than
+the headline rate change alone implies. For cost-sensitive production
+use via API, `claude-haiku-4-5-20251001` and `gpt-5.5-instant` remain
+the default latency-optimised choices.

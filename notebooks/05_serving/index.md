@@ -48,7 +48,12 @@
   massive-context inference.
 - **TurboQuant** (ICLR 2026) is a major 2026 reference point in KV-cache
   quantization research, as KV-cache memory has become the binding
-  constraint for long-context serving.
+  constraint for long-context serving. The same problem has drawn
+  several follow-on 2026 papers: **RateQuant** applies rate-distortion
+  theory to assign mixed bit-widths per attention head rather than a
+  single global precision, and **RDKV** does joint rate-distortion bit
+  allocation across eviction and quantization together — both natural
+  stretch-goal extensions of `05_serving/04_2bit_kv_quantization_kivi`.
 
 ```{admonition} Coming in v0.3
 :class: note
