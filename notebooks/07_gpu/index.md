@@ -1,5 +1,13 @@
 # Foundations: GPU programming and the roofline
 
+This part is a from-first-principles introduction to **GPU programming for
+LLMs**. You learn to read a GPU's compute and memory-bandwidth ceilings with the
+roofline model, write your first Triton kernels (softmax, tiled matmul, and a
+FlashAttention-2 kernel), fuse RoPE with RMSNorm to cut HBM traffic, and profile
+real kernels with `torch.compile` and Nsight. Every technique in the inference
+and serving parts rests on the hardware intuition built here, so start here if
+you are new to GPU kernels.
+
 ```{admonition} What you'll learn in this part
 :class: tip
 

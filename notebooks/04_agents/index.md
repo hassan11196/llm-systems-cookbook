@@ -1,5 +1,14 @@
 # Agent frameworks
 
+This part covers **AI agent architecture** from the ground up: the reasoning
+loop, tool calling, structured outputs, state machines, and multi-agent
+coordination that turn a language model into an agent. You build a ReAct loop
+and a LangGraph-style state machine from scratch, optimize prompts with DSPy and
+MIPROv2, implement a Model Context Protocol (MCP) server and client, and
+evaluate agents with τ-bench and SWE-bench. The patterns transfer directly to
+the OpenAI Agents SDK, Google ADK, Pydantic AI, and the Microsoft Agent
+Framework.
+
 ```{admonition} What you'll learn in this part
 :class: tip
 

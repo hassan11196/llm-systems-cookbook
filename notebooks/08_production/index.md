@@ -1,7 +1,11 @@
 # Production patterns
 
-Real LLM code that runs against real APIs (Anthropic, OpenAI, Ollama,
-local vLLM). No regex stubs, no rule-based "policies" pretending to be
+This part is about **building reliable LLM applications** and running
+**production LLM systems**: prompt caching, multi-provider routing with
+fallbacks, native tool use, structured outputs, hybrid RAG with citations, MCP
+servers, prompt optimization, evaluation harnesses, and GPU cost modeling. It is
+real LLM code that runs against real APIs (Anthropic, OpenAI, Ollama,
+local vLLM) — no regex stubs, no rule-based "policies" pretending to be
 models. Each notebook works in two modes:
 
 - **LIVE**: when an API key is set, hits the real provider and shows

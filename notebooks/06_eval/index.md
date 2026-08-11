@@ -1,5 +1,13 @@
 # Evaluation
 
+This part is a practical **LLM evaluation guide**: how to measure model quality
+in ways that are reproducible and hard to fool. You implement the core methods
+from scratch — perplexity and calibration, HumanEval `pass@k`, LLM-as-judge with
+its position and verbosity biases, Arena Elo and Bradley-Terry ranking,
+long-context needle-in-a-haystack (NIAH/RULER), and contamination detection —
+then wire them into standard harnesses (lm-eval, Inspect AI). The goal is to
+know what a benchmark number actually means before you trust it.
+
 ```{admonition} What you'll learn in this part
 :class: tip
 

@@ -1,5 +1,13 @@
 # Retrieval-augmented generation
 
+This part is a hands-on guide to **RAG system design**: how to turn a corpus
+and a language model into a retrieval-augmented pipeline that returns grounded,
+citable answers. You build every stage from first principles — chunking, dense
+and sparse retrieval, hybrid fusion, reranking, query rewriting, hierarchical
+and graph retrieval — and then measure the whole pipeline with RAGAS. The
+production version of these techniques, with real API calls and inline
+citations, lives in [Part VIII](../08_production/index.md).
+
 ```{admonition} What you'll learn in this part
 :class: tip
 

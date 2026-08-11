@@ -1,5 +1,13 @@
 # Inference engines
 
+This part covers **LLM inference optimization** from first principles: what
+actually happens when a model serves a token, why decoding is memory-bound
+while prefill is compute-bound, and how modern inference engines (vLLM, SGLang,
+TensorRT-LLM) close the gap. You reimplement the core mechanisms — KV cache,
+PagedAttention, continuous batching, FlashAttention-2, speculative decoding,
+chunked prefill, and disaggregated prefill/decode — as small, runnable Python
+that you can profile and reason about.
+
 ```{admonition} What you'll learn in this part
 :class: tip
 

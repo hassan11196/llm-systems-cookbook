@@ -1,5 +1,13 @@
 # Training and fine-tuning
 
+This part covers **LLM training and fine-tuning** on hardware you actually have.
+You start with the memory-reduction tactics that fit training onto a single
+consumer GPU — bf16 mixed precision, gradient accumulation, activation
+checkpointing — then compare DDP and FSDP2 for distributed training.
+Parameter-efficient fine-tuning (LoRA, QLoRA) and preference optimization (DPO,
+GRPO) are implemented from first principles so you can see what each objective
+is really optimizing.
+
 ```{admonition} What you'll learn in this part
 :class: tip
 

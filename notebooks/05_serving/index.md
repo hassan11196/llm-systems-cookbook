@@ -1,5 +1,13 @@
 # Serving and scaling
 
+This part is about **LLM serving and scaling**: the deployment-side decisions
+that set your cost per token and your tail latency. You work through KV-cache
+variants and compression, weight quantization (GPTQ, AWQ, SmoothQuant, FP8),
+batching strategies, mixture-of-experts serving, disaggregated serving, and the
+**LLM observability** and autoscaling patterns that keep a deployment inside its
+SLOs. These are the LLM deployment best practices you need to run a model in
+production rather than just call one.
+
 ```{admonition} What you'll learn in this part
 :class: tip
 
