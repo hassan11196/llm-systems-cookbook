@@ -44,8 +44,10 @@
   inference performance-per-watt and 10× more revenue per
   trillion-parameter model versus Blackwell, with cloud availability
   expanding to AWS, Google Cloud, Microsoft, and OCI alongside CoreWeave,
-  Lambda, Nebius, and Nscale. Rubin CPX variant optimised for
-  massive-context inference.
+  Lambda, Nebius, and Nscale. Initial shipments went out in July 2026 to
+  Microsoft and Google, with Meta also holding allocation; volume
+  shipments ramp through the rest of 2026. Rubin CPX variant optimised
+  for massive-context inference.
 - **TurboQuant** (ICLR 2026) is a major 2026 reference point in KV-cache
   quantization research, as KV-cache memory has become the binding
   constraint for long-context serving. The same problem has drawn

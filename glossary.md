@@ -635,11 +635,10 @@ HLE
   and humanities at the level of PhD qualifying exams; frontier models
   scored below 10% on release, making it a long-term frontier target.
   As GPQA-Diamond nears saturation, HLE has become the primary frontier
-  differentiator: the official CAIS/Scale text-only (no-tools)
-  leaderboard sits in the mid-40s% as of August 2026, while tool-assisted
-  scores on some provider leaderboards run higher (Grok 4 reports 50.7%)
-  — either way, leading models still fail roughly half of the
-  expert-written questions.
+  differentiator: as of August 11, 2026, **Claude Fable 5** leads the
+  tool-assisted leaderboard at 55.5%, just ahead of **Claude Opus 5**
+  (54.9%) and **GPT-5.6 Sol** (49.5%) — either way, leading models still
+  fail roughly half of the expert-written questions.
 
 LiveCodeBench
   A contamination-resistant coding benchmark that continuously adds new
@@ -987,8 +986,17 @@ Gemini 3.5 Flash
   has now slipped past its original June 2026 target four times
   running; Google DeepMind reportedly rebuilt the base model after it
   missed internal hallucination and reliability goals, and it remains
-  in limited Vertex AI preview, unreleased as of August 10, 2026. The
-  latest rumored public-launch date is August 12.
+  in limited Vertex AI preview, unreleased as of August 2026. It missed
+  its latest rumored August 12 date too, with reporting pointing to
+  coding-performance shortfalls and a disappointing training-data
+  refresh that have left it months behind schedule; no new target date
+  has been given.
+
+Gemini 3.7 Flash
+  Google's August 13, 2026 successor to Gemini 3.6 Flash, shipped while
+  the enterprise-flagship **Gemini 3.5 Pro** remains delayed. Extends the
+  Flash tier's agentic and coding performance rather than replacing the
+  still-unreleased Pro model.
 
 Gemini 3.6 Flash
   Google's July 21, 2026 successor to Gemini 3.5 Flash, and the new

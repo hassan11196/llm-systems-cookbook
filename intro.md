@@ -183,6 +183,33 @@ hard-list watermarking, toxicity scoring.
 ```{admonition} What's new in August 2026
 :class: note
 
+- **Week of August 17, 2026 refresh**: The first **Humanity's Last Exam**
+  leaderboard snapshot naming Anthropic's newest models shows **Claude
+  Fable 5** leading at 55.5% (August 11), just ahead of **Claude Opus 5**
+  (54.9%) and **GPT-5.6 Sol** (49.5%) — the benchmark table in
+  [Part VII](notebooks/06_eval/index.md) and the HLE glossary entry are
+  updated accordingly. **Gemini 3.5 Pro**'s delay continues past the
+  rumored August 12 date, with reporting pointing to coding-performance
+  shortfalls and a disappointing training-data refresh that have left it
+  "months behind schedule"; Google shipped **Gemini 3.7 Flash** instead
+  on August 13, extending the Flash tier while Pro stays stuck in limited
+  preview. xAI released **Grok 4.6** (long-running agents, deeper coding,
+  500K-token context, $2/$0.50/$6 per M tokens input/cached/output) and
+  added it to GitHub Copilot and Cursor; Grok 4.7 (2.1T parameters) is
+  expected within weeks. OpenAI gave **GPT-5.6 Sol** a user-facing effort
+  slider (August 6) and previewed an **Ultrafast mode** (up to 14× faster,
+  August 13); o3 retires from ChatGPT August 26 after a 90-day sunset, and
+  OpenAI expanded its Daybreak cybersecurity initiative with a new
+  **GPT-5.6-Cyber** model for vetted defenders. **NVIDIA Vera Rubin**'s
+  initial shipments went out in July to Microsoft and Google (Meta also
+  holds allocation), with volume shipments ramping through the rest of
+  2026 — noted in [Part IV](notebooks/05_serving/index.md). ByteDance
+  shipped **Seed 2.1 Turbo** (August 10). The EU AI Act's **Article 50**
+  transparency obligations took effect August 2, 2026, requiring
+  disclosure of AI interaction and machine-readable marking of
+  AI-generated content — relevant context for teams deploying the
+  production notebooks in [Part VIII](notebooks/08_production/index.md)
+  into the EU.
 - **Week of August 10, 2026 refresh**: OpenAI teased its next model,
   **Astra**, on August 1 — not with a launch, but by publishing
   machine-checked Lean 4 proofs for ten mathematics and theoretical-CS

@@ -62,14 +62,14 @@ The evaluation frontier has shifted since 2024. Several benchmarks that were dif
 | GSM8K | ~97% | ~99% | Saturated |
 | MBPP | ~85% | ~95% | Saturated |
 | GPQA-Diamond | ~70% | 95.5% | Saturated at the top |
-| HLE (Humanity's Last Exam) | <10% | ~45-50% | Active frontier |
+| HLE (Humanity's Last Exam) | <10% | ~50-56% | Active frontier |
 | ARC-AGI-2 | ~5% | ~60-65% | Active frontier |
 | AIME 2025 | N/A | 91-94% | Active frontier |
 | SWE-bench Verified | ~45% | ~77-80% | Active frontier |
 | SWE-bench Pro | N/A | 80.3% | Active frontier |
 | FrontierCode (Diamond) | N/A | 29.3% | Active frontier |
 
-SWE-bench Pro and FrontierCode (Cognition's hardest coding split) are the new discriminating benchmarks for frontier coding agents. The leading model on SWE-bench Pro leads the next-best by over 11 points. The Hebbia Finance Benchmark covers senior-level reasoning over financial documents and is gaining adoption as a proxy for document-understanding capability. As of early August 2026, MMLU, HumanEval, and MBPP no longer meaningfully separate frontier models. GPQA-Diamond has now crossed into saturation at the very top — Sakana AI's Fugu-Ultra v1.1 (a multi-model orchestration system) leads at 95.5% as of August 7, with the top three models within 0.9 points of each other — though it remains useful in the 60-90% band where most procurement decisions live. **HLE** has become the primary frontier differentiator: the official CAIS/Scale text-only leaderboard sits in the mid-40s% as of August 2026, while some provider leaderboards report tool-assisted scores above 50% (Grok 4 at 50.7%); either way, leading models still fail roughly half of the expert-written questions.
+SWE-bench Pro and FrontierCode (Cognition's hardest coding split) are the new discriminating benchmarks for frontier coding agents. The leading model on SWE-bench Pro leads the next-best by over 11 points. The Hebbia Finance Benchmark covers senior-level reasoning over financial documents and is gaining adoption as a proxy for document-understanding capability. As of early August 2026, MMLU, HumanEval, and MBPP no longer meaningfully separate frontier models. GPQA-Diamond has now crossed into saturation at the very top — Sakana AI's Fugu-Ultra v1.1 (a multi-model orchestration system) leads at 95.5% as of August 7, with the top three models within 0.9 points of each other — though it remains useful in the 60-90% band where most procurement decisions live. **HLE** has become the primary frontier differentiator: as of August 11, 2026, Claude Fable 5 leads the tool-assisted leaderboard at 55.5%, just ahead of Claude Opus 5 (54.9%) and GPT-5.6 Sol (49.5%); either way, leading models still fail roughly half of the expert-written questions.
 
 As of July 2, 2026, BenchLM.ai tracks 249 benchmarks across 272 models; 37% of the 154 percentage-scaled benchmarks with meaningful coverage are now saturated (top model scores ≥ 90%). GSM8K is effectively solved (99%), and HellaSwag exceeds 95%. This is the case for evergreen benchmark hygiene made concrete: a benchmark's useful lifetime as a discriminator is shorter each generation, which is why `07_contamination_detection` and the lm-eval/Inspect AI comparison in `08_lm_eval_inspect_ai` both treat "is this benchmark still measuring anything" as a first-class question rather than an afterthought.
 
