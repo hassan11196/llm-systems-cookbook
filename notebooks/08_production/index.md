@@ -13,6 +13,21 @@ Recorded fixtures are regenerated with `python scripts/refresh_fixtures.py`
 on a real run; the responses you see in replay mode are real responses,
 just from a previous run.
 
+```{admonition} What you'll learn in this part
+:class: tip
+
+- Prompt caching with `cache_control`: measured cache-hit rate, dollars
+  saved, and latency drop on a long system prompt.
+- Multi-provider routing and automatic fallback with LiteLLM when the
+  primary provider rate-limits.
+- Native tool use and four structured-output stacks (tool use, Outlines,
+  Instructor, BAML) compared on schema compliance and latency.
+- A production hybrid-RAG pipeline that answers with inline citations.
+- Shipping and consuming a Model Context Protocol (MCP) server.
+- Optimising a DSPy 3 program with MIPROv2 and scoring it with Inspect AI.
+- Sizing GPUs and estimating serving cost across ten cloud providers.
+```
+
 ## Reading order
 
 1. `01_claude_sdk_prompt_caching`: `cache_control` on a long system
@@ -58,3 +73,13 @@ while landing fourth on the Artificial Analysis Intelligence Index;
 Deep Think reasoning) targets enterprise document workloads. For
 cost-sensitive production use, `claude-haiku-4-5-20251001` and
 `gpt-5.5-instant` remain the default latency-optimised choices.
+
+## Related parts
+
+- **[Part VI — Agent frameworks](../04_agents/index.md)** builds the
+  tool-use, MCP, and DSPy patterns from scratch that this part runs
+  against real APIs.
+- **[Part V — Retrieval-augmented generation](../02_rag/index.md)** is
+  the from-scratch foundation for the hybrid-RAG service in notebook 05.
+- **[Part VII — Evaluation](../06_eval/index.md)** explains the
+  evaluation methodology behind the Inspect AI harness in notebook 08.

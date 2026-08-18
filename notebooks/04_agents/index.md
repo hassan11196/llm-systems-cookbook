@@ -72,3 +72,16 @@ No mandatory prerequisites. CPU-only.
    ways (AutoGen/AG2 and CrewAI).
 7. `07_agent_evaluation_suite`: success rate, trajectory
    efficiency, and code-patch success.
+
+## Related parts
+
+- **[Part VIII — Production patterns](../08_production/index.md)**
+  exercises native tool use, a real MCP server, and DSPy 3 + MIPROv2
+  against live APIs, building directly on the from-scratch versions
+  here.
+- **[Part VII — Evaluation](../06_eval/index.md)** provides the scoring
+  methodology behind the τ-bench / SWE-bench-shaped agent evaluation in
+  notebook 07.
+- **[Part V — Retrieval-augmented generation](../02_rag/index.md)**
+  supplies the retrieval tools that agentic RAG systems call from inside
+  the agent loop.

@@ -51,6 +51,18 @@ No mandatory prerequisites. All notebooks are CPU-safe and written from scratch.
 8. `08_lm_eval_inspect_ai`: cross-framework reconciliation on a
    synthetic task.
 
+## Related parts
+
+- **[Part VIII — Production patterns](../08_production/index.md)** runs
+  Inspect AI as a real evaluation harness (task + solver + scorer)
+  against a live benchmark.
+- **[Part VI — Agent frameworks](../04_agents/index.md)** is where the
+  agent-trajectory and code-patch metrics from the LLM-as-judge and
+  pass@k material are applied end-to-end.
+- **[Part V — Retrieval-augmented generation](../02_rag/index.md)**
+  implements RAGAS, the RAG-specific evaluation stack that complements
+  the general benchmarks here.
+
 ## Benchmark landscape (mid-2026)
 
 The evaluation frontier has shifted since 2024. Several benchmarks that were difficult in 2024 are now saturated:

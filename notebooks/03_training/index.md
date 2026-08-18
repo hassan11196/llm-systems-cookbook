@@ -28,7 +28,8 @@
 
 ## Reading order
 
-Prerequisites: Part I (roofline) and Part II (KV cache).
+Prerequisites: **[Part I — Foundations](../07_gpu/index.md)** (roofline)
+and **[Part II — Inference engines](../01_inference/index.md)** (KV cache).
 
 1. `01_mixed_precision_accum_checkpointing`: four-way ablation
    (fp32, bf16, bf16+accum=4, bf16+accum+checkpoint).

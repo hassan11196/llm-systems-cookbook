@@ -50,3 +50,14 @@ No mandatory prerequisites. This part is self-contained and CPU-safe.
    + summary-level retrieval.
 9. `09_ragas_evaluation`: faithfulness, answer relevancy, context
    precision/recall.
+
+## Related parts
+
+- **[Part VIII — Production patterns](../08_production/index.md)**
+  assembles these retrievers into a runnable service: BGE-M3 dense +
+  BM25 + RRF + reranker → Claude with citations, on a 1k-doc corpus.
+- **[Part VII — Evaluation](../06_eval/index.md)** covers the
+  evaluation methodology behind RAGAS and how to tell whether a
+  retrieval change actually improved answer quality.
+- **[Part VI — Agent frameworks](../04_agents/index.md)** shows how an
+  agent can drive the retrieval loop for agentic and corrective RAG.

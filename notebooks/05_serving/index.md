@@ -84,6 +84,16 @@ Prerequisites: Part I (roofline) and Part II (KV cache, PagedAttention).
 11. `11_serving_observability_slo_autoscaler`: metrics + control
     loop.
 
+```{seealso}
+- **[Part I — Foundations](../07_gpu/index.md)** builds the roofline and
+  arithmetic-intensity tools every serving tradeoff here depends on.
+- **[Part II — Inference engines](../01_inference/index.md)** implements
+  the KV cache, PagedAttention, and batching primitives that this part
+  scales into production serving.
+- **[Part VIII — Production patterns](../08_production/index.md)** maps
+  model sizes to GPU clusters and real cloud pricing for deployment.
+```
+
 ## Serving ecosystem (mid-2026)
 
 Three open-source engines and one external KV layer account for most production deployments:

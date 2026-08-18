@@ -48,9 +48,10 @@ part builds the axes.
    workloads.
 
 ```{seealso}
-Companion reading: **Part II** uses the ridge intensity numbers from
-this part to classify every inference workload; **Part III** uses the
-same math to reason about quantisation and KV compression.
+Companion reading: **[Part II — Inference engines](../01_inference/index.md)**
+uses the ridge-intensity numbers from this part to classify every
+inference workload; **[Part III — Serving and scaling](../05_serving/index.md)**
+uses the same math to reason about quantisation and KV compression.
 ```
 
 ## Hardware roadmap (mid-2026)

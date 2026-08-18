@@ -70,8 +70,9 @@ Prerequisites: Part I (GPU architecture tour + roofline).
     GPU pools.
 
 ```{seealso}
-Part III turns the compute/memory tradeoffs here into serving-level
-economics: goodput, SLO attainment, autoscaling.
+**[Part III — Serving and scaling](../05_serving/index.md)** turns the
+compute/memory tradeoffs here into serving-level economics: goodput,
+SLO attainment, autoscaling.
 
 {term}`NVIDIA Dynamo` is the 2025 production successor to the
 hand-rolled disaggregated shm approach in chapter 10; the notebook
