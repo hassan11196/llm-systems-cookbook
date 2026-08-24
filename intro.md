@@ -183,6 +183,27 @@ hard-list watermarking, toxicity scoring.
 ```{admonition} What's new in August 2026
 :class: note
 
+- **Week of August 24, 2026 refresh**: Anthropic cancelled the planned
+  September 1 price increase for **Claude Sonnet 5**, making its
+  introductory $2/$10-per-M-token pricing permanent (confirmed August 11)
+  — the cost-modeling note in [Part VIII](notebooks/08_production/index.md)
+  and the glossary are corrected accordingly. The Model Context Protocol's
+  Core Maintainers published an updated **MCP roadmap** on August 22,
+  covering the next specification release and reporting progress across
+  the four priority areas set out in March — noted in
+  [Part VI](notebooks/04_agents/index.md). **SWE-bench Verified** has
+  effectively saturated at the frontier: five models from four labs now
+  sit statistically tied near 80%, and independent audits find roughly
+  one in five "solved" patches from top-30 agents are semantically
+  incorrect, passing only because a weak test suite misses the error —
+  the harder SWE-bench Pro split remains the discriminating benchmark;
+  see the updated table in [Part VII](notebooks/06_eval/index.md).
+  OpenAI cut **GPT-5.6 Sol**'s API and credit pricing by over 20% for
+  three months starting August 21. Z.ai shipped a faster, cheaper
+  **GLM-5.2 Turbo** variant (August 17). xAI's **Grok 4.7** (2.1T
+  parameters) has slipped past its original within-weeks target to
+  early September after xAI added SpaceX company data to the training
+  run.
 - **Week of August 17, 2026 refresh**: The first **Humanity's Last Exam**
   leaderboard snapshot naming Anthropic's newest models shows **Claude
   Fable 5** leading at 55.5% (August 11), just ahead of **Claude Opus 5**

@@ -652,7 +652,14 @@ SWE-bench
   subsets. **SWE-bench Live** (arXiv 2505.23419, May 2026) extends this
   with a live-updatable harness of 1,319 tasks from issues created after
   model training cutoffs, making contamination structurally impossible.
-  As of May 2026 the SWE-bench Verified top score is 93.9%.
+  As of May 2026 the SWE-bench Verified top score is 93.9%. By August
+  2026, five models from four labs sit statistically tied near 80% on
+  SWE-bench Verified, so the harder **SWE-bench Pro** split is now the
+  frontier-coding discriminator; independent audits also find roughly
+  one in five "solved" patches from top-30 agents are semantically
+  incorrect, passing only because a weak test suite fails to catch the
+  error — a caution against reading either leaderboard as a precise
+  capability ranking.
 
 Terminal-Bench
   A CLI-focused agentic benchmark (January 2026) that evaluates models
@@ -724,7 +731,11 @@ MCP
   Okta. Tier 1 SDKs (Python, TypeScript, Go, C#) now ship stable
   2026-07-28 support and see close to half a billion downloads a month,
   with the TypeScript and Python SDKs each past 1 billion total
-  downloads. Covered in {doc}`notebooks/04_agents/05_mcp_server_client`.
+  downloads. On August 22, 2026 the Core Maintainers published an
+  updated roadmap covering the next specification release and beyond,
+  reporting progress across the four priority areas set out in the
+  March 2026 roadmap over the preceding five months. Covered in
+  {doc}`notebooks/04_agents/05_mcp_server_client`.
 
 DSPy
   A framework that compiles high-level program-like agents into
@@ -933,10 +944,11 @@ Claude Sonnet 5 / Claude Fable 5
   and pairing a 200K-token standard context window with a beta
   1M-token context mode. Both shipped at roughly half the per-token
   price of their predecessors. Sonnet 5's introductory $2/$10-per-M
-  pricing is temporary: standard $3/$15 pricing takes effect
-  September 1, 2026, and Sonnet 5's newer tokenizer can produce up to
+  pricing, originally scheduled to rise to $3/$15 on September 1, 2026,
+  was made permanent instead: Anthropic cancelled the increase on
+  August 11, 2026. Sonnet 5's newer tokenizer can still produce up to
   ~35% more tokens for the same input than Sonnet 4.6's, so effective
-  per-request cost rises by more than the headline rate change alone
+  per-request cost can run higher than the flat per-token price alone
   suggests — relevant to the cost-modeling notebook in
   {doc}`notebooks/08_production/index`. Referenced as the
   production-track model defaults in
@@ -1094,7 +1106,9 @@ GLM-5.2
   Z.ai's July 2026 open-weight release, a 744 billion-parameter MoE
   model that becomes the top-ranked open-weight model overall: 91.2%
   on GPQA Diamond and 62.1% on SWE-bench Pro at a fraction of frontier
-  API pricing. Successor to GLM-5.1.
+  API pricing. Successor to GLM-5.1. Z.ai shipped a **GLM-5.2 Turbo**
+  variant on August 17, 2026, trading a small accuracy margin for
+  materially lower latency and cost on the same weight family.
 
 Inkling
   The first flagship model from Thinking Machines Lab (Mira Murati's

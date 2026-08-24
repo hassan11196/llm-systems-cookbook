@@ -55,12 +55,17 @@ eval, and carries the freshest (May 2026) knowledge cutoff in Anthropic's
 lineup; **Claude Sonnet 5** (`claude-sonnet-5`, June 30, 2026, 63.2%
 SWE-bench Pro) is the balanced-tier option one step down. **GPT-5.6 Sol**
 (OpenAI, July 9, 2026, $5/$30 per M tokens) edges out Fable 5 on the
-Artificial Analysis Coding Agent Index at under half the output tokens;
+Artificial Analysis Coding Agent Index at under half the output tokens,
+and OpenAI cut its API and credit pricing by over 20% for the next
+three months starting August 21, 2026;
 **Grok 4.5** (xAI, July 8, 2026) undercuts Opus-class pricing by over 60%
 while landing fourth on the Artificial Analysis Intelligence Index;
 xAI followed with **Grok 4.6** (built for long-running agents and
 deeper coding, 500K-token context, $2/$0.50/$6 per M tokens
-input/cached/output), now available in GitHub Copilot and Cursor.
+input/cached/output), now available in GitHub Copilot and Cursor. The
+next step up, **Grok 4.7** (2.1T parameters), has slipped past its
+original within-weeks target: xAI added SpaceX company data to its
+training run in mid-August and now points to early September.
 Google's flagship **Gemini 3.5 Pro** remains delayed — it missed its
 fourth target date and its latest rumored August 12 date too, with
 reporting pointing to coding-performance shortfalls and a disappointing
@@ -69,7 +74,8 @@ new date given; in its place, **Gemini 3.6 Flash** (July 21, 2026, the
 new Gemini default, 58.7% SWE-bench Pro, $1.50/$7.50 per M tokens), the
 low-latency **Gemini 3.5 Flash-Lite**, and the newer **Gemini 3.7 Flash**
 (August 13, 2026) cover the Google tier for production use today. On the
-open-weight side, **GLM-5.2** (Z.ai, 744B MoE, 62.1% SWE-bench Pro),
+open-weight side, **GLM-5.2** (Z.ai, 744B MoE, 62.1% SWE-bench Pro; a
+faster, cheaper **GLM-5.2 Turbo** variant shipped August 17, 2026),
 **Kimi K3** (Moonshot AI, 2.8T MoE, full 594 GB weights shipped July 27,
 2026), and the **DeepSeek-V4-Flash-0731** refresh (July 31, 2026) now
 edge into frontier-tier territory, making self-hosted deployment a
@@ -84,10 +90,10 @@ trained network) at $5 input / $30 output per M tokens, now leading the
 GPQA-Diamond leaderboard at 95.5%. Meta's **Muse Spark 1.2** (shipped
 August 6, 2026; multimodal, agentic-workflow focused) is a closed
 US-only preview priced below GPT-5.6 Luna. **Note on cost modeling:**
-Claude Sonnet 5's introductory $2/$10-per-M pricing ends August 31,
-2026 — standard $3/$15 pricing takes effect September 1, and Sonnet 5's
-newer tokenizer can produce up to ~35% more tokens for the same input
-than Sonnet 4.6's, so budget for a larger effective cost increase than
-the headline rate change alone implies. For cost-sensitive production
-use via API, `claude-haiku-4-5-20251001` and `gpt-5.5-instant` remain
-the default latency-optimised choices.
+Anthropic cancelled the planned September 1 increase to $3/$15 and made
+Claude Sonnet 5's introductory $2/$10-per-M pricing permanent (August 11,
+2026); Sonnet 5's newer tokenizer can still produce up to ~35% more
+tokens for the same input than Sonnet 4.6's, so budget for a somewhat
+larger effective cost than the flat per-token price alone implies. For
+cost-sensitive production use via API, `claude-haiku-4-5-20251001` and
+`gpt-5.5-instant` remain the default latency-optimised choices.
