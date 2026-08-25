@@ -251,6 +251,52 @@ hard-list watermarking, toxicity scoring.
   cross-node KV sharing.
 ```
 
+## Frequently asked questions
+
+### What is the LLM Systems Cookbook?
+
+A free, open-source curriculum of 64 hands-on Jupyter notebooks for LLM
+systems engineering. Each notebook reimplements a core technique from first
+principles or exercises a production library, backed by deterministic
+numerical checks, and most run on a free Colab T4 with no local install.
+
+### Who is this LLM engineering cookbook for?
+
+Engineers and researchers who want to understand how production LLM systems
+work under the hood, not just how to call an API. It assumes you know what
+softmax is; no prior deep-learning background is required.
+
+### What topics does it cover?
+
+Eight tracks: GPU programming and Triton kernels, LLM inference
+optimization, serving and scaling, training and fine-tuning,
+retrieval-augmented generation (RAG), AI agent frameworks, evaluation
+methodology, and production LLM patterns.
+
+### How is this different from other LLM tutorials?
+
+Most tutorials show you how to call an API. This cookbook teaches what
+happens inside it: you reimplement FlashAttention-2 as a Triton kernel,
+build a RAG pipeline you can evaluate with RAGAS, and run PagedAttention's
+block allocator in pure Python. Every notebook answers an engineering
+question with a numerical result that a built-in scoring harness verifies.
+
+### Do I need a GPU to run the notebooks?
+
+No. 61 of the 64 notebooks run on a free Colab T4, and the RAG, agent,
+evaluation, and most production notebooks are CPU-safe. Only three
+GPU-kernel notebooks require an Ampere-class (A100/H100) GPU.
+
+### Where should I start for RAG, agents, or evaluation?
+
+Jump straight to the track you need:
+[Part V](notebooks/02_rag/index.md) for RAG system design,
+[Part VI](notebooks/04_agents/index.md) for AI agent architecture,
+[Part VII](notebooks/06_eval/index.md) for LLM evaluation, and
+[Part VIII](notebooks/08_production/index.md) for production LLM patterns
+with real API fixtures. If you are new to GPU programming, start with
+[Part I (Foundations)](notebooks/07_gpu/index.md).
+
 ## Citation
 
 If you use this cookbook in teaching or research, please cite:

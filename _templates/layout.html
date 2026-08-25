@@ -1,4 +1,18 @@
 {% extends "!layout.html" %}
+
+{#- Homepage title: keep it distinct from the site name so the most important
+    on-page SEO tag isn't the duplicated "The LLM Systems Cookbook — The LLM
+    Systems Cookbook". Sub-pages keep the "<page> — <site>" pattern. -#}
+{%- set _home_title = 'The LLM Systems Cookbook: Hands-On LLM Engineering & System Design' %}
+
+{% block htmltitle %}
+{%- if pagename == 'intro' -%}
+<title>{{ _home_title|e }}</title>
+{%- else -%}
+{{ super() }}
+{%- endif -%}
+{% endblock %}
+
 {% block extrahead %}
   {{ super() }}
   {%- set _base = 'https://hassan11196.github.io/llm-systems-cookbook/' %}
@@ -14,7 +28,9 @@
   {%- set _page_desc = page_descriptions.get(pagename, _site_desc) if page_descriptions is defined else _site_desc %}
   {%- set _og_image = _base ~ 'og-image.png' %}
   {%- set _bare_title = title|striptags|e %}
-  {%- set _page_title = _bare_title ~ ' — The LLM Systems Cookbook' %}
+  {#- On the homepage, use the distinct homepage title in the social cards too,
+      so shares don't show the doubled site name. -#}
+  {%- set _page_title = _home_title|e if pagename == 'intro' else _bare_title ~ ' — The LLM Systems Cookbook' %}
   {#- Emit a description only if the page didn't already declare one via frontmatter, so we never duplicate the tag. -#}
   {%- if 'name="description"' not in (metatags|default('', true)) %}
   <meta name="description" content="{{ _page_desc|e }}" />
@@ -66,6 +82,65 @@
       "name": "Muhammad Hassan Ahmed"
     },
     "keywords": ["LLM systems", "LLM engineering", "production LLM applications", "RAG system design", "LLM inference optimization", "AI agent architecture", "LLM evaluation", "GPU programming", "LLM serving", "LLM observability", "Jupyter notebook curriculum", "practical LLM system design"]
+  }
+  </script>
+  {#- FAQ structured data mirroring the visible "Frequently asked questions"
+      section on the homepage (intro.md). Every question/answer here must match
+      the on-page text so the markup stays honest and non-spammy. -#}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the LLM Systems Cookbook?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It is a free, open-source curriculum of 64 hands-on Jupyter notebooks for LLM systems engineering. Each notebook reimplements a core technique from first principles or exercises a production library, backed by deterministic numerical checks, and most run on a free Colab T4 with no local install."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Who is this LLM engineering cookbook for?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Engineers and researchers who want to understand how production LLM systems work under the hood, not just how to call an API. It assumes you know what softmax is; no prior deep-learning background is required."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What topics does it cover?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Eight tracks: GPU programming and Triton kernels, LLM inference optimization, serving and scaling, training and fine-tuning, retrieval-augmented generation (RAG), AI agent frameworks, evaluation methodology, and production LLM patterns."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is this different from other LLM tutorials?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most tutorials show you how to call an API. This cookbook teaches what happens inside it: you reimplement FlashAttention-2 as a Triton kernel, build a RAG pipeline you can evaluate with RAGAS, and run PagedAttention's block allocator in pure Python. Every notebook answers an engineering question with a numerical result that a built-in scoring harness verifies."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need a GPU to run the notebooks?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. 61 of the 64 notebooks run on a free Colab T4, and the RAG, agent, evaluation, and most production notebooks are CPU-safe. Only three GPU-kernel notebooks require an Ampere-class (A100/H100) GPU."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where should I start for RAG, agents, or evaluation?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Jump straight to the track you need: Part V for RAG system design, Part VI for AI agent architecture, Part VII for LLM evaluation, and Part VIII for production LLM patterns with real API fixtures. If you are new to GPU programming, start with Part I (Foundations)."
+        }
+      }
+    ]
   }
   </script>
   {%- else %}
