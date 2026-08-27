@@ -1,11 +1,11 @@
 # Fallback flat requirements list. Prefer `pip install -e ".[<extras>]"` for
 # per-track installs since package versions across tracks can conflict (e.g.,
-# transformers 4.46 pinned for RAG vs. training groups).
+# RAG-track sentence-transformers/pylate may need `transformers<5.0`).
 
 # Core
 torch==2.6.*
 numpy>=1.26
-transformers==4.46.3
+transformers==5.0.0rc3
 tokenizers>=0.20
 accelerate>=0.34
 datasets>=2.20
