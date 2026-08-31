@@ -183,6 +183,26 @@ hard-list watermarking, toxicity scoring.
 ```{admonition} What's new in August 2026
 :class: note
 
+- **Week of August 31, 2026 refresh**: **SWE-bench Verified** pushed
+  further into saturation — **Claude Opus 5** now leads at 97.00%
+  (August 26), with seven of 86 evaluated models scoring 95% or better
+  and the top five spanning barely 4 points. On the harder **SWE-bench
+  Pro** split (August 29), **Claude Mythos 5** tops the board at 80.3%,
+  just ahead of **Claude Fable 5** (80%) and **Claude Opus 5** (79.2%)
+  — but Mythos is Anthropic's gated security-research preview,
+  available only to the invite-only Project Glasswing consortium, so
+  it doesn't change the production-tier picks in
+  [Part VIII](notebooks/08_production/index.md); see the updated
+  table in [Part VII](notebooks/06_eval/index.md). Z.ai shipped
+  **GLM-5.3-Flash** (August 26): a 320B-A18B MoE model, the first
+  natively multimodal release in the GLM-5 line (adds image and video
+  input), with a 1M-token context window and open weights, scoring 57
+  on the Artificial Analysis Intelligence Index at roughly a tenth of
+  GLM-5.2's price. NVIDIA's Vera Rubin platform landed its first major
+  Asia commitment: India's AM Intelligence ordered 9,000 Vera Rubin
+  systems (August 25), with servers slated to come online in southern
+  India in 2027 — noted in [Part V](notebooks/05_serving/index.md)
+  alongside the Vera Rubin glossary entry.
 - **Week of August 24, 2026 refresh**: Anthropic cancelled the planned
   September 1 price increase for **Claude Sonnet 5**, making its
   introductory $2/$10-per-M-token pricing permanent (confirmed August 11)

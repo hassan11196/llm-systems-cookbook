@@ -90,7 +90,12 @@ Vera Rubin / Rubin GPU
   Azure, OCI, and Mistral. A July 16 partnership with Japan's Noetra
   Corp (backed by Japan's METI) will build a 13,750-Vera-CPU /
   27,500-Rubin-GPU national AI factory for the country's FRONTia
-  Project.
+  Project. Vera Rubin's first major Asia commitment landed August 25,
+  2026: Indian AI infrastructure firm AM Intelligence ordered 9,000
+  Vera Rubin systems, with servers slated to come online in southern
+  India in 2027; Taiwan's server supply chain is bridging the
+  transition gap with GB-series, custom-ASIC, and general-purpose
+  servers ahead of full Rubin volume production.
 ```
 
 ## Roofline, throughput, latency
@@ -659,7 +664,12 @@ SWE-bench
   one in five "solved" patches from top-30 agents are semantically
   incorrect, passing only because a weak test suite fails to catch the
   error — a caution against reading either leaderboard as a precise
-  capability ranking.
+  capability ranking. By late August 2026, **Claude Opus 5** leads
+  SWE-bench Verified at 97.00% (August 26) with seven of 86 evaluated
+  models at 95% or better, while the harder SWE-bench Pro split
+  (August 29) is led by **Claude Mythos 5** at 80.3% — a gated
+  Anthropic security-research preview, not a public model — just ahead
+  of Claude Fable 5 (80%) and Claude Opus 5 (79.2%).
 
 Terminal-Bench
   A CLI-focused agentic benchmark (January 2026) that evaluates models
@@ -966,6 +976,19 @@ Claude Opus 5
   knowledge cutoff — the freshest in Anthropic's lineup, versus January
   2026 for Fable 5 and Opus 4.8.
 
+Claude Mythos
+  Anthropic's frontier research model, positioned above the public
+  Claude family and focused on long-horizon reasoning and software
+  security work such as vulnerability discovery. First previewed
+  April 2026; access is gated through Project Glasswing, an
+  invite-only consortium, rather than shipped as a general-availability
+  API model. Export controls on the **Claude Mythos 5** update were
+  lifted July 1, 2026, restoring access for approved US organisations.
+  Despite topping the SWE-bench Pro leaderboard at 80.3% (August 29,
+  2026), Mythos is not a production-track option in
+  {doc}`notebooks/08_production/index` because of its gated
+  availability.
+
 Grok 4.5
   xAI's July 8, 2026 release, its first model built specifically for
   coding and agentic work. Lands fourth on the Artificial Analysis
@@ -1108,7 +1131,21 @@ GLM-5.2
   on GPQA Diamond and 62.1% on SWE-bench Pro at a fraction of frontier
   API pricing. Successor to GLM-5.1. Z.ai shipped a **GLM-5.2 Turbo**
   variant on August 17, 2026, trading a small accuracy margin for
-  materially lower latency and cost on the same weight family.
+  materially lower latency and cost on the same weight family. A
+  separate, smaller **GLM-5.3-Flash** shipped August 26, 2026 (see
+  below).
+
+GLM-5.3-Flash
+  Z.ai's August 26, 2026 release: a 320 billion-parameter MoE model
+  with 18B active parameters, combining sparse and linear attention to
+  cut the cost of long-sequence processing. The first natively
+  multimodal model in the GLM-5 line — accepts image and video input
+  alongside text — with a 1M-token context window and open weights on
+  Hugging Face. Scores 57 on the Artificial Analysis Intelligence
+  Index at roughly $0.045 per task; Z.ai says it beats GLM-5.2 across
+  its evaluations at about a tenth of the price. Launch pricing is
+  $0.075 per million input tokens through September 9, 2026 (list
+  price $0.15/$0.50 per M tokens input/output).
 
 Inkling
   The first flagship model from Thinking Machines Lab (Mira Murati's

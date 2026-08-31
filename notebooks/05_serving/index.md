@@ -47,7 +47,10 @@
   Lambda, Nebius, and Nscale. Initial shipments went out in July 2026 to
   Microsoft and Google, with Meta also holding allocation; volume
   shipments ramp through the rest of 2026. Rubin CPX variant optimised
-  for massive-context inference.
+  for massive-context inference. Vera Rubin's first major Asia
+  commitment landed August 25, 2026: India's AM Intelligence ordered
+  9,000 Vera Rubin systems, with servers slated to come online in
+  southern India in 2027.
 - **TurboQuant** (ICLR 2026) is a major 2026 reference point in KV-cache
   quantization research, as KV-cache memory has become the binding
   constraint for long-context serving. The same problem has drawn

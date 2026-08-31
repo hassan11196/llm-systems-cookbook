@@ -45,9 +45,13 @@ successor to the o-series for reasoning tasks),
 `Qwen/Qwen2.5-1.5B-Instruct` (local via Ollama or vLLM). Override with
 the `MODEL_*` env vars listed at the top of each notebook.
 
-The current frontier tier (mid-August 2026): **Claude Fable 5**
-(`claude-fable-5`, GA July 1, 2026, $10/$50 per M tokens) leads on
-SWE-bench Pro (80.3%) and long-context agentic tasks; **Claude Opus 5**
+The current frontier tier (late August 2026): **Claude Fable 5**
+(`claude-fable-5`, GA July 1, 2026, $10/$50 per M tokens) is the
+leading publicly available model on SWE-bench Pro (80%, August 29
+snapshot) and long-context agentic tasks — Anthropic's gated **Claude
+Mythos 5** security-research preview tops the raw leaderboard at
+80.3%, but it's invite-only via Project Glasswing, not a production
+option; **Claude Opus 5**
 (`claude-opus-5`, July 24, 2026, $5/$25 per M tokens) holds Opus 4.8's
 price while more than doubling its Frontier-Bench v0.1 agentic-coding
 score (43.3% vs. 21.1%), ahead of GPT-5.6 Sol and Claude Fable 5 on that
@@ -76,8 +80,11 @@ low-latency **Gemini 3.5 Flash-Lite**, and the newer **Gemini 3.7 Flash**
 (August 13, 2026) cover the Google tier for production use today. On the
 open-weight side, **GLM-5.2** (Z.ai, 744B MoE, 62.1% SWE-bench Pro; a
 faster, cheaper **GLM-5.2 Turbo** variant shipped August 17, 2026),
-**Kimi K3** (Moonshot AI, 2.8T MoE, full 594 GB weights shipped July 27,
-2026), and the **DeepSeek-V4-Flash-0731** refresh (July 31, 2026) now
+the smaller **GLM-5.3-Flash** (320B-A18B MoE, natively multimodal,
+1M-token context, shipped August 26, 2026 at roughly a tenth of
+GLM-5.2's price), **Kimi K3** (Moonshot AI, 2.8T MoE, full 594 GB
+weights shipped July 27, 2026), and the **DeepSeek-V4-Flash-0731**
+refresh (July 31, 2026) now
 edge into frontier-tier territory, making self-hosted deployment a
 credible alternative to the closed-API tier for cost-sensitive teams
 willing to run their own serving stack. **Qwen3.8-Max** (Alibaba,
