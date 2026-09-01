@@ -1,4 +1,11 @@
-# Agent frameworks
+# AI agent frameworks
+
+A from-first-principles guide to **AI agent architecture**: the tool-use
+loops, structured outputs, state machines, and multi-agent patterns that
+underpin frameworks like LangGraph, DSPy, AutoGen, CrewAI, and the Model
+Context Protocol (MCP). You build a ReAct agent, a LangGraph-style state
+machine, an MCP server, and an agent-evaluation suite in a few dozen lines
+each, so the abstractions in production frameworks stop being magic.
 
 ```{admonition} What you'll learn in this part
 :class: tip
@@ -72,3 +79,12 @@ No mandatory prerequisites. CPU-only.
    ways (AutoGen/AG2 and CrewAI).
 7. `07_agent_evaluation_suite`: success rate, trajectory
    efficiency, and code-patch success.
+
+## Related parts
+
+- [Part V — Retrieval-augmented generation (RAG)](../02_rag/index.md): the
+  retrieval building blocks that agents call as tools.
+- [Part VII — LLM evaluation](../06_eval/index.md): the broader evaluation
+  methodology behind τ-bench and SWE-bench-style agent scoring.
+- [Part VIII — Production LLM patterns](../08_production/index.md): native
+  tool use, a real MCP server, and DSPy optimization against real APIs.

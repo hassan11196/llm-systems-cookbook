@@ -166,6 +166,32 @@ hard-list watermarking, toxicity scoring.
 :::
 ```
 
+## Recommended learning paths
+
+You don't have to read the parts in order. Pick the entry point that
+matches what you're building:
+
+- **New to GPU programming?** Start with
+  [Foundations](notebooks/07_gpu/index.md) (GPU architecture, roofline,
+  Triton), then [Inference engines](notebooks/01_inference/index.md).
+- **Understand LLM serving and deployment.** Go to
+  [Serving and scaling](notebooks/05_serving/index.md) for KV-cache,
+  quantization, batching, and observability, backed by
+  [Inference engines](notebooks/01_inference/index.md).
+- **Building a RAG system?**
+  [Retrieval-augmented generation](notebooks/02_rag/index.md) covers RAG
+  system design from chunking to evaluation; the production hybrid-RAG
+  pipeline is in [Production patterns](notebooks/08_production/index.md).
+- **Adding AI agents to your stack?**
+  [Agent frameworks](notebooks/04_agents/index.md) builds ReAct, LangGraph,
+  DSPy, and MCP patterns from first principles.
+- **Evaluating LLM quality?**
+  [Evaluation](notebooks/06_eval/index.md) covers perplexity, calibration,
+  pass@k, LLM-as-judge, arena ratings, and contamination detection.
+- **Shipping to production?**
+  [Production patterns](notebooks/08_production/index.md) runs real
+  provider APIs with routing, caching, tool use, and cost modeling.
+
 ## Prerequisites
 
 - **Programming.** Comfortable reading Python; a little PyTorch helps

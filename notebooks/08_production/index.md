@@ -1,8 +1,12 @@
-# Production patterns
+# Production LLM patterns
 
-Real LLM code that runs against real APIs (Anthropic, OpenAI, Ollama,
-local vLLM). No regex stubs, no rule-based "policies" pretending to be
-models. Each notebook works in two modes:
+A hands-on guide to **production LLM patterns** and deployment best
+practices: prompt caching, multi-provider routing and fallbacks, native
+tool use, structured outputs, hybrid RAG with citations, MCP servers, DSPy
+optimization, evaluation harnesses, and GPU cost modeling. This is real LLM
+code that runs against real APIs (Anthropic, OpenAI, Ollama, local vLLM) —
+no regex stubs, no rule-based "policies" pretending to be models. Each
+notebook works in two modes:
 
 - **LIVE**: when an API key is set, hits the real provider and shows
   fresh numbers.
@@ -58,3 +62,12 @@ while landing fourth on the Artificial Analysis Intelligence Index;
 Deep Think reasoning) targets enterprise document workloads. For
 cost-sensitive production use, `claude-haiku-4-5-20251001` and
 `gpt-5.5-instant` remain the default latency-optimised choices.
+
+## Related parts
+
+- [Part V — Retrieval-augmented generation (RAG)](../02_rag/index.md): the
+  from-scratch retrieval components behind the production hybrid-RAG notebook.
+- [Part VI — AI agent frameworks](../04_agents/index.md): the tool-use and
+  MCP patterns these notebooks exercise against real APIs.
+- [Part VII — LLM evaluation](../06_eval/index.md): the methodology behind
+  the Inspect AI harness used here.

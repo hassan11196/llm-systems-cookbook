@@ -1,4 +1,12 @@
-# Serving and scaling
+# LLM serving and scaling
+
+A hands-on guide to **LLM serving and deployment** at scale: the KV-cache,
+quantization, batching, mixture-of-experts, and observability techniques
+that turn a single model into a cost-efficient production service. Every
+optimization here is grounded in the roofline and KV-cache math from
+[Part I](../07_gpu/index.md) and [Part II](../01_inference/index.md), so you
+can reason about *why* a serving choice moves latency, throughput, or cost
+rather than just copying a config.
 
 ```{admonition} What you'll learn in this part
 :class: tip
@@ -98,3 +106,12 @@ FP8 weight + KV cache + continuous batching + speculative decoding on H100 deliv
 KV cache memory, not compute, is the dominant cost lever at long context: production guidance for 2026 stacks it as paged attention (the memory-management substrate this track's notebooks build from scratch) + prefix caching (RadixAttention above) + attention-layer compression (MQA/GQA/MLA) + KV-cache quantization (INT8/FP8, and increasingly mixed-precision schemes like PM-KVQ that assign more bits to the layers/tokens that need them). vLLM's `--kv-cache-dtype fp8` flag now runs the full QK/ScoreV attention matmuls in FP8, not just the cache storage.
 
 **Cloudflare Infire** is a custom inference engine that distributes LLM execution across multiple GPUs more efficiently than standard serving stacks, reducing memory usage and cold-start time. Cloudflare also released **Unweight**, a weight compression system that shrinks LLM sizes 15 to 22% without accuracy loss. It is distinct from quantization: it preserves floating-point precision while reducing parameter count via structured pruning. Production inference now represents roughly two-thirds of all AI compute spend, and open-source model serving infrastructure has become a major VC target (Baseten raised $1.5B at $13B valuation).
+
+## Related parts
+
+- [Part I — Foundations: GPU programming and the roofline](../07_gpu/index.md):
+  the hardware ceilings and roofline math every serving tradeoff rests on.
+- [Part II — LLM inference engines](../01_inference/index.md): the KV-cache,
+  PagedAttention, and batching internals scaled here to production goodput.
+- [Part VIII — Production LLM patterns](../08_production/index.md): GPU
+  provider pricing, model-fit sizing, and multi-provider routing.

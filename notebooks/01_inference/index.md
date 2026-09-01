@@ -1,4 +1,12 @@
-# Inference engines
+# LLM inference engines
+
+A hands-on guide to **LLM inference optimization**: how a transformer
+actually generates tokens, why decoding is memory-bound while prefill is
+compute-bound, and the caching and scheduling techniques that production
+inference engines such as vLLM and SGLang use to serve requests at high
+throughput and low latency. Each mechanism is built from first principles
+in a few dozen lines of Python before you meet the production system that
+uses it.
 
 ```{admonition} What you'll learn in this part
 :class: tip
@@ -98,3 +106,12 @@ models like DeepSeek-R1, GPT-5.5 Thinking, and QwQ.
 - **Inference now ~2/3 of AI compute**: production inference has grown from roughly 1/3 of AI compute in 2023 to ~2/3 in 2026. Inference cost has fallen roughly 1,000× since late 2022, making large-scale agentic loops economically viable. Baseten's $1.5B funding round (a $13B valuation) confirms open-source model serving is a major capital destination.
 - **Cloudflare Infire**: Cloudflare's custom inference engine that runs LLMs across multiple GPUs more efficiently, reduces memory usage, and starts models more quickly. It ships alongside **Unweight**, a weight compression system that reduces LLM model sizes 15-22% without measurable accuracy loss.
 - **Mixed-precision KV-cache quantization**: 2026 research (e.g. PM-KVQ, ICLR 2026) moves past uniform INT8/FP8 KV quantization toward progressive, per-layer/per-token bit allocation, spending more bits where retrieval accuracy is most sensitive. vLLM's `--kv-cache-dtype fp8` now runs the QK/ScoreV attention matmuls themselves in FP8, not just cache storage — directly relevant to the KV cache mechanics in `02_kv_cache_from_scratch` and the roofline analysis in `03_attention_roofline`.
+
+## Related parts
+
+- [Part I — Foundations: GPU programming and the roofline](../07_gpu/index.md):
+  the arithmetic-intensity and bandwidth math these optimizations rest on.
+- [Part III — LLM serving and scaling](../05_serving/index.md): turns these
+  compute/memory tradeoffs into serving economics — goodput, SLOs, autoscaling.
+- [Part VIII — Production LLM patterns](../08_production/index.md): running
+  these engines behind real provider APIs with routing and fallbacks.

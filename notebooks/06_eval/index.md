@@ -1,4 +1,12 @@
-# Evaluation
+# LLM evaluation
+
+A practical **LLM evaluation guide**: how to measure model quality
+rigorously with perplexity, multiple-choice calibration, code pass@k,
+LLM-as-judge, arena ratings, long-context stress tests, and contamination
+detection — each implemented from scratch so you understand what the number
+means, when it is trustworthy, and where it breaks. The same methods apply
+whether you are ranking frontier models or regression-testing your own
+fine-tune.
 
 ```{admonition} What you'll learn in this part
 :class: tip
@@ -72,3 +80,12 @@ SWE-bench Pro and FrontierCode (Cognition's hardest coding split) are the new di
 As of July 2, 2026, BenchLM.ai tracks 249 benchmarks across 272 models; 37% of the 154 percentage-scaled benchmarks with meaningful coverage are now saturated (top model scores ≥ 90%). GSM8K is effectively solved (99%), and HellaSwag exceeds 95%. This is the case for evergreen benchmark hygiene made concrete: a benchmark's useful lifetime as a discriminator is shorter each generation, which is why `07_contamination_detection` and the lm-eval/Inspect AI comparison in `08_lm_eval_inspect_ai` both treat "is this benchmark still measuring anything" as a first-class question rather than an afterthought.
 
 The notebooks in this part teach the mechanics of evaluation on un-saturated tasks. The numerical thresholds in the scoring checks target 2026-accessible open-weight models (Qwen2.5-0.5B, Phi-3.5-mini, SmolLM2-360M) that still show non-trivial variance on MMLU and HumanEval, which keeps them useful for teaching even as frontier models approach the ceiling.
+
+## Related parts
+
+- [Part V — Retrieval-augmented generation (RAG)](../02_rag/index.md):
+  RAGAS and retrieval-quality metrics build on this methodology.
+- [Part VI — AI agent frameworks](../04_agents/index.md): agent-specific
+  evaluation with τ-bench and SWE-bench-style trajectory scoring.
+- [Part VIII — Production LLM patterns](../08_production/index.md): running
+  an Inspect AI evaluation harness against real model APIs.

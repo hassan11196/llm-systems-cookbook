@@ -1,4 +1,10 @@
-# Training and fine-tuning
+# LLM training and fine-tuning
+
+A hands-on guide to the **LLM training and fine-tuning** systems stack: the
+memory-reduction, distributed-training, and parameter-efficient
+fine-tuning techniques — mixed precision, gradient accumulation, activation
+checkpointing, FSDP2, LoRA/QLoRA, and preference optimization — that make
+training and adapting large models tractable on limited hardware.
 
 ```{admonition} What you'll learn in this part
 :class: tip
@@ -51,3 +57,12 @@ development:
 This index will grow as each notebook lands. Contributions are welcome;
 see [`CONTRIBUTING.md`](https://github.com/hassan11196/llm-systems-cookbook/blob/main/CONTRIBUTING.md).
 ```
+
+## Related parts
+
+- [Part I — Foundations: GPU programming and the roofline](../07_gpu/index.md):
+  the memory and bandwidth ceilings that make these training tactics necessary.
+- [Part II — LLM inference engines](../01_inference/index.md): how the models
+  you train here are then served efficiently.
+- [Part III — LLM serving and scaling](../05_serving/index.md): quantization
+  and distributed-execution techniques that carry over to training at scale.

@@ -1,4 +1,11 @@
-# Foundations: GPU programming and the roofline
+# Foundations: GPU programming for LLMs and the roofline model
+
+A first-principles introduction to **GPU programming for LLMs**: reading a
+GPU's compute and memory-bandwidth ceilings, writing Triton kernels, and
+using the roofline model to reason about every optimization in the rest of
+the cookbook. If you can profile a kernel and place a workload on the
+roofline, the inference, serving, and training tracks become applied
+consequences rather than isolated tricks.
 
 ```{admonition} What you'll learn in this part
 :class: tip
@@ -66,3 +73,12 @@ cloud availability (AWS, GCP, Azure, CoreWeave, Lambda) is planned for
 H2 2026. All roofline, arithmetic intensity, and throughput formulas in
 this track remain architecture-agnostic; only the peak numbers change.
 See {term}`Vera Rubin / Rubin GPU` in the glossary.
+
+## Related parts
+
+- [Part II — LLM inference engines](../01_inference/index.md): applies the
+  roofline to classify every prefill and decode workload.
+- [Part III — LLM serving and scaling](../05_serving/index.md): uses the
+  same math to reason about quantization and KV compression.
+- [Part IV — LLM training and fine-tuning](../03_training/index.md): where
+  the memory and bandwidth ceilings shape distributed-training strategy.

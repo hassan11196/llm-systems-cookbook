@@ -1,4 +1,12 @@
-# Retrieval-augmented generation
+# Retrieval-augmented generation (RAG)
+
+A practical guide to **RAG system design**: the retrieval, ranking, and
+evaluation components that make a retrieval-augmented generation pipeline
+accurate and grounded. You implement each building block — chunking, dense
+and sparse retrieval, late interaction, reranking, query rewriting,
+hierarchical and graph retrieval, and RAGAS evaluation — from scratch, then
+see them assembled into a production RAG system with citations in
+[Part VIII](../08_production/index.md).
 
 ```{admonition} What you'll learn in this part
 :class: tip
@@ -50,3 +58,12 @@ No mandatory prerequisites. This part is self-contained and CPU-safe.
    + summary-level retrieval.
 9. `09_ragas_evaluation`: faithfulness, answer relevancy, context
    precision/recall.
+
+## Related parts
+
+- [Part VI — AI agent frameworks](../04_agents/index.md): agentic and
+  corrective RAG, where an agent drives the retrieval loop.
+- [Part VII — LLM evaluation](../06_eval/index.md): the evaluation
+  methodology behind RAGAS and answer-quality metrics.
+- [Part VIII — Production LLM patterns](../08_production/index.md): a
+  production hybrid-RAG pipeline with reranking and citations.
