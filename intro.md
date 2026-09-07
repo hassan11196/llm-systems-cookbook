@@ -180,9 +180,31 @@ hard-list watermarking, toxicity scoring.
   07_gpu/04, plus 07_gpu/07 Nsight profiling) note their requirements
   in their chapter header.
 
-```{admonition} What's new in August 2026
+```{admonition} What's new in September 2026
 :class: note
 
+- **Week of September 7, 2026 refresh**: Anthropic shipped **Claude
+  Fable 5.1** (GA September 1, alongside a gated **Claude Mythos
+  5.1**) at Fable 5's $10/$50-per-M headline price but with a 75%
+  cheaper cache-read rate ($0.25/M, down from $1/M); it tops the
+  Artificial Analysis Intelligence Index at 66 (max effort) — ahead of
+  Claude Opus 5 (63), GPT-5.6 Sol (61), and Grok 4.6 (61) — and lifts
+  HLE to 59.1% from Fable 5's 55.5%, though it costs ~20% more per
+  task from heavier output-token use. OpenAI followed on September 3
+  with **GPT-6 Astra** (its largest training run to date, 100,000+
+  GPUs at the Stargate Texas site; $10/$50 per M tokens, 1M-token
+  context), which saturates ARC-AGI-3 at 99.9% and leads long-context
+  retrieval but only narrowly edges frontier coding — 74.1% on DeepSWE
+  v1.1 versus Fable 5.1's Coding Agent Index lead (70 vs. Astra's 67)
+  — and is the first model to reach the "Critical" cybersecurity tier
+  under OpenAI's Preparedness Framework. This resolves the "Astra"
+  teaser from the August 10 update; the Astra and HLE glossary entries
+  and the frontier-tier rundown in
+  [Part VIII](notebooks/08_production/index.md) are updated
+  accordingly. NVIDIA's Vera Rubin ramps into volume shipments this
+  autumn, though 2026 output is capped at an estimated 200,000-300,000
+  GPUs by TSMC N3 and HBM4 supply — noted in
+  [Part V](notebooks/05_serving/index.md) and the glossary.
 - **Week of August 31, 2026 refresh**: **SWE-bench Verified** pushed
   further into saturation — **Claude Opus 5** now leads at 97.00%
   (August 26), with seven of 86 evaluated models scoring 95% or better

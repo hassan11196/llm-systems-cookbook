@@ -45,13 +45,25 @@ successor to the o-series for reasoning tasks),
 `Qwen/Qwen2.5-1.5B-Instruct` (local via Ollama or vLLM). Override with
 the `MODEL_*` env vars listed at the top of each notebook.
 
-The current frontier tier (late August 2026): **Claude Fable 5**
-(`claude-fable-5`, GA July 1, 2026, $10/$50 per M tokens) is the
-leading publicly available model on SWE-bench Pro (80%, August 29
-snapshot) and long-context agentic tasks — Anthropic's gated **Claude
-Mythos 5** security-research preview tops the raw leaderboard at
-80.3%, but it's invite-only via Project Glasswing, not a production
-option; **Claude Opus 5**
+The current frontier tier (early September 2026): **Claude Fable 5.1**
+(`claude-fable-5-1`, GA September 1, 2026, $10/$50 per M tokens, cache
+reads cut 75% to $0.25/M) is the new production-track default, topping
+the Artificial Analysis Intelligence Index at 66 (max effort) and HLE
+at 59.1% — Anthropic also shipped a gated **Claude Mythos 5.1**
+counterpart alongside it, invite-only via Project Glasswing and not a
+production option. Its predecessor **Claude Fable 5** (`claude-fable-5`,
+GA July 1, 2026) remains a cheaper-per-task fallback: Fable 5.1 uses
+~1.7× the output tokens per request, so it costs ~20% more per task
+before the cache-read savings are counted. OpenAI's **GPT-6 Astra**
+(`gpt-6-astra`, September 3, 2026, $10/$50 per M tokens, $1/M cached
+input, 1M-token context) saturates ARC-AGI-3 (99.9%) and leads
+long-context retrieval, but its coding-agent edge is narrow — 74.1% vs.
+Fable 5.1's 73.7% on DeepSWE v1.1, and behind Fable 5.1 on the
+Artificial Analysis Coding Agent Index (67 vs. 70) — and it is the
+first model to reach OpenAI's "Critical" cybersecurity-capability tier
+under the Preparedness Framework, worth flagging for any team building
+the `04_agents` or `08_production` notebooks against it in a regulated
+environment; **Claude Opus 5**
 (`claude-opus-5`, July 24, 2026, $5/$25 per M tokens) holds Opus 4.8's
 price while more than doubling its Frontier-Bench v0.1 agentic-coding
 score (43.3% vs. 21.1%), ahead of GPT-5.6 Sol and Claude Fable 5 on that

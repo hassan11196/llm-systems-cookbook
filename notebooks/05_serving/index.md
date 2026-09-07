@@ -50,7 +50,11 @@
   for massive-context inference. Vera Rubin's first major Asia
   commitment landed August 25, 2026: India's AM Intelligence ordered
   9,000 Vera Rubin systems, with servers slated to come online in
-  southern India in 2027.
+  southern India in 2027. Production shipments ramp into volume this
+  autumn, but 2026 output is capped at an estimated 200,000-300,000
+  Rubin GPUs by TSMC N3 process capacity and HBM4 supply — Taiwan's
+  server supply chain is bridging the gap with GB-series and
+  custom-ASIC builds ahead of full Rubin volume.
 - **TurboQuant** (ICLR 2026) is a major 2026 reference point in KV-cache
   quantization research, as KV-cache memory has become the binding
   constraint for long-context serving. The same problem has drawn

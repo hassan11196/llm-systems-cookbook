@@ -95,7 +95,10 @@ Vera Rubin / Rubin GPU
   Vera Rubin systems, with servers slated to come online in southern
   India in 2027; Taiwan's server supply chain is bridging the
   transition gap with GB-series, custom-ASIC, and general-purpose
-  servers ahead of full Rubin volume production.
+  servers ahead of full Rubin volume production. Production shipments
+  ramp into volume through autumn 2026, but total 2026 output is
+  estimated at 200,000-300,000 Rubin GPUs, gated by TSMC N3 process
+  capacity and HBM4 memory supply rather than demand.
 ```
 
 ## Roofline, throughput, latency
@@ -640,10 +643,11 @@ HLE
   and humanities at the level of PhD qualifying exams; frontier models
   scored below 10% on release, making it a long-term frontier target.
   As GPQA-Diamond nears saturation, HLE has become the primary frontier
-  differentiator: as of August 11, 2026, **Claude Fable 5** leads the
-  tool-assisted leaderboard at 55.5%, just ahead of **Claude Opus 5**
-  (54.9%) and **GPT-5.6 Sol** (49.5%) — either way, leading models still
-  fail roughly half of the expert-written questions.
+  differentiator: as of August 11, 2026, Claude Fable 5 led the
+  tool-assisted leaderboard at 55.5%, just ahead of Claude Opus 5
+  (54.9%) and GPT-5.6 Sol (49.5%). **Claude Fable 5.1** (September 1,
+  2026) pushed the leaderboard to 59.1% — either way, leading models
+  still fail four in ten of the expert-written questions.
 
 LiveCodeBench
   A contamination-resistant coding benchmark that continuously adds new
@@ -684,7 +688,10 @@ ARC-AGI
   (François Chollet, 2019). Grid transformation tasks designed to
   require novel analogy-making; no model broke 5% until o3 reached
   96.7% in late 2024, after which ARC-AGI-2 was released as the
-  successor frontier challenge.
+  successor frontier challenge. **ARC-AGI-3**, the current frontier
+  variant, was effectively saturated by **GPT-6 Astra** at release
+  (99.9%, September 3, 2026) — well ahead of Claude Opus 5 (30.2%) and
+  GPT-5.6 Sol (7.8%) on the same test.
 ```
 
 ## Agents
@@ -962,7 +969,17 @@ Claude Sonnet 5 / Claude Fable 5
   suggests — relevant to the cost-modeling notebook in
   {doc}`notebooks/08_production/index`. Referenced as the
   production-track model defaults in
-  {doc}`notebooks/08_production/index`.
+  {doc}`notebooks/08_production/index`. **Claude Fable 5.1** (general
+  availability September 1, 2026, alongside a gated **Claude Mythos
+  5.1**) keeps Fable 5's $10/$50-per-M headline price but cuts the
+  cache-read rate 75% to $0.25/M (from $1/M) and adds image input.
+  It tops the Artificial Analysis Intelligence Index at 66 (max
+  effort) — four points above Fable 5, ahead of Claude Opus 5 (63),
+  GPT-5.6 Sol (61), and Grok 4.6 (61) — and lifts HLE to 59.1% from
+  Fable 5's 55.5%. Fable 5.1 uses ~1.7× the output tokens of Fable 5
+  per task, so it costs about 20% more per Intelligence Index task
+  ($3.76) despite the cache-read cut; the cut mostly pays off in
+  agentic workloads that are cache-read heavy.
 
 Claude Opus 5
   Anthropic's July 24, 2026 Opus-tier refresh. Holds Opus 4.8's $5/$25
@@ -1083,19 +1100,31 @@ Muse Spark
   output pricing ($4.25 vs. $6 per million tokens) than Luna. **Muse
   Spark 1.2** shipped August 6, 2026.
 
-Astra
-  OpenAI's teased next major model, unreleased as of August 2026.
-  Rather than a launch, OpenAI introduced it on August 1 by publishing
-  machine-checked solutions to ten mathematics and theoretical-CS
-  problems that had been open for a decade or more — including an
-  explicit construction of a non-sofic group (open since Gromov, 1999)
-  and a disproof of Connes's rigidity conjecture — each with a Lean 4
-  proof certificate (zero `sorry`s) posted under Apache 2.0. OpenAI put
-  the total inference cost at roughly $2,000 at GPT-5.6 Sol API rates.
-  Astra is described as coordinating multiple agents over long-horizon
-  tasks, extending the test-time-compute reasoning line of work; it is
-  not yet decided whether it ships as GPT-6, a GPT-5.x point release, or
-  under the Astra name. Relevant context for the planned
+Astra / GPT-6 Astra
+  OpenAI teased Astra on August 1, 2026 by publishing machine-checked
+  solutions to ten mathematics and theoretical-CS problems that had
+  been open for a decade or more — including an explicit construction
+  of a non-sofic group (open since Gromov, 1999) and a disproof of
+  Connes's rigidity conjecture — each with a Lean 4 proof certificate
+  (zero `sorry`s) posted under Apache 2.0, at a total inference cost
+  OpenAI put at roughly $2,000 in GPT-5.6 Sol API rates. It shipped as
+  **GPT-6 Astra** on September 3, 2026: OpenAI's largest training run
+  to date (100,000+ GPUs at the Stargate site in Texas), and the first
+  OpenAI release trained under supervision from earlier OpenAI models.
+  Priced at $10/$50 per M input/output tokens ($1/M cached input,
+  $12.50/M cache write, a Fast mode at 2×), with a 1M-token context
+  window and 128K-token max output. Saturates ARC-AGI-3 at 99.9% (vs.
+  30.2% for Claude Opus 5 and 7.8% for GPT-5.6 Sol) and leads OpenAI's
+  MRCR v2 long-context needle test, but its coding-agent lead over
+  Claude Fable 5.1 is narrow to nonexistent: 74.1% on DeepSWE v1.1 (vs.
+  73.7% Opus 5, 72.7% Sol) and an Artificial Analysis Coding Agent
+  Index of 67, behind Fable 5.1's 70. It is the first model to reach
+  the "Critical" cybersecurity-capability tier under OpenAI's
+  Preparedness Framework — with the right tools and access it can find
+  and exploit previously unknown vulnerabilities without step-by-step
+  human guidance. Rolling out to ChatGPT Plus/Pro/Business/Enterprise
+  and the API, Azure, and AWS Bedrock. Its long-horizon,
+  multi-agent-coordination framing is relevant context for the planned
   `01_inference/11_inference_time_scaling.ipynb` notebook (see
   {doc}`CURRICULUM_SPEC`).
 
