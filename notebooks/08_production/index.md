@@ -45,16 +45,74 @@ successor to the o-series for reasoning tasks),
 `Qwen/Qwen2.5-1.5B-Instruct` (local via Ollama or vLLM). Override with
 the `MODEL_*` env vars listed at the top of each notebook.
 
-The current frontier tier (mid-2026): **Claude Fable 5** (`claude-fable-5`,
-GA July 1, 2026, $10/$50 per M tokens) leads on SWE-bench Pro (80.3%) and
-long-context agentic tasks, at roughly half the per-token price of its
-predecessor; **Claude Sonnet 5** (`claude-sonnet-5`, June 30, 2026, 63.2%
-SWE-bench Pro) is the balanced-tier option one step down; **GPT-5.6 Sol**
+The current frontier tier (early September 2026): **Claude Fable 5.1**
+(`claude-fable-5-1`, GA September 1, 2026, $10/$50 per M tokens, cache
+reads cut 75% to $0.25/M) is the new production-track default, topping
+the Artificial Analysis Intelligence Index at 66 (max effort) and HLE
+at 59.1% — Anthropic also shipped a gated **Claude Mythos 5.1**
+counterpart alongside it, invite-only via Project Glasswing and not a
+production option. Its predecessor **Claude Fable 5** (`claude-fable-5`,
+GA July 1, 2026) remains a cheaper-per-task fallback: Fable 5.1 uses
+~1.7× the output tokens per request, so it costs ~20% more per task
+before the cache-read savings are counted. OpenAI's **GPT-6 Astra**
+(`gpt-6-astra`, September 3, 2026, $10/$50 per M tokens, $1/M cached
+input, 1M-token context) saturates ARC-AGI-3 (99.9%) and leads
+long-context retrieval, but its coding-agent edge is narrow — 74.1% vs.
+Fable 5.1's 73.7% on DeepSWE v1.1, and behind Fable 5.1 on the
+Artificial Analysis Coding Agent Index (67 vs. 70) — and it is the
+first model to reach OpenAI's "Critical" cybersecurity-capability tier
+under the Preparedness Framework, worth flagging for any team building
+the `04_agents` or `08_production` notebooks against it in a regulated
+environment; **Claude Opus 5**
+(`claude-opus-5`, July 24, 2026, $5/$25 per M tokens) holds Opus 4.8's
+price while more than doubling its Frontier-Bench v0.1 agentic-coding
+score (43.3% vs. 21.1%), ahead of GPT-5.6 Sol and Claude Fable 5 on that
+eval, and carries the freshest (May 2026) knowledge cutoff in Anthropic's
+lineup; **Claude Sonnet 5** (`claude-sonnet-5`, June 30, 2026, 63.2%
+SWE-bench Pro) is the balanced-tier option one step down. **GPT-5.6 Sol**
 (OpenAI, July 9, 2026, $5/$30 per M tokens) edges out Fable 5 on the
-Artificial Analysis Coding Agent Index at under half the output tokens;
+Artificial Analysis Coding Agent Index at under half the output tokens,
+and OpenAI cut its API and credit pricing by over 20% for the next
+three months starting August 21, 2026;
 **Grok 4.5** (xAI, July 8, 2026) undercuts Opus-class pricing by over 60%
 while landing fourth on the Artificial Analysis Intelligence Index;
-**Gemini 3.5 Pro** (limited Vertex AI preview, 2M-token context window with
-Deep Think reasoning) targets enterprise document workloads. For
-cost-sensitive production use, `claude-haiku-4-5-20251001` and
+xAI followed with **Grok 4.6** (built for long-running agents and
+deeper coding, 500K-token context, $2/$0.50/$6 per M tokens
+input/cached/output), now available in GitHub Copilot and Cursor. The
+next step up, **Grok 4.7** (2.1T parameters), has slipped past its
+original within-weeks target: xAI added SpaceX company data to its
+training run in mid-August and now points to early September.
+Google's flagship **Gemini 3.5 Pro** remains delayed — it missed its
+fourth target date and its latest rumored August 12 date too, with
+reporting pointing to coding-performance shortfalls and a disappointing
+training-data refresh, and remains unreleased as of August 2026 with no
+new date given; in its place, **Gemini 3.6 Flash** (July 21, 2026, the
+new Gemini default, 58.7% SWE-bench Pro, $1.50/$7.50 per M tokens), the
+low-latency **Gemini 3.5 Flash-Lite**, and the newer **Gemini 3.7 Flash**
+(August 13, 2026) cover the Google tier for production use today. On the
+open-weight side, **GLM-5.2** (Z.ai, 744B MoE, 62.1% SWE-bench Pro; a
+faster, cheaper **GLM-5.2 Turbo** variant shipped August 17, 2026),
+the smaller **GLM-5.3-Flash** (320B-A18B MoE, natively multimodal,
+1M-token context, shipped August 26, 2026 at roughly a tenth of
+GLM-5.2's price), **Kimi K3** (Moonshot AI, 2.8T MoE, full 594 GB
+weights shipped July 27, 2026), and the **DeepSeek-V4-Flash-0731**
+refresh (July 31, 2026) now
+edge into frontier-tier territory, making self-hosted deployment a
+credible alternative to the closed-API tier for cost-sensitive teams
+willing to run their own serving stack. **Qwen3.8-Max** (Alibaba,
+shipped August 3, 2026, 2.4T MoE, ~95B active) beats GPT-5.6 Sol Max and
+Claude Fable 5 on OSWorld-Verified computer use, with open weights
+following August 12 — the first Qwen3.x release to break from the
+closed-only pattern. **Sakana Fugu-Ultra v1.1** takes a different
+approach entirely: a multi-model orchestration system (not a single
+trained network) at $5 input / $30 output per M tokens, now leading the
+GPQA-Diamond leaderboard at 95.5%. Meta's **Muse Spark 1.2** (shipped
+August 6, 2026; multimodal, agentic-workflow focused) is a closed
+US-only preview priced below GPT-5.6 Luna. **Note on cost modeling:**
+Anthropic cancelled the planned September 1 increase to $3/$15 and made
+Claude Sonnet 5's introductory $2/$10-per-M pricing permanent (August 11,
+2026); Sonnet 5's newer tokenizer can still produce up to ~35% more
+tokens for the same input than Sonnet 4.6's, so budget for a somewhat
+larger effective cost than the flat per-token price alone implies. For
+cost-sensitive production use via API, `claude-haiku-4-5-20251001` and
 `gpt-5.5-instant` remain the default latency-optimised choices.

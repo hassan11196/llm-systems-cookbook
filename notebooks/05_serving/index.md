@@ -39,9 +39,30 @@
   ≥ 0.20): GPU-native Triton ops replace the CPU PyTorch prep path,
   delivering 56% more throughput on GB200 and eliminating CPU-GPU sync
   during speculative decoding.
-- **{term}`Vera Rubin / Rubin GPU`** (H2 2026): NVIDIA's next platform
-  targeting 5× Blackwell inference throughput at 10× lower cost per
-  token; Rubin CPX variant optimised for massive-context inference.
+- **{term}`Vera Rubin / Rubin GPU`**: NVIDIA's next platform, now ramping
+  into full production as of early August 2026 — NVIDIA claims 35×
+  inference performance-per-watt and 10× more revenue per
+  trillion-parameter model versus Blackwell, with cloud availability
+  expanding to AWS, Google Cloud, Microsoft, and OCI alongside CoreWeave,
+  Lambda, Nebius, and Nscale. Initial shipments went out in July 2026 to
+  Microsoft and Google, with Meta also holding allocation; volume
+  shipments ramp through the rest of 2026. Rubin CPX variant optimised
+  for massive-context inference. Vera Rubin's first major Asia
+  commitment landed August 25, 2026: India's AM Intelligence ordered
+  9,000 Vera Rubin systems, with servers slated to come online in
+  southern India in 2027. Production shipments ramp into volume this
+  autumn, but 2026 output is capped at an estimated 200,000-300,000
+  Rubin GPUs by TSMC N3 process capacity and HBM4 supply — Taiwan's
+  server supply chain is bridging the gap with GB-series and
+  custom-ASIC builds ahead of full Rubin volume.
+- **TurboQuant** (ICLR 2026) is a major 2026 reference point in KV-cache
+  quantization research, as KV-cache memory has become the binding
+  constraint for long-context serving. The same problem has drawn
+  several follow-on 2026 papers: **RateQuant** applies rate-distortion
+  theory to assign mixed bit-widths per attention head rather than a
+  single global precision, and **RDKV** does joint rate-distortion bit
+  allocation across eviction and quantization together — both natural
+  stretch-goal extensions of `05_serving/04_2bit_kv_quantization_kivi`.
 
 ```{admonition} Coming in v0.3
 :class: note

@@ -84,7 +84,21 @@ Vera Rubin / Rubin GPU
   reference design and the general-availability release of the
   **Omniverse DSX Blueprint** (July 2026) package the platform into a
   rack-to-datacenter build/simulate/operate workflow aimed at
-  continuously-operating "AI factory" inference deployments.
+  continuously-operating "AI factory" inference deployments. As of
+  July 21, 2026 NVIDIA describes Rubin as "going gigascale": NVL72
+  racks are live in production at CoreWeave, Google Cloud, Microsoft
+  Azure, OCI, and Mistral. A July 16 partnership with Japan's Noetra
+  Corp (backed by Japan's METI) will build a 13,750-Vera-CPU /
+  27,500-Rubin-GPU national AI factory for the country's FRONTia
+  Project. Vera Rubin's first major Asia commitment landed August 25,
+  2026: Indian AI infrastructure firm AM Intelligence ordered 9,000
+  Vera Rubin systems, with servers slated to come online in southern
+  India in 2027; Taiwan's server supply chain is bridging the
+  transition gap with GB-series, custom-ASIC, and general-purpose
+  servers ahead of full Rubin volume production. Production shipments
+  ramp into volume through autumn 2026, but total 2026 output is
+  estimated at 200,000-300,000 Rubin GPUs, gated by TSMC N3 process
+  capacity and HBM4 memory supply rather than demand.
 ```
 
 ## Roofline, throughput, latency
@@ -320,6 +334,13 @@ KV eviction
   mass; SnapKV uses an observation window to score prompt tokens.
   Covered in
   {doc}`notebooks/05_serving/03_kv_compression_streamingllm_h2o_snapkv`.
+
+TurboQuant
+  A near-lossless KV-cache compression method (ICLR 2026) using
+  uniform angle quantization. Became a major reference point in 2026
+  KV-cache quantization research as KV-cache memory — not compute —
+  became the binding constraint for long-context serving. Relevant
+  extension point for {doc}`notebooks/05_serving/04_2bit_kv_quantization_kivi`.
 ```
 
 SGLang
@@ -610,13 +631,23 @@ GPQA
   Graduate-Level Google-Proof Q&A. 448 expert-authored questions in
   biology, chemistry, and physics that PhD-level domain experts answer
   correctly only ~65% of the time. Became a standard frontier benchmark
-  as MMLU saturated in 2025.
+  as MMLU saturated in 2025; by early August 2026 GPQA-Diamond has
+  crossed into saturation at the top — Sakana AI's **Fugu-Ultra v1.1**
+  leads at 95.5% (August 7), with the top three models clustered within
+  0.9 points — though the benchmark still differentiates models in the
+  60-90% range, where most procurement decisions live.
 
 HLE
   Humanity's Last Exam. A 2,500-question expert benchmark released Jan
   2025 by the Center for AI Safety and Scale AI. Covers math, science,
   and humanities at the level of PhD qualifying exams; frontier models
   scored below 10% on release, making it a long-term frontier target.
+  As GPQA-Diamond nears saturation, HLE has become the primary frontier
+  differentiator: as of August 11, 2026, Claude Fable 5 led the
+  tool-assisted leaderboard at 55.5%, just ahead of Claude Opus 5
+  (54.9%) and GPT-5.6 Sol (49.5%). **Claude Fable 5.1** (September 1,
+  2026) pushed the leaderboard to 59.1% — either way, leading models
+  still fail four in ten of the expert-written questions.
 
 LiveCodeBench
   A contamination-resistant coding benchmark that continuously adds new
@@ -630,7 +661,19 @@ SWE-bench
   subsets. **SWE-bench Live** (arXiv 2505.23419, May 2026) extends this
   with a live-updatable harness of 1,319 tasks from issues created after
   model training cutoffs, making contamination structurally impossible.
-  As of May 2026 the SWE-bench Verified top score is 93.9%.
+  As of May 2026 the SWE-bench Verified top score is 93.9%. By August
+  2026, five models from four labs sit statistically tied near 80% on
+  SWE-bench Verified, so the harder **SWE-bench Pro** split is now the
+  frontier-coding discriminator; independent audits also find roughly
+  one in five "solved" patches from top-30 agents are semantically
+  incorrect, passing only because a weak test suite fails to catch the
+  error — a caution against reading either leaderboard as a precise
+  capability ranking. By late August 2026, **Claude Opus 5** leads
+  SWE-bench Verified at 97.00% (August 26) with seven of 86 evaluated
+  models at 95% or better, while the harder SWE-bench Pro split
+  (August 29) is led by **Claude Mythos 5** at 80.3% — a gated
+  Anthropic security-research preview, not a public model — just ahead
+  of Claude Fable 5 (80%) and Claude Opus 5 (79.2%).
 
 Terminal-Bench
   A CLI-focused agentic benchmark (January 2026) that evaluates models
@@ -645,7 +688,10 @@ ARC-AGI
   (François Chollet, 2019). Grid transformation tasks designed to
   require novel analogy-making; no model broke 5% until o3 reached
   96.7% in late 2024, after which ARC-AGI-2 was released as the
-  successor frontier challenge.
+  successor frontier challenge. **ARC-AGI-3**, the current frontier
+  variant, was effectively saturated by **GPT-6 Astra** at release
+  (99.9%, September 3, 2026) — well ahead of Claude Opus 5 (30.2%) and
+  GPT-5.6 Sol (7.8%) on the same test.
 ```
 
 ## Agents
@@ -688,17 +734,25 @@ XGrammar
 MCP
   Model Context Protocol. An open standard for exposing tools and
   data sources to LLM clients over JSON-RPC. The **2026-07-28**
-  specification (in release-candidate status as of July 2026; final
-  text ships July 28, 2026) is the largest revision since launch: it
-  removes the `Mcp-Session-Id` protocol session (any server instance can
-  now handle any request), drops the `initialize`/`initialized`
-  handshake, and rewrites authorization around standard OAuth/OIDC RFCs
-  instead of bespoke wiring. It also introduces a formal **extensions
+  specification shipped as final text on July 28, 2026, and is the
+  largest revision since launch: it removes the `Mcp-Session-Id`
+  protocol session (any server instance can now handle any request),
+  drops the `initialize`/`initialized` handshake, adds Multi Round-Trip
+  Requests, header-based routing, and cacheable list results, and
+  rewrites authorization around standard OAuth/OIDC RFCs instead of
+  bespoke wiring. It also introduces a formal **extensions
   framework** — reverse-DNS-namespaced extensions with their own
   repositories and version cadence, independent of the core spec. The
   **Enterprise-Managed Authorization** extension reached stable status
   ahead of the core spec and is adopted by Anthropic, Microsoft, and
-  Okta. Covered in {doc}`notebooks/04_agents/05_mcp_server_client`.
+  Okta. Tier 1 SDKs (Python, TypeScript, Go, C#) now ship stable
+  2026-07-28 support and see close to half a billion downloads a month,
+  with the TypeScript and Python SDKs each past 1 billion total
+  downloads. On August 22, 2026 the Core Maintainers published an
+  updated roadmap covering the next specification release and beyond,
+  reporting progress across the four priority areas set out in the
+  March 2026 roadmap over the preceding five months. Covered in
+  {doc}`notebooks/04_agents/05_mcp_server_client`.
 
 DSPy
   A framework that compiles high-level program-like agents into
@@ -731,6 +785,9 @@ Pydantic AI
   An agent framework from the Pydantic team (2024) with FastAPI-style
   dependency injection and first-class Pydantic validation. Supports
   tool calls, structured outputs, streaming, and multi-agent graphs.
+  **Pydantic AI V2** (June 23, 2026) is a harness-first redesign that
+  makes capabilities (tool access, memory, sandboxing) a core primitive
+  agents declare rather than wire up manually.
 
 smolagents
   A minimalist agent library by Hugging Face (~1,000 lines of Python).
@@ -902,9 +959,52 @@ Claude Sonnet 5 / Claude Fable 5
   on SWE-bench Pro. **Claude Fable 5** (general availability July 1,
   2026) is the frontier-tier release, leading SWE-bench Pro at 80.3%
   and pairing a 200K-token standard context window with a beta
-  1M-token context mode. Both ship at roughly half the per-token
-  price of their predecessors. Referenced as the production-track
-  model defaults in {doc}`notebooks/08_production/index`.
+  1M-token context mode. Both shipped at roughly half the per-token
+  price of their predecessors. Sonnet 5's introductory $2/$10-per-M
+  pricing, originally scheduled to rise to $3/$15 on September 1, 2026,
+  was made permanent instead: Anthropic cancelled the increase on
+  August 11, 2026. Sonnet 5's newer tokenizer can still produce up to
+  ~35% more tokens for the same input than Sonnet 4.6's, so effective
+  per-request cost can run higher than the flat per-token price alone
+  suggests — relevant to the cost-modeling notebook in
+  {doc}`notebooks/08_production/index`. Referenced as the
+  production-track model defaults in
+  {doc}`notebooks/08_production/index`. **Claude Fable 5.1** (general
+  availability September 1, 2026, alongside a gated **Claude Mythos
+  5.1**) keeps Fable 5's $10/$50-per-M headline price but cuts the
+  cache-read rate 75% to $0.25/M (from $1/M) and adds image input.
+  It tops the Artificial Analysis Intelligence Index at 66 (max
+  effort) — four points above Fable 5, ahead of Claude Opus 5 (63),
+  GPT-5.6 Sol (61), and Grok 4.6 (61) — and lifts HLE to 59.1% from
+  Fable 5's 55.5%. Fable 5.1 uses ~1.7× the output tokens of Fable 5
+  per task, so it costs about 20% more per Intelligence Index task
+  ($3.76) despite the cache-read cut; the cut mostly pays off in
+  agentic workloads that are cache-read heavy.
+
+Claude Opus 5
+  Anthropic's July 24, 2026 Opus-tier refresh. Holds Opus 4.8's $5/$25
+  per-million-token price while more than doubling its score on
+  Frontier-Bench v0.1, an agentic terminal-coding evaluation (43.3% vs.
+  21.1% for Opus 4.8), ahead of both GPT-5.6 Sol (34.4%) and Claude
+  Fable 5 (33.7%) on that eval. Performs within 0.5% of Fable 5's best
+  CursorBench 3.2 score at half the per-task cost, and beats Fable 5 on
+  OSWorld 2.0 at a third of the cost. Supports 1M-token context and
+  128K-token max output (300K via the Batch API). Carries a May 2026
+  knowledge cutoff — the freshest in Anthropic's lineup, versus January
+  2026 for Fable 5 and Opus 4.8.
+
+Claude Mythos
+  Anthropic's frontier research model, positioned above the public
+  Claude family and focused on long-horizon reasoning and software
+  security work such as vulnerability discovery. First previewed
+  April 2026; access is gated through Project Glasswing, an
+  invite-only consortium, rather than shipped as a general-availability
+  API model. Export controls on the **Claude Mythos 5** update were
+  lifted July 1, 2026, restoring access for approved US organisations.
+  Despite topping the SWE-bench Pro leaderboard at 80.3% (August 29,
+  2026), Mythos is not a production-track option in
+  {doc}`notebooks/08_production/index` because of its gated
+  availability.
 
 Grok 4.5
   xAI's July 8, 2026 release, its first model built specifically for
@@ -934,6 +1034,33 @@ Gemini 3.5 Flash
   than peer frontier models on output tokens per second. Pricing: $1.50
   input / $9.00 output / $0.15 cached-read per 1 M tokens. Available
   via Google AI Studio, Gemini API, and the Antigravity framework.
+  **Gemini 3.5 Pro** — expected as the enterprise flagship above Flash —
+  has now slipped past its original June 2026 target four times
+  running; Google DeepMind reportedly rebuilt the base model after it
+  missed internal hallucination and reliability goals, and it remains
+  in limited Vertex AI preview, unreleased as of August 2026. It missed
+  its latest rumored August 12 date too, with reporting pointing to
+  coding-performance shortfalls and a disappointing training-data
+  refresh that have left it months behind schedule; no new target date
+  has been given.
+
+Gemini 3.7 Flash
+  Google's August 13, 2026 successor to Gemini 3.6 Flash, shipped while
+  the enterprise-flagship **Gemini 3.5 Pro** remains delayed. Extends the
+  Flash tier's agentic and coding performance rather than replacing the
+  still-unreleased Pro model.
+
+Gemini 3.6 Flash
+  Google's July 21, 2026 successor to Gemini 3.5 Flash, and the new
+  default model in the Gemini family. Cuts output token usage 17%
+  versus 3.5 Flash, advances the knowledge cutoff to March 2026, and
+  improves on SWE-bench Pro (58.7% vs. 55.1%), long-context retrieval,
+  and OSWorld Verified computer use (83% vs. 78.4%). Output pricing
+  drops to $7.50 per million tokens (input unchanged at $1.50).
+  Shipped alongside **Gemini 3.5 Flash-Lite** (a cheaper, low-latency
+  tier at $0.30 input / $2.50 output per million tokens) and **Gemini
+  3.5 Flash Cyber** (a vulnerability-finding model limited to a
+  government/partner pilot, not generally available).
 
 MiMo-V2.5
   Xiaomi's fully open-source multimodal reasoning model, released April
@@ -957,13 +1084,102 @@ Qwen3
   (reasoning) and non-thinking mode selectable per-request via
   ``/think`` or ``/no_think`` prompt prefixes. Sizes from 0.6B to
   235B total (22B active in the MoE flagship). Qwen3-235B-A22B leads
-  open models on GPQA-Diamond and AIME 2025/2026.
+  open models on GPQA-Diamond and AIME 2025/2026. The proprietary
+  **Qwen3.7-Max** (May 2026) extended the closed-API tier without open
+  weights, but **Qwen3.8-Max** (shipped August 3, 2026; 2.4T total
+  parameters, ~95B active) beats GPT-5.6 Sol Max and Claude Fable 5 on
+  OSWorld-Verified computer use (86.1 vs. 83.2 / 85.0) and leads on
+  PaperBench (93.0) — and open weights follow on August 12, 2026,
+  breaking the closed-only pattern of the Qwen3.x line.
+
+Muse Spark
+  Meta's multimodal reasoning model for agentic workflows, released as
+  a closed, United States-only preview (Meta Model API). **Muse Spark
+  1.1** tied OpenAI's GPT-5.6 Luna at 51 on the Artificial Analysis
+  Intelligence Index v4.1, with a 1M-token context window and cheaper
+  output pricing ($4.25 vs. $6 per million tokens) than Luna. **Muse
+  Spark 1.2** shipped August 6, 2026.
+
+Astra / GPT-6 Astra
+  OpenAI teased Astra on August 1, 2026 by publishing machine-checked
+  solutions to ten mathematics and theoretical-CS problems that had
+  been open for a decade or more — including an explicit construction
+  of a non-sofic group (open since Gromov, 1999) and a disproof of
+  Connes's rigidity conjecture — each with a Lean 4 proof certificate
+  (zero `sorry`s) posted under Apache 2.0, at a total inference cost
+  OpenAI put at roughly $2,000 in GPT-5.6 Sol API rates. It shipped as
+  **GPT-6 Astra** on September 3, 2026: OpenAI's largest training run
+  to date (100,000+ GPUs at the Stargate site in Texas), and the first
+  OpenAI release trained under supervision from earlier OpenAI models.
+  Priced at $10/$50 per M input/output tokens ($1/M cached input,
+  $12.50/M cache write, a Fast mode at 2×), with a 1M-token context
+  window and 128K-token max output. Saturates ARC-AGI-3 at 99.9% (vs.
+  30.2% for Claude Opus 5 and 7.8% for GPT-5.6 Sol) and leads OpenAI's
+  MRCR v2 long-context needle test, but its coding-agent lead over
+  Claude Fable 5.1 is narrow to nonexistent: 74.1% on DeepSWE v1.1 (vs.
+  73.7% Opus 5, 72.7% Sol) and an Artificial Analysis Coding Agent
+  Index of 67, behind Fable 5.1's 70. It is the first model to reach
+  the "Critical" cybersecurity-capability tier under OpenAI's
+  Preparedness Framework — with the right tools and access it can find
+  and exploit previously unknown vulnerabilities without step-by-step
+  human guidance. Rolling out to ChatGPT Plus/Pro/Business/Enterprise
+  and the API, Azure, and AWS Bedrock. Its long-horizon,
+  multi-agent-coordination framing is relevant context for the planned
+  `01_inference/11_inference_time_scaling.ipynb` notebook (see
+  {doc}`CURRICULUM_SPEC`).
+
+Sakana Fugu / Fugu-Ultra
+  Sakana AI's model family (launched June 22, 2026) built as a
+  multi-model orchestration system rather than a single trained
+  network — a router coordinates multiple underlying models per query.
+  **Fugu-Ultra**, the quality-first variant tuned for harder multi-step
+  tasks, reached a **v1.1** refresh with up to 7.9 points of benchmark
+  improvement over v1.0 at unchanged pricing ($5 input / $30 output per
+  1M tokens), and leads the GPQA-Diamond leaderboard at 95.5% as of
+  August 7, 2026 — the clearest signal yet that GPQA-Diamond has
+  crossed into saturation for frontier models. Both variants support a
+  1M-token context window.
 
 SGLang
   UC Berkeley / LMSYS serving framework with RadixAttention (shared
   prefix caching) and async constrained decoding. Version 0.4+ shows
   3.1× throughput vs vLLM on DeepSeek-V3 traffic patterns; generally
   preferred over vLLM when requests share long common prefixes.
+
+Kimi K3
+  Moonshot AI's July 16, 2026 release, a 2.8 trillion-parameter MoE
+  model that edged past Claude Opus 4.8 on Artificial Analysis's
+  independent ranking on release day. Full weights (594 GB, native
+  MXFP4 safetensors) shipped on Hugging Face on July 27, 2026 under a
+  Modified MIT license — the largest open-weight release to date.
+  Successor to the Kimi K2.6 / Agent Swarm line.
+
+GLM-5.2
+  Z.ai's July 2026 open-weight release, a 744 billion-parameter MoE
+  model that becomes the top-ranked open-weight model overall: 91.2%
+  on GPQA Diamond and 62.1% on SWE-bench Pro at a fraction of frontier
+  API pricing. Successor to GLM-5.1. Z.ai shipped a **GLM-5.2 Turbo**
+  variant on August 17, 2026, trading a small accuracy margin for
+  materially lower latency and cost on the same weight family. A
+  separate, smaller **GLM-5.3-Flash** shipped August 26, 2026 (see
+  below).
+
+GLM-5.3-Flash
+  Z.ai's August 26, 2026 release: a 320 billion-parameter MoE model
+  with 18B active parameters, combining sparse and linear attention to
+  cut the cost of long-sequence processing. The first natively
+  multimodal model in the GLM-5 line — accepts image and video input
+  alongside text — with a 1M-token context window and open weights on
+  Hugging Face. Scores 57 on the Artificial Analysis Intelligence
+  Index at roughly $0.045 per task; Z.ai says it beats GLM-5.2 across
+  its evaluations at about a tenth of the price. Launch pricing is
+  $0.075 per million input tokens through September 9, 2026 (list
+  price $0.15/$0.50 per M tokens input/output).
+
+Inkling
+  The first flagship model from Thinking Machines Lab (Mira Murati's
+  AI startup), released open-weight around July 15, 2026, as a
+  general-purpose reasoning and coding model.
 
 vLLM V2
   Major architectural rewrite of vLLM (version 0.8+) replacing the

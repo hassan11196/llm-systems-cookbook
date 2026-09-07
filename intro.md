@@ -180,19 +180,160 @@ hard-list watermarking, toxicity scoring.
   07_gpu/04, plus 07_gpu/07 Nsight profiling) note their requirements
   in their chapter header.
 
-```{admonition} What's new in July 2026
+```{admonition} What's new in September 2026
 :class: note
 
-- **MCP 2026-07-28 (release candidate)**: the Model Context Protocol's
-  largest revision since launch is in release-candidate status, with the
-  final specification shipping July 28, 2026 — a stateless protocol core
-  (no more `Mcp-Session-Id`), the `initialize`/`initialized` handshake
-  removed entirely, authorization rebuilt on standard OAuth/OIDC RFCs, and
-  a new extensions framework for independently-versioned protocol
-  additions. The **Enterprise-Managed Authorization** extension has
-  already graduated to stable and is adopted by Anthropic, Microsoft, and
-  Okta; X (formerly Twitter) shipped a hosted MCP server for its platform
-  API this month.
+- **Week of September 7, 2026 refresh**: Anthropic shipped **Claude
+  Fable 5.1** (GA September 1, alongside a gated **Claude Mythos
+  5.1**) at Fable 5's $10/$50-per-M headline price but with a 75%
+  cheaper cache-read rate ($0.25/M, down from $1/M); it tops the
+  Artificial Analysis Intelligence Index at 66 (max effort) — ahead of
+  Claude Opus 5 (63), GPT-5.6 Sol (61), and Grok 4.6 (61) — and lifts
+  HLE to 59.1% from Fable 5's 55.5%, though it costs ~20% more per
+  task from heavier output-token use. OpenAI followed on September 3
+  with **GPT-6 Astra** (its largest training run to date, 100,000+
+  GPUs at the Stargate Texas site; $10/$50 per M tokens, 1M-token
+  context), which saturates ARC-AGI-3 at 99.9% and leads long-context
+  retrieval but only narrowly edges frontier coding — 74.1% on DeepSWE
+  v1.1 versus Fable 5.1's Coding Agent Index lead (70 vs. Astra's 67)
+  — and is the first model to reach the "Critical" cybersecurity tier
+  under OpenAI's Preparedness Framework. This resolves the "Astra"
+  teaser from the August 10 update; the Astra and HLE glossary entries
+  and the frontier-tier rundown in
+  [Part VIII](notebooks/08_production/index.md) are updated
+  accordingly. NVIDIA's Vera Rubin ramps into volume shipments this
+  autumn, though 2026 output is capped at an estimated 200,000-300,000
+  GPUs by TSMC N3 and HBM4 supply — noted in
+  [Part V](notebooks/05_serving/index.md) and the glossary.
+- **Week of August 31, 2026 refresh**: **SWE-bench Verified** pushed
+  further into saturation — **Claude Opus 5** now leads at 97.00%
+  (August 26), with seven of 86 evaluated models scoring 95% or better
+  and the top five spanning barely 4 points. On the harder **SWE-bench
+  Pro** split (August 29), **Claude Mythos 5** tops the board at 80.3%,
+  just ahead of **Claude Fable 5** (80%) and **Claude Opus 5** (79.2%)
+  — but Mythos is Anthropic's gated security-research preview,
+  available only to the invite-only Project Glasswing consortium, so
+  it doesn't change the production-tier picks in
+  [Part VIII](notebooks/08_production/index.md); see the updated
+  table in [Part VII](notebooks/06_eval/index.md). Z.ai shipped
+  **GLM-5.3-Flash** (August 26): a 320B-A18B MoE model, the first
+  natively multimodal release in the GLM-5 line (adds image and video
+  input), with a 1M-token context window and open weights, scoring 57
+  on the Artificial Analysis Intelligence Index at roughly a tenth of
+  GLM-5.2's price. NVIDIA's Vera Rubin platform landed its first major
+  Asia commitment: India's AM Intelligence ordered 9,000 Vera Rubin
+  systems (August 25), with servers slated to come online in southern
+  India in 2027 — noted in [Part V](notebooks/05_serving/index.md)
+  alongside the Vera Rubin glossary entry.
+- **Week of August 24, 2026 refresh**: Anthropic cancelled the planned
+  September 1 price increase for **Claude Sonnet 5**, making its
+  introductory $2/$10-per-M-token pricing permanent (confirmed August 11)
+  — the cost-modeling note in [Part VIII](notebooks/08_production/index.md)
+  and the glossary are corrected accordingly. The Model Context Protocol's
+  Core Maintainers published an updated **MCP roadmap** on August 22,
+  covering the next specification release and reporting progress across
+  the four priority areas set out in March — noted in
+  [Part VI](notebooks/04_agents/index.md). **SWE-bench Verified** has
+  effectively saturated at the frontier: five models from four labs now
+  sit statistically tied near 80%, and independent audits find roughly
+  one in five "solved" patches from top-30 agents are semantically
+  incorrect, passing only because a weak test suite misses the error —
+  the harder SWE-bench Pro split remains the discriminating benchmark;
+  see the updated table in [Part VII](notebooks/06_eval/index.md).
+  OpenAI cut **GPT-5.6 Sol**'s API and credit pricing by over 20% for
+  three months starting August 21. Z.ai shipped a faster, cheaper
+  **GLM-5.2 Turbo** variant (August 17). xAI's **Grok 4.7** (2.1T
+  parameters) has slipped past its original within-weeks target to
+  early September after xAI added SpaceX company data to the training
+  run.
+- **Week of August 17, 2026 refresh**: The first **Humanity's Last Exam**
+  leaderboard snapshot naming Anthropic's newest models shows **Claude
+  Fable 5** leading at 55.5% (August 11), just ahead of **Claude Opus 5**
+  (54.9%) and **GPT-5.6 Sol** (49.5%) — the benchmark table in
+  [Part VII](notebooks/06_eval/index.md) and the HLE glossary entry are
+  updated accordingly. **Gemini 3.5 Pro**'s delay continues past the
+  rumored August 12 date, with reporting pointing to coding-performance
+  shortfalls and a disappointing training-data refresh that have left it
+  "months behind schedule"; Google shipped **Gemini 3.7 Flash** instead
+  on August 13, extending the Flash tier while Pro stays stuck in limited
+  preview. xAI released **Grok 4.6** (long-running agents, deeper coding,
+  500K-token context, $2/$0.50/$6 per M tokens input/cached/output) and
+  added it to GitHub Copilot and Cursor; Grok 4.7 (2.1T parameters) is
+  expected within weeks. OpenAI gave **GPT-5.6 Sol** a user-facing effort
+  slider (August 6) and previewed an **Ultrafast mode** (up to 14× faster,
+  August 13); o3 retires from ChatGPT August 26 after a 90-day sunset, and
+  OpenAI expanded its Daybreak cybersecurity initiative with a new
+  **GPT-5.6-Cyber** model for vetted defenders. **NVIDIA Vera Rubin**'s
+  initial shipments went out in July to Microsoft and Google (Meta also
+  holds allocation), with volume shipments ramping through the rest of
+  2026 — noted in [Part IV](notebooks/05_serving/index.md). ByteDance
+  shipped **Seed 2.1 Turbo** (August 10). The EU AI Act's **Article 50**
+  transparency obligations took effect August 2, 2026, requiring
+  disclosure of AI interaction and machine-readable marking of
+  AI-generated content — relevant context for teams deploying the
+  production notebooks in [Part VIII](notebooks/08_production/index.md)
+  into the EU.
+- **Week of August 10, 2026 refresh**: OpenAI teased its next model,
+  **Astra**, on August 1 — not with a launch, but by publishing
+  machine-checked Lean 4 proofs for ten mathematics and theoretical-CS
+  problems that had stood open for a decade or more (including an
+  explicit non-sofic group construction), for roughly $2,000 in
+  inference cost; Astra remains unreleased and is framed as an
+  extension of long-horizon, multi-agent test-time reasoning. Sakana
+  AI's **Fugu-Ultra v1.1** (a multi-model orchestration system, not a
+  single trained network) now leads the GPQA-Diamond leaderboard at
+  95.5% (August 7), with the top three models clustered within 0.9
+  points — confirming GPQA-Diamond has crossed into saturation at the
+  top. Alibaba shipped **Qwen3.8-Max** (August 3, 2.4T-parameter MoE)
+  as a closed-API release beating GPT-5.6 Sol Max and Claude Fable 5 on
+  OSWorld-Verified computer use, with open weights following August 12
+  — breaking the closed-only pattern of prior Qwen3.x releases.
+  **Gemini 3.5 Pro** has now slipped a fourth time past its original
+  June target and remains unreleased as of August 10, with the latest
+  rumor pointing to August 12. Anthropic began assembling an internal
+  AI chip design team (August 5) to co-design hardware with future
+  models, and confirmed that Claude Sonnet 5's introductory $2/$10
+  pricing ends August 31, 2026 — standard $3/$15 pricing (plus a newer,
+  more token-hungry tokenizer) takes effect September 1, relevant to
+  the GPU/API cost-modeling notebook in
+  [Part VIII](notebooks/08_production/index.md). Meta shipped **Muse
+  Spark 1.2** (August 6).
+- **Week of August 3, 2026 refresh**: Meta's **Muse Spark 1.1** (a
+  multimodal reasoning model for agentic workflows, closed US-only
+  preview) ties OpenAI's GPT-5.6 Luna at 51 on the Artificial Analysis
+  Intelligence Index v4.1. Alibaba previewed **Qwen3.8-Max** at the World
+  AI Conference in Shanghai (July 19); the full Qwen3.8 release is
+  expected this month, with Qwen 4.0 targeted for September — Qwen3.7
+  remains closed-weight. DeepSeek shipped a **DeepSeek-V4-Flash-0731**
+  refresh on July 31. **Benchmark saturation has widened**: MMLU,
+  HumanEval, and MBPP no longer meaningfully separate frontier models;
+  GPQA Diamond is approaching saturation at the very top but still
+  differentiates the 60-90% band where most procurement decisions live;
+  **Humanity's Last Exam (HLE)** is emerging as the primary frontier
+  differentiator, currently led by Grok 4 at 50.7%. **NVIDIA Vera Rubin**
+  is ramping into full production — NVIDIA claims 35× inference
+  performance-per-watt and 10× more revenue per trillion-parameter model
+  versus Blackwell — with first cloud availability expanding to AWS,
+  Google Cloud, Microsoft, and OCI alongside cloud partners CoreWeave,
+  Lambda, Nebius, and Nscale. **TurboQuant** (ICLR 2026) is now a major
+  reference point in KV-cache quantization research, as KV-cache memory
+  has become the binding constraint for long-context serving.
+- **MCP 2026-07-28 (finalized)**: the Model Context Protocol's largest
+  revision since launch shipped as the final spec on July 28, 2026 — a
+  stateless protocol core (no more `Mcp-Session-Id`, no
+  `initialize`/`initialized` handshake), Multi Round-Trip Requests,
+  header-based routing, cacheable list results, authorization rebuilt on
+  standard OAuth/OIDC RFCs, and a reverse-DNS-namespaced extensions
+  framework. The first two extensions riding that framework are the
+  **Tasks extension** (long-running async tool calls via `tasks/get` /
+  `tasks/update` / `tasks/cancel`) and **MCP Apps** (server-rendered
+  interactive UIs in sandboxed iframes). Tier 1 SDKs (Python, TypeScript,
+  Go, C#) now ship stable 2026-07-28 support and see close to half a
+  billion downloads a month, with the TypeScript and Python SDKs each
+  past 1 billion total downloads. The **Enterprise-Managed Authorization**
+  extension is stable and adopted by Anthropic, Microsoft, and Okta; X
+  (formerly Twitter) shipped a hosted MCP server for its platform API in
+  July.
 - **New frontier entrants**: xAI released **Grok 4.5** (July 8) as its
   first model built specifically for coding and agentic work, priced
   over 60% below Claude Opus 4.8 or GPT-5.5 while landing fourth on the
@@ -200,10 +341,27 @@ hard-list watermarking, toxicity scoring.
   family — Sol, Terra, and Luna — on July 9; Sol sets a new state of the
   art on the Artificial Analysis Coding Agent Index (80, edging out
   Claude Fable 5) at roughly a third of the cost and under half the
-  output tokens.
+  output tokens. Anthropic followed on July 24 with **Claude Opus 5**,
+  which holds Opus 4.8's $5/$25-per-M-token price while more than
+  doubling its score on the Frontier-Bench v0.1 agentic terminal-coding
+  eval (43.3% vs 21.1%) — ahead of both GPT-5.6 Sol (34.4%) and Claude
+  Fable 5 (33.7%) on that eval, at a third to half Fable 5's per-token
+  cost; it carries a May 2026 knowledge cutoff, the freshest of any model
+  in Anthropic's lineup.
+- **Late-July open-weight wave**: Moonshot AI's **Kimi K3** (2.8T-parameter
+  MoE) edged past Claude Opus 4.8 on Artificial Analysis's independent
+  ranking at its July 16 launch, and shipped its full 594 GB MXFP4
+  safetensors release on Hugging Face on July 27 under a Modified MIT
+  license — the largest open-weight release to date. Z.ai's **GLM-5.2**
+  (744B MoE) is the new top open-weight model overall, scoring 91.2% on
+  GPQA Diamond and 62.1% on SWE-bench Pro at a fraction of frontier API
+  pricing. **Inkling**, the first flagship model from Mira Murati's
+  Thinking Machines Lab, shipped open-weight around July 15 as a
+  general-purpose reasoning and coding model.
 - **Anthropic model refresh**: Claude Sonnet 5 (June 30) and Claude Fable 5
-  (GA July 1) lead SWE-bench Pro at 63.2% and 80.3% respectively, at
-  roughly half the per-token price of their predecessors.
+  (GA July 1) lead SWE-bench Pro at 63.2% and 80.3% respectively, and
+  Claude Opus 5 (July 24) now tops Frontier-Bench v0.1 agentic coding —
+  all three at roughly half the per-token price of their predecessors.
 - **Benchmark saturation**: as of July 2, 2026, 37% of the 154
   percentage-scaled benchmarks tracked by BenchLM.ai are saturated
   (top model ≥ 90%) — GSM8K is effectively solved (99%), MMLU sits at
@@ -214,6 +372,16 @@ hard-list watermarking, toxicity scoring.
   **Omniverse DSX Blueprint** reach general availability, packaging the
   Vera Rubin platform into a rack-to-datacenter build/simulate/operate
   workflow for continuously-running inference deployments.
+- **Agent frameworks (Q2–Q3 2026):** the busiest quarter since agent
+  frameworks began shipping. The Claude Agent SDK added hierarchical
+  subagent spawning (up to 3 levels deep), fallback model chains, and a
+  community MCP tool marketplace. CrewAI 1.14.6 (June 11) added pluggable
+  memory/knowledge/RAG/flow backends, a Chat API, and native Snowflake
+  Cortex support. Pydantic AI V2 (June 23) shipped a harness-first
+  redesign with capabilities as a core primitive, and LlamaIndex
+  Workflows 1.0 landed June 22. LangGraph followed with per-node timeouts,
+  a `DeltaChannel` for incremental state updates, and a typed v2 streaming
+  API.
 - **Glossary** extended with 2025 to 2026 terms: test-time compute, reasoning
   models, BitNet / ternary quantization, FP4 (Blackwell), VLM / SigLIP,
   NVIDIA Dynamo / NIXL, DoRA, ORPO, Vera Rubin GPU, PegaFlow, Gemini 3.5
@@ -221,8 +389,8 @@ hard-list watermarking, toxicity scoring.
 - **Curriculum spec** updated with the v0.3 roadmap: inference-time scaling
   notebook, BitNet/sub-2-bit serving notebook, a 5-notebook multimodal track,
   and a safety/red-teaming track.
-- **Framework pins** refreshed to the May 2026 ecosystem (torch 2.7, vLLM
-  0.20, SGLang 0.5 + XGrammar-2, TRL 0.26, PEFT 0.14, JAX 0.6).
+- **Framework pins** refreshed to the July 2026 ecosystem (torch 2.7, vLLM
+  0.25, SGLang 0.5.15 + XGrammar-2, TRL 0.26, PEFT 0.14, JAX 0.6).
 - **Training track (v0.2):** six remaining notebooks (tensor parallel,
   pipeline parallel, LoRA/DoRA, QLoRA, DPO/ORPO, GRPO) are fully specified
   and in active development.
@@ -230,7 +398,16 @@ hard-list watermarking, toxicity scoring.
   speed and Pro-tier coding/agentic accuracy; 1 M-token context window;
   dynamic thinking on by default; Gemini Spark persistent 24/7 agent; ADK v1.0
   stable across Python, Go, Java, and TypeScript; A2A v1.0 in production at
-  150+ organisations. **Gemini 3.5 Pro** expected June 2026.
+  150+ organisations. **Gemini 3.5 Pro** has since slipped past its original
+  June 2026 target for a third time — Google DeepMind reportedly rebuilt the
+  base model after it fell short of internal hallucination and reliability
+  goals — and remains unreleased as of July 27. In its place, Google shipped
+  three Flash-tier models on July 21: **Gemini 3.6 Flash** (the new default
+  model; 17% fewer output tokens than 3.5 Flash, a March 2026 knowledge
+  cutoff, 58.7% on SWE-bench Pro, and output pricing cut to $7.50/M tokens),
+  **Gemini 3.5 Flash-Lite** (high-throughput, low-latency tier at
+  $0.30/$2.50 per M tokens), and **Gemini 3.5 Flash Cyber** (a
+  vulnerability-finding model limited to a government/partner pilot).
 - **OpenAI (May 5):** GPT-5.5 Instant is now the default ChatGPT model for
   all tiers, with 52.5% fewer hallucinated claims, 30% more concise output,
   and personalisation via past conversations, files, and Gmail. GPT-5.5 Thinking
@@ -243,9 +420,14 @@ hard-list watermarking, toxicity scoring.
   speculative decoding (6.3% lower TPOT on 4×GB200).
 - **Hardware roadmap:** NVIDIA Vera Rubin platform (announced GTC 2026):
   Rubin GPU (288 GB HBM4, 50 PFLOPS FP4), Vera CPU (72-core ARM), NVLink 6;
-  targeting 5× Blackwell inference throughput at 10× lower cost; H2 2026.
-  Rubin CPX variant optimised for massive-context inference now documented in
-  the glossary.
+  targeting 5× Blackwell inference throughput at 10× lower cost. Rubin is
+  now in full production and, per NVIDIA (July 21), "going gigascale":
+  NVL72 racks are live at CoreWeave, Google Cloud, Microsoft Azure, OCI,
+  and Mistral, alongside NVIDIA Cloud Partners Lambda, Nebius, and Nscale.
+  A July 16 partnership with Japan's Noetra Corp — backed by Japan's METI
+  — will build a national Vera Rubin AI factory (13,750 Vera CPUs, 27,500
+  Rubin GPUs) for the country's FRONTia Project. Rubin CPX variant
+  optimised for massive-context inference now documented in the glossary.
 - **Serving infrastructure:** PegaFlow (Novita AI, May 2026): GIL-free Rust
   external KV cache for vLLM/SGLang with GPU offload, SSD tiering, and RDMA
   cross-node KV sharing.
