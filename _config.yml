@@ -61,6 +61,7 @@ sphinx:
     sitemap_url_scheme: "{link}"
     html_extra_path:
       - robots.txt
+      - 404.html
       - assets
     templates_path:
       - _templates
@@ -80,6 +81,81 @@ sphinx:
         notebooks/08_production/index: "Production LLM patterns: prompt caching, LiteLLM multi-provider routing and fallbacks, tool use, structured outputs, hybrid RAG with citations, MCP servers, DSPy MIPROv2, Inspect AI evaluation, and GPU cost modeling — with real API fixtures for replay mode."
         glossary: "LLM systems glossary: 100+ terms covering GPU architecture, KV cache, attention mechanisms, RAG pipelines, AI agent frameworks, LLM serving, evaluation methodology, quantization, and production deployment — with chapter pointers for every concept."
         CURRICULUM_SPEC: "Full curriculum specification for the LLM Systems Cookbook: 70 Jupyter notebooks with per-chapter learning outcomes, scoring thresholds, paper citations, and prerequisite DAG — covering LLM inference, RAG, agents, serving, evaluation, GPU programming, and production patterns."
+        # Per-notebook descriptions: each chapter page gets a unique, accurate
+        # meta/OG/Twitter description (and a TechArticle record) so the 64
+        # notebook pages don't share one duplicated site-wide description.
+        # Part I — Foundations (GPU programming)
+        notebooks/07_gpu/01_gpu_architecture_tour: "GPU architecture from first principles: device discovery, streaming multiprocessors, and empirical peak-bandwidth and peak-TFLOPs microbenchmarks — a hands-on notebook for LLM systems engineers."
+        notebooks/07_gpu/02_triton_101_softmax: "Write your first Triton GPU kernel — a fused softmax benchmarked against its memory-bandwidth roofline. Hands-on GPU programming for LLM systems."
+        notebooks/07_gpu/03_triton_tiled_matmul: "Build a tiled matrix-multiply Triton kernel with grouped ordering, targeting 70% of cuBLAS throughput — a hands-on GPU programming notebook for LLM systems."
+        notebooks/07_gpu/04_triton_flashattention: "Implement FlashAttention-2 forward as a Triton GPU kernel with online softmax, from first principles — hands-on GPU programming for LLM inference."
+        notebooks/07_gpu/05_fused_rope_rmsnorm: "Fuse RoPE rotary embeddings with RMSNorm into Triton kernels to halve HBM traffic — a hands-on GPU kernel-fusion notebook for LLM systems."
+        notebooks/07_gpu/06_torch_compile_deep_dive: "A torch.compile deep dive: TorchDynamo, Inductor, graph breaks, and reduce-overhead mode — how PyTorch 2 compilation speeds up LLM workloads, hands-on."
+        notebooks/07_gpu/07_nsight_profiling: "Profile GPU kernels with NVTX annotations, Nsight Systems, and torch.profiler to find LLM bottlenecks — a hands-on GPU performance-profiling notebook."
+        notebooks/07_gpu/08_jax_sharding_pipeline: "Distributed arrays in JAX: a 1-D device mesh, PartitionSpec, and automatic sharding for LLM workloads — a hands-on JAX parallelism notebook."
+        # Part II — Inference engines
+        notebooks/01_inference/01_autoregressive_decoding_kv_cache: "How the KV cache turns autoregressive decoding from quadratic to linear — the KV-cache byte formula from first principles, with numbers. Hands-on LLM inference optimization."
+        notebooks/01_inference/02_attention_roofline: "Attention from scratch and its arithmetic intensity: why LLM decoding is memory-bound and prefill is compute-bound — a hands-on roofline analysis notebook."
+        notebooks/01_inference/03_pagedattention_block_allocator: "Implement vLLM's PagedAttention block allocator in pure Python: how paging cuts KV-cache waste from 80% to under 5%. Hands-on LLM inference optimization."
+        notebooks/01_inference/04_continuous_batching_orca: "Continuous batching and iteration-level scheduling (ORCA-style) for higher LLM serving throughput — a hands-on inference-scheduler notebook."
+        notebooks/01_inference/05_flashattention2_triton: "Wrap a FlashAttention-2 Triton kernel in an nn.Module as a drop-in for any transformer layer — hands-on LLM inference optimization (Ampere+ GPU, CPU fallback)."
+        notebooks/01_inference/06_radix_prefix_cache: "Build SGLang's radix-tree prefix cache to reuse shared prompt prefixes across requests — a hands-on LLM inference caching notebook."
+        notebooks/01_inference/07_speculative_decoding: "Speculative decoding from first principles: the draft/verify rejection rule and its closed-form speedup — a hands-on LLM inference optimization notebook."
+        notebooks/01_inference/08_medusa_eagle_tree_speculation: "Medusa heads and EAGLE tree speculation: verify multiple draft candidates per step to accelerate LLM decoding — a hands-on speculative-decoding notebook."
+        notebooks/01_inference/09_sarathi_chunked_prefill: "SARATHI chunked prefill: co-schedule decode steps with prefill chunks to raise LLM serving throughput without hurting latency — a hands-on inference-scheduler notebook."
+        notebooks/01_inference/10_disaggregated_prefill_decode: "Disaggregated prefill/decode: hand off the KV cache between separate GPU pools to optimize LLM serving — a hands-on inference-architecture notebook."
+        # Part III — Serving and scaling
+        notebooks/05_serving/01_roofline_analysis: "The LLM-flavoured roofline model: turn arithmetic intensity and bandwidth ceilings into serving economics — a hands-on LLM serving analysis notebook."
+        notebooks/05_serving/02_kv_cache_variants_mha_gqa_mla: "KV-cache attention variants MHA, GQA, and MLA in one module: memory footprint versus quality tradeoffs for LLM serving — a hands-on notebook."
+        notebooks/05_serving/03_kv_compression_streamingllm_h2o_snapkv: "KV-cache compression with StreamingLLM, H2O, and SnapKV token-drop policies to shrink LLM serving memory — a hands-on KV-compression notebook."
+        notebooks/05_serving/04_2bit_kv_quantization_kivi: "2-bit KV-cache quantization (KIVI): per-channel keys and per-token values for long-context LLM serving — a hands-on KV-quantization notebook."
+        notebooks/05_serving/05_gptq_awq_weight_quant: "GPTQ and AWQ activation-aware 4-bit weight quantization for LLM serving, from first principles — a hands-on model-compression notebook."
+        notebooks/05_serving/06_smoothquant_fp8_nf4: "SmoothQuant, FP8, and NF4 numeric formats compared on the same layer: weight and activation quantization for LLM serving — a hands-on notebook."
+        notebooks/05_serving/07_quarot_spinquant_rotations: "QuaRot and SpinQuant: Hadamard and learned rotations that make LLM weights easier to quantize — a hands-on rotation-based quantization notebook."
+        notebooks/05_serving/08_batching_strategies: "Four LLM serving schedulers side by side — static, dynamic, continuous, and chunked-prefill batching on one workload. A hands-on throughput notebook."
+        notebooks/05_serving/09_moe_expert_parallelism: "Mixture-of-experts serving: router, capacity factor, and load-balance loss for expert-parallel LLMs — a hands-on MoE serving notebook."
+        notebooks/05_serving/10_disaggregated_serving_distserve: "DistServe-style disaggregated serving: sweep prefill/decode GPU ratios to optimize goodput — a hands-on LLM serving-architecture notebook."
+        notebooks/05_serving/11_serving_observability_slo_autoscaler: "LLM observability and autoscaling: Prometheus-shaped serving metrics plus an SLO-driven control loop — a hands-on production serving notebook."
+        # Part IV — Training and fine-tuning
+        notebooks/03_training/01_mixed_precision_accum_checkpointing: "Fit LLM training into smaller GPUs: a four-way ablation of fp32, bf16, gradient accumulation, and activation checkpointing — a hands-on training-memory notebook."
+        notebooks/03_training/02_ddp_vs_fsdp2: "DDP versus FSDP2 over a CPU gloo process group: identical final loss, very different per-rank memory — a hands-on distributed-training notebook."
+        # Part V — Retrieval-augmented generation
+        notebooks/02_rag/01_chunking_strategies: "RAG chunking strategies compared — fixed, recursive, semantic, and late chunking — and why chunk boundaries decide retrieval quality. A hands-on RAG notebook."
+        notebooks/02_rag/02_faiss_dense_retrieval: "Dense retrieval with FAISS: flat, IVF-PQ, and HNSW indices built from scratch for RAG — a hands-on vector-search notebook."
+        notebooks/02_rag/03_bm25_splade_rrf_hybrid: "Hybrid retrieval for RAG: BM25 sparse search, a SPLADE learned-sparse stub, and Reciprocal Rank Fusion — a hands-on hybrid-search notebook."
+        notebooks/02_rag/04_colbertv2_late_interaction: "ColBERTv2 late interaction: MaxSim over per-token embeddings and its storage tradeoff for RAG retrieval — a hands-on late-interaction notebook."
+        notebooks/02_rag/05_two_stage_reranking: "Two-stage RAG retrieval: a fast bi-encoder recall stage followed by a cross-encoder reranker over the top-N — a hands-on reranking notebook."
+        notebooks/02_rag/06_hyde_query_rewriting: "HyDE and multi-query rewriting for RAG: embed a hypothetical answer and fuse multiple queries with RRF — a hands-on query-rewriting notebook."
+        notebooks/02_rag/07_raptor_hierarchical: "RAPTOR hierarchical retrieval: k-means clustering and nearest-to-centroid summarisation build a retrieval tree for RAG — a hands-on notebook."
+        notebooks/02_rag/08_graphrag_leiden: "GraphRAG from scratch: entity extraction, Leiden community detection, and summary-level retrieval — a hands-on graph-based RAG notebook."
+        notebooks/02_rag/09_ragas_evaluation: "RAG evaluation with RAGAS metrics implemented from scratch: faithfulness, answer relevancy, and context precision/recall — a hands-on RAG evaluation notebook."
+        # Part VI — Agent frameworks
+        notebooks/04_agents/01_react_from_scratch: "Build a ReAct agent from scratch: the reason-act loop, a regex parser, and three tools in about 50 lines — a hands-on AI agent architecture notebook."
+        notebooks/04_agents/02_structured_outputs_three_ways: "Three ways to get structured LLM outputs — prompt-only, Pydantic validate-and-retry, and FSM-constrained decoding — compared hands-on."
+        notebooks/04_agents/03_langgraph_state_machines: "State-machine agents: a 50-line LangGraph-style StateGraph clone with conditional edges — a hands-on AI agent orchestration notebook."
+        notebooks/04_agents/04_dspy_3_miprov2: "DSPy signatures and MIPROv2 prompt optimization as random search over instruction and demonstration pairs — a hands-on prompt-optimization notebook."
+        notebooks/04_agents/05_mcp_server_client: "Build a Model Context Protocol (MCP) server and client over JSON-RPC 2.0 in two files — a hands-on MCP tool-integration notebook."
+        notebooks/04_agents/06_autogen_0_4_vs_crewai: "Multi-agent idioms compared: a draft/critique/revise pipeline built two ways, in AutoGen/AG2 and CrewAI — a hands-on multi-agent frameworks notebook."
+        notebooks/04_agents/07_agent_evaluation_suite: "Evaluate AI agents: success rate, trajectory efficiency, and code-patch success on τ-bench and SWE-bench-shaped tasks — a hands-on agent evaluation notebook."
+        # Part VII — Evaluation
+        notebooks/06_eval/01_perplexity_from_scratch: "Perplexity three ways — sliding-window, non-overlapping, and single-pass — plus bits-per-character as a Shannon interpretation. A hands-on LLM evaluation notebook."
+        notebooks/06_eval/02_mmlu_harness_calibration: "Logit-based multiple-choice scoring on MMLU with model calibration and Expected Calibration Error — a hands-on LLM evaluation notebook."
+        notebooks/06_eval/03_humaneval_unbiased_pass_k: "HumanEval pass@k with the Chen et al. 2021 unbiased estimator and sandboxed code execution — a hands-on code-generation evaluation notebook."
+        notebooks/06_eval/04_llm_as_judge_bias: "LLM-as-judge bias quantified: position, verbosity, and self-enhancement effects plus position-swap mitigation — a hands-on LLM evaluation notebook."
+        notebooks/06_eval/05_arena_elo_bradley_terry: "Turn pairwise preferences into rankings with online Elo and Bradley-Terry, Chatbot Arena style — a hands-on LLM evaluation notebook."
+        notebooks/06_eval/06_long_context_niah_ruler: "Long-context stress tests: needle-in-a-haystack (NIAH) and the RULER composite for LLM retrieval — a hands-on long-context evaluation notebook."
+        notebooks/06_eval/07_contamination_detection: "Benchmark contamination detection: n-gram overlap and Min-K% Prob check whether test data leaked into training — a hands-on LLM evaluation notebook."
+        notebooks/06_eval/08_lm_eval_inspect_ai: "Reconcile evaluation numbers across lm-eval-harness and Inspect AI on a synthetic task — a hands-on LLM evaluation-harness notebook."
+        # Part VIII — Production patterns
+        notebooks/08_production/01_claude_sdk_prompt_caching: "Prompt caching with the Anthropic SDK: cache_control on a long system prompt, with measured hit rate, cost saved, and latency drop — a hands-on production LLM notebook."
+        notebooks/08_production/02_litellm_router_fallbacks: "Multi-provider LLM routing with LiteLLM: cost and latency tracking plus automatic fallback when the primary provider returns 429 — a hands-on production notebook."
+        notebooks/08_production/03_tool_use_agent: "Native Anthropic tool use with parallel tool calls and no parser, compared against a regex-parser agent — a hands-on production LLM notebook."
+        notebooks/08_production/04_structured_outputs_real: "Structured LLM outputs head to head: Anthropic tool use, Outlines, Instructor, and BAML on compliance and latency — a hands-on production notebook."
+        notebooks/08_production/05_hybrid_rag_production: "Production hybrid RAG: BGE-M3 dense retrieval, BM25, RRF, and a reranker feeding Claude with citations over a 1k-doc corpus — a hands-on RAG notebook."
+        notebooks/08_production/06_mcp_real_server: "Build a real Model Context Protocol server (stdio transport, official mcp SDK) that Claude Code or Cursor can connect to — a hands-on MCP notebook."
+        notebooks/08_production/07_dspy_miprov2_optimizer: "Optimize a DSPy 3 classification program with MIPROv2 against held-out accuracy — a hands-on prompt-optimization notebook for production LLMs."
+        notebooks/08_production/08_inspect_ai_eval_harness: "Build an Inspect AI evaluation harness — task, scorer, and solver — on a real benchmark — a hands-on production LLM evaluation notebook."
+        notebooks/08_production/09_gpu_providers_pricing_and_model_fit: "GPU pricing and model fit: on-demand and spot prices across ten clouds, vRAM math, and a calculator sizing a model to the smallest cluster — a hands-on reference."
     html_theme_options:
       # Make the navigation sidebar wider so Part captions don't wrap.
       show_navbar_depth: 2
