@@ -633,9 +633,13 @@ GPQA
   correctly only ~65% of the time. Became a standard frontier benchmark
   as MMLU saturated in 2025; by early August 2026 GPQA-Diamond has
   crossed into saturation at the top — Sakana AI's **Fugu-Ultra v1.1**
-  leads at 95.5% (August 7), with the top three models clustered within
+  led at 95.5% (August 7), with the top three models clustered within
   0.9 points — though the benchmark still differentiates models in the
-  60-90% range, where most procurement decisions live.
+  60-90% range, where most procurement decisions live. **GPT-6 Astra**
+  briefly took the outright lead at 96.0% in early September before
+  Sakana's **Fugu Max** (September 11, 2026) reclaimed the top
+  GPQA-Diamond spot as part of a best-overall-score run across six
+  benchmarks — see the Sakana Fugu / Fugu-Ultra glossary entry.
 
 HLE
   Humanity's Last Exam. A 2,500-question expert benchmark released Jan
@@ -1135,10 +1139,23 @@ Sakana Fugu / Fugu-Ultra
   **Fugu-Ultra**, the quality-first variant tuned for harder multi-step
   tasks, reached a **v1.1** refresh with up to 7.9 points of benchmark
   improvement over v1.0 at unchanged pricing ($5 input / $30 output per
-  1M tokens), and leads the GPQA-Diamond leaderboard at 95.5% as of
+  1M tokens), and led the GPQA-Diamond leaderboard at 95.5% as of
   August 7, 2026 — the clearest signal yet that GPQA-Diamond has
-  crossed into saturation for frontier models. Both variants support a
-  1M-token context window.
+  crossed into saturation for frontier models. On September 11, 2026
+  Sakana split the line in two: **Fugu Max**, a cheaper, faster router
+  priced at $2 input / $6 output per M tokens ($0.25/M cached,
+  regardless of context length) that undercuts the output pricing of
+  Claude Sonnet 5, GPT-5.6 Terra, and Kimi K3 by 40-60%; and **Fugu
+  Ultra v2**, a quality-first successor to v1.1 that deliberately
+  excludes single frontier models — Claude Fable 5, Fable 5.1, and
+  GPT-6 Astra — from its orchestration pool, using a smaller,
+  more selective pool of underlying models to demonstrate that
+  coordinating non-frontier models can still match them. Sakana
+  reports Fugu Max posts the best overall score on six benchmarks
+  (including GPQA-Diamond and Terminal-Bench 2.1), reclaiming the
+  GPQA-Diamond lead, while Fugu Ultra v2 posts best-or-joint-best
+  results on five of eight tracked benchmarks (74.3 on DeepSWE, 48.3
+  on Chartography). Both variants support a 1M-token context window.
 
 SGLang
   UC Berkeley / LMSYS serving framework with RadixAttention (shared

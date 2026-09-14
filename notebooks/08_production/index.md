@@ -103,10 +103,18 @@ willing to run their own serving stack. **Qwen3.8-Max** (Alibaba,
 shipped August 3, 2026, 2.4T MoE, ~95B active) beats GPT-5.6 Sol Max and
 Claude Fable 5 on OSWorld-Verified computer use, with open weights
 following August 12 — the first Qwen3.x release to break from the
-closed-only pattern. **Sakana Fugu-Ultra v1.1** takes a different
-approach entirely: a multi-model orchestration system (not a single
-trained network) at $5 input / $30 output per M tokens, now leading the
-GPQA-Diamond leaderboard at 95.5%. Meta's **Muse Spark 1.2** (shipped
+closed-only pattern. Sakana AI's orchestration-model line takes a different
+approach entirely: multi-model systems that route each query across
+other models rather than a single trained network. **Fugu-Ultra v1.1**
+($5 input / $30 output per M tokens) led the GPQA-Diamond leaderboard
+at 95.5% through August; on September 11, 2026 Sakana split the line
+into **Fugu Max** (a cheaper, faster router at $2/$6 per M
+input/output tokens, undercutting Sonnet 5/GPT-5.6 Terra/Kimi K3 output
+pricing by 40-60%, and now the best overall scorer across six
+benchmarks including GPQA-Diamond) and **Fugu Ultra v2** (a
+quality-first successor whose orchestration pool deliberately excludes
+Fable 5, Fable 5.1, and GPT-6 Astra, posting best-or-joint-best results
+on five of eight tracked benchmarks). Meta's **Muse Spark 1.2** (shipped
 August 6, 2026; multimodal, agentic-workflow focused) is a closed
 US-only preview priced below GPT-5.6 Luna. **Note on cost modeling:**
 Anthropic cancelled the planned September 1 increase to $3/$15 and made

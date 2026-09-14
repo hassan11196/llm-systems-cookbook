@@ -183,6 +183,25 @@ hard-list watermarking, toxicity scoring.
 ```{admonition} What's new in September 2026
 :class: note
 
+- **Week of September 14, 2026 refresh**: Sakana AI split its Fugu
+  orchestration line in two on September 11: **Fugu Max**, a cheaper,
+  faster router priced at $2/$6 per M input/output tokens ($0.25/M
+  cached input) that undercuts Claude Sonnet 5, GPT-5.6 Terra, and
+  Kimi K3 on output cost by 40-60%, and **Fugu Ultra v2**, a
+  quality-first successor to v1.1 that deliberately excludes single
+  frontier models — Claude Fable 5, Fable 5.1, and GPT-6 Astra — from
+  its orchestration pool, aiming to show that coordinating non-frontier
+  models can still match them. Sakana reports Fugu Max now posts the
+  best overall score on six benchmarks (including GPQA-Diamond and
+  Terminal-Bench 2.1), reclaiming the GPQA-Diamond lead from GPT-6
+  Astra's brief 96.0% high, while Fugu Ultra v2 posts best-or-joint-best
+  results on five of eight tracked benchmarks (74.3 on DeepSWE, 48.3 on
+  Chartography). The Sakana Fugu / Fugu-Ultra and GPQA glossary entries
+  and the benchmark table in
+  [Part VII](notebooks/06_eval/index.md) are updated accordingly, and
+  the frontier-tier rundown in
+  [Part VIII](notebooks/08_production/index.md) now references both
+  variants.
 - **Week of September 7, 2026 refresh**: Anthropic shipped **Claude
   Fable 5.1** (GA September 1, alongside a gated **Claude Mythos
   5.1**) at Fable 5's $10/$50-per-M headline price but with a 75%
