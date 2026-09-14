@@ -39,9 +39,30 @@
   ≥ 0.20): GPU-native Triton ops replace the CPU PyTorch prep path,
   delivering 56% more throughput on GB200 and eliminating CPU-GPU sync
   during speculative decoding.
-- **{term}`Vera Rubin / Rubin GPU`** (H2 2026): NVIDIA's next platform
-  targeting 5× Blackwell inference throughput at 10× lower cost per
-  token; Rubin CPX variant optimised for massive-context inference.
+- **{term}`Vera Rubin / Rubin GPU`**: NVIDIA's next platform, now ramping
+  into full production as of early August 2026 — NVIDIA claims 35×
+  inference performance-per-watt and 10× more revenue per
+  trillion-parameter model versus Blackwell, with cloud availability
+  expanding to AWS, Google Cloud, Microsoft, and OCI alongside CoreWeave,
+  Lambda, Nebius, and Nscale. Initial shipments went out in July 2026 to
+  Microsoft and Google, with Meta also holding allocation; volume
+  shipments ramp through the rest of 2026. Rubin CPX variant optimised
+  for massive-context inference. Vera Rubin's first major Asia
+  commitment landed August 25, 2026: India's AM Intelligence ordered
+  9,000 Vera Rubin systems, with servers slated to come online in
+  southern India in 2027. Production shipments ramp into volume this
+  autumn, but 2026 output is capped at an estimated 200,000-300,000
+  Rubin GPUs by TSMC N3 process capacity and HBM4 supply — Taiwan's
+  server supply chain is bridging the gap with GB-series and
+  custom-ASIC builds ahead of full Rubin volume.
+- **TurboQuant** (ICLR 2026) is a major 2026 reference point in KV-cache
+  quantization research, as KV-cache memory has become the binding
+  constraint for long-context serving. The same problem has drawn
+  several follow-on 2026 papers: **RateQuant** applies rate-distortion
+  theory to assign mixed bit-widths per attention head rather than a
+  single global precision, and **RDKV** does joint rate-distortion bit
+  allocation across eviction and quantization together — both natural
+  stretch-goal extensions of `05_serving/04_2bit_kv_quantization_kivi`.
 
 ```{admonition} Coming in v0.3
 :class: note
@@ -96,5 +117,20 @@ Three open-source engines and one external KV layer account for most production 
 FP8 weight + KV cache + continuous batching + speculative decoding on H100 delivers 5-8× better cost-efficiency than naive FP16 with static batching (empirical from 2025 serving comparisons). The B200's native FP4 (9000 TFLOPS) is the newest format, with 1.3-1.6× throughput improvement over FP8 for 7-8B models. **NVIDIA Vera Rubin** (H2 2026) targets 5× Blackwell inference throughput at 10× lower token cost with 288 GB HBM4 and 50 PFLOPS FP4. The Rubin CPX variant is designed for massive-context workloads. The **Vera Rubin DSX AI Factory** reference design and the **Omniverse DSX Blueprint** reached general availability in July 2026, packaging the platform into a rack-to-datacenter build/simulate/operate workflow for continuously-running inference deployments.
 
 KV cache memory, not compute, is the dominant cost lever at long context: production guidance for 2026 stacks it as paged attention (the memory-management substrate this track's notebooks build from scratch) + prefix caching (RadixAttention above) + attention-layer compression (MQA/GQA/MLA) + KV-cache quantization (INT8/FP8, and increasingly mixed-precision schemes like PM-KVQ that assign more bits to the layers/tokens that need them). vLLM's `--kv-cache-dtype fp8` flag now runs the full QK/ScoreV attention matmuls in FP8, not just the cache storage.
+
+**Security note**: a critical vLLM vulnerability (CVE-2026-22778,
+CVSS 9.8, disclosed February 2, 2026) chained a heap-address leak in
+the multimodal error path with a heap overflow in the JPEG2000
+decoder, letting an unauthenticated attacker reach remote code
+execution via a crafted video URL on vLLM 0.8.3-0.14.0; fixed in
+0.14.1. SGLang's disaggregated-prefill and multimodal features carry
+unpatched RCE-class issues as of the same period — worth checking
+current advisories before exposing either engine's multimodal endpoint
+directly to untrusted input. On raw decode throughput, independent
+benchmarks on identical H100 hardware and model put SGLang ahead of
+vLLM's default configuration by roughly 29% (16,200 vs. 12,500
+tokens/s), a gap attributable to scheduler and kernel choices rather
+than a fundamental ceiling — tuning vLLM's V2 model runner narrows it
+substantially.
 
 **Cloudflare Infire** is a custom inference engine that distributes LLM execution across multiple GPUs more efficiently than standard serving stacks, reducing memory usage and cold-start time. Cloudflare also released **Unweight**, a weight compression system that shrinks LLM sizes 15 to 22% without accuracy loss. It is distinct from quantization: it preserves floating-point precision while reducing parameter count via structured pruning. Production inference now represents roughly two-thirds of all AI compute spend, and open-source model serving infrastructure has become a major VC target (Baseten raised $1.5B at $13B valuation).
