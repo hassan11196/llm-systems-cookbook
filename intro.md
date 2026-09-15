@@ -251,6 +251,62 @@ hard-list watermarking, toxicity scoring.
   cross-node KV sharing.
 ```
 
+## Frequently asked questions
+
+What is LLM systems engineering?
+: LLM systems engineering is the practice of building, serving, and
+  evaluating large language model applications as production systems:
+  GPU kernels and inference optimization, KV-cache and serving
+  economics, retrieval-augmented generation, agent frameworks,
+  evaluation methodology, and deployment patterns. This cookbook
+  teaches those layers hands-on rather than at the level of API calls.
+
+Who is the LLM Systems Cookbook for?
+: Engineers and researchers who want to understand how production LLM
+  systems work under the hood. The primary audience is a
+  computer-science undergraduate who knows what softmax is but hasn't
+  studied LLM serving economics or GPU kernel programming; no prior
+  deep-learning background is assumed.
+
+Do I need a GPU to use this cookbook?
+: No. 61 of the 64 notebooks run on a free Google Colab T4, and each
+  chapter has an **Open in Colab** button. Three notebooks (two
+  FlashAttention-2 Triton kernels and one Nsight profiling notebook)
+  need an Ampere-class GPU; each declares its requirement in its header.
+
+Is the cookbook free and open source?
+: Yes. The cookbook is MIT-licensed and every notebook runs for free on
+  Colab. The [production-patterns track](notebooks/08_production/index)
+  also runs without any API keys by replaying recorded provider
+  responses from bundled fixtures.
+
+What topics does the cookbook cover?
+: Eight tracks: [GPU programming and Triton kernels](notebooks/07_gpu/index),
+  [inference-engine internals](notebooks/01_inference/index),
+  [serving and scaling](notebooks/05_serving/index),
+  [training and fine-tuning](notebooks/03_training/index),
+  [retrieval-augmented generation (RAG)](notebooks/02_rag/index),
+  [agent frameworks](notebooks/04_agents/index),
+  [evaluation methodology](notebooks/06_eval/index), and
+  [production LLM patterns](notebooks/08_production/index). The full
+  curriculum is specified in [CURRICULUM_SPEC.md](CURRICULUM_SPEC).
+
+How is this different from other LLM tutorials?
+: Most tutorials show how to call an API. This cookbook reimplements
+  each technique from first principles or exercises a production
+  library, and every notebook produces a numerical result checked by a
+  built-in scoring harness, so you verify your understanding instead of
+  only reading prose.
+
+Where should I start?
+: If you're new to GPU programming, start with
+  [Part I (Foundations)](notebooks/07_gpu/index). Otherwise jump
+  straight to the track you need:
+  [RAG](notebooks/02_rag/index),
+  [agent frameworks](notebooks/04_agents/index),
+  [serving and scaling](notebooks/05_serving/index), or
+  [evaluation](notebooks/06_eval/index). The grid above links every track.
+
 ## Citation
 
 If you use this cookbook in teaching or research, please cite:

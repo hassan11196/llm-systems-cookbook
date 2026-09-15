@@ -1,4 +1,16 @@
 {% extends "!layout.html" %}
+{#- On the home page Sphinx builds the <title> as "{title} — {docstitle}",
+    and here the page title already IS the site name, so the default renders a
+    duplicated "The LLM Systems Cookbook — The LLM Systems Cookbook". Override
+    the <title> (the most important on-page SEO tag) with a clean, descriptive
+    one on the home page only; every other page keeps the theme default. -#}
+{% block htmltitle %}
+  {%- if pagename == 'intro' %}
+  <title>The LLM Systems Cookbook — Hands-on LLM Systems Engineering</title>
+  {%- else %}
+  {{ super() }}
+  {%- endif %}
+{% endblock %}
 {% block extrahead %}
   {{ super() }}
   {%- set _base = 'https://hassan11196.github.io/llm-systems-cookbook/' %}
@@ -14,7 +26,10 @@
   {%- set _page_desc = page_descriptions.get(pagename, _site_desc) if page_descriptions is defined else _site_desc %}
   {%- set _og_image = _base ~ 'og-image.png' %}
   {%- set _bare_title = title|striptags|e %}
-  {%- set _page_title = _bare_title ~ ' — The LLM Systems Cookbook' %}
+  {#- On the home page the page title already IS the site name, so appending
+      the site name again would duplicate it ("… — The LLM Systems Cookbook").
+      Use a distinct, descriptive social title there instead. -#}
+  {%- set _page_title = 'The LLM Systems Cookbook — Hands-on LLM Systems Engineering' if pagename == 'intro' else _bare_title ~ ' — The LLM Systems Cookbook' %}
   {#- Emit a description only if the page didn't already declare one via frontmatter, so we never duplicate the tag. -#}
   {%- if 'name="description"' not in (metatags|default('', true)) %}
   <meta name="description" content="{{ _page_desc|e }}" />
@@ -66,6 +81,73 @@
       "name": "Muhammad Hassan Ahmed"
     },
     "keywords": ["LLM systems", "LLM engineering", "production LLM applications", "RAG system design", "LLM inference optimization", "AI agent architecture", "LLM evaluation", "GPU programming", "LLM serving", "LLM observability", "Jupyter notebook curriculum", "practical LLM system design"]
+  }
+  </script>
+  {#- FAQ structured data for the home page. The question/answer text mirrors
+      the visible "Frequently asked questions" section in intro.md so the
+      markup is eligible for FAQ rich results and stays truthful to the page. -#}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is LLM systems engineering?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "LLM systems engineering is the practice of building, serving, and evaluating large language model applications as production systems: GPU kernels and inference optimization, KV-cache and serving economics, retrieval-augmented generation, agent frameworks, evaluation methodology, and deployment patterns. This cookbook teaches those layers hands-on rather than at the level of API calls."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Who is the LLM Systems Cookbook for?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Engineers and researchers who want to understand how production LLM systems work under the hood. The primary audience is a computer-science undergraduate who knows what softmax is but has not studied LLM serving economics or GPU kernel programming; no prior deep-learning background is assumed."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need a GPU to use this cookbook?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. 61 of the 64 notebooks run on a free Google Colab T4, and each chapter has an Open in Colab button. Three notebooks (two FlashAttention-2 Triton kernels and one Nsight profiling notebook) need an Ampere-class GPU; each declares its requirement in its header."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the cookbook free and open source?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The cookbook is MIT-licensed and every notebook runs for free on Colab. The production-patterns track also runs without any API keys by replaying recorded provider responses from bundled fixtures."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What topics does the cookbook cover?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Eight tracks: GPU programming and Triton kernels, inference-engine internals, serving and scaling, training and fine-tuning, retrieval-augmented generation (RAG), agent frameworks, evaluation methodology, and production LLM patterns. The full curriculum is specified in CURRICULUM_SPEC.md."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is this different from other LLM tutorials?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most tutorials show how to call an API. This cookbook reimplements each technique from first principles or exercises a production library, and every notebook produces a numerical result checked by a built-in scoring harness, so you verify your understanding instead of only reading prose."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where should I start?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "If you are new to GPU programming, start with Part I (Foundations). Otherwise jump straight to the track you need: RAG, agent frameworks, serving and scaling, or evaluation. The home page grid links every track."
+        }
+      }
+    ]
   }
   </script>
   {%- else %}
