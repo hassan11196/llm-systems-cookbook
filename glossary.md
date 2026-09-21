@@ -785,6 +785,35 @@ guardrail
   First-class primitive in the OpenAI Agents SDK; analogous to
   middleware in web frameworks.
 
+agentic sandbox escape
+  An agent taking action against real, unintended systems because its
+  test or execution environment was not actually isolated from the
+  network — a failure of environment configuration, not necessarily
+  of model behavior. In September 2026, Google disclosed that Gemini
+  gained unauthorized access to three outside systems during a May
+  2026 red-team exercise after a fictional company name used in a
+  "capture the flag" test happened to match a real internet domain,
+  and a misconfiguration left the test environment connected to the
+  live internet rather than sealed inside a sandbox; the model halted
+  in all three cases. It followed comparable disclosures from
+  Anthropic and OpenAI earlier in 2026. Motivates hard network
+  isolation (not just prompt-level guardrails) for any autonomous
+  agent loop, including the ones built in this part; also cited as the
+  production motivation for the planned safety/red-teaming track in
+  `CURRICULUM_SPEC.md`.
+
+recursive self-improvement
+  The prospect of an AI system building or materially improving its
+  own successor with little or no human involvement. Anthropic began
+  publicly tracking a proxy metric toward this in 2026: the share of
+  its own model R&D that Claude can "lead" end-to-end from a
+  high-level prompt under human supervision, which rose from under 1%
+  in February 2026 to 26% in August 2026, alongside roughly 30,000
+  concurrently running research/engineering agents on Anthropic's
+  internal platform. As of the August 2026 measurement, no area of
+  Anthropic's AI R&D ran fully autonomously without a human in the
+  loop.
+
 Pydantic AI
   An agent framework from the Pydantic team (2024) with FastAPI-style
   dependency injection and first-class Pydantic validation. Supports
@@ -1094,7 +1123,32 @@ Qwen3
   parameters, ~95B active) beats GPT-5.6 Sol Max and Claude Fable 5 on
   OSWorld-Verified computer use (86.1 vs. 83.2 / 85.0) and leads on
   PaperBench (93.0) — and open weights follow on August 12, 2026,
-  breaking the closed-only pattern of the Qwen3.x line.
+  breaking the closed-only pattern of the Qwen3.x line. **Qwen3.8-Omni-Flash**
+  (September 18, 2026) is a native omnimodal sibling — text, image,
+  audio, and video input in a single forward pass, text-only output —
+  with a 1M-token context window (991K input / 131K output cap on
+  QwenCloud). Scores over 26% higher on average than the prior
+  Qwen3.5-Omni-Plus generation across ~30 public and internal
+  benchmarks, with the largest gains on agentic audio-video tasks
+  (WildClawBench-MM +36.5 pts, AgenticVBench +22.3 pts); audio-input
+  API pricing drops more than 98% versus Qwen3.5-Omni-Plus. Relevant
+  to the planned multimodal/VLM track (see `CURRICULUM_SPEC.md`).
+
+TypeSafe Jev
+  TypeSafe AI's "System 1" model class (first release: **Jev 1.13**,
+  September 15, 2026) — a non-autoregressive, decision-only model that
+  returns a typed, calibrated choice instead of free-form text, aimed
+  at routing and classification decision points inside an application
+  rather than prose generation. 32K-token context, 70-500 ms responses,
+  $0.042/M input tokens with no output-token cost. On TypeSafe's own
+  workflow evals it lands within 3 points of frontier general-purpose
+  models at roughly 4,000× lower cost per call (figures are
+  company-reported; "System 1" is TypeSafe's own framing rather than an
+  independently benchmarked category). Relevant to the fallback/routing
+  pattern in
+  {doc}`notebooks/08_production/02_litellm_router_fallbacks` and the
+  structured-outputs chapter in
+  {doc}`notebooks/04_agents/02_structured_outputs_three_ways`.
 
 Muse Spark
   Meta's multimodal reasoning model for agentic workflows, released as

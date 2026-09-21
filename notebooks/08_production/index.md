@@ -103,7 +103,13 @@ willing to run their own serving stack. **Qwen3.8-Max** (Alibaba,
 shipped August 3, 2026, 2.4T MoE, ~95B active) beats GPT-5.6 Sol Max and
 Claude Fable 5 on OSWorld-Verified computer use, with open weights
 following August 12 — the first Qwen3.x release to break from the
-closed-only pattern. Sakana AI's orchestration-model line takes a different
+closed-only pattern. Alibaba followed with **Qwen3.8-Omni-Flash**
+(September 18, 2026): a native omnimodal sibling that takes text,
+image, audio, and video input in one pass (text-only output) with a
+1M-token context window and audio-input API pricing cut over 98%
+versus the prior Qwen3.5-Omni-Plus generation — relevant to any team
+extending `05_hybrid_rag_production` or the planned multimodal track
+to non-text inputs. Sakana AI's orchestration-model line takes a different
 approach entirely: multi-model systems that route each query across
 other models rather than a single trained network. **Fugu-Ultra v1.1**
 ($5 input / $30 output per M tokens) led the GPQA-Diamond leaderboard
@@ -123,4 +129,11 @@ Claude Sonnet 5's introductory $2/$10-per-M pricing permanent (August 11,
 tokens for the same input than Sonnet 4.6's, so budget for a somewhat
 larger effective cost than the flat per-token price alone implies. For
 cost-sensitive production use via API, `claude-haiku-4-5-20251001` and
-`gpt-5.5-instant` remain the default latency-optimised choices.
+`gpt-5.5-instant` remain the default latency-optimised choices. For the
+narrower routing/classification decision points inside
+`02_litellm_router_fallbacks` — pick-a-provider, pick-a-tool,
+intent-classify-before-generate — TypeSafe AI's **Jev 1.13**
+(September 15, 2026) is worth a look: a non-autoregressive,
+decision-only model ($0.042/M input tokens, no output-token cost,
+70-500 ms responses) that returns a typed, calibrated choice instead
+of free-form text, rather than a general-purpose fallback model.

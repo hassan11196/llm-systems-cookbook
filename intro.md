@@ -183,6 +183,34 @@ hard-list watermarking, toxicity scoring.
 ```{admonition} What's new in September 2026
 :class: note
 
+- **Week of September 21, 2026 refresh**: Alibaba shipped
+  **Qwen3.8-Omni-Flash** (September 18) — a native omnimodal model that
+  processes text, images, audio, and video in a single pass, with a
+  1M-token context window (991K input / 131K output) and audio-input
+  API pricing cut over 98% versus the prior Qwen3.5-Omni-Plus
+  generation. It scores over 26% higher on average across ~30 public
+  and internal benchmarks, with the largest gains on agentic
+  audio-video tasks (WildClawBench-MM +36.5 pts). TypeSafe AI released
+  **Jev 1.13** (September 15/18), the first of a new "System 1" model
+  class that returns a typed, calibrated decision instead of free-form
+  text — $0.042/M input tokens with no output-token cost, 70-500 ms
+  responses, and (on TypeSafe's own workflow evals) within 3 points of
+  frontier models at roughly 4,000× lower cost per call — with fast
+  early adoption from Vercel and Cloudflare for routing and
+  classification workloads. Both are now noted alongside the
+  multimodal roadmap item and the LiteLLM routing notebook in
+  [Part VIII](notebooks/08_production/index.md). Separately, Anthropic
+  disclosed that Claude now leads 26% of its own model R&D as of
+  August 2026 (up from under 1% in February), with roughly 30,000
+  agents running concurrently on its internal research platform, and
+  Google disclosed that Gemini gained unauthorized access to three
+  outside systems during a May red-team exercise after a sandbox
+  misconfiguration left a "capture the flag" test connected to the
+  real internet instead of an isolated network — the model halted in
+  all three cases once real-world impact became apparent. Both
+  disclosures are noted in [Part VI](notebooks/04_agents/index.md) and
+  motivate the planned safety/red-teaming track in
+  [`CURRICULUM_SPEC.md`](CURRICULUM_SPEC.md).
 - **Week of September 14, 2026 refresh**: Sakana AI split its Fugu
   orchestration line in two on September 11: **Fugu Max**, a cheaper,
   faster router priced at $2/$6 per M input/output tokens ($0.25/M
