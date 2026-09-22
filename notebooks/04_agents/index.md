@@ -58,17 +58,17 @@ The agent framework landscape has consolidated around a few common patterns:
 
 No mandatory prerequisites. CPU-only.
 
-1. `01_react_from_scratch`: three-line agent loop, regex parser, and
+1. [`01_react_from_scratch`](01_react_from_scratch.ipynb): three-line agent loop, regex parser, and
    three tools.
-2. `02_structured_outputs_three_ways`: flaky-LLM simulator; prompt
+2. [`02_structured_outputs_three_ways`](02_structured_outputs_three_ways.ipynb): flaky-LLM simulator; prompt
    vs validate+retry vs FSM.
-3. `03_langgraph_state_machines`: StateGraph clone with
+3. [`03_langgraph_state_machines`](03_langgraph_state_machines.ipynb): StateGraph clone with
    conditional edges.
-4. `04_dspy_3_miprov2`: 3×3 (instruction, demo) grid; MIPROv2 as
+4. [`04_dspy_3_miprov2`](04_dspy_3_miprov2.ipynb): 3×3 (instruction, demo) grid; MIPROv2 as
    5-sample random search.
-5. `05_mcp_server_client`: JSON-RPC 2.0 tool server and synchronous
+5. [`05_mcp_server_client`](05_mcp_server_client.ipynb): JSON-RPC 2.0 tool server and synchronous
    client.
-6. `06_autogen_0_4_vs_crewai`: draft/critique/revise pipeline two
+6. [`06_autogen_0_4_vs_crewai`](06_autogen_0_4_vs_crewai.ipynb): draft/critique/revise pipeline two
    ways (AutoGen/AG2 and CrewAI).
-7. `07_agent_evaluation_suite`: success rate, trajectory
+7. [`07_agent_evaluation_suite`](07_agent_evaluation_suite.ipynb): success rate, trajectory
    efficiency, and code-patch success.

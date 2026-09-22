@@ -49,24 +49,24 @@ inference performance of the H100 baseline (Feb 2026).
 
 Prerequisites: Part I (GPU architecture tour + roofline).
 
-1. `01_autoregressive_decoding_kv_cache`: the KV cache is memoised
+1. [`01_autoregressive_decoding_kv_cache`](01_autoregressive_decoding_kv_cache.ipynb): the KV cache is memoised
    Fibonacci, with numbers.
-2. `02_attention_roofline`: attention from scratch + its
+2. [`02_attention_roofline`](02_attention_roofline.ipynb): attention from scratch + its
    arithmetic intensity.
-3. `03_pagedattention_block_allocator`: vLLM's block allocator in
+3. [`03_pagedattention_block_allocator`](03_pagedattention_block_allocator.ipynb): vLLM's block allocator in
    pure Python.
-4. `04_continuous_batching_orca`: iteration-level scheduling.
-5. `05_flashattention2_triton`: FA2 kernel wrapped in an
+4. [`04_continuous_batching_orca`](04_continuous_batching_orca.ipynb): iteration-level scheduling.
+5. [`05_flashattention2_triton`](05_flashattention2_triton.ipynb): FA2 kernel wrapped in an
    `nn.Module`. **Ampere+ for kernel execution**; falls back on
    CPU.
-6. `06_radix_prefix_cache`: SGLang's radix tree.
-7. `07_speculative_decoding`: the rejection rule and its
+6. [`06_radix_prefix_cache`](06_radix_prefix_cache.ipynb): SGLang's radix tree.
+7. [`07_speculative_decoding`](07_speculative_decoding.ipynb): the rejection rule and its
    closed-form speedup.
-8. `08_medusa_eagle_tree_speculation`: tree verification of draft
+8. [`08_medusa_eagle_tree_speculation`](08_medusa_eagle_tree_speculation.ipynb): tree verification of draft
    candidates.
-9. `09_sarathi_chunked_prefill`: co-schedule decodes with prefill
+9. [`09_sarathi_chunked_prefill`](09_sarathi_chunked_prefill.ipynb): co-schedule decodes with prefill
    chunks.
-10. `10_disaggregated_prefill_decode`: KV handoff between separate
+10. [`10_disaggregated_prefill_decode`](10_disaggregated_prefill_decode.ipynb): KV handoff between separate
     GPU pools.
 
 ```{seealso}

@@ -65,23 +65,23 @@ available in Colab.
 
 Prerequisites: Part I (roofline) and Part II (KV cache, PagedAttention).
 
-1. `01_roofline_analysis` (cross-ref in Part I): the LLM-flavoured
+1. [`01_roofline_analysis`](01_roofline_analysis.ipynb) (cross-ref in Part I): the LLM-flavoured
    roofline.
-2. `02_kv_cache_variants_mha_gqa_mla`: three attention shapes,
+2. [`02_kv_cache_variants_mha_gqa_mla`](02_kv_cache_variants_mha_gqa_mla.ipynb): three attention shapes,
    one module.
-3. `03_kv_compression_streamingllm_h2o_snapkv`: token-drop
+3. [`03_kv_compression_streamingllm_h2o_snapkv`](03_kv_compression_streamingllm_h2o_snapkv.ipynb): token-drop
    policies.
-4. `04_2bit_kv_quantization_kivi`: per-channel (K) and per-token (V)
+4. [`04_2bit_kv_quantization_kivi`](04_2bit_kv_quantization_kivi.ipynb): per-channel (K) and per-token (V)
    asymmetric 2-bit.
-5. `05_gptq_awq_weight_quant`: activation-aware 4-bit weights.
-6. `06_smoothquant_fp8_nf4`: three weight/activation formats
+5. [`05_gptq_awq_weight_quant`](05_gptq_awq_weight_quant.ipynb): activation-aware 4-bit weights.
+6. [`06_smoothquant_fp8_nf4`](06_smoothquant_fp8_nf4.ipynb): three weight/activation formats
    compared on the same layer.
-7. `07_quarot_spinquant_rotations`: Hadamard and learned rotations.
-8. `08_batching_strategies`: four schedulers, one workload.
-9. `09_moe_expert_parallelism`: router, capacity, aux loss.
-10. `10_disaggregated_serving_distserve`: goodput sweep over
+7. [`07_quarot_spinquant_rotations`](07_quarot_spinquant_rotations.ipynb): Hadamard and learned rotations.
+8. [`08_batching_strategies`](08_batching_strategies.ipynb): four schedulers, one workload.
+9. [`09_moe_expert_parallelism`](09_moe_expert_parallelism.ipynb): router, capacity, aux loss.
+10. [`10_disaggregated_serving_distserve`](10_disaggregated_serving_distserve.ipynb): goodput sweep over
     prefill/decode ratios.
-11. `11_serving_observability_slo_autoscaler`: metrics + control
+11. [`11_serving_observability_slo_autoscaler`](11_serving_observability_slo_autoscaler.ipynb): metrics + control
     loop.
 
 ## Serving ecosystem (mid-2026)

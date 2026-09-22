@@ -30,9 +30,9 @@
 
 Prerequisites: Part I (roofline) and Part II (KV cache).
 
-1. `01_mixed_precision_accum_checkpointing`: four-way ablation
+1. [`01_mixed_precision_accum_checkpointing`](01_mixed_precision_accum_checkpointing.ipynb): four-way ablation
    (fp32, bf16, bf16+accum=4, bf16+accum+checkpoint).
-2. `02_ddp_vs_fsdp2`: fork-context multiprocessing over gloo;
+2. [`02_ddp_vs_fsdp2`](02_ddp_vs_fsdp2.ipynb): fork-context multiprocessing over gloo;
    both converge to identical loss.
 
 ```{note}

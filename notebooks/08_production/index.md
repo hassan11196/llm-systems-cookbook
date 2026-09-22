@@ -15,24 +15,24 @@ just from a previous run.
 
 ## Reading order
 
-1. `01_claude_sdk_prompt_caching`: `cache_control` on a long system
+1. [`01_claude_sdk_prompt_caching`](01_claude_sdk_prompt_caching.ipynb): `cache_control` on a long system
    prompt; measured cache hit rate, $ saved, latency drop.
-2. `02_litellm_router_fallbacks`: multi-provider routing with cost
+2. [`02_litellm_router_fallbacks`](02_litellm_router_fallbacks.ipynb): multi-provider routing with cost
    and latency tracking; fallback when the primary provider 429s.
-3. `03_tool_use_agent`: native Anthropic tool use, parallel tool
+3. [`03_tool_use_agent`](03_tool_use_agent.ipynb): native Anthropic tool use, parallel tool
    calls, no parser. Compared against the regex-parser approach
    from `04_agents/01`.
-4. `04_structured_outputs_real`: head-to-head compliance/latency
+4. [`04_structured_outputs_real`](04_structured_outputs_real.ipynb): head-to-head compliance/latency
    for Anthropic tool-use, Outlines + Qwen2.5, Instructor, BAML.
-5. `05_hybrid_rag_production`: BGE-M3 dense + BM25 + RRF + reranker
+5. [`05_hybrid_rag_production`](05_hybrid_rag_production.ipynb): BGE-M3 dense + BM25 + RRF + reranker
    → Claude with citations on a 1k-doc corpus.
-6. `06_mcp_real_server`: an MCP server (stdio transport, `mcp` SDK)
+6. [`06_mcp_real_server`](06_mcp_real_server.ipynb): an MCP server (stdio transport, `mcp` SDK)
    that Claude Code / Cursor can connect to.
-7. `07_dspy_miprov2_optimizer`: DSPy 3 program for classification;
+7. [`07_dspy_miprov2_optimizer`](07_dspy_miprov2_optimizer.ipynb): DSPy 3 program for classification;
    MIPROv2 optimises against held-out accuracy.
-8. `08_inspect_ai_eval_harness`: Inspect AI task + scorer + solver
+8. [`08_inspect_ai_eval_harness`](08_inspect_ai_eval_harness.ipynb): Inspect AI task + scorer + solver
    on a real benchmark.
-9. `09_gpu_providers_pricing_and_model_fit`: practical reference,
+9. [`09_gpu_providers_pricing_and_model_fit`](09_gpu_providers_pricing_and_model_fit.ipynb): practical reference,
    GPU types in production, on-demand and spot pricing across ten
    cloud providers, vRAM math, and a calculator that maps a model
    size to the smallest cluster that holds it.

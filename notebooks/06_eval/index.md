@@ -38,17 +38,17 @@
 
 No mandatory prerequisites. All notebooks are CPU-safe and written from scratch.
 
-1. `01_perplexity_from_scratch`: the canonical metric derived and
+1. [`01_perplexity_from_scratch`](01_perplexity_from_scratch.ipynb): the canonical metric derived and
    implemented three ways.
-2. `02_mmlu_harness_calibration`: logit-based multiple-choice plus
+2. [`02_mmlu_harness_calibration`](02_mmlu_harness_calibration.ipynb): logit-based multiple-choice plus
    ECE.
-3. `03_humaneval_unbiased_pass_k`: sandboxed candidate execution plus
+3. [`03_humaneval_unbiased_pass_k`](03_humaneval_unbiased_pass_k.ipynb): sandboxed candidate execution plus
    unbiased estimator.
-4. `04_llm_as_judge_bias`: position and verbosity bias, quantified.
-5. `05_arena_elo_bradley_terry`: pairwise preferences to rankings.
-6. `06_long_context_niah_ruler`: decay model plus RULER composite.
-7. `07_contamination_detection`: n-gram overlap plus Min-K Prob.
-8. `08_lm_eval_inspect_ai`: cross-framework reconciliation on a
+4. [`04_llm_as_judge_bias`](04_llm_as_judge_bias.ipynb): position and verbosity bias, quantified.
+5. [`05_arena_elo_bradley_terry`](05_arena_elo_bradley_terry.ipynb): pairwise preferences to rankings.
+6. [`06_long_context_niah_ruler`](06_long_context_niah_ruler.ipynb): decay model plus RULER composite.
+7. [`07_contamination_detection`](07_contamination_detection.ipynb): n-gram overlap plus Min-K Prob.
+8. [`08_lm_eval_inspect_ai`](08_lm_eval_inspect_ai.ipynb): cross-framework reconciliation on a
    synthetic task.
 
 ## Benchmark landscape (mid-2026)

@@ -29,21 +29,21 @@ part builds the axes.
 
 ## Reading order
 
-1. `01_gpu_architecture_tour`: device discovery plus peak-bandwidth
+1. [`01_gpu_architecture_tour`](01_gpu_architecture_tour.ipynb): device discovery plus peak-bandwidth
    and peak-TFLOPs microbenchmarks.
-2. `02_triton_101_softmax`: first Triton kernel.
-3. `03_triton_tiled_matmul`: grouped-order tiled matmul, target 70 %
+2. [`02_triton_101_softmax`](02_triton_101_softmax.ipynb): first Triton kernel.
+3. [`03_triton_tiled_matmul`](03_triton_tiled_matmul.ipynb): grouped-order tiled matmul, target 70 %
    of cuBLAS.
-4. `04_triton_flashattention`: FA2 forward with online softmax.
-5. `05_fused_rope_rmsnorm`: position-dependent rotation plus variance
+4. [`04_triton_flashattention`](04_triton_flashattention.ipynb): FA2 forward with online softmax.
+5. [`05_fused_rope_rmsnorm`](05_fused_rope_rmsnorm.ipynb): position-dependent rotation plus variance
    normalisation fused into two kernels.
-6. `06_torch_compile_deep_dive`: TorchDynamo plus Inductor, graph
+6. [`06_torch_compile_deep_dive`](06_torch_compile_deep_dive.ipynb): TorchDynamo plus Inductor, graph
    breaks, reduce-overhead mode.
-7. `07_nsight_profiling`: NVTX annotations plus `torch.profiler`
+7. [`07_nsight_profiling`](07_nsight_profiling.ipynb): NVTX annotations plus `torch.profiler`
    fallback.
-8. `08_jax_sharding_pipeline`: distributed arrays, 1-D mesh,
+8. [`08_jax_sharding_pipeline`](08_jax_sharding_pipeline.ipynb): distributed arrays, 1-D mesh,
    PartitionSpec.
-9. `05_serving/01_roofline_analysis` (cross-reference): closes the
+9. [`05_serving/01_roofline_analysis`](../05_serving/01_roofline_analysis.ipynb) (cross-reference): closes the
    foundations arc by applying the roofline to LLM serving
    workloads.
 
