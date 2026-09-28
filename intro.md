@@ -183,6 +183,27 @@ hard-list watermarking, toxicity scoring.
 ```{admonition} What's new in September 2026
 :class: note
 
+- **Week of September 28, 2026 refresh**: Anthropic shipped **Claude
+  Opus 5.5** (September 22) as its new default flagship, cutting list
+  price to $4/$20 per M input/output tokens (down from Opus 5's
+  $5/$25) while topping Anthropic's own benchmark table on SWE-bench
+  Pro (89.9%) and Terminal-Bench 4.0 (66.4%) — output is over 30%
+  faster and roughly 40% cheaper per completed task than Opus 5. xAI's
+  **Grok 4.7** (2.1T parameters) finally shipped September 21 at
+  Grok 4.6's $2/$6 per-M-token price, resolving the "slipped to early
+  September" note from two updates ago. Xiaomi open-sourced
+  **MiMo-V2.6-Pro** and **MiMo-V2.6-Flash** (September 21, MIT
+  license) — omnimodal successors to MiMo-V2.5 priced at $0.435/$0.87
+  and $0.14/$0.28 per M tokens respectively, both well under a tenth
+  of closed frontier pricing. On the serving side, vLLM reached
+  **v0.30.0** (September 22) and Hugging Face's own Inference
+  Endpoints now default to it, while **SGLang** crossed 400,000
+  production GPUs deployed at companies including xAI, NVIDIA, AMD,
+  and LinkedIn — concrete adoption evidence behind the throughput
+  numbers already in [Part V](notebooks/05_serving/index.md). All of
+  this is now reflected in the frontier-tier rundown and benchmark
+  table in [Part VII](notebooks/06_eval/index.md) and
+  [Part VIII](notebooks/08_production/index.md).
 - **Week of September 21, 2026 refresh**: Alibaba shipped
   **Qwen3.8-Omni-Flash** (September 18) — a native omnimodal model that
   processes text, images, audio, and video in a single pass, with a

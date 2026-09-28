@@ -63,12 +63,16 @@ Artificial Analysis Coding Agent Index (67 vs. 70) — and it is the
 first model to reach OpenAI's "Critical" cybersecurity-capability tier
 under the Preparedness Framework, worth flagging for any team building
 the `04_agents` or `08_production` notebooks against it in a regulated
-environment; **Claude Opus 5**
-(`claude-opus-5`, July 24, 2026, $5/$25 per M tokens) holds Opus 4.8's
-price while more than doubling its Frontier-Bench v0.1 agentic-coding
-score (43.3% vs. 21.1%), ahead of GPT-5.6 Sol and Claude Fable 5 on that
-eval, and carries the freshest (May 2026) knowledge cutoff in Anthropic's
-lineup; **Claude Sonnet 5** (`claude-sonnet-5`, June 30, 2026, 63.2%
+environment; **Claude Opus 5.5** (`claude-opus-5-5`, September 22, 2026, $4/$20 per M
+tokens, cache write $5/M, cache read $0.20/M) is now Anthropic's default
+flagship, replacing **Claude Opus 5** (`claude-opus-5`, July 24, 2026,
+$5/$25 per M tokens) at roughly 40% lower cost per completed task and
+30%+ faster output. Opus 5.5 tops SWE-bench Pro (89.9%) and Terminal-Bench
+4.0 (66.4%); Opus 5 held Opus 4.8's price while more than doubling its
+Frontier-Bench v0.1 agentic-coding score (43.3% vs. 21.1%), ahead of
+GPT-5.6 Sol and Claude Fable 5 on that eval, and remains a cheaper-per-task
+fallback with the freshest (May 2026) knowledge cutoff in Anthropic's
+prior lineup; **Claude Sonnet 5** (`claude-sonnet-5`, June 30, 2026, 63.2%
 SWE-bench Pro) is the balanced-tier option one step down. **GPT-5.6 Sol**
 (OpenAI, July 9, 2026, $5/$30 per M tokens) edges out Fable 5 on the
 Artificial Analysis Coding Agent Index at under half the output tokens,
@@ -78,10 +82,11 @@ three months starting August 21, 2026;
 while landing fourth on the Artificial Analysis Intelligence Index;
 xAI followed with **Grok 4.6** (built for long-running agents and
 deeper coding, 500K-token context, $2/$0.50/$6 per M tokens
-input/cached/output), now available in GitHub Copilot and Cursor. The
-next step up, **Grok 4.7** (2.1T parameters), has slipped past its
-original within-weeks target: xAI added SpaceX company data to its
-training run in mid-August and now points to early September.
+input/cached/output), now available in GitHub Copilot and Cursor.
+**Grok 4.7** (2.1T parameters) shipped September 21, 2026 at the same
+$2/$6 per-M-token price as 4.6, after slipping past its original
+within-weeks target while xAI added SpaceX company data to the
+training run; it scores 46.3% on CursorBench 4.0.
 Google's flagship **Gemini 3.5 Pro** remains delayed — it missed its
 fourth target date and its latest rumored August 12 date too, with
 reporting pointing to coding-performance shortfalls and a disappointing
@@ -109,7 +114,13 @@ image, audio, and video input in one pass (text-only output) with a
 1M-token context window and audio-input API pricing cut over 98%
 versus the prior Qwen3.5-Omni-Plus generation — relevant to any team
 extending `05_hybrid_rag_production` or the planned multimodal track
-to non-text inputs. Sakana AI's orchestration-model line takes a different
+to non-text inputs. Xiaomi's **MiMo-V2.6** family (September 21, 2026,
+MIT license) pushes open-weight pricing even lower: **MiMo-V2.6-Pro**
+(1.02T total / 42B active, omnimodal, 1M-token context) at
+$0.435/$0.87 per M input/output tokens, and the cheaper
+**MiMo-V2.6-Flash** (309B total) at $0.14/$0.28 per M tokens — both
+successors to April's MiMo-V2.5 and both an order of magnitude or more
+below every closed frontier model's per-token price. Sakana AI's orchestration-model line takes a different
 approach entirely: multi-model systems that route each query across
 other models rather than a single trained network. **Fugu-Ultra v1.1**
 ($5 input / $30 output per M tokens) led the GPQA-Diamond leaderboard

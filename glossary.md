@@ -1014,17 +1014,26 @@ Claude Sonnet 5 / Claude Fable 5
   ($3.76) despite the cache-read cut; the cut mostly pays off in
   agentic workloads that are cache-read heavy.
 
-Claude Opus 5
-  Anthropic's July 24, 2026 Opus-tier refresh. Holds Opus 4.8's $5/$25
-  per-million-token price while more than doubling its score on
-  Frontier-Bench v0.1, an agentic terminal-coding evaluation (43.3% vs.
-  21.1% for Opus 4.8), ahead of both GPT-5.6 Sol (34.4%) and Claude
-  Fable 5 (33.7%) on that eval. Performs within 0.5% of Fable 5's best
-  CursorBench 3.2 score at half the per-task cost, and beats Fable 5 on
-  OSWorld 2.0 at a third of the cost. Supports 1M-token context and
-  128K-token max output (300K via the Batch API). Carries a May 2026
-  knowledge cutoff — the freshest in Anthropic's lineup, versus January
-  2026 for Fable 5 and Opus 4.8.
+Claude Opus 5 / Claude Opus 5.5
+  Anthropic's July 24, 2026 Opus-tier refresh. **Claude Opus 5** holds
+  Opus 4.8's $5/$25 per-million-token price while more than doubling
+  its score on Frontier-Bench v0.1, an agentic terminal-coding
+  evaluation (43.3% vs. 21.1% for Opus 4.8), ahead of both GPT-5.6 Sol
+  (34.4%) and Claude Fable 5 (33.7%) on that eval. Performs within 0.5%
+  of Fable 5's best CursorBench 3.2 score at half the per-task cost,
+  and beats Fable 5 on OSWorld 2.0 at a third of the cost. Supports
+  1M-token context and 128K-token max output (300K via the Batch API).
+  Carries a May 2026 knowledge cutoff — the freshest in Anthropic's
+  lineup at the time, versus January 2026 for Fable 5 and Opus 4.8.
+  **Claude Opus 5.5** (September 22, 2026) replaces Opus 5 as
+  Anthropic's default flagship, cutting list price to $4/$20 per
+  million input/output tokens (cache write $5/M, down from $6.25/M;
+  cache read $0.20/M, down from $0.50/M). It tops Anthropic's own
+  benchmark table on SWE-bench Pro (89.9%, well above Claude Mythos
+  5's gated 80.3% and Opus 5's 79.2%) and Terminal-Bench 4.0 (66.4%),
+  produces output more than 30% faster than Opus 5, and costs roughly
+  40% less per completed task once speed and pricing are combined.
+  Available via the API and across AWS, Google Cloud, and Microsoft.
 
 Claude Mythos
   Anthropic's frontier research model, positioned above the public
@@ -1039,15 +1048,21 @@ Claude Mythos
   {doc}`notebooks/08_production/index` because of its gated
   availability.
 
-Grok 4.5
+Grok 4.5 / 4.6 / 4.7
   xAI's July 8, 2026 release, its first model built specifically for
-  coding and agentic work. Lands fourth on the Artificial Analysis
-  Intelligence Index (54, vs. Claude Fable 5's 60), above every
-  open-weight model and all Gemini models, at a price over 60% below
-  Claude Opus 4.8 or GPT-5.5. Highly token-efficient (~14K output
-  tokens per Intelligence Index task vs. 67K for Opus 4.8). Scores
-  64.7% on SWE-bench Pro, behind Claude Fable 5 (80.4%) and Claude
-  Opus 4.8 (69.2%).
+  coding and agentic work. **Grok 4.5** lands fourth on the Artificial
+  Analysis Intelligence Index (54, vs. Claude Fable 5's 60), above
+  every open-weight model and all Gemini models, at a price over 60%
+  below Claude Opus 4.8 or GPT-5.5. Highly token-efficient (~14K
+  output tokens per Intelligence Index task vs. 67K for Opus 4.8).
+  Scores 64.7% on SWE-bench Pro, behind Claude Fable 5 (80.4%) and
+  Claude Opus 4.8 (69.2%). **Grok 4.6** followed for long-running
+  agents and deeper coding (500K-token context, $2/$0.50/$6 per M
+  tokens input/cached/output) and shipped in GitHub Copilot and
+  Cursor. **Grok 4.7** (2.1 trillion parameters) shipped September 21,
+  2026 after slipping past its original within-weeks target while xAI
+  added SpaceX company data to the training run — at the same $2/$6
+  per-M-token price as 4.6, scoring 46.3% on CursorBench 4.0.
 
 GPT-5.6
   OpenAI's July 9, 2026 release, a family of three models — **Sol**
@@ -1103,6 +1118,18 @@ MiMo-V2.5
   tasks. Context window extends to 1 M tokens after progressive
   fine-tuning. Weights and tokenizer are available on Hugging Face under
   a permissive open license.
+
+MiMo-V2.6
+  Xiaomi's September 21, 2026 successor to MiMo-V2.5, released as two
+  open-weight (MIT license) models on Hugging Face. **MiMo-V2.6-Pro**
+  (1.02T total parameters, 42B active) is the flagship — omnimodal
+  (text, image, video, audio), 1M-token context, 46.32 on the
+  Artificial Analysis Intelligence Index v4.3 — priced at $0.435/$0.87
+  per M input/output tokens. **MiMo-V2.6-Flash** (309B total) trades
+  some quality for cost at $0.14/$0.28 per M tokens, aimed at
+  high-frequency production calls. Both keep the same 1M-token context
+  and 128K max output as MiMo-V2.5, and both undercut every closed
+  frontier model's per-token price by well over an order of magnitude.
 
 Gemini Spark
   A persistent 24/7 personal AI agent announced at Google I/O 2026 (May
@@ -1215,7 +1242,13 @@ SGLang
   UC Berkeley / LMSYS serving framework with RadixAttention (shared
   prefix caching) and async constrained decoding. Version 0.4+ shows
   3.1× throughput vs vLLM on DeepSeek-V3 traffic patterns; generally
-  preferred over vLLM when requests share long common prefixes.
+  preferred over vLLM when requests share long common prefixes. As of
+  late September 2026, SGLang is deployed across more than 400,000
+  production GPUs at companies including xAI, NVIDIA, AMD, Intel,
+  LinkedIn, and Cursor — evidence that the throughput edge on
+  shared-prefix workloads (see the serving security/perf note in
+  {doc}`notebooks/05_serving/index`) is translating into real
+  production adoption, not just benchmark wins.
 
 Kimi K3
   Moonshot AI's July 16, 2026 release, a 2.8 trillion-parameter MoE
@@ -1258,6 +1291,11 @@ vLLM V2
   ``engine_use_ray`` and ``worker_use_ray``; introduces a new
   Prometheus metrics schema. HuggingFace TGI moved to maintenance mode
   in 2025; vLLM V2 and SGLang are the recommended production
-  replacements.
+  replacements. vLLM reached **v0.30.0** on September 22, 2026,
+  continuing its roughly-every-ten-days release cadence since v0.22
+  in late May; Hugging Face's own Inference Endpoints now default to
+  vLLM (with SGLang as the alternative), and Hugging Face's GitHub
+  README for TGI now explicitly points users to vLLM, SGLang, or
+  llama.cpp instead.
 
 ```
