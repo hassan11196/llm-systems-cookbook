@@ -59,9 +59,16 @@ sphinx:
     html_last_updated_fmt: "%Y-%m-%d"
     html_baseurl: "https://hassan11196.github.io/llm-systems-cookbook/"
     sitemap_url_scheme: "{link}"
+    # Keep low-value generated pages out of the sitemap so crawl budget and
+    # ranking signals concentrate on the real content pages.
+    sitemap_excludes:
+      - "search.html"
+      - "genindex.html"
     html_extra_path:
       - robots.txt
       - assets
+      # Custom GitHub Pages 404 page (served at /404.html for unknown paths).
+      - 404.html
     templates_path:
       - _templates
     # Per-page meta/OG/Twitter descriptions, consumed by _templates/layout.html.

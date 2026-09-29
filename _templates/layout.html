@@ -1,4 +1,14 @@
 {% extends "!layout.html" %}
+{#- The default <title> is "{page} — {site}", which on the home page renders as
+    "The LLM Systems Cookbook — The LLM Systems Cookbook". Emit a clean,
+    descriptive <title> per page instead. -#}
+{% block htmltitle %}
+  {%- if pagename == 'intro' %}
+  <title>The LLM Systems Cookbook — Hands-On LLM Systems Engineering</title>
+  {%- else %}
+  <title>{{ title|striptags|e }} — The LLM Systems Cookbook</title>
+  {%- endif %}
+{% endblock %}
 {% block extrahead %}
   {{ super() }}
   {%- set _base = 'https://hassan11196.github.io/llm-systems-cookbook/' %}
@@ -14,7 +24,14 @@
   {%- set _page_desc = page_descriptions.get(pagename, _site_desc) if page_descriptions is defined else _site_desc %}
   {%- set _og_image = _base ~ 'og-image.png' %}
   {%- set _bare_title = title|striptags|e %}
+  {#- On the home page the H1 already IS the book title, so appending the site
+      name would duplicate it ("The LLM Systems Cookbook — The LLM Systems
+      Cookbook"). Give the home page a distinct, descriptive title instead. -#}
+  {%- if pagename == 'intro' %}
+  {%- set _page_title = 'The LLM Systems Cookbook — Hands-On LLM Systems Engineering' %}
+  {%- else %}
   {%- set _page_title = _bare_title ~ ' — The LLM Systems Cookbook' %}
+  {%- endif %}
   {#- Emit a description only if the page didn't already declare one via frontmatter, so we never duplicate the tag. -#}
   {%- if 'name="description"' not in (metatags|default('', true)) %}
   <meta name="description" content="{{ _page_desc|e }}" />
@@ -66,6 +83,116 @@
       "name": "Muhammad Hassan Ahmed"
     },
     "keywords": ["LLM systems", "LLM engineering", "production LLM applications", "RAG system design", "LLM inference optimization", "AI agent architecture", "LLM evaluation", "GPU programming", "LLM serving", "LLM observability", "Jupyter notebook curriculum", "practical LLM system design"]
+  }
+  </script>
+  {#- Course schema: this site is a structured, self-paced curriculum, so a
+      Course record (with its eight parts as hasPart) is the most accurate
+      description and is eligible for course rich results. -#}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "The LLM Systems Cookbook",
+    "description": "A free, self-paced curriculum for LLM systems engineering: 64 hands-on Jupyter notebooks covering GPU programming, inference optimization, serving and scaling, training and fine-tuning, retrieval-augmented generation (RAG), AI agent frameworks, evaluation methodology, and production LLM patterns.",
+    "url": "https://hassan11196.github.io/llm-systems-cookbook/",
+    "image": "https://hassan11196.github.io/llm-systems-cookbook/og-image.png",
+    "inLanguage": "en",
+    "isAccessibleForFree": true,
+    "educationalLevel": "undergraduate",
+    "provider": { "@type": "Person", "name": "Muhammad Hassan Ahmed" },
+    "author": { "@type": "Person", "name": "Muhammad Hassan Ahmed" },
+    "teaches": [
+      "LLM inference optimization",
+      "RAG pipeline design",
+      "AI agent frameworks",
+      "LLM serving and scaling",
+      "LLM evaluation methodology",
+      "GPU programming with Triton",
+      "production LLM patterns",
+      "LLM observability"
+    ],
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "category": "Free",
+      "availability": "https://schema.org/InStock"
+    },
+    "hasCourseInstance": {
+      "@type": "CourseInstance",
+      "courseMode": "online",
+      "courseWorkload": "P8W",
+      "instructor": { "@type": "Person", "name": "Muhammad Hassan Ahmed" }
+    },
+    "hasPart": [
+      { "@type": "Course", "name": "Foundations: GPU programming and the roofline", "url": "{{ _base }}notebooks/07_gpu/index.html" },
+      { "@type": "Course", "name": "Inference engines", "url": "{{ _base }}notebooks/01_inference/index.html" },
+      { "@type": "Course", "name": "Serving and scaling", "url": "{{ _base }}notebooks/05_serving/index.html" },
+      { "@type": "Course", "name": "Training and fine-tuning", "url": "{{ _base }}notebooks/03_training/index.html" },
+      { "@type": "Course", "name": "Retrieval-augmented generation", "url": "{{ _base }}notebooks/02_rag/index.html" },
+      { "@type": "Course", "name": "Agent frameworks", "url": "{{ _base }}notebooks/04_agents/index.html" },
+      { "@type": "Course", "name": "Evaluation", "url": "{{ _base }}notebooks/06_eval/index.html" },
+      { "@type": "Course", "name": "Production patterns", "url": "{{ _base }}notebooks/08_production/index.html" }
+    ]
+  }
+  </script>
+  {#- FAQPage schema, mirroring the visible "Frequently asked questions"
+      section on the home page (Google requires the answers to be visible
+      on-page). Targets long-tail question queries. -#}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Do I need a GPU to run the notebooks?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. 61 of the 64 notebooks run on a free Google Colab T4, and the RAG, agents, evaluation, and production tracks are CPU-safe. Only three GPU-kernel notebooks need an Ampere-class GPU (A100/H100); each chapter states its hardware requirement in its header."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the cookbook free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. All content is open source under the MIT license, and every notebook opens in a free Colab T4 with no local install."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What background do I need?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Comfort reading Python and high-school algebra. No prior deep-learning or GPU-programming background is assumed; the notebooks introduce each ML-specific concept the first time it appears."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is this different from other LLM tutorials?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most tutorials show how to call an API. This cookbook reimplements the techniques inside the API — FlashAttention-2 as a Triton kernel, PagedAttention's block allocator, RAG pipelines you can evaluate end-to-end — and each notebook verifies its output with deterministic numerical checks."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What topics does the cookbook cover?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Eight tracks: GPU programming, LLM inference optimization, serving and scaling, training and fine-tuning, retrieval-augmented generation (RAG), AI agent frameworks, evaluation methodology, and production LLM patterns."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use it to learn RAG or build AI agents?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Part V builds production RAG systems (chunking, hybrid retrieval, reranking, RAPTOR, GraphRAG, RAGAS), and Part VI builds agent frameworks from scratch (ReAct, LangGraph, DSPy, MCP, multi-agent). Part VIII shows both running against real provider APIs."
+        }
+      }
+    ]
   }
   </script>
   {%- else %}

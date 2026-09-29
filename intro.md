@@ -251,6 +251,41 @@ hard-list watermarking, toxicity scoring.
   cross-node KV sharing.
 ```
 
+## Frequently asked questions
+
+**Do I need a GPU to run the notebooks?**
+No. 61 of the 64 notebooks run on a free Google Colab T4, and the RAG,
+agents, evaluation, and production tracks are CPU-safe. Only three
+GPU-kernel notebooks need an Ampere-class GPU (A100/H100); each chapter
+states its hardware requirement in its header.
+
+**Is the cookbook free?**
+Yes. All content is open source under the MIT license, and every notebook
+opens in a free Colab T4 with no local install.
+
+**What background do I need?**
+Comfort reading Python and high-school algebra. No prior deep-learning or
+GPU-programming background is assumed; the notebooks introduce each
+ML-specific concept the first time it appears.
+
+**How is this different from other LLM tutorials?**
+Most tutorials show how to call an API. This cookbook reimplements the
+techniques inside the API — FlashAttention-2 as a Triton kernel,
+PagedAttention's block allocator, RAG pipelines you can evaluate
+end-to-end — and each notebook verifies its output with deterministic
+numerical checks.
+
+**What topics does the cookbook cover?**
+Eight tracks: GPU programming, LLM inference optimization, serving and
+scaling, training and fine-tuning, retrieval-augmented generation (RAG),
+AI agent frameworks, evaluation methodology, and production LLM patterns.
+
+**Can I use it to learn RAG or build AI agents?**
+Yes. Part V builds production RAG systems (chunking, hybrid retrieval,
+reranking, RAPTOR, GraphRAG, RAGAS), and Part VI builds agent frameworks
+from scratch (ReAct, LangGraph, DSPy, MCP, multi-agent). Part VIII shows
+both running against real provider APIs.
+
 ## Citation
 
 If you use this cookbook in teaching or research, please cite:
