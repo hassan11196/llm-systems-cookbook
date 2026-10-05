@@ -180,6 +180,31 @@ hard-list watermarking, toxicity scoring.
   07_gpu/04, plus 07_gpu/07 Nsight profiling) note their requirements
   in their chapter header.
 
+```{admonition} What's new in October 2026
+:class: note
+
+- **Week of October 5, 2026 refresh**: OpenAI announced **GPT-6.1 Sol**
+  at DevDay (September 29) — the mid-tier of the GPT-6 series, below
+  GPT-6 Astra (the September 3 flagship) and above GPT-6 Luna — at
+  $2/$10 per M input/output tokens with cached input cut to $0.10/M,
+  a 1.05M-token context window, and 128K max output. OpenAI says it
+  matches Astra on DeepSWE v1.1 at roughly a fifth of the cost. DeepSeek's
+  **V4.1-Flash** (September 10; 552B-parameter multimodal MoE, 1M-token
+  context, 384K max output) is priced at $0.15/$0.60 per M tokens
+  off-peak and is already supported in SGLang. Cloudflare open-sourced
+  **Clef** (27B) and **Clef-flash** (9B) on October 1 under Apache 2.0:
+  "decision models" that return typed probabilities (yes/no, pick-one,
+  rating) for up to 64 questions per request instead of free-form text,
+  with Clef-flash at ~39 ms median latency. **SGLang v0.5.21**
+  (October 2) added matching `/v1/decisions` and `/v1/score` endpoints
+  for classifier/scorer-style serving, a Rust-core prefix cache by
+  default, and PD instances that can switch between prefill and decode
+  roles without a restart — relevant to the radix-cache and
+  disaggregated-serving chapters in
+  [Part II](notebooks/01_inference/index.md) and
+  [Part V](notebooks/05_serving/index.md).
+```
+
 ```{admonition} What's new in September 2026
 :class: note
 

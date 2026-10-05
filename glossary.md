@@ -1248,7 +1248,29 @@ SGLang
   LinkedIn, and Cursor — evidence that the throughput edge on
   shared-prefix workloads (see the serving security/perf note in
   {doc}`notebooks/05_serving/index`) is translating into real
-  production adoption, not just benchmark wins.
+  production adoption, not just benchmark wins. v0.5.21 (October 2,
+  2026) added `/v1/decisions` and `/v1/score` endpoints for
+  classifier/scorer-style workloads, made the Rust-core prefix cache
+  the default, and lets PD instances switch between prefill and decode
+  roles without a restart.
+
+Decision model (Cloudflare Clef / Clef-flash)
+  A model that returns calibrated probabilities over a fixed set of
+  typed answers (yes/no, pick-one, rating) instead of generating text,
+  so software can route, escalate, or classify on the result directly.
+  Cloudflare released **Clef** (27B) and **Clef-flash** (9B) on
+  October 1, 2026 under Apache 2.0 (Hugging Face and Workers AI):
+  64K-token context, image and video input, up to 64 questions per
+  request, and ~39 ms median latency for Clef-flash.
+
+GPT-6.1 Sol / DeepSeek V4.1-Flash
+  **GPT-6.1 Sol** (OpenAI, September 29, 2026) is the mid-tier GPT-6
+  model: $2/$10 per M input/output tokens, $0.10/M cached input,
+  1.05M-token context, 128K max output, positioned near GPT-6 Astra
+  quality at about a fifth of the cost. **DeepSeek V4.1-Flash**
+  (September 10, 2026) is a 552B-parameter multimodal MoE with a 1M
+  context window and 384K max output, priced from $0.15/$0.60 per M
+  tokens off-peak.
 
 Kimi K3
   Moonshot AI's July 16, 2026 release, a 2.8 trillion-parameter MoE
